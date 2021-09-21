@@ -9,14 +9,41 @@ class Season extends Component
 
 		this.state =
 		{
-
+			subsList: [],
+			membersList: []
 		};
+
+		this.getSavedSubs = this.getSavedSubs.bind();
+		this.getSavedMembers = this.getSavedMembers.bind();
+	}
+
+	componentDidMount = () =>
+	{
+		this.setState(
+		{
+			subsList: this.getSavedSubs(),
+			membersList: this.getSavedMembers()
+		});
+	}
+
+	getSavedMembers = () =>
+	{
+		const membersListJSON = localStorage.getItem( 'mockMembers' );
+
+		return membersListJSON ? JSON.parse( membersListJSON ) : [];
+	}
+
+	getSavedSubs = () =>
+	{
+		const subsListJSON = localStorage.getItem( 'mockSubs' );
+	
+		return subsListJSON ? JSON.parse( subsListJSON ) : [];
 	}
 
 	render()
 	{
 		return(
-			<div>
+			<div className='Season'>
 				<Member name='Luke Marvelly' />
 			</div>
 		);
