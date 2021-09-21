@@ -1,13 +1,15 @@
 import './App.css';
 
-import Member from './Member';
+import Season from './Season';
 
-function App() {
-  return (
-    <div className="App">
-      <Member name='Luke Marvelly' />
-    </div>
-  );
+function App() 
+{
+	return (
+		<div className="App">
+			<script src='./database/mockData.js'></script>
+			<Season />
+		</div>
+	);
 }
 
 export default App;

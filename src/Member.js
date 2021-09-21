@@ -6,11 +6,11 @@ class Member extends Component
 	{
 		super( props );
 	}
-	
+
 	render()
 	{
 		return(
-			<div>
+			<div className='Member'>
 				<span>{ this.props.name }</span>
 			</div>
 		);
