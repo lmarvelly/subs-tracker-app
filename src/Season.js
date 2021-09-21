@@ -26,9 +26,18 @@ class Season extends Component
 		});
 	}
 
+	componentDidUpdate = () =>
+	{
+		console.log("After Update");
+		console.log("membersList:");
+		console.log(this.state.membersList[0])
+	}
+
 	getSavedMembers = () =>
 	{
 		const membersListJSON = localStorage.getItem( 'mockMembers' );
+
+		console.log(`Get membersList JSON: ${membersListJSON}`);
 
 		return membersListJSON ? JSON.parse( membersListJSON ) : [];
 	}
@@ -42,11 +51,20 @@ class Season extends Component
 
 	render()
 	{
-		return(
-			<div className='Season'>
-				<Member name='Luke Marvelly' />
-			</div>
-		);
+		const { membersList } = this.state;
+		const members = ( membersList.map( member => (
+			<Member 
+				key={ member.uuid }
+				name={member.name} 
+			/>
+		)));
+
+		return <div className='Season'>
+			{
+				members
+			}
+		</div>
+		
 	}
 }
 
