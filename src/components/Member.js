@@ -5,6 +5,13 @@ class Member extends Component
 	constructor( props )
 	{
 		super( props );
+
+		this.handleRemove = this.handleRemove.bind( this );
+	}
+
+	handleRemove()
+	{
+		console.log('Cleeeeeeek');
 	}
 
 	render()
@@ -12,6 +19,7 @@ class Member extends Component
 		return(
 			<div className='Member'>
 				<span>{ this.props.name }</span>
+				<button onClick={ this.handleRemove }>remove</button>
 			</div>
 		);
 	}
