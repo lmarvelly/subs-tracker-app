@@ -10,8 +10,8 @@ class NewMemberForm extends Component
 		this.state = 
 		{
 			fullName: '',
-			uuid: '',
-			memberList: []
+			uuid: uuid(),
+			membersList: []
 		}
 
 		this.handleChange = this.handleChange.bind( this );
@@ -24,6 +24,14 @@ class NewMemberForm extends Component
 		{
 			membersList: this.props.membersList
 		});
+	}
+
+	componentDidUpdate( prevProps, prevState )
+	{
+		if( prevState.membersList.length !== this.state.membersList.length )
+		{
+			console.log('State has changed');
+		}
 	}
 
 	/**
@@ -43,8 +51,14 @@ class NewMemberForm extends Component
 	 */
 	handleSubmit( event )
 	{
+		const { membersList } = this.state;
+		// let newMember = {  }
+
 		event.preventDefault();
-		this.setState({uuid: uuid()});
+		this.setState( state => (
+		{
+			membersList: [...membersList, { name: this.state.fullName, uuid: this.state.uuid }]
+		}));
 	}
 
 	render()
@@ -59,6 +73,7 @@ class NewMemberForm extends Component
 						type="text" 
 						defaultValue={ this.state.fullName }
 						onChange={ this.handleChange }
+						placeholder='Full Name'
 					/>
 				</form>
 			</div>
