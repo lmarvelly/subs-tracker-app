@@ -9,31 +9,31 @@ class Season extends Component
 	{
 		super(props);
 
-		this.state =
-		{
-			subsList: [],
-			membersList: []
-		};
+		// this.state =
+		// {
+		// 	subsList: [],
+		// 	membersList: []
+		// };
 	}
 
-	componentDidMount = () =>
-	{
-		this.setState(
-		{
-			subsList: getSavedSubs(),
-			membersList: getSavedMembers()
-		});
-	}
+	// componentDidMount = () =>
+	// {
+	// 	this.setState(
+	// 	{
+	// 		subsList: getSavedSubs(),
+	// 		membersList: getSavedMembers()
+	// 	});
+	// }
 
-	componentDidUpdate = () =>
-	{
+	// componentDidUpdate = () =>
+	// {
 
 		
-	}
+	// }
 	
 	render()
 	{
-		const { membersList, subsList } = this.state;
+		const { membersList, subsList } = this.props;
 
 		const members = ( membersList.map( member => (
 			<Member 

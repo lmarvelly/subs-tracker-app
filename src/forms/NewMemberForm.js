@@ -10,11 +10,20 @@ class NewMemberForm extends Component
 		this.state = 
 		{
 			fullName: '',
-			uuid: ''
+			uuid: '',
+			memberList: []
 		}
 
 		this.handleChange = this.handleChange.bind( this );
 		this.handleSubmit = this.handleSubmit.bind( this );
+	}
+
+	componentDidMount = () =>
+	{
+		this.setState(
+		{
+			membersList: this.props.membersList
+		});
 	}
 
 	/**
@@ -35,7 +44,7 @@ class NewMemberForm extends Component
 	handleSubmit( event )
 	{
 		event.preventDefault();
-		
+		this.setState({uuid: uuid()});
 	}
 
 	render()
