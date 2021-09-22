@@ -1,0 +1,17 @@
+const getSavedMembers = () =>
+{
+	const membersListJSON = localStorage.getItem( 'mockMembers' );
+
+	console.log(`Get membersList JSON: ${membersListJSON}`);
+
+	return membersListJSON ? JSON.parse( membersListJSON ) : [];
+}
+
+const getSavedSubs = () =>
+{
+	const subsListJSON = localStorage.getItem( 'mockSubs' );
+
+	return subsListJSON ? JSON.parse( subsListJSON ) : [];
+}
+
+export { getSavedMembers, getSavedSubs }
