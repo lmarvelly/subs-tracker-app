@@ -11,7 +11,7 @@ class Sub extends Component
 	{
 		return(
 			<div className='Sub'>
-				<div>{ `${this.props.playerUuid} ${this.props.amount}` }</div>
+				<div>{ `${this.props.playerUuid} £${this.props.amount}` }</div>
 			</div>
 		);
 	}

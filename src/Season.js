@@ -28,6 +28,7 @@ class Season extends Component
 	componentDidUpdate = () =>
 	{
 
+		
 	}
 	
 	render()
@@ -59,8 +60,6 @@ class Season extends Component
 			<div>
 				{ subs }
 			</div>
-			
-			
 		</div>
 		
 	}

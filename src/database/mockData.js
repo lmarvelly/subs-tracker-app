@@ -1,5 +1,5 @@
 // Create player object thats linked to the subs they've paid
-let mockSubs = 
+const mockSubs = 
 [
 	{
 		"uuid":"e82626bd-d15e-446a-b2fb-d292449248ab",
@@ -60,7 +60,7 @@ let mockSubs =
 ];
 
 
-let mockMembers =
+const mockMembers =
 [
 	{
 		"uuid":"12345",
@@ -75,6 +75,22 @@ let mockMembers =
 		"name":"Harri Messenger"
 	}
 ]
+
+// const seasons = 
+// [
+// 	{
+// 		"uuid":"qwerty",
+// 		"name":"2020/2021"
+// 	},
+// 	{
+// 		"uuid":"wertyu",
+// 		"name":"2019/2020"
+// 	},
+// 	{
+// 		"uuid":"ertyui",
+// 		"name":"2018/2019"
+// 	}
+// ]
 
 localStorage.setItem( 'mockSubs', JSON.stringify( mockSubs ));
 localStorage.setItem( 'mockMembers', JSON.stringify( mockMembers ));
