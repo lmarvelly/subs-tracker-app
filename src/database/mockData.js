@@ -1,5 +1,5 @@
 // Create player object thats linked to the subs they've paid
-const mockSubs = 
+const subsList = 
 [
 	{
 		"uuid":"e82626bd-d15e-446a-b2fb-d292449248ab",
@@ -60,7 +60,7 @@ const mockSubs =
 ];
 
 
-const mockMembers =
+const membersList =
 [
 	{
 		"uuid":"12345",
@@ -92,10 +92,9 @@ const mockMembers =
 // 	}
 // ]
 
-localStorage.setItem( 'mockSubs', JSON.stringify( mockSubs ));
-localStorage.setItem( 'mockMembers', JSON.stringify( mockMembers ));
+localStorage.setItem( 'subsList', JSON.stringify( subsList ));
+localStorage.setItem( 'membersList', JSON.stringify( membersList ));
 
-console.log('Mock data connected');
-console.log(mockSubs);
+console.log('Data connected');
 
-export { mockSubs, mockMembers };
+export { subsList, membersList };

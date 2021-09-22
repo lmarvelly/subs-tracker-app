@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import NewMemberForm from './forms/NewMemberForm';
 import Season from './Season';
 
-import { getSavedMembers, getSavedSubs } from './functions/storageFunctions'
+// Import helper functions
+import { getSavedMembers, getSavedSubs, saveMembers } from './functions/storageFunctions';
 
 class SubsTracker extends Component
 {
@@ -27,12 +28,18 @@ class SubsTracker extends Component
 		});
 	}
 
+	componentDidUpdate = () =>
+	{
+		console.log('SubsTracker updated');
+	}
+
 	render()
 	{
 		const { subsList, membersList } = this.state;
+		console.log('SubsTracker rendered');
 		return (
 			<div className="App">
-				<NewMemberForm membersList={ membersList } />
+				<NewMemberForm membersList={ membersList } saveMembers={ saveMembers } />
 				<br />
 				<Season subsList={ subsList } membersList={ membersList } />
 			</div>

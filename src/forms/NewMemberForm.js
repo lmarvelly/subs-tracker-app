@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { v4 as uuid } from 'uuid';
 
+// import { saveMembers } from '../functions/storageFunctions';
+
 class NewMemberForm extends Component
 {
 	constructor( props )
@@ -30,7 +32,7 @@ class NewMemberForm extends Component
 	{
 		if( prevState.membersList.length !== this.state.membersList.length )
 		{
-			console.log('State has changed');
+			this.props.saveMembers( this.state.membersList );
 		}
 	}
 
@@ -42,6 +44,8 @@ class NewMemberForm extends Component
 	 */
 	handleChange( event )
 	{
+		event.preventDefault();
+
 		this.setState({ fullName: event.target.value })
 	}
 
@@ -51,14 +55,13 @@ class NewMemberForm extends Component
 	 */
 	handleSubmit( event )
 	{
-		const { membersList } = this.state;
-		// let newMember = {  }
+		let { membersList } = this.props;
+		let newMember = { name: this.state.fullName, uuid: this.state.uuid }
 
-		event.preventDefault();
-		this.setState( state => (
-		{
-			membersList: [...membersList, { name: this.state.fullName, uuid: this.state.uuid }]
-		}));
+		this.setState(
+		{ 
+			membersList: [...membersList, newMember ] 
+		});
 	}
 
 	render()

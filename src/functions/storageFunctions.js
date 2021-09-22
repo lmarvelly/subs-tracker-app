@@ -1,15 +1,23 @@
+import { sortMemberList } from './sortFunctions';
+
 const getSavedMembers = () =>
 {
-	const membersListJSON = localStorage.getItem( 'mockMembers' );
+	const membersListJSON = localStorage.getItem( 'membersList' );
 
 	return membersListJSON ? JSON.parse( membersListJSON ) : [];
 }
 
 const getSavedSubs = () =>
 {
-	const subsListJSON = localStorage.getItem( 'mockSubs' );
+	const subsListJSON = localStorage.getItem( 'subsList' );
 
 	return subsListJSON ? JSON.parse( subsListJSON ) : [];
 }
 
-export { getSavedMembers, getSavedSubs }
+const saveMembers = ( membersList ) =>
+{
+	const sortedMemberList = sortMemberList( membersList );
+	localStorage.setItem( 'membersList', JSON.stringify( sortedMemberList ));
+}
+
+export { getSavedMembers, getSavedSubs, saveMembers }
