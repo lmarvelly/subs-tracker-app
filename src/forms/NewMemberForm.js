@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { v4 as uuid } from 'uuid';
 
-// import { saveMembers } from '../functions/storageFunctions';
-
 class NewMemberForm extends Component
 {
 	constructor( props )
