@@ -33,16 +33,13 @@ class SubsTracker extends Component
 
 	componentDidUpdate = ( prevProps, prevState ) =>
 	{
-		console.log('Updating');
-		if( prevState.membersList.length !== this.state.membersList )
-		{
-			console.log('Members list length has changed');
-		}
+		
 	}
 
 	handleRemove( id, memberList )
 	{
 		removeMember( id, memberList );
+		this.setState({ membersList: getSavedMembers() });
 	}
 
 	render()

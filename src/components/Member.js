@@ -11,7 +11,6 @@ class Member extends Component
 
 	handleRemove( event )
 	{
-		console.log( 'Remove' );
 		this.props.handleRemove( this.props.id, this.props.membersList )
 	}
 
