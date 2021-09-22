@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
+import Member from './components/Member';
 import NewMemberForm from './forms/NewMemberForm';
 import Season from './Season';
 
 // Import helper functions
-import { getSavedMembers, getSavedSubs, saveMembers } from './functions/storageFunctions';
+import { getSavedMembers, getSavedSubs, removeMember, saveMembers } from './functions/storageFunctions';
 
 class SubsTracker extends Component
 {
@@ -36,6 +37,14 @@ class SubsTracker extends Component
 	render()
 	{
 		const { subsList, membersList } = this.state;
+
+		const members = ( membersList.map( member => (
+			<Member 
+				key={ member.uuid }
+				name={member.name} 
+			/>
+		)));
+
 		console.log('SubsTracker rendered');
 		return (
 			<div className="App">
@@ -43,6 +52,10 @@ class SubsTracker extends Component
 					membersList={ membersList } 
 					saveMembers={ saveMembers } 
 				/>
+				<br />
+				{
+					members
+				}
 				<br />
 				<Season 
 					subsList={ subsList } 

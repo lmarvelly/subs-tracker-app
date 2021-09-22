@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Member from './components/Member';
 import Sub from './components/Sub';
 
 class Season extends Component
@@ -11,14 +10,7 @@ class Season extends Component
 	
 	render()
 	{
-		const { membersList, subsList } = this.props;
-
-		const members = ( membersList.map( member => (
-			<Member 
-				key={ member.uuid }
-				name={member.name} 
-			/>
-		)));
+		const { subsList } = this.props;
 
 		const subs = ( subsList.map( sub => (
 			<Sub 
@@ -31,9 +23,6 @@ class Season extends Component
 		)));
 
 		return <div className='Season'>
-			<div>
-				{ members }
-			</div>
 			<br />
 			<div>
 				{ subs }
