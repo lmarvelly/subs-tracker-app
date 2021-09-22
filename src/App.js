@@ -1,12 +1,12 @@
 import './App.css';
 
 import Season from './Season';
+// import './database/mockData.js';
 
 function App() 
 {
 	return (
 		<div className="App">
-			<script src='./database/mockData.js'></script>
 			<Season />
 		</div>
 	);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Member from './Member';
+import Member from './components/Member';
+import Sub from './components/Sub';
 import { getSavedMembers, getSavedSubs } from './functions/storageFunctions'
 
 class Season extends Component
@@ -31,7 +32,8 @@ class Season extends Component
 	
 	render()
 	{
-		const { membersList } = this.state;
+		const { membersList, subsList } = this.state;
+
 		const members = ( membersList.map( member => (
 			<Member 
 				key={ member.uuid }
@@ -39,10 +41,26 @@ class Season extends Component
 			/>
 		)));
 
+		const subs = ( subsList.map( sub => (
+			<Sub 
+				key={ sub.uuid }
+				playerUuid={ sub.playerUuid }
+				createdAt={ sub.createdAt }
+				paymentType={ sub.paymentType }
+				amount={ sub.amount }
+			/>
+		)));
+
 		return <div className='Season'>
-			{
-				members
-			}
+			<div>
+				{ members }
+			</div>
+			<br />
+			<div>
+				{ subs }
+			</div>
+			
+			
 		</div>
 		
 	}
