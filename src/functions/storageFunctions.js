@@ -2,8 +2,6 @@ const getSavedMembers = () =>
 {
 	const membersListJSON = localStorage.getItem( 'mockMembers' );
 
-	console.log(`Get membersList JSON: ${membersListJSON}`);
-
 	return membersListJSON ? JSON.parse( membersListJSON ) : [];
 }
 
