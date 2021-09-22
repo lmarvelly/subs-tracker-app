@@ -14,10 +14,24 @@ const getSavedSubs = () =>
 	return subsListJSON ? JSON.parse( subsListJSON ) : [];
 }
 
+// REMOVE MEMBER
+const removeMember = ( memberID, membersList ) =>
+{
+	const memberIndex = membersList.findIndex( ( member ) =>
+	{
+		return memberID === member.uuid;
+	});
+
+	membersList.splice( memberIndex, 1 );
+	saveMembers( membersList );
+	
+	// membersList;
+}
+
 const saveMembers = ( membersList ) =>
 {
 	const sortedMemberList = sortMemberList( membersList );
 	localStorage.setItem( 'membersList', JSON.stringify( sortedMemberList ));
 }
 
-export { getSavedMembers, getSavedSubs, saveMembers }
+export { getSavedMembers, getSavedSubs, removeMember, saveMembers }
