@@ -1,35 +1,13 @@
 import React, { Component } from 'react';
 import Member from './components/Member';
 import Sub from './components/Sub';
-import { getSavedMembers, getSavedSubs } from './functions/storageFunctions'
 
 class Season extends Component
 {
 	constructor( props )
 	{
 		super(props);
-
-		// this.state =
-		// {
-		// 	subsList: [],
-		// 	membersList: []
-		// };
 	}
-
-	// componentDidMount = () =>
-	// {
-	// 	this.setState(
-	// 	{
-	// 		subsList: getSavedSubs(),
-	// 		membersList: getSavedMembers()
-	// 	});
-	// }
-
-	// componentDidUpdate = () =>
-	// {
-
-		
-	// }
 	
 	render()
 	{
