@@ -39,9 +39,15 @@ class SubsTracker extends Component
 		console.log('SubsTracker rendered');
 		return (
 			<div className="App">
-				<NewMemberForm membersList={ membersList } saveMembers={ saveMembers } />
+				<NewMemberForm 
+					membersList={ membersList } 
+					saveMembers={ saveMembers } 
+				/>
 				<br />
-				<Season subsList={ subsList } membersList={ membersList } />
+				<Season 
+					subsList={ subsList } 
+					membersList={ membersList } 
+				/>
 			</div>
 		);
 	}
