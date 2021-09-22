@@ -9,9 +9,10 @@ class Member extends Component
 		this.handleRemove = this.handleRemove.bind( this );
 	}
 
-	handleRemove()
+	handleRemove( event )
 	{
-		console.log('Cleeeeeeek');
+		console.log( 'Remove' );
+		this.props.handleRemove( this.props.id, this.props.membersList )
 	}
 
 	render()

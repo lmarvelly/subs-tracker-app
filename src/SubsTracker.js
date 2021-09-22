@@ -18,6 +18,8 @@ class SubsTracker extends Component
 			subsList: [],
 			membersList: []
 		};
+
+		this.handleRemove = this.handleRemove.bind( this );
 	}
 
 	componentDidMount = () =>
@@ -29,9 +31,18 @@ class SubsTracker extends Component
 		});
 	}
 
-	componentDidUpdate = () =>
+	componentDidUpdate = ( prevProps, prevState ) =>
 	{
-		console.log('SubsTracker updated');
+		console.log('Updating');
+		if( prevState.membersList.length !== this.state.membersList )
+		{
+			console.log('Members list length has changed');
+		}
+	}
+
+	handleRemove( id, memberList )
+	{
+		removeMember( id, memberList );
 	}
 
 	render()
@@ -40,12 +51,14 @@ class SubsTracker extends Component
 
 		const members = ( membersList.map( member => (
 			<Member 
+				id={ member.uuid }
 				key={ member.uuid }
-				name={member.name} 
+				membersList={ membersList }
+				name={ member.name }
+				handleRemove={ this.handleRemove }
 			/>
 		)));
 
-		console.log('SubsTracker rendered');
 		return (
 			<div className="App">
 				<NewMemberForm 

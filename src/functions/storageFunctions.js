@@ -25,7 +25,7 @@ const removeMember = ( memberID, membersList ) =>
 	membersList.splice( memberIndex, 1 );
 	saveMembers( membersList );
 	
-	// membersList;
+	return membersList;
 }
 
 const saveMembers = ( membersList ) =>
