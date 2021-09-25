@@ -23,11 +23,19 @@ const getSavedMembers = () =>
 	return membersListJSON ? JSON.parse( membersListJSON ) : [];
 }
 
-const getSavedSubs = () =>
+const getSavedSubs = ( seasonName ) =>
 {
-	const subsListJSON = localStorage.getItem( 'subsList' );
+	const subsListJSON = localStorage.getItem( 'seasonList' );
+	const seasonsList = JSON.parse( subsListJSON );
+	const subsList = seasonsList.seasons[ seasonName ]
 
-	return subsListJSON ? JSON.parse( subsListJSON ) : [];
+	// subsList.seasons[2021].map( sub =>
+	// {
+	// 	console.log(sub);
+	// })
+	
+	// return subsListJSON ? JSON.parse( subsListJSON ) : [];
+	return subsList;
 }
 
 // REMOVE MEMBER

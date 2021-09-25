@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sub from '../components/Sub';
+import { getSavedSubs } from '../functions/storageFunctions';
 
 class Season extends Component
 {
@@ -7,10 +8,15 @@ class Season extends Component
 	{
 		super(props);
 	}
+
+	const 
 	
 	render()
 	{
-		const { subsList } = this.props;
+		const { name } = this.props;
+		const subsList = getSavedSubs( name )
+
+		console.log( subsList );
 
 		const subs = ( subsList.map( sub => (
 			<Sub 

@@ -27,7 +27,7 @@ class SubsTracker extends Component
 	{
 		this.setState(
 		{
-			subsList: getSavedSubs(),
+			// subsList: getSavedSubs(),
 			membersList: getSavedMembers()
 		});
 	}
@@ -77,7 +77,8 @@ class SubsTracker extends Component
 				<br />
 				<h1>Subs</h1>
 				<Season 
-					subsList={ subsList } 
+					name={2021} // Get name
+					// subsList={ subsList } 
 					membersList={ membersList } 
 				/>
 			</div>
