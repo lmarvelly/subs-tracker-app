@@ -21,11 +21,10 @@ class Sub extends Component
 				<div>
 					<h3>{ name }</h3>
 					<span>{ createdAt }</span>
-				{ `${this.props.playerUuid} £${this.props.amount}` }
 				</div>
 				<div>
 					<span>{ paymentType }</span>
-					<span>{ amount }</span>
+					<span>{ `£${amount}` }</span>
 				</div>
 			</div>
 		);
