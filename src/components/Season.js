@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Sub from './components/Sub';
+import Sub from '../components/Sub';
 
 class Season extends Component
 {

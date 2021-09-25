@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Member from './components/Member';
 import NewMemberForm from './forms/NewMemberForm';
-import Season from './Season';
+import Season from './components/Season'
 
 // Import helper functions
 import { getSavedMembers, getSavedSubs, removeMember, saveMembers } from './functions/storageFunctions';
@@ -70,10 +70,12 @@ class SubsTracker extends Component
 					saveMembers={ saveMembers } 
 				/>
 				<br />
+				<h1>Members</h1>
 				{
 					members
 				}
 				<br />
+				<h1>Subs</h1>
 				<Season 
 					subsList={ subsList } 
 					membersList={ membersList } 
