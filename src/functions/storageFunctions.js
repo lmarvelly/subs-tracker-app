@@ -14,6 +14,11 @@ const getSavedSubs = () =>
 	return subsListJSON ? JSON.parse( subsListJSON ) : [];
 }
 
+const editMember = ( memberID, memberList ) =>
+{
+	
+}
+
 // REMOVE MEMBER
 const removeMember = ( memberID, membersList ) =>
 {
