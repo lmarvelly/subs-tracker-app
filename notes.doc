@@ -1,3 +1,7 @@
 Ideas:
 	Debt Component
 		These have a payback button and can be filtered 
+
+Bugs:
+	Members
+		When Member is deleted their name is no longer shown on the sub

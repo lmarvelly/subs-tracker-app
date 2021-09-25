@@ -24,6 +24,7 @@ class Sub extends Component
 				</div>
 				<div>
 					<span>{ paymentType }</span>
+					<br />
 					<span>{ `£${amount}` }</span>
 				</div>
 			</div>

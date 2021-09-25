@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Member from './components/Member';
 import NewMemberForm from './forms/NewMemberForm';
-import Season from './components/Season'
+import Season from './components/Season';
 
 // Import helper functions
 import { getSavedMembers, getSavedSubs, removeMember, saveMembers } from './functions/storageFunctions';
