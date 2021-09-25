@@ -1,5 +1,21 @@
 import { sortMemberList } from './sortFunctions';
 
+const getName = ( memberId ) =>
+{	
+	const membersList = getSavedMembers();
+
+	const name = membersList.map( member =>
+	{
+		if ( memberId === member.uuid ) 
+		{
+			console.log(member.name);
+			return member.name;
+		}
+	});
+
+	return name;
+}
+
 const getSavedMembers = () =>
 {
 	const membersListJSON = localStorage.getItem( 'membersList' );
@@ -49,4 +65,4 @@ const saveMembers = ( membersList ) =>
 	localStorage.setItem( 'membersList', JSON.stringify( sortedMemberList ));
 }
 
-export { getSavedMembers, getSavedSubs, editMember, removeMember, saveMembers }
+export { getName, getSavedMembers, getSavedSubs, editMember, removeMember, saveMembers }
