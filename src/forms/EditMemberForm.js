@@ -44,7 +44,6 @@ class EditMemberForm extends Component
 					defaultValue={ this.props.fullName }
 					onChange={ this.handleChange }
 					type="text"
-					
 				/>
 			</form>
 		);

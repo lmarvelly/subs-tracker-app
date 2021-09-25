@@ -45,7 +45,6 @@ class SubsTracker extends Component
 
 	updateMembers()
 	{
-		console.log( 'updateMembers' );
 		this.setState({ memberList: getSavedMembers() });
 	}
 
