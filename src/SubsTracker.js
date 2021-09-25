@@ -5,7 +5,7 @@ import NewMemberForm from './forms/NewMemberForm';
 import Season from './components/Season';
 
 // Import helper functions
-import { getSavedMembers, getSavedSubs, removeMember, saveMembers } from './functions/storageFunctions';
+import { getSavedMembers, removeMember, saveMembers } from './functions/storageFunctions';
 
 class SubsTracker extends Component
 {
@@ -15,7 +15,6 @@ class SubsTracker extends Component
 		
 		this.state =
 		{
-			subsList: [],
 			membersList: []
 		};
 
@@ -27,7 +26,6 @@ class SubsTracker extends Component
 	{
 		this.setState(
 		{
-			// subsList: getSavedSubs(),
 			membersList: getSavedMembers()
 		});
 	}
@@ -50,7 +48,7 @@ class SubsTracker extends Component
 
 	render()
 	{
-		const { subsList, membersList } = this.state;
+		const { membersList } = this.state;
 
 		const members = ( membersList.map( member => (
 			<Member 
@@ -78,7 +76,6 @@ class SubsTracker extends Component
 				<h1>Subs</h1>
 				<Season 
 					name={2021} // Get name
-					// subsList={ subsList } 
 					membersList={ membersList } 
 				/>
 			</div>

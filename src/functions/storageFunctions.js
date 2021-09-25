@@ -27,15 +27,12 @@ const getSavedSubs = ( seasonName ) =>
 {
 	const subsListJSON = localStorage.getItem( 'seasonList' );
 	const seasonsList = JSON.parse( subsListJSON );
-	const subsList = seasonsList.seasons[ seasonName ]
 
-	// subsList.seasons[2021].map( sub =>
-	// {
-	// 	console.log(sub);
-	// })
-	
-	// return subsListJSON ? JSON.parse( subsListJSON ) : [];
-	return subsList;
+	if (seasonsList) 
+	{
+		return seasonsList.seasons[ seasonName ];
+	}
+	else return [];
 }
 
 // REMOVE MEMBER

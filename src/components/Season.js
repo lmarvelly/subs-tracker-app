@@ -8,15 +8,13 @@ class Season extends Component
 	{
 		super(props);
 	}
-
-	const 
 	
 	render()
 	{
 		const { name } = this.props;
 		const subsList = getSavedSubs( name )
 
-		console.log( subsList );
+		// TODO: ADD DROPDOWN TO SELECT SEASON
 
 		const subs = ( subsList.map( sub => (
 			<Sub 
