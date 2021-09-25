@@ -14,12 +14,13 @@ class Member extends Component
 
 		this.handleEdit = this.handleEdit.bind( this );
 		this.handleRemove = this.handleRemove.bind( this );
+		this.toggleEdit = this.toggleEdit.bind( this );
 	}
 
 	handleEdit( event )
 	{
 		this.setState({ isEditing: true });
-		this.props.handleEdit( this.props.id, this.props.membersList )
+		// this.props.handleEdit( this.props.id, this.props.membersList )
 	}
 
 	handleRemove( event )
@@ -27,14 +28,23 @@ class Member extends Component
 		this.props.handleRemove( this.props.id, this.props.membersList )
 	}
 
+	toggleEdit()
+	{
+		this.setState({ isEditing: !this.state.isEditing });
+	}
+
 	render()
 	{
+		const { id, name, updateMembers, membersList } = this.props
 		const renderComponents = this.state.isEditing ? 
 		(
 			<div>
 				<EditMemberForm 
-					id={ this.props.id }
-					fullName={ this.props.name }
+					uuid={ id }
+					fullName={ name }
+					updateMembers={ updateMembers }
+					membersList={ membersList }
+					toggleEdit={ this.toggleEdit }
 				/>
 			</div>
 		)

@@ -14,11 +14,6 @@ const getSavedSubs = () =>
 	return subsListJSON ? JSON.parse( subsListJSON ) : [];
 }
 
-const editMember = ( memberID, memberList ) =>
-{
-	
-}
-
 // REMOVE MEMBER
 const removeMember = ( memberID, membersList ) =>
 {
@@ -33,10 +28,25 @@ const removeMember = ( memberID, membersList ) =>
 	return membersList;
 }
 
+
+const editMember = ( editedMember, membersList ) =>
+{
+	const memberIndex = membersList.findIndex( member =>
+	{
+		return editedMember.uuid === member.uuid
+	});
+	
+	membersList[memberIndex] = editedMember;
+	
+	const sortedMemberList = sortMemberList( membersList );
+
+	localStorage.setItem( 'membersList', JSON.stringify( sortedMemberList ));
+}
+
 const saveMembers = ( membersList ) =>
 {
 	const sortedMemberList = sortMemberList( membersList );
 	localStorage.setItem( 'membersList', JSON.stringify( sortedMemberList ));
 }
 
-export { getSavedMembers, getSavedSubs, removeMember, saveMembers }
+export { getSavedMembers, getSavedSubs, editMember, removeMember, saveMembers }

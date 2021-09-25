@@ -19,7 +19,7 @@ class SubsTracker extends Component
 			membersList: []
 		};
 
-		this.handleEdit = this.handleEdit.bind( this );
+		this.updateMembers = this.updateMembers.bind( this );
 		this.handleRemove = this.handleRemove.bind( this );
 	}
 
@@ -40,13 +40,13 @@ class SubsTracker extends Component
 	handleRemove( id, memberList )
 	{
 		removeMember( id, memberList );
-		this.setState({ membersList: getSavedMembers() });
+		this.updateMembers();
 	}
 
-	handleEdit( id, memberList )
+	updateMembers()
 	{
-		console.log( 'Handle Edit' );
-		// editMember(  )
+		console.log( 'updateMembers' );
+		this.setState({ memberList: getSavedMembers() });
 	}
 
 	render()
@@ -59,7 +59,7 @@ class SubsTracker extends Component
 				key={ member.uuid }
 				membersList={ membersList }
 				name={ member.name }
-				handleEdit={ this.handleEdit }
+				updateMembers={ this.updateMembers }
 				handleRemove={ this.handleRemove }
 			/>
 		)));
