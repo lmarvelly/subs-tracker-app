@@ -1,0 +1,22 @@
+/**
+ * Size explained: 
+ * 	Default page size = 16
+ * 	16 * 0.625 = 10
+ * 	Page name has a base 10 
+ *
+ *		Now if we use say 18rem the pixel size will be 18px
+ */
+html
+{
+	font-size: 62.5%;
+}
+
+body
+{
+	font-size: 2em;
+}
+
+.is-active
+{
+	font-weight: bold;
+}

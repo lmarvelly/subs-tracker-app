@@ -1,0 +1,8 @@
+/** 
+ * IMPORTING SCSS FILES
+ * 
+ * Provide pass the partial using the SCSS @import syntax. It's totally different to a javascript import 
+ * When importing a partial you leave off the underscore and the file extension
+ */
+@import './base/settings';
+@import './base/base';
