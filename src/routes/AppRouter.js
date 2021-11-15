@@ -1,9 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Link, NavLink, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 
-const SubsDashboardPage = () => (
-	<div>This is my Dashboard Component</div>
-);
+import Dashboard from '../components/Dashboard';
 
 const AddSubPage = () => (
 	<div>Add Sub Page</div>
@@ -53,7 +51,7 @@ const AppRouter = () => (
 		<div>
 			<Header />
 			<Switch>
-				<Route path='/' component={SubsDashboardPage} exact={true} />
+				<Route path='/' component={Dashboard} exact={true} />
 				<Route path='/add' component={AddSubPage} />
 				<Route path='/edit' component={EditSubPage} />
 				<Route path='/help' component={HelpPage} />
