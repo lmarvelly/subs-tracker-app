@@ -14,6 +14,7 @@ import Header from '../components/Header';
  * need to be inside a div
  * 
  * @class <Route> needs a path to link to and a component to render
+ * ':id' creates a dynamic way of getting the Sub using the ID
  * 
  * @class <Switch> goes through the Routes one by one to find a
  * match, from top to bottom. It stops when it finds a match. 
@@ -26,7 +27,7 @@ const AppRouter = () => (
 			<Switch>
 				<Route path='/' component={Dashboard} exact={true} />
 				<Route path='/add' component={AddSubPage} />
-				<Route path='/edit' component={EditSubPage} />
+				<Route path='/edit/:id' component={EditSubPage} />
 				<Route path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>

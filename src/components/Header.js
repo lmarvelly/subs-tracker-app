@@ -9,7 +9,6 @@ import { NavLink } from 'react-router-dom';
 		<h1>Subs Tracker</h1>
 		<NavLink to='/' activeClassName='is-active' exact={true}>Home</NavLink>
 		<NavLink to='/add' activeClassName='is-active'>Add Sub</NavLink>
-		<NavLink to='/edit' activeClassName='is-active'>Edit Sub</NavLink>
 		<NavLink to='/help' activeClassName='is-active'>Help Page</NavLink>
 	</header>
 );
