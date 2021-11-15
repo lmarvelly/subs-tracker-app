@@ -1,11 +1,9 @@
 import React from 'react';
 import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 
+import AddSubPage from '../components/AddSubPage';
 import Dashboard from '../components/Dashboard';
 
-const AddSubPage = () => (
-	<div>Add Sub Page</div>
-);
 
 const EditSubPage = () => (
 	<div>Edit Sub Page</div>
