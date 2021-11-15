@@ -1,24 +1,12 @@
 import React from 'react';
 import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 
-import AddSubPage from '../components/AddSubPage';
 import Dashboard from '../components/Dashboard';
+import AddSubPage from '../components/AddSubPage';
+import EditSubPage from '../components/EditSubPage';
+import HelpPage from '../components/HelpPage';
+import NotFoundPage from '../components/NotFoundPage';
 
-
-const EditSubPage = () => (
-	<div>Edit Sub Page</div>
-);
-
-const HelpPage = () => (
-	<div>Help Page</div>
-);
-
-const NotFoundPage = () => (
-	<div>
-		Error 404 
-		<NavLink to='/'>Go Home</NavLink>
-	</div>
-);
 
 /**
  * @class NavLink make use of client side routing so we don't have
