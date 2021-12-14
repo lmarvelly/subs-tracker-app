@@ -15,7 +15,9 @@ import Header from '../components/Header';
  * the top of each page
  * 
  * @class <Route> needs a path to link to and a component to render
- * ':id' creates a dynamic way of getting the Sub using the ID
+ * ':id' creates a dynamic way of getting the Sub using the ID. 
+ * Setting exact equal to true means that we only get the Dashboard
+ * when the route path is typed in.
  * 
  * @class <Switch> goes through the Routes one by one to find a
  * match, from top to bottom. It stops when it finds a match. 
