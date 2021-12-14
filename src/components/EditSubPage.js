@@ -1,3 +1,5 @@
+import React from 'react';
+
 const EditSubPage = (props) => 
 {
 	console.log(props);

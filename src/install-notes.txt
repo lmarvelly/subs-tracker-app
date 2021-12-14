@@ -1,2 +1,0 @@
-Installing SASS/SCSS
-npm install --save-dev sass

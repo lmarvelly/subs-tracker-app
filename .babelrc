@@ -1,0 +1,14 @@
+// Configuration file for babel
+// Whenever we run babel we use these presets
+{
+   "presets":
+   [
+      "env",
+      "react"
+   ],
+	"plugins": 
+	[
+		"transform-class-properties",
+		"transform-object-rest-spread"
+	]
+}
