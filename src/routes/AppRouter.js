@@ -11,7 +11,8 @@ import Header from '../components/Header';
 
 /**
  * @class <BrowserRouter> can only take on element so all routes
- * need to be inside a div
+ * need to be inside a div. We do this so we can have a Navbar on 
+ * the top of each page
  * 
  * @class <Route> needs a path to link to and a component to render
  * ':id' creates a dynamic way of getting the Sub using the ID
