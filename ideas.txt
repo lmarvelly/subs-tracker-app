@@ -1,0 +1,9 @@
+DEBT DISPLAY
+	Needs to be an easy way to click and pay debts like a tickbox
+	to check if it's been paid or a box to write amount of debt
+	that has been paid.
+
+	Display for every player changes when some or all has been paid.
+	This needs to update the clubs balance as well!
+
+	Button to only show players Debts
