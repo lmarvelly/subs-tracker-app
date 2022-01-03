@@ -1,7 +1,10 @@
 import React from 'react';
+import PaymentRecord from './PaymentRecord';
 
 const Dashboard = () => (
-	<div>This is my Dashboard Component</div>
+	<div>
+		<PaymentRecord />
+	</div>
 );
 
 export default Dashboard;

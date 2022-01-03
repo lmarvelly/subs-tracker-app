@@ -1,6 +1,7 @@
 // Have third party's at the top
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import getVisibleRecords from './selectors/records';
@@ -63,22 +64,16 @@ store.dispatch( setTextFilter('UBS') );
 
 /**
  * Provider provides the store to all of our Components
+ * It requires one argument which is the store.
  * 
- * Provider requires one argument which is the store
+ * This makes the easy to share the State with all the Components
+ * rather than passing it down from one Component to the next
  */
 const jsx = (
-	<AppRouter />
+	<Provider store={store}>
+		<AppRouter />
+	</Provider>
 );
-
-// let hasRendered = false;
-// const renderApp = () =>
-// {
-// 	if (!hasRendered)
-// 	{
-// 		ReactDOM.render(jsx, document.getElementById('app'));
-// 		hasRendered = true;
-// 	}
-// };
 
 ReactDOM.render(jsx, document.getElementById('app'));
 
