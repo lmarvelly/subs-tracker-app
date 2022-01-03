@@ -1,4 +1,11 @@
-// Create player object thats linked to the subs they've paid
+/**
+ * Create player object thats linked to the subs they've paid
+ * 
+ * 
+ * THINGS TO CHANGE IN FUTURE:
+ * 	Player ID will be a UUID as well
+ * 	A description
+ */
 const subsList = 
 [
 	{
