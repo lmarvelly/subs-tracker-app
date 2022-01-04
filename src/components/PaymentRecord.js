@@ -14,13 +14,9 @@ const PaymentRecord = (props) => (
 					<RecordItem key={record.id} {...record} />
 				)
 			})
-			
 		}
-		
 	</div>
 );
-
-//<RecordItem amount={ props.paymentRecord[0].amount } />
 
 const mapStateToProps = (state) =>
 {
@@ -35,4 +31,4 @@ const mapStateToProps = (state) =>
  * inside, mapStateToProps() determines what info we want this 
  * component to access.
  */
- export default connect( mapStateToProps )( PaymentRecord );
+export default connect( mapStateToProps )( PaymentRecord );
