@@ -91,10 +91,10 @@ const sortByDateAscending = () =>
 ({
 	type: 'SORT_BY_DATE_ASCENDING'
 });
-// SORT_BY_DATE_DECENDING
-const sortByDateDecending = () =>
+// SORT_BY_DATE_DESCENDING
+const sortByDateDescending = () =>
 ({
-	type: 'SORT_BY_DATE_DECENDING'
+	type: 'SORT_BY_DATE_DESCENDING'
 });
 
 // SORT_BY_AMOUNT
@@ -199,7 +199,7 @@ const filtersReducer = ( state = paymentRecordReducerFilterDefaultState, action 
 				...state, 
 				sortBy: 'dateAscending'
 			}
-		case 'SORT_BY_DATE_DECENDING':
+		case 'SORT_BY_DATE_DESCENDING':
 			return { 
 				...state, 
 				sortBy: 'dateDescending'
@@ -440,7 +440,7 @@ const payment3 = store.dispatch(
 
 // store.dispatch(sortByAmount());
 // store.dispatch(sortByDateAscending());
-store.dispatch(sortByDateDecending());
+store.dispatch(sortByDateDescending());
 // store.dispatch(sortByAmount());
 
 // store.dispatch(setStartDate(500));

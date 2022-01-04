@@ -3,10 +3,10 @@ export const sortByDateAscending = () =>
 ({
 	type: 'SORT_BY_DATE_ASCENDING'
 });
-// SORT_BY_DATE_DECENDING
-export const sortByDateDecending = () =>
+// SORT_BY_DATE_DESCENDING
+export const sortByDateDescending = () =>
 ({
-	type: 'SORT_BY_DATE_DECENDING'
+	type: 'SORT_BY_DATE_DESCENDING'
 });
 
 // SORT_BY_AMOUNT

@@ -25,7 +25,7 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 				...state, 
 				sortBy: 'dateAscending'
 			}
-		case 'SORT_BY_DATE_DECENDING':
+		case 'SORT_BY_DATE_DESCENDING':
 			return { 
 				...state, 
 				sortBy: 'dateDescending'
