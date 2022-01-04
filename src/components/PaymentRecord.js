@@ -19,6 +19,8 @@ const PaymentRecord = (props) => (
 );
 
 /**
+ * A simple HOC function that takes in a component as an 
+ * argument and returns a component. 
  * 
  * @param {*} state 
  * @returns The paymentRecord attribute is passed down to the
