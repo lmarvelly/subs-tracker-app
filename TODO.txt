@@ -1,0 +1,2 @@
+REFACTORING
+	Refactor Sub into payment/record
