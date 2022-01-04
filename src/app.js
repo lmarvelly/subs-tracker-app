@@ -18,7 +18,7 @@ const store = configureStore();
 /**
  * This can be called to unsubscribe from store updates
  */
-store.subscribe(() => 
+const unsubscribe = store.subscribe(() => 
 {
 	const state = store.getState();
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.filters );
