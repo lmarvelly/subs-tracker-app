@@ -21,13 +21,14 @@ import uuid from 'uuid';
  * @object playerUuid, id, paymentType, description, amount, createdAt
  * 
  */
- export const addPayment = (
-	{
-		playerUuid = '',
-		description = '', 
-		amount = 0, 
-		createdAt = 0
-	}) => (
+export const addPayment = (
+{
+	playerUuid = '',
+	description = '',
+	note = '', 
+	amount = 0, 
+	createdAt = 0
+}) => (
 {
 	type: 'ADD_PAYMENT',
 	payment: 
@@ -36,6 +37,7 @@ import uuid from 'uuid';
 		id: uuid(),
 		paymentType: 'PAYMENT',
 		description,
+		note,
 		amount,
 		createdAt
 	}
