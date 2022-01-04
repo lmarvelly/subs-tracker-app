@@ -23,7 +23,7 @@ const unsubscribe = store.subscribe(() =>
 	const state = store.getState();
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.filters );
 
-	// console.log( 'FILTERS: ', state.filters );
+	console.log( 'FILTERS: ', state.filters );
  	// console.log( 'FILTERED RECORDS: ', visibleRecords );
 });
 

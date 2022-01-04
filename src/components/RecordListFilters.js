@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'; // To connect to the store
-import { setTextFilter } from '../actions/filters';
+import { setTextFilter, sortByDateAscending } from '../actions/filters';
 
 /**
  * 
@@ -21,10 +21,30 @@ const RecordListFilters = ( props ) => (
 				(e) => 
 				{
 					props.dispatch( setTextFilter( e.target.value ) );
-					console.log(e.target.value);
 				}
 			}
 		/>
+		<select onChange=
+		{
+			(e) =>
+			{
+				switch (e.target.value) 
+				{
+					case 'dateAscending':
+						props.dispatch( sortByDateAscending() );
+						break;
+				
+					default:
+						break;
+				}
+				
+				
+			}
+		}>
+			<option value="dateAscending">Date Ascending</option>
+			<option value="dateDescending">Date Descending</option>
+			<option value="amount">Amount</option>
+		</select>
 	</div>
 );
 
