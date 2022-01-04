@@ -61,7 +61,8 @@ const payment3 = store.dispatch(
 );
 
 /**
- * Provider provides the store to all of our Components
+ * Provider provides the store to all of our Components to connect
+ * through importing connect from react-redux.
  * It requires one argument, which is the store.
  * 
  * This makes the easy to share the State with all the Components
