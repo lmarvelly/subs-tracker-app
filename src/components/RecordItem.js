@@ -25,10 +25,10 @@ const RecordItem = ({ dispatch, id, playerUuid, amount, description, createdAt }
 			<p>Description: { description }</p>
 			<p>Created At: { createdAt }</p>
 			<button 
-				onClick={
+				onClick=
+				{
 					(e) =>
 					{
-						console.log(id);
 						dispatch( removeRecord( { id } ) );
 					}
 				}
