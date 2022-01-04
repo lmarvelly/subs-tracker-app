@@ -23,8 +23,8 @@ store.subscribe(() =>
 	const state = store.getState();
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.filters );
 
-	console.log( 'FILTERS: ', state.filters );
- 	console.log( 'FILTERED RECORDS: ', visibleRecords );
+	// console.log( 'FILTERS: ', state.filters );
+ 	// console.log( 'FILTERED RECORDS: ', visibleRecords );
 });
 
 const payment1 = store.dispatch( 
@@ -60,12 +60,12 @@ const payment3 = store.dispatch(
 	)
 );
 
-// store.dispatch( setTextFilter('UBS') );
+store.dispatch( setTextFilter('SUBS') );
 
-setTimeout(() =>
-{
-	store.dispatch( setTextFilter('TraininG') );
-}, 3000);
+// setTimeout(() =>
+// {
+// 	store.dispatch( setTextFilter('TraininG') );
+// }, 3000);
 
 /**
  * Provider provides the store to all of our Components
