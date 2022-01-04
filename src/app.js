@@ -60,13 +60,6 @@ const payment3 = store.dispatch(
 	)
 );
 
-store.dispatch( setTextFilter('SUBS') );
-
-// setTimeout(() =>
-// {
-// 	store.dispatch( setTextFilter('TraininG') );
-// }, 3000);
-
 /**
  * Provider provides the store to all of our Components
  * It requires one argument, which is the store.
