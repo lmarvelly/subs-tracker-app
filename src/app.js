@@ -60,11 +60,16 @@ const payment3 = store.dispatch(
 	)
 );
 
-store.dispatch( setTextFilter('UBS') );
+// store.dispatch( setTextFilter('UBS') );
+
+setTimeout(() =>
+{
+	store.dispatch( setTextFilter('TraininG') );
+}, 3000);
 
 /**
  * Provider provides the store to all of our Components
- * It requires one argument which is the store.
+ * It requires one argument, which is the store.
  * 
  * This makes the easy to share the State with all the Components
  * rather than passing it down from one Component to the next

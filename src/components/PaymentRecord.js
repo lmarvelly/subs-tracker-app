@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import selectRecords from '../selectors/records';
+import RecordItem from './RecordItem';
+
 const PaymentRecord = (props) => (
 	<div>
 		<h1>Payment Record</h1>
-		<p>{props.paymentRecord.length}</p>
-		{console.log(props)}
+		{
+			props.paymentRecord.map(( record ) =>
+			{
+				return (
+					<RecordItem key={record.id} {...record} />
+				)
+			})
+			
+		}
+		
 	</div>
 );
 
-/**
- * This is a HOC (A higher Order Component)
- * 
- * @function connect() connects to the state of the app. The
- * function inside determines what info we want this component
- * to access.
- */
-const connectedPaymentRecord = connect((state) =>
+//<RecordItem amount={ props.paymentRecord[0].amount } />
+
+const mapStateToProps = (state) =>
 {
 	return{
-		paymentRecord: state.paymentRecord
+		paymentRecord: selectRecords(state.paymentRecord, state.filters),
 	}
-})(PaymentRecord);
+};
 
-export default connectedPaymentRecord;
+/**
+ * @function connect() This is a HOC (A higher Order Component)
+ * connects to the state of the app. The function references
+ * inside, mapStateToProps() determines what info we want this 
+ * component to access.
+ */
+ export default connect( mapStateToProps )( PaymentRecord );
