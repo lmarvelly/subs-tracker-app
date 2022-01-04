@@ -16,7 +16,8 @@ const RecordListFilters = ( props ) => (
 		<input 
 			type="text" 
 			value={ props.filters.text } 
-			onChange={
+			onChange=
+			{
 				(e) => 
 				{
 					props.dispatch( setTextFilter( e.target.value ) );
@@ -32,7 +33,8 @@ const RecordListFilters = ( props ) => (
  * @returns The filters attribute is passed down to the
  * RecordListFilters component
  */
-const mapStateToProps = ( state ) => {
+const mapStateToProps = ( state ) => 
+{
 	return {
 		filters: state.filters
 	};
