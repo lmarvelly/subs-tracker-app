@@ -18,6 +18,12 @@ const PaymentRecord = (props) => (
 	</div>
 );
 
+/**
+ * 
+ * @param {*} state 
+ * @returns The paymentRecord attribute is passed down to the
+ * PaymentRecord component
+ */
 const mapStateToProps = (state) =>
 {
 	return{
