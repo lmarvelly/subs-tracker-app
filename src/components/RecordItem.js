@@ -19,7 +19,6 @@ import { removeRecord } from '../actions/records';
  */
 const RecordItem = ( { dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
 {
-	console.log( 'ID: ',playerUuid)
 	return (
 		<div>
 			<Link to={`/edit/${id}`}>

@@ -21,7 +21,6 @@ const AddRecordPage = ( props ) => (
 						break;
 				}
 
-				console.log(props);
 				props.history.push('/'); // return to dashboard
 			}}
 		/>
