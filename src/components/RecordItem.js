@@ -35,6 +35,7 @@ const RecordItem = ({ dispatch, id, playerUuid, amount, amountOwed, amountPaid, 
 				{
 					(e) =>
 					{
+						confirm('Are you sure you want to remove record?') &&
 						dispatch( removeRecord( { id } ) );
 					}
 				}
