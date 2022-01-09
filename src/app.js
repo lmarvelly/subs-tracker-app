@@ -23,8 +23,8 @@ const unsubscribe = store.subscribe(() =>
 	const state = store.getState();
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.filters );
 
-	console.log( 'FILTERS: ', state.filters );
- 	// console.log( 'FILTERED RECORDS: ', visibleRecords );
+	// console.log( 'FILTERS: ', state.filters );
+ 	console.log( 'FILTERED RECORDS: ', visibleRecords );
 });
 
 const payment1 = store.dispatch( 
@@ -32,8 +32,7 @@ const payment1 = store.dispatch(
 		{ 
 			playerUuid: '123', 
 			description: 'Training subs', 
-			amount: 400, 
-			createdAt:-500 
+			amount: 400
 		} 
 	)
 );
@@ -44,7 +43,7 @@ const payment2 = store.dispatch(
 			playerUuid: '123', 
 			description: '5s subs', 
 			amount: 500, 
-			createdAt: -1000 
+			// createdAt: -1000 
 		} 
 	)
 );
@@ -55,7 +54,7 @@ const payment3 = store.dispatch(
 			playerUuid: '1234', 
 			description: 'donation', 
 			amount: 5000, 
-			createdAt: -2000 
+			// createdAt: -2000 
 		} 
 	)
 );

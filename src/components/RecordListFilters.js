@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux'; // To connect to the store
-import { setTextFilter, sortByDateAscending } from '../actions/filters';
+import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount } from '../actions/filters';
 
 /**
+ * Both inputs are Controlled Components (Input where the input is
+ * controlled by JS)
  * 
  * @param {*} props the filters prop is passed down
  * 
@@ -15,7 +17,7 @@ const RecordListFilters = ( props ) => (
 	<div>
 		<input 
 			type="text" 
-			value={ props.filters.text } 
+			value={ props.filters.text } // This is needed to make it a controlled component
 			onChange=
 			{
 				(e) => 
@@ -24,23 +26,31 @@ const RecordListFilters = ( props ) => (
 				}
 			}
 		/>
-		<select onChange=
-		{
-			(e) =>
+		<select 
+			value={ props.filters.sortBy } // This is needed to make it a controlled component
+			onChange=
 			{
-				switch (e.target.value) 
+				(e) =>
 				{
-					case 'dateAscending':
-						props.dispatch( sortByDateAscending() );
-						break;
-				
-					default:
-						break;
+					switch (e.target.value) 
+					{
+						case 'dateAscending':
+							props.dispatch( sortByDateAscending() );
+							break;
+					
+						case 'dateDescending':
+							props.dispatch( sortByDateDescending() );
+							break;
+					
+						case 'amount':
+							props.dispatch( sortByAmount() );
+							break;
+					
+						default:
+							break;
+					}
 				}
-				
-				
-			}
-		}>
+			}>
 			<option value="dateAscending">Date Ascending</option>
 			<option value="dateDescending">Date Descending</option>
 			<option value="amount">Amount</option>

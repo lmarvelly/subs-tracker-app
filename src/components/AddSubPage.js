@@ -1,7 +1,12 @@
 import React from 'react';
 
+import RecordFormPage from './RecordFormPage';
+
 const AddSubPage = () => (
-	<div>Add Sub Page</div>
+	<div>
+		<h1>Add Sub Page</h1>
+		<RecordFormPage />
+	</div>
 );
 
 export default AddSubPage;

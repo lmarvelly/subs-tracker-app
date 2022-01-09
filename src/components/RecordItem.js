@@ -23,7 +23,7 @@ const RecordItem = ({ dispatch, id, playerUuid, amount, description, createdAt }
 			<h3>Player: { playerUuid }</h3>
 			<p>Amount: { amount }</p>
 			<p>Description: { description }</p>
-			<p>Created At: { createdAt }</p>
+			<p>Created At: { createdAt.format('DD MMM YYYY') }</p>
 			<button 
 				onClick=
 				{
@@ -38,12 +38,5 @@ const RecordItem = ({ dispatch, id, playerUuid, amount, description, createdAt }
 		</div>
 	);
 }
-
-// const mapStateToProps = ( state ) =>
-// {
-// 	return {
-// 		paymentRecord: state.paymentRecord
-// 	}
-// }
 
 export default connect()( RecordItem );

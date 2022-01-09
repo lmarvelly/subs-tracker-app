@@ -1,4 +1,5 @@
 import uuid from 'uuid';
+import moment from 'moment';
 
 /**
  * ADD A SUB PAYMENT
@@ -27,7 +28,7 @@ export const addPayment = (
 	description = '',
 	note = '', 
 	amount = 0, 
-	createdAt = 0
+	createdAt = moment()
 }) => (
 {
 	type: 'ADD_PAYMENT',
