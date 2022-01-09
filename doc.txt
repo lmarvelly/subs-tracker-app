@@ -1,1 +1,4 @@
 ### HOW TO ADD NEW ACTION ###
+
+### NEW RECORD ACTION EXAMPLE ###
+1. Add function to actions/records.js
