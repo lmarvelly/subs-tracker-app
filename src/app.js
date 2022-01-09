@@ -68,9 +68,11 @@ const payment3 = store.dispatch(
  * rather than passing it down from one Component to the next
  */
 const jsx = (
-	<Provider store={store}>
+	<React.StrictMode>
+		<Provider store={store}>
 		<AppRouter />
 	</Provider>
+	</React.StrictMode>
 );
 
 ReactDOM.render(jsx, document.getElementById('app'));
