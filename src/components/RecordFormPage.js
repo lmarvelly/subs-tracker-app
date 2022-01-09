@@ -70,7 +70,7 @@ export default class RecordFormPage extends Component
 					amountPaid: 0
 				});
 			}
-			if( this.state.recordType === 'payment' )
+			else if( this.state.recordType === 'payment' )
 			{
 				return (
 				{
@@ -86,7 +86,7 @@ export default class RecordFormPage extends Component
 
 		if ( !this.state.description || !this.state.amount || !this.state.playerUuid )
 		{
-			this.setState( () => ({ error: 'Please provide description and amount' }) );
+			this.setState( () => ({ error: 'Please provide name, description and amount' }) );
 		}
 		else
 		{

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { removeRecord } from '../actions/records';
 
 /**
@@ -16,11 +17,14 @@ import { removeRecord } from '../actions/records';
  * 
  * @returns 
  */
-const RecordItem = ({ dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
+const RecordItem = ( { dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
 {
-	console.log(recordType);
+	console.log( 'ID: ',playerUuid)
 	return (
 		<div>
+			<Link to={`/edit/${id}`}>
+				<h2>Description: { description }</h2>
+			</Link>
 			<h3>Player: { playerUuid }</h3>
 			{
 				recordType === 'PAYMENT' && <p>Amount: { amount }</p>
@@ -28,7 +32,6 @@ const RecordItem = ({ dispatch, id, playerUuid, amount, amountOwed, amountPaid, 
 			{
 				recordType === 'DEBT' && <div><p>Debt amount: { amountOwed }</p><p>Amount paid: { amountPaid }</p></div>
 			}
-			<p>Description: { description }</p>
 			<p>Created At: { createdAt }</p>
 			<button 
 				onClick=
