@@ -11,7 +11,8 @@ export default class RecordFormPage extends Component
 		note: '',
 		amount: '',
 		createdAt: moment(),
-		calenderFocused: false
+		calenderFocused: false,
+		error: ''
 	};
 	onDescriptionChange = ( e ) => {
 		const description = e.target.value;
@@ -39,11 +40,26 @@ export default class RecordFormPage extends Component
 	onFocusChange = ( { focused } ) => {
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
+	onSubmit = ( e ) => {
+		e.preventDefault();
+
+		if ( !this.state.description || !this.state.amount )
+		{
+			this.setState( () => ({ error: 'Please provide description and amount' }) );
+		}
+		else
+		{
+			this.setState( () => ({ error: '' }) );
+		}
+	};
 
 	render(){
 		return(
 			<div>
-				<form>
+				{
+					this.state.error && <p>{this.state.error}</p>
+				}
+				<form onSubmit={this.onSubmit}>
 					<select>
 						<option value="123">Luke</option>
 						<option value="1234">Jason</option>
