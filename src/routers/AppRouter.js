@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../components/Dashboard';
 import AddRecordPage from '../components/AddRecordPage';
-import EditSubPage from '../components/EditSubPage';
+import EditRecordPage from '../components/EditRecordPage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 
@@ -30,7 +30,7 @@ const AppRouter = () => (
 			<Switch>
 				<Route path='/' component={Dashboard} exact={true} />
 				<Route path='/add' component={AddRecordPage} />
-				<Route path='/edit/:id' component={EditSubPage} />
+				<Route path='/edit/:id' component={EditRecordPage} />
 				<Route path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>

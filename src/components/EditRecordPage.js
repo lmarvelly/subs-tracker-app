@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EditSubPage = (props) => 
+const EditRecordPage = (props) => 
 {
 	console.log(props);
 	return (
@@ -8,4 +8,4 @@ const EditSubPage = (props) =>
 	)
 };
 
-export default EditSubPage;
+export default EditRecordPage;
