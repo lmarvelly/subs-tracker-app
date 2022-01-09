@@ -7,12 +7,21 @@ export default class RecordFormPage extends Component
 {
 	state = 
 	{
+		playerId: '',
+		recordType: 'payment',
 		description: '',
 		note: '',
 		amount: '',
 		createdAt: moment(),
 		calenderFocused: false,
 		error: ''
+	};
+	onNameChange = ( e ) => {
+		const playerId = e.target.value;
+		this.setState( () => ({ playerId }) )
+	};
+	onTypeChange = ( e ) => {
+		// @todo 
 	};
 	onDescriptionChange = ( e ) => {
 		const description = e.target.value;
@@ -43,13 +52,20 @@ export default class RecordFormPage extends Component
 	onSubmit = ( e ) => {
 		e.preventDefault();
 
-		if ( !this.state.description || !this.state.amount )
+		if ( !this.state.description || !this.state.amount || !this.state.playerId )
 		{
 			this.setState( () => ({ error: 'Please provide description and amount' }) );
 		}
 		else
 		{
 			this.setState( () => ({ error: '' }) );
+			this.props.onSubmit(
+			{
+				description: this.state.description,
+				amount: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
+				createdAt: this.state.createdAt.valueOf(),
+				note: this.state.note
+			});
 		}
 	};
 
@@ -60,10 +76,15 @@ export default class RecordFormPage extends Component
 					this.state.error && <p>{this.state.error}</p>
 				}
 				<form onSubmit={this.onSubmit}>
-					<select>
+					<select onChange={ this.onNameChange }>
+						<option defaultValue disabled hidden value="">Please Select</option>
 						<option value="123">Luke</option>
 						<option value="1234">Jason</option>
 						<option value="12345">Harry</option>
+					</select>
+					<select>
+						<option value="payment">New Payment</option>
+						<option value="debt">Add Debt</option>
 					</select>
 					<input 
 						type="text"

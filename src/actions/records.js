@@ -24,11 +24,11 @@ import moment from 'moment';
  */
 export const addPayment = (
 {
-	playerUuid = '',
+	playerUuid,
 	description = '',
 	note = '', 
 	amount = 0, 
-	createdAt = moment()
+	createdAt = moment().valueOf()
 }) => (
 {
 	type: 'ADD_PAYMENT',

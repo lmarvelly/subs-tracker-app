@@ -19,7 +19,7 @@ const subsList =
 		"uuid":"bd9962be-54f2-4b62-85df-b6842f98b084",
 		"playerUuid":"23456",
 		"createdAt":1622379856853,
-		"paymentType": "moneyOwing",
+		"paymentType": "addDebt",
 		"amount": 4
 	},
 	{
@@ -61,7 +61,7 @@ const subsList =
 		"uuid":"6fbc5bc2-3ffc-4e8d-aeb7-738104851f06",
 		"playerUuid":"23456",
 		"createdAt":1622295937190,
-		"paymentType": "moneyOwing",
+		"paymentType": "addDebt",
 		"amount": 4
 	}
 ];

@@ -23,7 +23,7 @@ const RecordItem = ({ dispatch, id, playerUuid, amount, description, createdAt }
 			<h3>Player: { playerUuid }</h3>
 			<p>Amount: { amount }</p>
 			<p>Description: { description }</p>
-			<p>Created At: { createdAt.format('DD MMM YYYY') }</p>
+			<p>Created At: { createdAt }</p>
 			<button 
 				onClick=
 				{
