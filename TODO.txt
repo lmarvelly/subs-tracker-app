@@ -1,2 +1,10 @@
 REFACTORING
 	Refactor Sub into payment/record
+
+
+FEATURES
+	Add debt handling
+
+
+ERRORS
+	Invalid prop added to Route

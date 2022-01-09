@@ -2,3 +2,5 @@
 
 ### NEW RECORD ACTION EXAMPLE ###
 1. Add function to actions/records.js
+2. Add to record reducer reducers/records.js
+3. In AddRecordpage.js add handler 
