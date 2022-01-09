@@ -19,6 +19,11 @@ export default ( state = paymentRecordReducerDefaultState, action ) =>
 				...state, 
 				action.payment 
 			]
+		case 'ADD_DEBT':
+			return [
+				...state,
+				action.debt
+			]
 		case 'REMOVE_RECORD':
 			return state.filter( ( { id } ) => id !== action.id)
 

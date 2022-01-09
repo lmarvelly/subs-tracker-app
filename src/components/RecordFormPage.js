@@ -6,11 +6,11 @@ import 'react-dates/lib/css/_datepicker.css';
 export default class RecordFormPage extends Component
 {
 	componentDidMount(){
-		this.setState({ playerId: document.getElementById('playerName').value  });
+		this.setState({ playerUuid: document.getElementById('playerName').value  });
 	};
 	state = 
 	{
-		playerId: '',
+		playerUuid: '',
 		recordType: 'payment',
 		description: '',
 		note: '',
@@ -20,12 +20,10 @@ export default class RecordFormPage extends Component
 		error: ''
 	};
 	onNameChange = ( e ) => {
-		console.log(document.getElementById('playerName').value);
-		const playerId = e.target.value;
-		this.setState( () => ({ playerId }) );
+		const playerUuid = e.target.value;
+		this.setState( () => ({ playerUuid }) );
 	};
 	onTypeChange = ( e ) => {
-		// @todo 
 		const recordType = e.target.value;
 		this.setState( () => ({ recordType }) )
 	};
@@ -58,20 +56,43 @@ export default class RecordFormPage extends Component
 	onSubmit = ( e ) => {
 		e.preventDefault();
 
-		if ( !this.state.description || !this.state.amount || !this.state.playerId )
+		const record = () => {
+			if( this.state.recordType === 'debt' )
+			{
+				return (
+				{
+					playerUuid: this.state.playerUuid,
+					description: this.state.description,
+					createdAt: this.state.createdAt.valueOf(),
+					note: this.state.note,
+					recordType: 'debt',
+					amountOwed: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
+					amountPaid: 0
+				});
+			}
+			if( this.state.recordType === 'payment' )
+			{
+				return (
+				{
+					playerUuid: this.state.playerUuid,
+					description: this.state.description,
+					createdAt: this.state.createdAt.valueOf(),
+					note: this.state.note,
+					recordType: 'payment',
+					amount: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
+				})
+			}
+		}
+
+		if ( !this.state.description || !this.state.amount || !this.state.playerUuid )
 		{
 			this.setState( () => ({ error: 'Please provide description and amount' }) );
 		}
 		else
 		{
 			this.setState( () => ({ error: '' }) );
-			this.props.onSubmit(
-			{
-				description: this.state.description,
-				amount: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
-				createdAt: this.state.createdAt.valueOf(),
-				note: this.state.note
-			});
+
+			this.props.onSubmit( record() );
 		}
 	};
 

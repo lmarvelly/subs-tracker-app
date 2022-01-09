@@ -30,6 +30,7 @@ export const addPayment = (
 	amount = 0, 
 	createdAt = moment().valueOf()
 }) => (
+console.log('ADD PAYMENT'),
 {
 	type: 'ADD_PAYMENT',
 	payment: 
@@ -54,9 +55,10 @@ export const addDebt = (
 		amountPaid = 0,
 		createdAt = moment().valueOf()
 	}) => (
+	console.log('ADD DEBT'),
 	{
 		type: 'ADD_DEBT',
-		payment: 
+		debt: 
 		{
 			playerUuid,
 			id: uuid(),
