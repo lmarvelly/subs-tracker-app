@@ -21,7 +21,7 @@ class Season extends Component
 				key={ sub.uuid }
 				playerUuid={ sub.playerUuid }
 				createdAt={ sub.createdAt }
-				paymentType={ sub.paymentType }
+				recordType={ sub.recordType }
 				amount={ sub.amount }
 			/>
 		)));

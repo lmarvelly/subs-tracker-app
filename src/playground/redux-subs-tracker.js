@@ -25,7 +25,7 @@ import uuid from 'uuid';
  * 
  * @param {string} playerUuid
  * @param {string} id: uuid()
- * @param {string} paymentType 'SUB_PAYMENT'
+ * @param {string} recordType 'SUB_PAYMENT'
  * @param {string} description
  * @param {number} amount
  * @param {number} createdAt
@@ -34,7 +34,7 @@ import uuid from 'uuid';
  * @returns A type and a object
  * 
  * @type 'ADD_PAYMENT'
- * @object playerUuid, id, paymentType, description, amount, createdAt
+ * @object playerUuid, id, recordType, description, amount, createdAt
  * 
  */
 const addPayment = (
@@ -50,7 +50,7 @@ const addPayment = (
 	{
 		playerUuid,
 		id: uuid(),
-		paymentType: 'PAYMENT',
+		recordType: 'PAYMENT',
 		description,
 		amount,
 		createdAt
@@ -295,7 +295,7 @@ const demoState =
 			"uuid":"e82626bd-d15e-446a-b2fb-d292449248ab",
 			"playerUuid":"12345",
 			"createdAt":1622380833549,
-			"paymentType": "newPayment",
+			"recordType": "newPayment",
 			"description": "New payment",
 			"amount": 400
 		},
@@ -303,7 +303,7 @@ const demoState =
 			"uuid":"bd9962be-54f2-4b62-85df-b6842f98b084",
 			"playerUuid":"23456",
 			"createdAt":1622379856853,
-			"paymentType": "moneyOwing",
+			"recordType": "moneyOwing",
 			"description": "Money owed for 5s",
 			"amount": 500
 		},
@@ -311,7 +311,7 @@ const demoState =
 			"uuid":"bd9962be-54f2-4b62-85df-b632432557fd",
 			"playerUuid":"34567",
 			"createdAt":1622379856800,
-			"paymentType": "debtPayment",
+			"recordType": "debtPayment",
 			"description": "Late payment for training",
 			"amount": 400
 		},
@@ -319,7 +319,7 @@ const demoState =
 			"uuid":"b56728b4-7a3f-46a2-b100-2587efaa2f2d",
 			"playerUuid":"12345",
 			"createdAt":1622378144280,
-			"paymentType": "newPayment",
+			"recordType": "newPayment",
 			"description": "Payment for training",
 			"amount": 400
 		},
@@ -327,7 +327,7 @@ const demoState =
 			"uuid":"55ca6501-4c5e-40eb-b01c-2db4eb294049",
 			"playerUuid":"12345",
 			"createdAt":1621352306611,
-			"paymentType": "debtPayment",
+			"recordType": "debtPayment",
 			"description": "Late payment for training",
 			"amount": 400
 		},
@@ -335,7 +335,7 @@ const demoState =
 			"uuid":"d8d79f81-09ed-4cad-a4da-b371fe368f14",
 			"playerUuid":"34567",
 			"createdAt":1622296067850,
-			"paymentType": "newPayment",
+			"recordType": "newPayment",
 			"description": "Payment for training",
 			"amount": 400
 		},
@@ -343,7 +343,7 @@ const demoState =
 			"uuid":"aedcac42-c3fa-4c54-9fc4-3af5d7a78151",
 			"playerUuid":"34567",
 			"createdAt":1621352367550,
-			"paymentType": "newPayment",
+			"recordType": "newPayment",
 			"description": "Payment for 5s",
 			"amount": 500
 		},
@@ -351,7 +351,7 @@ const demoState =
 			"uuid":"6fbc5bc2-3ffc-4e8d-aeb7-738104851f06",
 			"playerUuid":"23456",
 			"createdAt":1622295937190,
-			"paymentType": "moneyOwing",
+			"recordType": "moneyOwing",
 			"description": "Payment for training",
 			"amount": 400
 		}
@@ -376,7 +376,7 @@ const demoState =
  * 		{
  * 			playerUuid,
  *				id: uuid(),
- * 			paymentType: 'PAYMENT',
+ * 			recordType: 'PAYMENT',
  * 			description,
  * 			amount,
  * 			createdAt

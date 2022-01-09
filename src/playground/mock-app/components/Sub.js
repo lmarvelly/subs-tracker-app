@@ -14,7 +14,7 @@ class Sub extends Component
 
 	render()
 	{
-		const { playerUuid, createdAt, paymentType, amount } = this.props;
+		const { playerUuid, createdAt, recordType, amount } = this.props;
 		const name = getName( playerUuid );
 		return(
 			<div className='Sub'>
@@ -23,7 +23,7 @@ class Sub extends Component
 					<span>{ createdAt }</span>
 				</div>
 				<div>
-					<span>{ paymentType }</span>
+					<span>{ recordType }</span>
 					<br />
 					<span>{ `£${amount}` }</span>
 				</div>

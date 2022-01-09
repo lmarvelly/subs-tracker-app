@@ -10,7 +10,7 @@ import moment from 'moment';
  * 
  * @param {string} playerUuid
  * @param {string} id: uuid()
- * @param {string} paymentType 'SUB_PAYMENT'
+ * @param {string} recordType 'SUB_PAYMENT'
  * @param {string} description
  * @param {number} amount
  * @param {number} createdAt
@@ -19,7 +19,7 @@ import moment from 'moment';
  * @returns A type and a object
  * 
  * @type 'ADD_PAYMENT'
- * @object playerUuid, id, paymentType, description, amount, createdAt
+ * @object playerUuid, id, recordType, description, amount, createdAt
  * 
  */
 export const addPayment = (
@@ -37,7 +37,7 @@ console.log('ADD PAYMENT'),
 	{
 		playerUuid,
 		id: uuid(),
-		paymentType: 'PAYMENT',
+		recordType: 'PAYMENT',
 		description,
 		note,
 		amount,
@@ -62,7 +62,7 @@ export const addDebt = (
 		{
 			playerUuid,
 			id: uuid(),
-			paymentType: 'DEBT',
+			recordType: 'DEBT',
 			description,
 			note,
 			amountOwed,

@@ -16,12 +16,18 @@ import { removeRecord } from '../actions/records';
  * 
  * @returns 
  */
-const RecordItem = ({ dispatch, id, playerUuid, amount, description, createdAt }) =>
+const RecordItem = ({ dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
 {
+	console.log(recordType);
 	return (
 		<div>
 			<h3>Player: { playerUuid }</h3>
-			<p>Amount: { amount }</p>
+			{
+				recordType === 'PAYMENT' && <p>Amount: { amount }</p>
+			}
+			{
+				recordType === 'DEBT' && <div><p>Debt amount: { amountOwed }</p><p>Amount paid: { amountPaid }</p></div>
+			}
 			<p>Description: { description }</p>
 			<p>Created At: { createdAt }</p>
 			<button 
