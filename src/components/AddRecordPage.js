@@ -8,15 +8,12 @@ const AddRecordPage = ( props ) => (
 		<h1>Add Record Page</h1>
 		<RecordFormPage 
 			onSubmit={ ( record ) => {
-				console.log( 'RECORD: ', record );
-
 				switch (record.recordType) {
 					case 'payment':
 						props.dispatch( addPayment( record ) );
 						break;
 				
 					case 'debt':
-						console.log('RECORD2: ',record);
 						props.dispatch( addDebt( record ) );
 						break;
 				
