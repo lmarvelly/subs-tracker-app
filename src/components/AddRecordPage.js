@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import RecordFormPage from './RecordFormPage';
 import { addPayment } from '../actions/records';
 
-const AddSubPage = ( props ) => (
+const AddRecordPage = ( props ) => (
 	<div>
-		<h1>Add Sub Page</h1>
+		<h1>Add Record Page</h1>
 		<RecordFormPage 
 			onSubmit={ (record) => {
 				console.log( record );
@@ -16,4 +16,4 @@ const AddSubPage = ( props ) => (
 	</div>
 );
 
-export default connect()( AddSubPage );
+export default connect()( AddRecordPage );

@@ -5,6 +5,9 @@ import 'react-dates/lib/css/_datepicker.css';
 
 export default class RecordFormPage extends Component
 {
+	componentDidMount(){
+		this.setState({ playerId: document.getElementById('playerName').value  });
+	};
 	state = 
 	{
 		playerId: '',
@@ -17,11 +20,14 @@ export default class RecordFormPage extends Component
 		error: ''
 	};
 	onNameChange = ( e ) => {
+		console.log(document.getElementById('playerName').value);
 		const playerId = e.target.value;
-		this.setState( () => ({ playerId }) )
+		this.setState( () => ({ playerId }) );
 	};
 	onTypeChange = ( e ) => {
 		// @todo 
+		const recordType = e.target.value;
+		this.setState( () => ({ recordType }) )
 	};
 	onDescriptionChange = ( e ) => {
 		const description = e.target.value;
@@ -76,20 +82,22 @@ export default class RecordFormPage extends Component
 					this.state.error && <p>{this.state.error}</p>
 				}
 				<form onSubmit={this.onSubmit}>
-					<select onChange={ this.onNameChange }>
-						<option defaultValue disabled hidden value="">Please Select</option>
+					<select 
+						id='playerName'
+						onChange={ this.onNameChange }
+					>
+						<option defaultValue hidden value="">Please Select</option>
 						<option value="123">Luke</option>
 						<option value="1234">Jason</option>
 						<option value="12345">Harry</option>
 					</select>
-					<select>
+					<select onChange={ this.onTypeChange }>
 						<option value="payment">New Payment</option>
 						<option value="debt">Add Debt</option>
 					</select>
 					<input 
 						type="text"
 						placeholder="Description"
-						autoFocus
 						onChange={ this.onDescriptionChange }
 					/>
 					<input

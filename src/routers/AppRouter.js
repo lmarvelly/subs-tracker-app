@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../components/Dashboard';
-import AddSubPage from '../components/AddSubPage';
+import AddRecordPage from '../components/AddRecordPage';
 import EditSubPage from '../components/EditSubPage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
@@ -29,7 +29,7 @@ const AppRouter = () => (
 			<Header />
 			<Switch>
 				<Route path='/' component={Dashboard} exact={true} />
-				<Route path='/add' component={AddSubPage} />
+				<Route path='/add' component={AddRecordPage} />
 				<Route path='/edit/:id' component={EditSubPage} />
 				<Route path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />

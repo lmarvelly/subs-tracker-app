@@ -45,6 +45,29 @@ export const addPayment = (
 });
 
 // ADD_DEBT
+export const addDebt = (
+	{
+		playerUuid,
+		description = '',
+		note = '', 
+		amountOwed,
+		amountPaid = 0,
+		createdAt = moment().valueOf()
+	}) => (
+	{
+		type: 'ADD_DEBT',
+		payment: 
+		{
+			playerUuid,
+			id: uuid(),
+			paymentType: 'DEBT',
+			description,
+			note,
+			amountOwed,
+			amountPaid,
+			createdAt
+		}
+	});
 
 /**
  * EDIT RECORD
