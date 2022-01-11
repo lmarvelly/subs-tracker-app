@@ -5,6 +5,7 @@ import Dashboard from '../components/Dashboard';
 import AddRecordPage from '../components/AddRecordPage';
 import EditRecordPage from '../components/EditRecordPage';
 import HelpPage from '../components/HelpPage';
+import MembersPage from '../components/MembersPage';
 import NotFoundPage from '../components/NotFoundPage';
 
 import Header from '../components/Header';
@@ -31,6 +32,7 @@ const AppRouter = () => (
 				<Route path='/' component={Dashboard} exact={true} />
 				<Route path='/add' component={AddRecordPage} />
 				<Route path='/edit/:id' component={EditRecordPage} />
+				<Route path='/members' component={MembersPage} />
 				<Route path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>
