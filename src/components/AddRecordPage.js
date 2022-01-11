@@ -7,6 +7,7 @@ const AddRecordPage = ( props ) => (
 	<div>
 		<h1>Add Record Page</h1>
 		<RecordForm 
+			members={ props.members }
 			onSubmit={ ( record ) => {
 				switch (record.recordType) {
 					case 'payment':
@@ -27,4 +28,9 @@ const AddRecordPage = ( props ) => (
 	</div>
 );
 
-export default connect()( AddRecordPage );
+const mapStateToProps = ( state, props ) =>
+{
+	return { members: state.members }
+}
+
+export default connect( mapStateToProps )( AddRecordPage );
