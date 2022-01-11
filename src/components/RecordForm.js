@@ -20,7 +20,9 @@ export default class RecordForm extends Component
 
 			amount: props.record ? props.record.amount / 100 : '',
 			amountOwed: props.record ? props.record.amountOwed / 100 : '',
-			amountPaid: props.record ? props.record.amountPaid / 100 : ''
+			amountPaid: props.record ? props.record.amountPaid / 100 : '',
+
+			members: []
 		};
 	}
 
@@ -116,9 +118,12 @@ export default class RecordForm extends Component
 						onChange={ this.onNameChange }
 					>
 						<option defaultValue hidden value="">Please Select</option>
-						<option value="123">Luke</option>
-						<option value="1234">Jason</option>
-						<option value="12345">Harry</option>
+						{
+							this.props.members.map( ( member ) => 
+							{
+								return <option key={member.playerUuid} value={member.playerUuid}>{member.name}</option>
+							})
+						}
 					</select>
 					<select onChange={ this.onTypeChange }>
 						<option value="payment">New Payment</option>
