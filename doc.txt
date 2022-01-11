@@ -4,3 +4,14 @@
 1. Add function to actions/records.js (rememeber action.debt is the debt object)
 2. Add to record reducer reducers/records.js
 3. In AddRecordpage.js add handler 
+
+
+
+### ADDING NEW MEMBER FUNCTIONALITY ###
+1. Create Member Reducer with 
+		Add Member
+		Edit Member
+		Delete/archive Member
+2. Write Member Functions
+3. Combine reducer with other reducers in Store
+4. Create Members Page!!
