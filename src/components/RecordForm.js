@@ -5,19 +5,27 @@ import 'react-dates/lib/css/_datepicker.css';
 
 export default class RecordForm extends Component
 {
+	constructor( props )
+	{
+		super( props );
+
+		this.state = {
+			playerUuid: props.record ? props.record.playerUuid : '',
+			recordType: props.record ? props.record.recordType : 'payment',
+			description: props.record ? props.record.description : '',
+			note: props.record ? props.record.note : '',
+			createdAt: props.record ? moment( props.record.createdAt ) : moment(),
+			calenderFocused: false,
+			error: '',
+
+			amount: props.record ? props.record.amount / 100 : '',
+			amountOwed: props.record ? props.record.amountOwed / 100 : '',
+			amountPaid: props.record ? props.record.amountPaid / 100 : ''
+		};
+	}
+
 	componentDidMount(){
 		this.setState({ playerUuid: document.getElementById('playerName').value  });
-	};
-	state = 
-	{
-		playerUuid: '',
-		recordType: 'payment',
-		description: '',
-		note: '',
-		amount: '',
-		createdAt: moment(),
-		calenderFocused: false,
-		error: ''
 	};
 	onNameChange = ( e ) => {
 		const playerUuid = e.target.value;
@@ -119,6 +127,7 @@ export default class RecordForm extends Component
 					<input 
 						type="text"
 						placeholder="Description"
+						value= { this.state.description }
 						onChange={ this.onDescriptionChange }
 					/>
 					<input
