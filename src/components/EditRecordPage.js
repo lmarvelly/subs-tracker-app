@@ -5,7 +5,7 @@ import RecordForm from './RecordForm';
 const EditRecordPage = ( props ) => 
 {
 	// <div>Edit Sub with ID: { props.match.params.id }</div>
-	// console.log(props);
+	console.log(props);
 	return (
 		<RecordForm
 			record={ props.record }
@@ -17,8 +17,9 @@ const EditRecordPage = ( props ) =>
 };
 
 // Give the component the current record object. We can take the props from the HOC and add to them
+// This goes out of sync atm if you refresh the page
 const mapStateToProps = ( state, props ) =>
-{
+{ 
 	return {
 		record: state.paymentRecord.find( ( record ) => record.id === props.match.params.id)
 	}
