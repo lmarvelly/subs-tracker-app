@@ -8,6 +8,7 @@ import getVisibleRecords from './selectors/records';
 
 import { addPayment, editRecord, removeRecord } from './actions/records';
 import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from './actions/filters';
+import { addMember } from './actions/members';
 import {} from './actions/filters';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
@@ -25,6 +26,7 @@ const unsubscribe = store.subscribe(() =>
 
 	// console.log( 'FILTERS: ', state.filters );
  	console.log( 'FILTERED RECORDS: ', visibleRecords );
+	console.log('MEMBERS: ', state.members);
 });
 
 const payment1 = store.dispatch( 
@@ -58,6 +60,11 @@ const payment3 = store.dispatch(
 		} 
 	)
 );
+
+store.dispatch( addMember('Luke Marvelly') );
+store.dispatch( addMember('Harri Messenger') );
+store.dispatch( addMember('Jason Cousins') );
+
 
 /**
  * Provider provides the store to all of our Components to connect
