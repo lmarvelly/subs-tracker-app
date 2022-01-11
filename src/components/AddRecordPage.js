@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RecordFormPage from './RecordFormPage';
+import RecordForm from './RecordForm';
 import { addPayment, addDebt } from '../actions/records';
 
 const AddRecordPage = ( props ) => (
 	<div>
 		<h1>Add Record Page</h1>
-		<RecordFormPage 
+		<RecordForm 
 			onSubmit={ ( record ) => {
 				switch (record.recordType) {
 					case 'payment':

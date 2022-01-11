@@ -3,7 +3,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
-export default class RecordFormPage extends Component
+export default class RecordForm extends Component
 {
 	componentDidMount(){
 		this.setState({ playerUuid: document.getElementById('playerName').value  });
