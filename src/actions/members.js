@@ -7,6 +7,6 @@ console.log('ADD MEMBER'),
 	member:
 	{
 		name,
-		playerID: uuid()
+		playerUuid: uuid()
 	}
 });
