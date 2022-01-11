@@ -14,4 +14,8 @@
 		Delete/archive Member
 2. Write Member Functions
 3. Combine reducer with other reducers in Store
-4. Create Members Page!!
+4. Test by sending a function to the Store
+5. Create Members Page
+		Create Members page component
+		Add page component to Router
+		Add link to the Header

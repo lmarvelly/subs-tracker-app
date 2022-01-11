@@ -5,6 +5,7 @@ REFACTORING
 FEATURES
 	Add debt handling
 	Add page for adding member
+	Add searchbar for members
 
 
 ERRORS
