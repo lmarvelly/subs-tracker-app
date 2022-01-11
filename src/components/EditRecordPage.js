@@ -4,8 +4,6 @@ import RecordForm from './RecordForm';
 
 const EditRecordPage = ( props ) => 
 {
-	// <div>Edit Sub with ID: { props.match.params.id }</div>
-	console.log(props);
 	return (
 		<RecordForm
 			record={ props.record }
@@ -17,7 +15,7 @@ const EditRecordPage = ( props ) =>
 };
 
 // Give the component the current record object. We can take the props from the HOC and add to them
-// This goes out of sync atm if you refresh the page
+// This goes out of sync atm if you refresh the page because a new id gets generated for the record
 const mapStateToProps = ( state, props ) =>
 { 
 	return {
