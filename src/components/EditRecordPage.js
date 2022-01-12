@@ -7,6 +7,7 @@ const EditRecordPage = ( props ) =>
 	return (
 		<RecordForm
 			record={ props.record }
+			members={ props.members }
 			onSubmit={ ( record ) => {
 				console.log( 'Updated', record );
 			}}
@@ -19,6 +20,7 @@ const EditRecordPage = ( props ) =>
 const mapStateToProps = ( state, props ) =>
 { 
 	return {
+		members: state.members,
 		record: state.paymentRecord.find( ( record ) => record.id === props.match.params.id)
 	}
 };
