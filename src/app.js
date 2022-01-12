@@ -6,7 +6,7 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import getVisibleRecords from './selectors/records';
 
-import { addPayment, editRecord, removeRecord } from './actions/records';
+import { addRecord, editRecord, removeRecord } from './actions/records';
 import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from './actions/filters';
 import { addMember } from './actions/members';
 import {} from './actions/filters';
@@ -34,9 +34,21 @@ store.dispatch( addMember('Luke Marvelly') );
 store.dispatch( addMember('Harri Messenger') );
 store.dispatch( addMember('Jason Cousins') );
 
-const payment1 = store.dispatch( 
-	addPayment( 
+const payment = store.dispatch( 
+	addRecord( 
 		{ 
+			recordType: 'DEBT',
+			playerUuid: store.getState().members[1].playerUuid, 
+			description: 'Training subs two weeks', 
+			amountOwed: 700
+		} 
+	)
+);
+
+const payment1 = store.dispatch( 
+	addRecord( 
+		{ 
+			recordType: 'PAYMENT',
 			playerUuid: store.getState().members[1].playerUuid, 
 			description: 'Training subs', 
 			amount: 400
@@ -45,8 +57,9 @@ const payment1 = store.dispatch(
 );
 
 const payment2 = store.dispatch( 
-	addPayment( 
+	addRecord( 
 		{ 
+			recordType: 'PAYMENT',
 			playerUuid: store.getState().members[0].playerUuid, 
 			description: '5s subs', 
 			amount: 500
@@ -55,8 +68,9 @@ const payment2 = store.dispatch(
 );
 
 const payment3 = store.dispatch( 
-	addPayment( 
+	addRecord( 
 		{ 
+			recordType: 'PAYMENT',
 			playerUuid: store.getState().members[2].playerUuid, 
 			description: 'donation', 
 			amount: 5000

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RecordForm from './RecordForm';
-import { addPayment, addDebt } from '../actions/records';
+import { addRecord } from '../actions/records';
 
 const AddRecordPage = ( props ) => (
 	<div>
@@ -10,12 +10,8 @@ const AddRecordPage = ( props ) => (
 			members={ props.members }
 			onSubmit={ ( record ) => {
 				switch ( record.recordType ) {
-					case 'PAYMENT':
-						props.dispatch( addPayment( record ) );
-						break;
-				
-					case 'DEBT':
-						props.dispatch( addDebt( record ) );
+					case 'RECORD':
+						props.dispatch( addRecord( record ) );
 						break;
 				
 					default:

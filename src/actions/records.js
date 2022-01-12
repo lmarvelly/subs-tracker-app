@@ -18,58 +18,39 @@ import moment from 'moment';
  * 
  * @returns A type and a object
  * 
- * @type 'ADD_PAYMENT'
+ * @type 'ADD_RECORD'
  * @object playerUuid, id, recordType, description, amount, createdAt
  * 
  */
-export const addPayment = (
-{
-	playerUuid,
-	description = '',
-	note = '', 
-	amount = 0, 
-	createdAt = moment().valueOf()
-}) => (
-console.log('ADD PAYMENT'),
-{
-	type: 'ADD_PAYMENT',
-	payment: 
+export const addRecord = (
 	{
-		playerUuid,
-		id: uuid(),
-		recordType: 'PAYMENT',
-		description,
-		note,
-		amount,
-		createdAt
-	}
-});
-
-// ADD_DEBT
-export const addDebt = (
-	{
-		playerUuid,
+		recordType = '',
+		playerUuid ='',
 		description = '',
-		note = '', 
-		amountOwed,
-		amountPaid = 0,
-		createdAt = moment().valueOf()
+		note = '',  
+		createdAt = moment().valueOf(),
+
+		amountOwed = "",
+		amountPaid = "",
+		amount = ""
 	}) => (
-	console.log('ADD DEBT'),
+	console.log('ADD RECORD'),
 	{
-		type: 'ADD_DEBT',
-		debt: 
+		type: 'ADD_RECORD',
+		record: 
 		{
 			playerUuid,
 			id: uuid(),
-			recordType: 'DEBT',
+			recordType,
 			description,
 			note,
+			createdAt,
+			amount,
 			amountOwed,
-			amountPaid,
-			createdAt
+			amountPaid: recordType === 'DEBT' ? 0 : ""
 		}
-	});
+	}
+);
 
 /**
  * EDIT RECORD

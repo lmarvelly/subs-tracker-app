@@ -14,16 +14,12 @@ export default ( state = paymentRecordReducerDefaultState, action ) =>
 {
 	switch ( action.type )
 	{
-		case 'ADD_PAYMENT':
-			return [
+		case 'ADD_RECORD':
+			return [ 
 				...state, 
-				action.payment 
+				{...action.record, amountPaid: action.record.recordType === 'DEBT' ? 0 : ""} 
 			]
-		case 'ADD_DEBT':
-			return [
-				...state,
-				action.debt
-			]
+
 		case 'REMOVE_RECORD':
 			return state.filter( ( { id } ) => id !== action.id)
 
@@ -37,7 +33,7 @@ export default ( state = paymentRecordReducerDefaultState, action ) =>
 						...action.updates 
 					};
 				}
-				return record;
+				else { return record };
 			})
 
 		default:
