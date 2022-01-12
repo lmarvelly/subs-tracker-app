@@ -11,7 +11,7 @@ export default class RecordForm extends Component
 
 		this.state = {
 			playerUuid: props.record ? props.record.playerUuid : '',
-			recordType: props.record ? props.record.recordType : 'payment',
+			recordType: props.record ? props.record.recordType : 'PAYMENT',
 			description: props.record ? props.record.description : '',
 			note: props.record ? props.record.note : '',
 			createdAt: props.record ? moment( props.record.createdAt ) : moment(),
@@ -73,7 +73,7 @@ export default class RecordForm extends Component
 					description: this.state.description,
 					createdAt: this.state.createdAt.valueOf(),
 					note: this.state.note,
-					recordType: 'debt',
+					recordType: 'DEBT',
 					amountOwed: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
 					amountPaid: 0
 				});
@@ -86,7 +86,7 @@ export default class RecordForm extends Component
 					description: this.state.description,
 					createdAt: this.state.createdAt.valueOf(),
 					note: this.state.note,
-					recordType: 'payment',
+					recordType: 'PAYMENT',
 					amount: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
 				})
 			}
@@ -133,8 +133,8 @@ export default class RecordForm extends Component
 						}
 					</select>
 					<select onChange={ this.onTypeChange }>
-						<option value="payment">New Payment</option>
-						<option value="debt">Add Debt</option>
+						<option value="PAYMENT">New Payment</option>
+						<option value="DEBT">Add Debt</option>
 					</select>
 					<input 
 						type="text"

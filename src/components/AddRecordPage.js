@@ -9,12 +9,12 @@ const AddRecordPage = ( props ) => (
 		<RecordForm 
 			members={ props.members }
 			onSubmit={ ( record ) => {
-				switch (record.recordType) {
-					case 'payment':
+				switch ( record.recordType ) {
+					case 'PAYMENT':
 						props.dispatch( addPayment( record ) );
 						break;
 				
-					case 'debt':
+					case 'DEBT':
 						props.dispatch( addDebt( record ) );
 						break;
 				

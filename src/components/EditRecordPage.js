@@ -9,7 +9,19 @@ const EditRecordPage = ( props ) =>
 			record={ props.record }
 			members={ props.members }
 			onSubmit={ ( record ) => {
-				console.log( 'Updated', record );
+				console.log(record.recordType);
+				switch (record.recordType) {
+					case 'PAYMENT':
+						console.log( 'PAYMENT', record );
+						break;
+				
+					case 'DEBT':
+						console.log( 'DEBT', record );
+						break;
+				
+					default:
+						break;
+				}
 			}}
 		/>
 	)
