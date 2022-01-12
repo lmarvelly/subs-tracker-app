@@ -109,7 +109,49 @@ export default class RecordForm extends Component
 	};
 
 	render(){
-		console.log(this.props)
+		// console.log(this.props)
+		const moneyInput = () =>
+		{
+			console.log('RECORD TYPE: ', this.state.recordType);
+			if (this.state.recordType === 'PAYMENT') 
+			{
+				return(
+					<div>
+						<label htmlFor="amountToPay">Amount to Pay</label>
+						<input
+							id='amountToPay'
+							type="text"
+							placeholder="Amount"
+							value={ this.state.amount }
+							onChange={ this.onAmountChange }
+						/>
+					</div>
+				)
+			}
+			else if (this.state.recordType === 'DEBT')
+			{
+				return(
+					<div>
+						<label htmlFor="amountInDebt">Debt Amount</label>
+						<input
+							id='amountInDebt'
+							type="text"
+							placeholder="Debt Amount"
+							value={ this.state.amount }
+							onChange={ this.onAmountChange }
+						/>
+						<label htmlFor="amountPayed">Amount payed</label>
+						<input
+							id='amountPayed'
+							type="text"
+							placeholder="Debt Amount"
+							value={ this.state.amount }
+							onChange={ this.onAmountChange }
+						/>
+					</div>
+				)
+			}
+		}
 		return(
 			<div>
 				{
@@ -157,12 +199,12 @@ export default class RecordForm extends Component
 						value= { this.state.description }
 						onChange={ this.onDescriptionChange }
 					/>
-					<input
-						type="text"
-						placeholder="Amount"
-						value={ this.state.amount }
-						onChange={ this.onAmountChange }
-					/>
+					<br />
+					{
+						moneyInput()
+					}
+					
+					<br />
 					<SingleDatePicker
 						date={ this.state.createdAt }
 						onDateChange={ this.onDateChange }
