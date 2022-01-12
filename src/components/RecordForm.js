@@ -137,8 +137,18 @@ export default class RecordForm extends Component
 						}
 					</select>
 					<select onChange={ this.onTypeChange }>
-						<option value="PAYMENT">New Payment</option>
-						<option value="DEBT">Add Debt</option>
+						<option 
+							value="PAYMENT" 
+							selected={this.state.recordType === "PAYMENT"}
+						>
+							New Payment
+						</option>
+						<option 
+							value="DEBT"
+							selected={this.state.recordType === "DEBT"}
+						>
+							Add Debt
+						</option>
 					</select>
 					<input 
 						type="text"
