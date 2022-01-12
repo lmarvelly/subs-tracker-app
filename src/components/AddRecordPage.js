@@ -9,14 +9,7 @@ const AddRecordPage = ( props ) => (
 		<RecordForm 
 			members={ props.members }
 			onSubmit={ ( record ) => {
-				switch ( record.recordType ) {
-					case 'RECORD':
-						props.dispatch( addRecord( record ) );
-						break;
-				
-					default:
-						break;
-				}
+				props.dispatch( addRecord( record ) );
 
 				props.history.push('/'); // return to dashboard
 			}}
