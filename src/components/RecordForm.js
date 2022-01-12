@@ -65,16 +65,21 @@ export default class RecordForm extends Component
 	onSubmit = ( e ) => {
 		e.preventDefault();
 
+		const record = 
+		{
+			id: this.state.id,
+			playerUuid: this.state.playerUuid,
+			description: this.state.description,
+			createdAt: this.state.createdAt.valueOf(),
+			note: this.state.note
+		}
+
 		const record = () => {
 			if( this.state.recordType === 'DEBT' )
 			{
 				return (
 				{
-					id: this.state.id,
-					playerUuid: this.state.playerUuid,
-					description: this.state.description,
-					createdAt: this.state.createdAt.valueOf(),
-					note: this.state.note,
+					...record,
 					recordType: 'DEBT',
 					amountOwed: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
 					amountPaid: 0
@@ -84,11 +89,7 @@ export default class RecordForm extends Component
 			{
 				return (
 				{
-					id: this.state.id,
-					playerUuid: this.state.playerUuid,
-					description: this.state.description,
-					createdAt: this.state.createdAt.valueOf(),
-					note: this.state.note,
+					...record,
 					recordType: 'PAYMENT',
 					amount: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
 				})
