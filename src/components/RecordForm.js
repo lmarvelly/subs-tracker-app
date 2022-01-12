@@ -50,7 +50,23 @@ export default class RecordForm extends Component
 		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
 		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
-			this.setState( () => ({ amount }) );
+			switch (e.target.id) {
+				case 'amountToPay':
+					this.setState( () => ({ amount }) );
+					break;
+				
+				case 'amountInDebt':
+					this.setState( () => ({ amountOwed: amount }) );
+					break;
+				
+				case 'amountPayed':
+					this.setState( () => ({ amountPaid: amount }) );
+					break;
+				
+				default:
+					break;
+			}
+			
 		}
 	};
 	onDateChange = ( createdAt ) => {
@@ -81,8 +97,8 @@ export default class RecordForm extends Component
 				{
 					...recordProperties,
 					recordType: 'DEBT',
-					amountOwed: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
-					amountPaid: 0
+					amountOwed: parseFloat(this.state.amountOwed, 10) * 100, // Converting amount into a non decimal number
+					amountPaid: parseFloat(this.state.amountPaid, 10) * 100
 				});
 			}
 			else if( this.state.recordType === 'PAYMENT' )
@@ -96,7 +112,7 @@ export default class RecordForm extends Component
 			}
 		}
 
-		if ( !this.state.description || !this.state.amount || !this.state.playerUuid )
+		if ( !this.state.description || !(this.state.amount || this.state.amountOwed) || !this.state.playerUuid )
 		{
 			this.setState( () => ({ error: 'Please provide name, description and amount' }) );
 		}
@@ -137,7 +153,7 @@ export default class RecordForm extends Component
 							id='amountInDebt'
 							type="text"
 							placeholder="Debt Amount"
-							value={ this.state.amount }
+							value={ this.state.amountOwed }
 							onChange={ this.onAmountChange }
 						/>
 						<label htmlFor="amountPayed">Amount payed</label>
@@ -145,7 +161,7 @@ export default class RecordForm extends Component
 							id='amountPayed'
 							type="text"
 							placeholder="Debt Amount"
-							value={ this.state.amount }
+							value={ this.state.amountPaid }
 							onChange={ this.onAmountChange }
 						/>
 					</div>
