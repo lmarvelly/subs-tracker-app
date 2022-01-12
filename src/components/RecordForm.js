@@ -119,7 +119,9 @@ export default class RecordForm extends Component
 						{
 							this.props.members.map( ( member ) => 
 							{
-								const selected = member.playerUuid === this.props.record.playerUuid;
+								
+								const selected = this.props.record ? ( member.playerUuid === this.props.record.playerUuid ) : false;
+								
 								return <option 
 									key={member.playerUuid} 
 									value={member.playerUuid}
