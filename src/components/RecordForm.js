@@ -109,6 +109,7 @@ export default class RecordForm extends Component
 	};
 
 	render(){
+		console.log(this.props)
 		return(
 			<div>
 				{
@@ -118,34 +119,33 @@ export default class RecordForm extends Component
 					<select 
 						id='playerName'
 						onChange={ this.onNameChange }
+						value={ this.state.playerUuid }
 					>
-						<option defaultValue hidden value="">Please Select</option>
+						<option hidden >Please Select</option>
 						{
 							this.props.members.map( ( member ) => 
 							{
-								
-								const selected = this.props.record ? ( member.playerUuid === this.props.record.playerUuid ) : false;
-								
-								return <option 
-									key={member.playerUuid} 
-									value={member.playerUuid}
-									selected={selected}
-								>
-									{member.name}
-								</option>
+								return (
+									<option 
+										key={member.playerUuid} 
+										value={member.playerUuid}
+									>
+										{member.name}
+									</option>
+								)
 							})
 						}
 					</select>
 					<select onChange={ this.onTypeChange }>
 						<option 
 							value="PAYMENT" 
-							selected={this.state.recordType === "PAYMENT"}
+							defaultValue={this.state.recordType === "PAYMENT"}
 						>
 							New Payment
 						</option>
 						<option 
 							value="DEBT"
-							selected={this.state.recordType === "DEBT"}
+							defaultValue={this.state.recordType === "DEBT"}
 						>
 							Add Debt
 						</option>
