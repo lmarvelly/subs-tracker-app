@@ -20,9 +20,7 @@ export default class RecordForm extends Component
 
 			amount: props.record ? props.record.amount / 100 : '',
 			amountOwed: props.record ? props.record.amountOwed / 100 : '',
-			amountPaid: props.record ? props.record.amountPaid / 100 : '',
-
-			members: []
+			amountPaid: props.record ? props.record.amountPaid / 100 : ''
 		};
 	}
 
@@ -121,7 +119,14 @@ export default class RecordForm extends Component
 						{
 							this.props.members.map( ( member ) => 
 							{
-								return <option key={member.playerUuid} value={member.playerUuid}>{member.name}</option>
+								const selected = member.playerUuid === this.props.record.playerUuid;
+								return <option 
+									key={member.playerUuid} 
+									value={member.playerUuid}
+									selected={selected}
+								>
+									{member.name}
+								</option>
 							})
 						}
 					</select>
