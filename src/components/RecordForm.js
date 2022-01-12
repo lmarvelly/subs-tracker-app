@@ -115,7 +115,7 @@ export default class RecordForm extends Component
 				{
 					this.state.error && <p>{this.state.error}</p>
 				}
-				<form onSubmit={this.onSubmit}>
+				<form onSubmit={ this.onSubmit }>
 					<select 
 						id='playerName'
 						onChange={ this.onNameChange }
@@ -136,16 +136,17 @@ export default class RecordForm extends Component
 							})
 						}
 					</select>
-					<select onChange={ this.onTypeChange }>
+					<select 
+						onChange={ this.onTypeChange }
+						value={ this.state.recordType }
+					>
 						<option 
-							value="PAYMENT" 
-							defaultValue={this.state.recordType === "PAYMENT"}
+							value="PAYMENT"
 						>
 							New Payment
 						</option>
 						<option 
 							value="DEBT"
-							defaultValue={this.state.recordType === "DEBT"}
 						>
 							Add Debt
 						</option>
