@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { removeRecord } from '../actions/records';
 
 /**
  * @param {*} props Is deconstructed into
@@ -32,20 +30,8 @@ const RecordItem = ( { dispatch, id, playerUuid, amount, amountOwed, amountPaid,
 				recordType === 'DEBT' && <div><p>Debt amount: { amountOwed }</p><p>Amount paid: { amountPaid }</p></div>
 			}
 			<p>Created At: { createdAt }</p>
-			<button 
-				onClick=
-				{
-					(e) =>
-					{
-						confirm('Are you sure you want to remove record?') &&
-						dispatch( removeRecord( { id } ) );
-					}
-				}
-			>
-				Delete
-			</button>
 		</div>
 	);
 }
 
-export default connect()( RecordItem );
+export default RecordItem;

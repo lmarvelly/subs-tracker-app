@@ -2,37 +2,53 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
-import { editRecord } from '../actions/records';
+import { editRecord, removeRecord } from '../actions/records';
 
 const EditRecordPage = ( props ) => 
 {
-	return (
-		<RecordForm
-			record={ props.record }
-			members={ props.members }
-			onSubmit={ ( record ) => {
-				switch (record.recordType) {
-					case 'PAYMENT':
-						props.dispatch(
-							editRecord( 
-								record.id,
-								record
-							)
-						);
-						break;
-				
-					case 'DEBT':
-						console.log( 'DEBT', record );
-						// INSERT EDIT DEBT CODE
-						break;
-				
-					default:
-						break;
-				}
+	const deleteButton = <button onClick = 
+	{
+		(e) =>
+		{
+			confirm('Are you sure you want to remove record?') &&
+			props.dispatch( removeRecord( { id: props.record.id } ) );
+			props.history.push('/'); // return to dashboard
+		}
+	}
+	>
+		Delete
+	</button>
 
-				props.history.push('/'); // return to dashboard
-			}}
-		/>
+	return (
+		<div>
+			<RecordForm
+				record={ props.record }
+				members={ props.members }
+				onSubmit={ ( record ) => {
+					switch (record.recordType) {
+						case 'PAYMENT':
+							props.dispatch(
+								editRecord( 
+									record.id,
+									record
+								)
+							);
+							break;
+					
+						case 'DEBT':
+							console.log( 'DEBT', record );
+							// INSERT EDIT DEBT CODE
+							break;
+					
+						default:
+							break;
+					}
+
+					props.history.push('/'); // return to dashboard
+				}}
+			/>
+			{deleteButton}
+		</div>
 	)
 };
 
