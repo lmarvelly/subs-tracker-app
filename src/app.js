@@ -29,10 +29,15 @@ const unsubscribe = store.subscribe(() =>
 	console.log('MEMBERS: ', state.members);
 });
 
+
+store.dispatch( addMember('Luke Marvelly') );
+store.dispatch( addMember('Harri Messenger') );
+store.dispatch( addMember('Jason Cousins') );
+
 const payment1 = store.dispatch( 
 	addPayment( 
 		{ 
-			playerUuid: '123', 
+			playerUuid: store.getState().members[1].playerUuid, 
 			description: 'Training subs', 
 			amount: 400
 		} 
@@ -42,10 +47,9 @@ const payment1 = store.dispatch(
 const payment2 = store.dispatch( 
 	addPayment( 
 		{ 
-			playerUuid: '123', 
+			playerUuid: store.getState().members[0].playerUuid, 
 			description: '5s subs', 
-			amount: 500, 
-			// createdAt: -1000 
+			amount: 500
 		} 
 	)
 );
@@ -53,17 +57,13 @@ const payment2 = store.dispatch(
 const payment3 = store.dispatch( 
 	addPayment( 
 		{ 
-			playerUuid: '1234', 
+			playerUuid: store.getState().members[2].playerUuid, 
 			description: 'donation', 
-			amount: 5000, 
-			// createdAt: -2000 
+			amount: 5000
 		} 
 	)
 );
 
-store.dispatch( addMember('Luke Marvelly') );
-store.dispatch( addMember('Harri Messenger') );
-store.dispatch( addMember('Jason Cousins') );
 
 
 /**
