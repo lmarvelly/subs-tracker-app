@@ -65,7 +65,7 @@ export default class RecordForm extends Component
 		e.preventDefault();
 
 		const record = () => {
-			if( this.state.recordType === 'debt' )
+			if( this.state.recordType === 'DEBT' )
 			{
 				return (
 				{
@@ -78,7 +78,7 @@ export default class RecordForm extends Component
 					amountPaid: 0
 				});
 			}
-			else if( this.state.recordType === 'payment' )
+			else if( this.state.recordType === 'PAYMENT' )
 			{
 				return (
 				{
