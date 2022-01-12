@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import RecordForm from './RecordForm';
+import { editRecord } from '../actions/records';
 
 const EditRecordPage = ( props ) => 
 {
@@ -9,19 +11,26 @@ const EditRecordPage = ( props ) =>
 			record={ props.record }
 			members={ props.members }
 			onSubmit={ ( record ) => {
-				console.log(record.recordType);
 				switch (record.recordType) {
 					case 'PAYMENT':
-						console.log( 'PAYMENT', record );
+						props.dispatch(
+							editRecord( 
+								record.id,
+								record
+							)
+						);
 						break;
 				
 					case 'DEBT':
 						console.log( 'DEBT', record );
+						// INSERT EDIT DEBT CODE
 						break;
 				
 					default:
 						break;
 				}
+
+				props.history.push('/'); // return to dashboard
 			}}
 		/>
 	)

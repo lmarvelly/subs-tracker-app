@@ -10,6 +10,7 @@ export default class RecordForm extends Component
 		super( props );
 
 		this.state = {
+			id: props.record ? this.props.record.id : '',
 			playerUuid: props.record ? props.record.playerUuid : '',
 			recordType: props.record ? props.record.recordType : 'PAYMENT',
 			description: props.record ? props.record.description : '',
@@ -69,6 +70,7 @@ export default class RecordForm extends Component
 			{
 				return (
 				{
+					id: this.state.id,
 					playerUuid: this.state.playerUuid,
 					description: this.state.description,
 					createdAt: this.state.createdAt.valueOf(),
@@ -82,6 +84,7 @@ export default class RecordForm extends Component
 			{
 				return (
 				{
+					id: this.state.id,
 					playerUuid: this.state.playerUuid,
 					description: this.state.description,
 					createdAt: this.state.createdAt.valueOf(),
