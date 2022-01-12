@@ -25,24 +25,12 @@ const EditRecordPage = ( props ) =>
 				record={ props.record }
 				members={ props.members }
 				onSubmit={ ( record ) => {
-					switch (record.recordType) {
-						case 'PAYMENT':
-							props.dispatch(
-								editRecord( 
-									record.id,
-									record
-								)
-							);
-							break;
-					
-						case 'DEBT':
-							console.log( 'DEBT', record );
-							// INSERT EDIT DEBT CODE
-							break;
-					
-						default:
-							break;
-					}
+					props.dispatch(
+						editRecord( 
+							record.id,
+							record
+						)
+					)
 
 					props.history.push('/'); // return to dashboard
 				}}
