@@ -30,7 +30,7 @@ const unsubscribe = store.subscribe(() =>
 });
 
 
-store.dispatch( addMember('Luke Marvelly') );
+store.dispatch( addMember('Luke Marvelly', 'Glasses') );
 store.dispatch( addMember('Harri Messenger') );
 store.dispatch( addMember('Jason Cousins') );
 
