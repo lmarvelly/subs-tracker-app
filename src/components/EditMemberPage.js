@@ -22,10 +22,8 @@ const EditMemberPage = ( props ) =>
 
 	return (
 		<div>
-		<h2>Edit Member Page</h2>
-		{
-			deleteButton
-		}
+			<h2>Edit Member Page</h2>
+			{ deleteButton }
 		</div>
 	);
 }
