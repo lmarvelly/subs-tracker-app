@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MemberItem from './MemberItem';
 
 const MemberPage = ( props ) =>
 {
@@ -11,7 +12,13 @@ const MemberPage = ( props ) =>
 			{
 				props.members.map( ( member ) =>
 				{
-					return <p key={member.playerUuid}>{member.name}</p>
+					return (
+						<MemberItem
+							playerUuid={ member.playerUuid }
+							fullName={ member.name }
+							nickName={ member.nickName }
+						/>
+					);
 				})
 			}
 		</div>
