@@ -34,7 +34,7 @@ const AppRouter = () => (
 				<Route path='/add' component={AddRecordPage} />
 				<Route path='/edit-record/:id' component={EditRecordPage} />
 				<Route path='/members' component={MemberPage} />
-				<Route path='/edit-members/:id' component={EditMemberPage} />
+				<Route path='/edit-member/:id' component={EditMemberPage} />
 				<Route path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>
