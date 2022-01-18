@@ -20,7 +20,7 @@ const RecordItem = ( { dispatch, id, playerUuid, amount, amountOwed, amountPaid,
 {
 	return (
 		<div>
-			<Link to={`/edit/${id}`}>
+			<Link to={`/edit-record/${id}`}>
 				<h2>Description: { description }</h2>
 			</Link>
 			<h3>Player: { playerUuid }</h3>
