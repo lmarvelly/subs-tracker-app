@@ -5,7 +5,6 @@ import { removeMember } from '../actions/members';
 
 const MemberItem = ( props) =>
 {
-	console.log('PROPS, ', props);
 	const deleteButton = 
 	<button
 		onClick=
