@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +30,7 @@ const RecordItem = ( { dispatch, id, playerUuid, amount, amountOwed, amountPaid,
 			{
 				recordType === 'DEBT' && <div><p>Debt amount: { amountOwed }</p><p>Amount paid: { amountPaid }</p></div>
 			}
-			<p>Created At: { createdAt }</p>
+			<p>Created At: { moment( createdAt).format( "DD-MM-YYYY") }</p>
 		</div>
 	);
 }

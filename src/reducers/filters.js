@@ -1,9 +1,11 @@
+import moment from 'moment';
+
 const paymentRecordReducerFilterDefaultState = 
 {
 	text: '',
 	sortBy: 'dateAscending',
-	startDate: undefined,
-	endDate: undefined
+	startDate: moment().startOf('month'),
+	endDate: moment().endOf('month')
 };
 
 /**

@@ -1,3 +1,5 @@
+import moment from "moment";
+
 /**
  * Destruct Filters
  * {
@@ -14,8 +16,9 @@ export default ( records, { text, sortBy, startDate, endDate } ) =>
 {
 	return records.filter( (record) =>
 	{
-		const startDateMatch = typeof startDate !== 'number' || record.createdAt >= startDate; // if the record is created before the startDate it gets filtered out
-		const endDateMatch  = typeof endDate !== 'number' || record.createdAt <= endDate; // if the record is created after the endDate then it's filtered out
+		const createdAtMoment = moment( record.createdAt );
+		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
+		const endDateMatch  = endDate ? endDate.isSameOrAfter( createdAtMoment, 'day' ) : true ; // if the record is created the same day or after the endDate then it's filtered out
 		const textMatch = record.description.toLowerCase().includes(text.toLowerCase());
 		
 		return startDateMatch && endDateMatch && textMatch; // Return true only if all the above are true. Record is removed if false
