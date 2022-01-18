@@ -26,8 +26,8 @@ const unsubscribe = store.subscribe(() =>
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.filters );
 
 	// console.log( 'FILTERS: ', state.filters );
- 	console.log( 'FILTERED RECORDS: ', visibleRecords );
-	console.log('MEMBERS: ', state.members);
+ 	// console.log( 'FILTERED RECORDS: ', visibleRecords );
+	// console.log('MEMBERS: ', state.members);
 });
 
 
@@ -35,7 +35,6 @@ store.dispatch( addMember('Luke Marvelly', 'Glasses') );
 store.dispatch( addMember('Harri Messenger') );
 store.dispatch( addMember('Jason Cousins') );
 store.dispatch( addMember( 'Test Member' ) );
-console.log( 'Test Member: ' , store.getState().members[3]);
 
 store.dispatch( removeMember( store.getState().members[3].playerUuid ) );
 

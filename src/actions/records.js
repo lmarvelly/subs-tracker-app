@@ -34,7 +34,6 @@ export const addRecord = (
 		amountPaid = "",
 		amount = ""
 	}) => (
-	console.log('ADD RECORD'),
 	{
 		type: 'ADD_RECORD',
 		record: 

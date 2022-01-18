@@ -14,6 +14,7 @@ const MemberPage = ( props ) =>
 				{
 					return (
 						<MemberItem
+							key={ member.playerUuid }
 							playerUuid={ member.playerUuid }
 							fullName={ member.name }
 							nickName={ member.nickName }
