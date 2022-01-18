@@ -1,11 +1,12 @@
 import uuid from 'uuid';
 
-export const addMember = ( name, nickName = '' ) => (
+export const addMember = ( {fullName = '', nickName = ''} ) => (
+	console.log('addMember(): ',fullName, nickName),
 {
 	type: 'ADD_MEMBER',
 	member:
 	{
-		name,
+		fullName,
 		nickName,
 		playerUuid: uuid()
 	}

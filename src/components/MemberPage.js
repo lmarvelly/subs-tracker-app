@@ -12,11 +12,12 @@ const MemberPage = ( props ) =>
 			{
 				props.members.map( ( member ) =>
 				{
+					console.log('FullName', member);
 					return (
 						<MemberItem
 							key={ member.playerUuid }
 							playerUuid={ member.playerUuid }
-							fullName={ member.name }
+							fullName={ member.fullName }
 							nickName={ member.nickName }
 						/>
 					);

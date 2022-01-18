@@ -120,7 +120,7 @@ export default class RecordForm extends Component
 		{
 			this.setState( () => ({ error: '' }) );
 
-			this.props.onSubmit( record() );
+			this.onSubmit( record() );
 		}
 	};
 
@@ -188,7 +188,7 @@ export default class RecordForm extends Component
 										key={member.playerUuid} 
 										value={member.playerUuid}
 									>
-										{member.name}
+										{member.fullName}
 									</option>
 								)
 							})

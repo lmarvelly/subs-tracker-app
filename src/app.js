@@ -31,9 +31,9 @@ const unsubscribe = store.subscribe(() =>
 });
 
 
-store.dispatch( addMember('Luke Marvelly', 'Glasses') );
-store.dispatch( addMember('Harri Messenger') );
-store.dispatch( addMember('Jason Cousins') );
+store.dispatch( addMember({fullName: 'Luke Marvelly', nickName: 'Glasses'}) );
+store.dispatch( addMember({fullName: 'Harri Messenger'}) );
+store.dispatch( addMember({fullName: 'Jason Cousins'}) );
 
 const record = store.dispatch( 
 	addRecord( 
