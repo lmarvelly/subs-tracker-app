@@ -12,7 +12,6 @@ export const addMember = ( name, nickName = '' ) => (
 });
 
 export const removeMember = ( playerUuid ) => (
-	// console.log('Removing Member: ', playerUuid),
 {
 	type: 'REMOVE_MEMBER',
 	playerUuid
