@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../components/Dashboard';
 import AddRecordPage from '../components/AddRecordPage';
+import AddMemberPage from '../components/AddMemberPage';
 import EditRecordPage from '../components/EditRecordPage';
 import HelpPage from '../components/HelpPage';
 import MemberPage from '../components/MemberPage';
@@ -31,7 +32,8 @@ const AppRouter = () => (
 			<Header />
 			<Switch>
 				<Route path='/' component={Dashboard} exact={true} />
-				<Route path='/add' component={AddRecordPage} />
+				<Route path='/add-record' component={AddRecordPage} />
+				<Route path='/add-member' component={AddMemberPage} />
 				<Route path='/edit-record/:id' component={EditRecordPage} />
 				<Route path='/members' component={MemberPage} />
 				<Route path='/edit-member/:id' component={EditMemberPage} />
