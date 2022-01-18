@@ -1,10 +1,10 @@
 import React from 'react';
 
-const EditMembersPage = () =>
+const EditMemberPage = () =>
 {
 	return (
 		<div></div>
 	);
 }
 
-export default EditMembersPage;
+export default EditMemberPage;
