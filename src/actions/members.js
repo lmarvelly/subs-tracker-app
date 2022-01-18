@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 
 export const addMember = ( name, nickName = '' ) => (
-console.log('ADD MEMBER'),
 {
 	type: 'ADD_MEMBER',
 	member:
@@ -10,4 +9,10 @@ console.log('ADD MEMBER'),
 		nickName,
 		playerUuid: uuid()
 	}
+});
+
+export const removeMember = ( playerUuid ) => (
+{
+	type: 'REMOVE_MEMBER',
+	playerUuid
 });

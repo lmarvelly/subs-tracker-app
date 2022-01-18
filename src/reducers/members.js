@@ -9,7 +9,8 @@ export default ( state = membersRecordReducerDefaultState, action ) =>
 				...state,
 				action.member
 			]
-			// state.find( (member) =>  )
+		case 'REMOVE_MEMBER':
+			return state.filter( ({ playerUuid }) => playerUuid !== action.playerUuid )
 	
 		default:
 			return state;

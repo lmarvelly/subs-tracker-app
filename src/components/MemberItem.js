@@ -9,7 +9,8 @@ const MemberItem = ({ fullName, nickName, playerUuid }) =>
 			<br />
 			<span>Nick Name:<b>{nickName}</b></span>
 			<br />
-			<a>Insert Edit/Delete Link Here</a>
+			<a>Insert Edit Link Here</a>
+			<button>Delete</button>
 			<br />
 			<br />
 		</div>
