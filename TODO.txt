@@ -3,6 +3,7 @@ REFACTORING
 
 
 FEATURES
+	* Add First Name and Last Name input boxes to Member form
 	* Add names to RecordItem
 	Add debt handling
 	Add page for adding member
