@@ -34,7 +34,7 @@ store.dispatch( addMember('Luke Marvelly') );
 store.dispatch( addMember('Harri Messenger') );
 store.dispatch( addMember('Jason Cousins') );
 
-const payment = store.dispatch( 
+const record = store.dispatch( 
 	addRecord( 
 		{ 
 			recordType: 'DEBT',
@@ -45,7 +45,7 @@ const payment = store.dispatch(
 	)
 );
 
-const payment1 = store.dispatch( 
+const record1 = store.dispatch( 
 	addRecord( 
 		{ 
 			recordType: 'PAYMENT',
@@ -56,7 +56,7 @@ const payment1 = store.dispatch(
 	)
 );
 
-const payment2 = store.dispatch( 
+const record2 = store.dispatch( 
 	addRecord( 
 		{ 
 			recordType: 'PAYMENT',
@@ -67,7 +67,7 @@ const payment2 = store.dispatch(
 	)
 );
 
-const payment3 = store.dispatch( 
+const record3 = store.dispatch( 
 	addRecord( 
 		{ 
 			recordType: 'PAYMENT',
