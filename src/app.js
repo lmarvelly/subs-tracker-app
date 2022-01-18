@@ -34,9 +34,6 @@ const unsubscribe = store.subscribe(() =>
 store.dispatch( addMember('Luke Marvelly', 'Glasses') );
 store.dispatch( addMember('Harri Messenger') );
 store.dispatch( addMember('Jason Cousins') );
-store.dispatch( addMember( 'Test Member' ) );
-
-store.dispatch( removeMember( store.getState().members[3].playerUuid ) );
 
 const record = store.dispatch( 
 	addRecord( 
