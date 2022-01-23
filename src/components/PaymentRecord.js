@@ -10,8 +10,10 @@ const PaymentRecord = (props) => (
 		{
 			props.paymentRecord.map(( record ) =>
 			{
+				const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
+
 				return (
-					<RecordItem key={record.id} {...record} />
+					<RecordItem key={record.id} name={`${member.firstName} ${member.surname}`} {...record} />
 				)
 			})
 		}
@@ -29,7 +31,8 @@ const PaymentRecord = (props) => (
 const mapStateToProps = (state) =>
 {
 	return{
-		paymentRecord: selectRecords(state.paymentRecord, state.filters),
+		members: state.members,
+		paymentRecord: selectRecords(state.paymentRecord, state.filters)
 	}
 };
 

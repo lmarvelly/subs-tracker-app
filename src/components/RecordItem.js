@@ -1,6 +1,6 @@
-import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 /**
  * @param {*} props Is deconstructed into
@@ -16,16 +16,16 @@ import { Link } from 'react-router-dom';
  * 
  * @returns 
  */
-const RecordItem = ( { dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
+const RecordItem = ( {name, dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
 {
 	return (
 		<div>
 			<Link to={`/edit-record/${id}`}>
 				<h2>Description: { description }</h2>
 			</Link>
-			<h3>Player: { playerUuid }</h3>
+			<h3>Player: { name }</h3>
 			{
-				recordType === 'PAYMENT' && <p>Amount: { amount }</p>
+				recordType === 'PAYMENT' && <p>Payment Amount: { amount }</p>
 			}
 			{
 				recordType === 'DEBT' && <div><p>Debt amount: { amountOwed }</p><p>Amount paid: { amountPaid }</p></div>
