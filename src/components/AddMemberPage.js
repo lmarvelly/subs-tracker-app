@@ -10,7 +10,7 @@ const AddMemberPage = ( props ) => (
 		<MemberForm
 			onSubmit={ ( member ) => {
 				props.dispatch( addMember( {...member} ) );
-				props.history.push('/members')
+				props.history.push('/members'); // Return to members page
 			}}
 		/>
 	</div>
