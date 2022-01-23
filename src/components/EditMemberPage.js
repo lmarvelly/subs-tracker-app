@@ -31,7 +31,6 @@ const EditMemberPage = ( props ) =>
 				member={member}
 				onSubmit={( member =>
 				{
-					console.log('Member Uuid:', member.playerUuid);
 					props.dispatch(
 						editMember(
 							member.playerUuid,
@@ -39,7 +38,6 @@ const EditMemberPage = ( props ) =>
 						) 
 					);
 
-					console.log(props.history);
 					props.history.push('/members');
 				})}
 			/>

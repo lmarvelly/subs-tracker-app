@@ -14,7 +14,6 @@ export default ( state = membersRecordReducerDefaultState, action ) =>
 		case 'EDIT_MEMBER':
 			return state.map( ( member ) => 
 			{
-				console.log('PlayerUuid is same: ', member.playerUuid === action.playerUuid);
 				if( member.playerUuid === action.playerUuid )
 				{
 					return {
