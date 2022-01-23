@@ -12,7 +12,8 @@ export default class MemberForm extends Component
 			firstName: "",
 			middleNames:"",
 			surname: "",
-			nickName: ""
+			nickName: "",
+			error: ""
 		}
 	}
 
@@ -46,13 +47,24 @@ export default class MemberForm extends Component
 		// console.log({ firstName, middleNames, surname, nickName });
 		const member = () => ({ firstName, middleNames, surname, nickName });
 
-		this.props.onSubmit( member() );
+		if( !firstName || !surname )
+		{
+			this.setState(() => ({ error: 'Please enter a First Name and a Surname' }));
+		}
+		else
+		{
+			this.setState(() => ({ error: '' }));
+			this.props.onSubmit( member() );
+		}
 	};
 
 	render(){
 		return(
 		<div>
 			<form onSubmit={ this.onSubmit }>
+				{
+					this.state.error && <p>{ this.state.error }</p>
+				}
 				Full Name:
 				<input 
 					type="text" 
