@@ -23,7 +23,7 @@ const EditRecordPage = ( props ) =>
 		<div>
 			<RecordForm
 				record={ props.record }
-				members={ props.members }
+				members={ props.members } // TODO change to member rather than all the members
 				onSubmit={ ( record ) => {
 					props.dispatch(
 						editRecord( 
