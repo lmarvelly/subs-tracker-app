@@ -188,7 +188,7 @@ export default class RecordForm extends Component
 										key={member.playerUuid} 
 										value={member.playerUuid}
 									>
-										{member.fullName}
+										{`${member.firstName} ${member.middleNames} ${member.surname}`}
 									</option>
 								)
 							})

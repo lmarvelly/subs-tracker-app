@@ -9,14 +9,26 @@ export default class MemberForm extends Component
 
 		this.state = 
 		{
-			fullName: "",
+			firstName: "",
+			middleNames:"",
+			surname: "",
 			nickName: ""
 		}
 	}
 
-	onFullNameChange = ( e ) => {
-		const fullName = e.target.value;
-		this.setState( () => ({ fullName }) );
+	onFirstNameChange = ( e ) => {
+		const firstName = e.target.value;
+		this.setState( () => ({ firstName }) );
+	}
+
+	onMiddleNameChange = ( e ) => {
+		const middleNames = e.target.value;
+		this.setState( () => ({ middleNames }) );
+	}
+
+	onSurnameChange = ( e ) => {
+		const surname = e.target.value;
+		this.setState( () => ({ surname }) );
 	}
 
 	onNickNameChange = ( e ) => {
@@ -26,12 +38,13 @@ export default class MemberForm extends Component
 
 	onSubmit = ( e ) => {
 		e.preventDefault();
-		const fullName = this.state.fullName;
+		const firstName = this.state.firstName;
+		const middleNames = this.state.middleNames;
+		const surname = this.state.surname;
 		const nickName = this.state.nickName
 
-		// const memberProperties = { fullName: this.state.fullName, nickName: this.state.nickName }
-		console.log({ fullName, nickName });
-		const member = () => ({ fullName, nickName });
+		// console.log({ firstName, middleNames, surname, nickName });
+		const member = () => ({ firstName, middleNames, surname, nickName });
 
 		this.props.onSubmit( member() );
 	};
@@ -43,9 +56,23 @@ export default class MemberForm extends Component
 				Full Name:
 				<input 
 					type="text" 
-					placeholder="Full Name"
-					value={ this.state.fullName }
-					onChange={ this.onFullNameChange }
+					placeholder="First Name"
+					value={ this.state.firstName }
+					onChange={ this.onFirstNameChange }
+				/>
+				Middle Names:
+				<input 
+					type="text" 
+					placeholder="Middle Names (Optional)"
+					value={ this.state.middleNames }
+					onChange={ this.onMiddleNameChange }
+				/>
+				Surname:
+				<input 
+					type="text" 
+					placeholder="Surname"
+					value={ this.state.surname }
+					onChange={ this.onSurnameChange }
 				/>
 				<br />
 				Nick Name:
