@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { removeMember } from '../actions/members';
+import MemberForm from './MemberForm';
+import { editMember, removeMember } from '../actions/members';
 
 const EditMemberPage = ( props ) =>
 {
+	const member = props.members.find( ( member ) => 
+		member.playerUuid === props.match.params.id 
+	);
 	const deleteButton = 
 	<button
 		onClick=
@@ -13,7 +17,7 @@ const EditMemberPage = ( props ) =>
 			{
 				confirm('Are you sure you want to remove record?' ) &&
 				props.dispatch( removeMember( props.match.params.id ) );
-				props.history.push('/members'); // return to 
+				props.history.push('/members'); // return to members page
 			}
 		}
 	>
@@ -23,6 +27,22 @@ const EditMemberPage = ( props ) =>
 	return (
 		<div>
 			<h2>Edit Member Page</h2>
+			<MemberForm
+				member={member}
+				onSubmit={( member =>
+				{
+					console.log('Member Uuid:', member.playerUuid);
+					props.dispatch(
+						editMember(
+							member.playerUuid,
+							member
+						) 
+					);
+
+					console.log(props.history);
+					props.history.push('/members');
+				})}
+			/>
 			{ deleteButton }
 		</div>
 	);

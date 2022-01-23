@@ -10,8 +10,10 @@ const MemberPage = ( props ) =>
 
 			<h2>Members List</h2>
 			{
+				console.log('Members: ', props.members),
 				props.members.map( ( member ) =>
 				{
+					console.log('Member: ', member);
 					return (
 						<MemberItem
 							key={ member.playerUuid }

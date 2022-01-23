@@ -5,15 +5,30 @@ export default class MemberForm extends Component
 {
 	constructor( props )
 	{
-		super( props );
+		super(props);
 
-		this.state = 
+		if(props.member)
 		{
-			firstName: "",
-			middleNames:"",
-			surname: "",
-			nickName: "",
-			error: ""
+			this.state = 
+			{
+				playerUuid: props.member.playerUuid ? props.member.playerUuid : "",
+				firstName: props.member.firstName ? props.member.firstName : "",
+				middleNames: props.member.middleNames ? props.member.middleNames : "",
+				surname: props.member.surname ? props.member.surname : "",
+				nickName: props.member.nickName ? props.member.nickName : "",
+				error: ""
+			}
+		}
+		else
+		{
+			this.state = 
+			{
+				firstName: "",
+				middleNames: "",
+				surname: "",
+				nickName: "",
+				error: ""
+			}
 		}
 	}
 
@@ -39,12 +54,13 @@ export default class MemberForm extends Component
 
 	onSubmit = ( e ) => {
 		e.preventDefault();
+		const playerUuid = this.state.playerUuid;
 		const firstName = this.state.firstName;
 		const middleNames = this.state.middleNames;
 		const surname = this.state.surname;
 		const nickName = this.state.nickName;
 
-		const member = () => ({ firstName, middleNames, surname, nickName });
+		const member = () => ({ playerUuid, firstName, middleNames, surname, nickName });
 
 		if( !firstName || !surname )
 		{
