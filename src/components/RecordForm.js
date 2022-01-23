@@ -79,7 +79,6 @@ export default class RecordForm extends Component
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
 	onSubmit = ( e ) => {
-		console.log(e);
 		e.preventDefault();
 
 		const recordProperties = 
