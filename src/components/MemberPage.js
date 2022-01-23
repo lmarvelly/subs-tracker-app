@@ -12,7 +12,6 @@ const MemberPage = ( props ) =>
 			{
 				props.members.map( ( member ) =>
 				{
-					console.log('FullName: ', member);
 					return (
 						<MemberItem
 							key={ member.playerUuid }

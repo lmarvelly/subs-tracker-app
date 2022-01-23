@@ -42,9 +42,8 @@ export default class MemberForm extends Component
 		const firstName = this.state.firstName;
 		const middleNames = this.state.middleNames;
 		const surname = this.state.surname;
-		const nickName = this.state.nickName
+		const nickName = this.state.nickName;
 
-		// console.log({ firstName, middleNames, surname, nickName });
 		const member = () => ({ firstName, middleNames, surname, nickName });
 
 		if( !firstName || !surname )

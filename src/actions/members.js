@@ -1,7 +1,6 @@
 import uuid from 'uuid';
 
 export const addMember = ( {firstName = '', middleNames = '', surname = '', nickName = ''} ) => (
-	console.log('addMember(): ',firstName, middleNames, surname, nickName),
 {
 	type: 'ADD_MEMBER',
 	member:

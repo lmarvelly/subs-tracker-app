@@ -79,6 +79,7 @@ export default class RecordForm extends Component
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
 	onSubmit = ( e ) => {
+		console.log(e);
 		e.preventDefault();
 
 		const recordProperties = 
@@ -120,15 +121,13 @@ export default class RecordForm extends Component
 		{
 			this.setState( () => ({ error: '' }) );
 
-			this.onSubmit( record() );
+			this.props.onSubmit( record() );
 		}
 	};
 
 	render(){
-		// console.log(this.props)
 		const moneyInput = () =>
 		{
-			console.log('RECORD TYPE: ', this.state.recordType);
 			if (this.state.recordType === 'PAYMENT') 
 			{
 				return(
@@ -170,10 +169,10 @@ export default class RecordForm extends Component
 		}
 		return(
 			<div>
-				{
-					this.state.error && <p>{this.state.error}</p>
-				}
 				<form onSubmit={ this.onSubmit }>
+					{
+						this.state.error && <p>{this.state.error}</p>
+					}
 					<select 
 						id='playerName'
 						onChange={ this.onNameChange }
