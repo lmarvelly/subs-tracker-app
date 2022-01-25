@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MemberListFilters from './MemberListFilters';
 import MemberItem from './MemberItem';
+import getVisibleMembers from '../selectors/members';
 
 const MemberPage = ( props ) =>
 {
 	return (
 		<div>
-			<form>Members Forms</form>
+			<MemberListFilters />
 
 			<h2>Members List</h2>
 			{
@@ -31,7 +33,7 @@ const MemberPage = ( props ) =>
 const mapStateToProps = ( state ) =>
 {
 	return {
-		members: state.members
+		members: getVisibleMembers( state.members, state.memberFilters )
 	}
 }
 
