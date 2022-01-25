@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
-import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
+import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate } from '../actions/memberFilters';
 
 /**
  * Both inputs are Controlled Components (Input where the input is

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from '../../actions/filters';
+import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from '../../actions/memberFilters';
 
 test('Should generate Sort By Date Ascending action object', () =>
 {
