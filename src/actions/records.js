@@ -24,8 +24,8 @@ import moment from 'moment';
  */
 export const addRecord = (
 	{
-		recordType = '',
-		playerUuid ='',
+		recordType = 'PAYMENT',
+		playerUuid = '',
 		description = '',
 		note = '',  
 		createdAt = moment().valueOf(),
