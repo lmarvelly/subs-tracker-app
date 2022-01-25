@@ -65,7 +65,7 @@ test( 'Should set up Add Record action object with provided values', () =>
 
 test( 'Should set up Add Record action object with default values', () =>
 {
-	const action = addRecord();
+	const action = addRecord({});
 
 	expect( action ).toEqual(
 	{
