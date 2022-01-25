@@ -3,7 +3,7 @@ REFACTORING
 
 
 FEATURES
-	* Sort Members Alphabetically
+	* Sort Members Alphabetically ascending/descending
 	* Add Season Components
 	* Remove Amount Paid when creating dept record
 	* Change Members prop in RecordForm to member rather so we're not passing down all the members
