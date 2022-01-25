@@ -1,7 +1,8 @@
 import { createStore, combineReducers } from 'redux';
 import paymentRecordReducer from '../reducers/records';
-import filtersReducer from '../reducers/recordFilters';
+import recordFilterReducer from '../reducers/recordFilters';
 import membersRecordReducerDefaultState from '../reducers/members';
+import memberFilterReducer from '../reducers/memberFilters';
 
 /**
  * STORE CREATION
@@ -10,7 +11,7 @@ import membersRecordReducerDefaultState from '../reducers/members';
  * state is invoked instead.
  * @param {array} paymentRecord is the array of records, it's an empty array by 
  * default.
- * @param {object} filtersReducer this is the object of filters
+ * @param {object} recordFilterReducer this is the object of filters
  */
 
 export default () => {
@@ -18,11 +19,11 @@ export default () => {
 		combineReducers(
 		{
 			paymentRecord: paymentRecordReducer,
+			recordFilters:  recordFilterReducer,
 			members: membersRecordReducerDefaultState,
-			recordFilters:  filtersReducer
+			memberFilters: memberFilterReducer
 		}),
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-		
+		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	);
 
 	return store;

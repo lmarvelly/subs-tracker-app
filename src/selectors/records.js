@@ -22,14 +22,18 @@ export default ( records, { text, sortBy, startDate, endDate } ) =>
 		const textMatch = record.description.toLowerCase().includes(text.toLowerCase());
 		
 		return startDateMatch && endDateMatch && textMatch; // Return true only if all the above are true. Record is removed if false
-	}).sort( (a, b) => {
-		if( sortBy === 'dateAscending' ) {
+	}).sort( (a, b) => 
+	{
+		if( sortBy === 'dateAscending' ) 
+		{
 			return a.createdAt < b.createdAt ? 1 : -1; // 1 if true, -1 if false
 		}
-		else if( sortBy === 'dateDescending' ) {
+		else if( sortBy === 'dateDescending' ) 
+		{
 			return a.createdAt > b.createdAt ? 1 : -1; // 1 if true, -1 if false
 		}
-		else if( sortBy === 'amount' ) {
+		else if( sortBy === 'amount' ) 
+		{
 			return a.amount > b.createdAt ? 1 : -1;
 		}
 	});
