@@ -16,6 +16,18 @@ export default ( state = membersReducerFilterDefaultState, action ) =>
 				sortBy: 'alphabetAsc'
 			}
 	
+		case 'SORT_ALPHABETIC_DESC':
+			return {
+				...state,
+				sortBy: 'alphabetDesc'
+			}
+
+		case 'SET_MEMBER_TEXT_FILTER':
+			return {
+				...state,
+				text: action.text
+			}
+	
 		default:
 			return state
 	}
