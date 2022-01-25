@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import paymentRecordReducer from '../reducers/records';
-import filtersReducer from '../reducers/filters';
+import filtersReducer from '../reducers/recordFilters';
 import membersRecordReducerDefaultState from '../reducers/members';
 
 /**

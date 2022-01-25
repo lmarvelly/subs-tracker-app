@@ -12,7 +12,6 @@ import { addMember, removeMember } from './actions/members';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
-import members from './reducers/members';
 
 const store = configureStore();
 
