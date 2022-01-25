@@ -1,0 +1,6 @@
+Develepement Server:
+	yarn dev-server
+Run Tests:
+	yarn test 
+Run tests in watch mode
+	yarn test -- --watch
