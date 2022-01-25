@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; // To connect to the store
 
-import { setMemberTextFilter } from '../actions/memberFilters';
+import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from '../actions/memberFilters';
 
 class MemberListFilters extends Component
 {
@@ -11,6 +11,29 @@ class MemberListFilters extends Component
 			<div>
 				<h2>Member Filters</h2>
 				<form>
+					<select
+						value={ this.props.memberFilters.sortBy }
+						onChange=
+						{
+							(e) =>
+							{
+								switch (e.target.value) {
+									case 'alphabetAsc':
+										this.props.dispatch( sortAlphabetAsc() );
+										break;
+									case 'alphabetDesc':
+										this.props.dispatch( sortAlphabetDesc() );
+										break;
+								
+									default:
+										break;
+								}
+							}
+						}
+					>
+						<option value="alphabetAsc">Ascending Alphabetically</option>
+						<option value="alphabetDesc">Descending Alphabetically</option>
+					</select>
 					<input 
 						type="text"
 						value={ this.props.memberFilters.text }
