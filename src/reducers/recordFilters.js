@@ -5,11 +5,11 @@ const paymentRecordReducerFilterDefaultState =
 	text: '',
 	sortBy: 'dateAscending',
 	startDate: moment().startOf('month'),
-	endDate: moment().endOf('month')
+	endDate: moment().endOf('month')	
 };
 
 /**
- * FILTERS REDUCER
+ * RECORD FILTERS REDUCER
  * 
  * @returns The filter's State with changes ONLY nothing else
  */
