@@ -7,7 +7,7 @@ import configureStore from './store/configureStore';
 import getVisibleRecords from './selectors/records';
 
 import { addRecord, editRecord, removeRecord } from './actions/records';
-import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from './actions/memberFilters';
+import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from './actions/recordFilters';
 import { addMember, removeMember } from './actions/members';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
