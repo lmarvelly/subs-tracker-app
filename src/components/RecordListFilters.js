@@ -38,7 +38,7 @@ class RecordListFilters extends Component
 			<div>
 				<input 
 					type="text" 
-					value={ this.props.filters.text } // This is needed to make it a controlled component
+					value={ this.props.recordFilters.text } // This is needed to make it a controlled component
 					onChange=
 					{
 						(e) => 
@@ -48,7 +48,7 @@ class RecordListFilters extends Component
 					}
 				/>
 				<select 
-					value={ this.props.filters.sortBy } // This is needed to make it a controlled component
+					value={ this.props.recordFilters.sortBy } // This is needed to make it a controlled component
 					onChange=
 					{
 						(e) =>
@@ -77,8 +77,8 @@ class RecordListFilters extends Component
 					<option value="amount">Amount</option>
 				</select>
 				<DateRangePicker
-					startDate={ this.props.filters.startDate }
-					endDate={ this.props.filters.endDate }
+					startDate={ this.props.recordFilters.startDate }
+					endDate={ this.props.recordFilters.endDate }
 					onDatesChange={ this.onDatesChange }
 					focusedInput={ this.state.calenderFocused }
 					onFocusChange={ this.onFocusChange }
@@ -99,7 +99,7 @@ class RecordListFilters extends Component
 const mapStateToProps = ( state ) => 
 {
 	return {
-		filters: state.filters
+		recordFilters: state.recordFilters
 	};
 };
 
