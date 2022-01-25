@@ -1,6 +1,8 @@
 REFACTORING
-	Refactor Sub into payment/record
+	
 
+REMOVE
+	* Record Sort By Amount
 
 FEATURES
 	* Sort Members Alphabetically ascending/descending
