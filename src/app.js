@@ -24,7 +24,7 @@ const unsubscribe = store.subscribe(() =>
 {
 	const state = store.getState();
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.recordFilters );
-	const visibleMembers = getVisibleMembers( state.members, sortAlphabetAsc() );
+	const visibleMembers = getVisibleMembers( state.members, state.memberFilters );
 
 	// console.log( 'RECORD FILTERS: ', state.recordFilters );
 	console.log( 'MEMBERS FILTERS: ', state.memberFilters );
@@ -36,7 +36,7 @@ const unsubscribe = store.subscribe(() =>
 store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickName: 'Glasses'}) );
 store.dispatch( addMember({firstName: 'Harri', middleNames: '', surname: 'Messenger' }) );
 store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousins'}) );
-// store.dispatch( sortAlphabetAsc() );
+store.dispatch( sortAlphabetAsc() );
 
 const record = store.dispatch( 
 	addRecord( 

@@ -7,8 +7,8 @@ export default ( members, { text, sortBy } ) =>
 		return true;
 	}).sort( (a, b) =>
 	{
-		// if( sortBy === 'alphabetAsc' )
-		// {
+		if( sortBy === 'alphabetAsc' )
+		{
 			console.log('Sorting');
 			const nameA = a.firstName.toLowerCase();
 			const nameB = b.firstName.toLowerCase();
@@ -18,6 +18,6 @@ export default ( members, { text, sortBy } ) =>
 			if ( nameA < nameB ) return -1;
 			if ( nameA > nameB ) return 1;
 			return 0;
-		// }
+		}
 	})
 }
