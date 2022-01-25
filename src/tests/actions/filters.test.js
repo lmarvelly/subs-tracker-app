@@ -10,6 +10,45 @@ test('Should generate Sort By Date Ascending action object', () =>
 	});
 });
 
+test('Should generate Sort By Date Descending action object', () =>
+{
+	const action = sortByDateDescending();
+	expect(action).toEqual(
+	{
+		type: 'SORT_BY_DATE_DESCENDING'
+	});
+});
+
+test('Should generate Sort By Amount action object', () =>
+{
+	const action = sortByAmount();
+	expect(action).toEqual(
+	{
+		type: 'SORT_BY_AMOUNT'
+	});
+});
+
+test('Should generate Sort By Text action object', () =>
+{
+	const text = 'Testing text';
+	const action = setTextFilter(text);
+	expect(action).toEqual(
+	{
+		type: 'FILTER_TEXT',
+		text
+	});
+});
+
+test('Should generate Sort By Text action object', () =>
+{
+	const action = setTextFilter('');
+	expect(action).toEqual(
+	{
+		type: 'FILTER_TEXT',
+		text: ''
+	});
+});
+
 test('Should generate Set Start Date action object', () =>
 {
 	const action = setStartDate(moment(0));
