@@ -12,7 +12,7 @@ import moment from "moment";
  * @param {*} records 
  * @param {*} filters
  */
-export default ( records, { text, sortBy, startDate, endDate } ) =>
+export default ( records, { text, sortBy = 'dateAscending', startDate, endDate } ) =>
 {
 	return records.filter( (record) =>
 	{
