@@ -5,6 +5,7 @@ REMOVE
 	* Record Sort By Amount
 
 FEATURES
+	* Should amount for Debts be amountPaid minus debtAmount?
 	* Sort Members Alphabetically ascending/descending
 	* Add Season Components
 	* Remove Amount Paid when creating dept record
@@ -13,8 +14,13 @@ FEATURES
 	Add searchbar for members
 	Add member balance
 
+	FILTERS:
+		* Show only Debts/Payments
+		* Reset filters button
+
 TESTING
 	
 
 ERRORS
+	Amount filter is descending not ascending
 	Invalid prop added to Route
