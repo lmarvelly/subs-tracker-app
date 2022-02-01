@@ -39,17 +39,20 @@ export const records =
 export const members = 
 [
 	{
+		playerUuid: '1',
 		firstName: 'Luke', 
 		middleNames: 'Owen Lloyd', 
 		surname: 'Marvelly', 
 		nickname: 'Lukio'
 	},
 	{
+		playerUuid: '2',
 		firstName: 'Harri', 
 		middleNames: '', 
 		surname: 'Messenger' 
 	},
 	{
+		playerUuid: '3',
 		firstName: 'Jason', 
 		middleNames: '', 
 		surname: 'Cousins'
