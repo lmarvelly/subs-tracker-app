@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 
-export const addMember = ( { firstName = '', middleNames = '', surname = '', nickName = '' } ) => (
+export const addMember = ( { firstName = '', middleNames = '', surname = '', nickname = '' } ) => (
 {
 	type: 'ADD_MEMBER',
 	member:
@@ -8,7 +8,7 @@ export const addMember = ( { firstName = '', middleNames = '', surname = '', nic
 		firstName,
 		middleNames,
 		surname,
-		nickName,
+		nickname,
 		playerUuid: uuid()
 	}
 });
