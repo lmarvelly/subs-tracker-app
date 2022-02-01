@@ -17,6 +17,7 @@ FEATURES
 	FILTERS:
 		* Show only Debts/Payments
 		* Reset filters button
+		* More intellegent search filter e.g. search for full name like 'Jason Cousins'
 
 TESTING
 	
