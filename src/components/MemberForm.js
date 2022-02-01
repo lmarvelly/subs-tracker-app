@@ -15,7 +15,7 @@ export default class MemberForm extends Component
 				firstName: props.member.firstName ? props.member.firstName : "",
 				middleNames: props.member.middleNames ? props.member.middleNames : "",
 				surname: props.member.surname ? props.member.surname : "",
-				nickName: props.member.nickName ? props.member.nickName : "",
+				nickname: props.member.nickname ? props.member.nickname : "",
 				error: ""
 			}
 		}
@@ -26,7 +26,7 @@ export default class MemberForm extends Component
 				firstName: "",
 				middleNames: "",
 				surname: "",
-				nickName: "",
+				nickname: "",
 				error: ""
 			}
 		}
@@ -48,8 +48,8 @@ export default class MemberForm extends Component
 	}
 
 	onNickNameChange = ( e ) => {
-		const nickName = e.target.value;
-		this.setState( () => ({ nickName }) );
+		const nickname = e.target.value;
+		this.setState( () => ({ nickname }) );
 	}
 
 	onSubmit = ( e ) => {
@@ -58,9 +58,9 @@ export default class MemberForm extends Component
 		const firstName = this.state.firstName;
 		const middleNames = this.state.middleNames;
 		const surname = this.state.surname;
-		const nickName = this.state.nickName;
+		const nickname = this.state.nickname;
 
-		const member = () => ({ playerUuid, firstName, middleNames, surname, nickName });
+		const member = () => ({ playerUuid, firstName, middleNames, surname, nickname });
 
 		if( !firstName || !surname )
 		{
@@ -102,11 +102,11 @@ export default class MemberForm extends Component
 					onChange={ this.onSurnameChange }
 				/>
 				<br />
-				Nick Name:
+				Nickname:
 				<input 
 					type="text" 
-					placeholder="Nick Name"
-					value={ this.state.nickName }
+					placeholder="Nickname"
+					value={ this.state.nickname }
 					onChange={ this.onNickNameChange }
 				/><br />
 				<button>Add Member</button>

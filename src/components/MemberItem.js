@@ -9,14 +9,14 @@ const MemberItem = ( props) =>
 			<span>
 				Full Name:
 				<Link to={`/edit-member/${props.playerUuid}`}>
-					<b>{`${props.firstName} ${props.middleNames} ${props.surname} '${props.nickName}'`}</b>
+					<b>{`${props.firstName} ${props.middleNames} ${props.surname} '${props.nickname}'`}</b>
 				</Link>
 			</span>
 			<br />
 			<span>
 				Nick Name:
 				<Link to={`/edit-member/${props.playerUuid}`}>
-					<b>{props.nickName}</b>
+					<b>{props.nickname}</b>
 				</Link>
 			</span>
 			<br />

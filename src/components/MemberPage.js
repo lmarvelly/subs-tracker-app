@@ -21,7 +21,7 @@ const MemberPage = ( props ) =>
 							firstName={ member.firstName }
 							middleNames={ member.middleNames }
 							surname={ member.surname }
-							nickName={ member.nickName }
+							nickname={ member.nickname }
 						/>
 					);
 				})
