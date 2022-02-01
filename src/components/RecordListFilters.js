@@ -38,6 +38,7 @@ class RecordListFilters extends Component
 			<div>
 				<input 
 					type="text" 
+					placeholder='Search Descriptions'
 					value={ this.props.recordFilters.text } // This is needed to make it a controlled component
 					onChange=
 					{

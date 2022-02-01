@@ -36,6 +36,7 @@ class MemberListFilters extends Component
 					</select>
 					<input 
 						type="text"
+						placeholder='Search Members'
 						value={ this.props.memberFilters.text }
 						onChange=
 						{
