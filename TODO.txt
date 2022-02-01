@@ -8,7 +8,7 @@ FEATURES
 	* Should amount for Debts be amountPaid minus debtAmount?
 	* Sort Members Alphabetically ascending/descending
 	* Add Season Components
-	* Remove Amount Paid when creating dept record
+	* Remove Amount Paid when creating dept record/make sure the right boxes apear when creating/editing
 	* Change Members prop in RecordForm to member rather so we're not passing down all the members
 	Add debt handling
 	Add searchbar for members
