@@ -26,32 +26,18 @@ test('should set sortBy to amount', () =>
 
 test('should set startDate to the First of March of current year', () => 
 {
-	const currentState =
-	{
-		text: '',
-		startDate: undefined,
-		endDate: undefined,
-		sortBy: 'amount' 
-	}	
-	const date = moment().startOf('year').add( 2, 'months');
-	const action = { type: 'SET_START_DATE', startDate: date };
-	const state = filtersReducer( currentState, action );
+	const startDate = moment().startOf('year').add( 2, 'months');
+	const action = { type: 'SET_START_DATE', startDate };
+	const state = filtersReducer( undefined, action );
 
-	expect( state.startDate ).toEqual(date);
+	expect( state.startDate ).toEqual(startDate);
 });
 
 test('should set endDate to the First of September of current year', () => 
 {
-	const currentState =
-	{
-		text: '',
-		startDate: undefined,
-		endDate: undefined,
-		sortBy: 'amount' 
-	}	
 	const date = moment().startOf('year').add( 8, 'months');
 	const action = { type: 'SET_END_DATE', endDate: date };
-	const state = filtersReducer( currentState, action );
+	const state = filtersReducer( undefined, action );
 
 	expect( state.endDate ).toEqual(date);
 });
@@ -89,16 +75,9 @@ test('should set sortBy to dateDescending', () =>
 
 test('should set filterText to be "testing"', () => 
 {
-	const currentState = 
-	{
-		text: '',
-		startDate: undefined,
-		endDate: undefined,
-		sortBy: 'dateDescending' // set to be amount so we can see the change
-	};
 	const text =  'testing';
 	const action = { type:'SET_FILTER_TEXT', text };
-	const state = filtersReducer( currentState, action );
+	const state = filtersReducer( undefined, action );
 
 	expect( state.text ).toBe( text );
 });
