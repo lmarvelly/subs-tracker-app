@@ -97,7 +97,7 @@ test('should set filterText to be "testing"', () =>
 		sortBy: 'dateDescending' // set to be amount so we can see the change
 	};
 	const text =  'testing';
-	const action = { type:'FILTER_TEXT', text };
+	const action = { type:'SET_FILTER_TEXT', text };
 	const state = filtersReducer( currentState, action );
 
 	expect( state.text ).toBe( text );

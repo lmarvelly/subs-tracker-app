@@ -124,7 +124,7 @@ const setEndDate = ( endDate ) =>
  */
 const setTextFilter = ( text = '' ) =>
 ({
-	type: 'FILTER_TEXT',
+	type: 'SET_FILTER_TEXT',
 	text
 });
 
@@ -189,7 +189,7 @@ const filtersReducer = ( state = paymentRecordReducerFilterDefaultState, action 
 {
 	switch ( action.type )
 	{
-		case 'FILTER_TEXT':
+		case 'SET_FILTER_TEXT':
 			return { 
 				...state, 
 				text: action.text 

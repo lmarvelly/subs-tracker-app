@@ -34,7 +34,7 @@ test('Should generate Sort By Text action object', () =>
 	const action = setTextFilter(text);
 	expect(action).toEqual(
 	{
-		type: 'FILTER_TEXT',
+		type: 'SET_FILTER_TEXT',
 		text
 	});
 });
@@ -44,7 +44,7 @@ test('Should generate Sort By Text action object', () =>
 	const action = setTextFilter('');
 	expect(action).toEqual(
 	{
-		type: 'FILTER_TEXT',
+		type: 'SET_FILTER_TEXT',
 		text: ''
 	});
 });

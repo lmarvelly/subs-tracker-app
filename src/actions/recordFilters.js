@@ -36,7 +36,7 @@ export const setEndDate = ( endDate ) =>
  */
 export const setTextFilter = ( text = '' ) =>
 ({
-	type: 'FILTER_TEXT',
+	type: 'SET_FILTER_TEXT',
 	text
 });
 
