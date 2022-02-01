@@ -6,7 +6,7 @@ const members =
 		firstName: 'Luke', 
 		middleNames: 'Owen Lloyd', 
 		surname: 'Marvelly', 
-		nickName: 'Lukio'
+		nickname: 'Lukio'
 	},
 	{
 		firstName: 'Harri', 
