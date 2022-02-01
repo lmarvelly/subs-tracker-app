@@ -11,6 +11,9 @@ const paymentRecordReducerFilterDefaultState =
 /**
  * RECORD FILTERS REDUCER
  * 
+ * @argument state The current filter state
+ * @argument action The action object 
+ * 
  * @returns The filter's State with changes ONLY nothing else
  */
 export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
