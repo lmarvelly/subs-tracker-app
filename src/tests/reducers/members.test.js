@@ -36,4 +36,21 @@ test('should remove a member', () =>
 	expect( state ).toEqual([ members[0], members[2] ])
 });
 
+test('should edit Members First Name', () => 
+{
+	const firstName = 'David';
+	const playerUuid = members[0].playerUuid;
+
+	const action =
+	{
+		type: 'EDIT_MEMBER',
+		playerUuid,
+		updates:
+		{
+			firstName
+		}
+	}
+	const state = membersReducer( members, action );
+	expect( state[0].firstName ).toBe('David');
+})
 
