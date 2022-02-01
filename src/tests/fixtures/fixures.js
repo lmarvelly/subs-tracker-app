@@ -5,7 +5,7 @@ export const records =
 [{
 	playerUuid: '83df2373-3a4e-4198-b428-a6728464bee1',
 	id: '1',
-	recordType: 'Debt',
+	recordType: 'DEBT',
 	description: 'Training subs',
 	note: '',
 	createdAt: 0,
@@ -20,9 +20,9 @@ export const records =
 	description: 'Training subs',
 	note: '',
 	createdAt: moment(0).subtract(4, 'days').valueOf(),
-	amount: "",
-	amountOwed: 400,
-	amountPaid: 0
+	amount: 4,
+	amountOwed: '',
+	amountPaid: ''
 },
 {
 	playerUuid: '132ffb76-c4ea-4a98-b35f-58e0d090ea1e',
@@ -31,11 +31,10 @@ export const records =
 	description: '5s subs',
 	note: '',
 	createdAt: moment(0).add(4, 'days').valueOf(),
-	amount: "",
-	amountOwed: 500,
-	amountPaid: 0
+	amount: 500,
+	amountOwed: '',
+	amountPaid: ''
 }];
-
 
 export const members = 
 [
