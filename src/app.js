@@ -33,7 +33,7 @@ const unsubscribe = store.subscribe(() =>
 });
 
 
-store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickName: 'Glasses'}) );
+store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickName: 'Lukio'}) );
 store.dispatch( addMember({firstName: 'Harri', middleNames: '', surname: 'Messenger' }) );
 store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousins'}) );
 store.dispatch( sortAlphabetAsc() );
