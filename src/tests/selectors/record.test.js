@@ -36,7 +36,7 @@ const records =
 	amountPaid: 0
 }];
 
-test('Should filter by test value', () =>
+test('Should filter by text value', () =>
 {
 	const filters = {
 		text: 'train',
