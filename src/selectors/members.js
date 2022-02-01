@@ -1,4 +1,4 @@
-export default ( members, { text, sortBy } ) =>
+export default ( members, { text = '', sortBy } ) =>
 {
 	return members.filter( ( member )=>
 	{
