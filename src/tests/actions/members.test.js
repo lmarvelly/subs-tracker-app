@@ -13,7 +13,7 @@ test('Should add a new members. Some have more properties than others', () =>
 			firstName: 'Luke',
 			middleNames: '', 
 			surname: 'Marvelly',
-			nickName: '',
+			nickname: '',
 		}
 	});
 
@@ -29,11 +29,11 @@ test('Should add a new members. Some have more properties than others', () =>
 			firstName: 'Harri',
 			middleNames: 'Jason', 
 			surname: 'Messenger',
-			nickName: '',
+			nickname: '',
 		}
 	});
 
-	const newMember3 = { firstName: 'Jason', surname: 'Cousins', middleNames: 'Jacub', nickName: 'Oldest Dragon' };
+	const newMember3 = { firstName: 'Jason', surname: 'Cousins', middleNames: 'Jacub', nickname: 'Oldest Dragon' };
 	const action3 = addMember( newMember3 );
 	expect(action3).toEqual(
 	{
@@ -44,20 +44,20 @@ test('Should add a new members. Some have more properties than others', () =>
 			firstName: 'Jason',
 			middleNames: 'Jacub', 
 			surname: 'Cousins',
-			nickName: 'Oldest Dragon',
+			nickname: 'Oldest Dragon',
 		}
 	});
 });
 
 test('Should edit a member', () => 
 {
-	const action = editMember('querty', { nickName: 'The Rock' })
+	const action = editMember('querty', { nickname: 'The Rock' })
 
 	expect( action ).toEqual(
 	{
 		type: 'EDIT_MEMBER',
 		playerUuid: 'querty',
-		updates: { nickName: 'The Rock' }
+		updates: { nickname: 'The Rock' }
 	})
 });
 
