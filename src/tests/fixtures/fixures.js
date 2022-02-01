@@ -35,3 +35,24 @@ export const records =
 	amountOwed: 500,
 	amountPaid: 0
 }];
+
+
+export const members = 
+[
+	{
+		firstName: 'Luke', 
+		middleNames: 'Owen Lloyd', 
+		surname: 'Marvelly', 
+		nickname: 'Lukio'
+	},
+	{
+		firstName: 'Harri', 
+		middleNames: '', 
+		surname: 'Messenger' 
+	},
+	{
+		firstName: 'Jason', 
+		middleNames: '', 
+		surname: 'Cousins'
+	}
+]

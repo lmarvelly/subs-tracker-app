@@ -1,24 +1,5 @@
 import selectMembers from '../../selectors/members';
-
-const members = 
-[
-	{
-		firstName: 'Luke', 
-		middleNames: 'Owen Lloyd', 
-		surname: 'Marvelly', 
-		nickname: 'Lukio'
-	},
-	{
-		firstName: 'Harri', 
-		middleNames: '', 
-		surname: 'Messenger' 
-	},
-	{
-		firstName: 'Jason', 
-		middleNames: '', 
-		surname: 'Cousins'
-	}
-]
+import { members } from '../fixtures/fixures';
 
 test('should filter by text value', () => 
 {
