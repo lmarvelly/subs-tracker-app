@@ -8,17 +8,32 @@ test('should set default state', () =>
 	expect( state ).toEqual([]);
 });
 
+test('should Add a New Member', () => 
+{
+	const member =
+	{
+		firstName: 'David', 
+		middleNames: 'George', 
+		surname: 'Marvelly', 
+		nickname: 'Davo'
+	};
+	const action = { type: 'ADD_MEMBER', member };
+	const state = membersReducer( members, action );
+	
+	expect( state ).toEqual([ ...members, member ]);
+});
+
 test('should remove a member', () => 
 {
 	const playerUuid = members[1].playerUuid;
-	console.log('ID:', playerUuid);
 	const action = 
 	{ 
 		type: 'REMOVE_MEMBER', 
 		playerUuid 
 	}
 	const state = membersReducer( members, action );
-	console.log('State', state);
 
 	expect( state ).toEqual([ members[0], members[2] ])
 });
+
+
