@@ -30,5 +30,5 @@ test('should filter by text value', () =>
 
 	const result = selectMembers( members, filters );
 
-	expect( result ).toEqual(members[1], members[0])
+	expect( result ).toEqual([members[1], members[0]]);
 });
