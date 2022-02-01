@@ -8,6 +8,9 @@ const paymentRecordReducerDefaultState = [];
  * 
  * REMOVE RECORD - Filters out the Record
  * 
+ * @argument state This is the array of the Records Current State
+ * @argument action This is the action generator object
+ * 
  * @returns The Subs state ONLY with any changes 
  */
 export default ( state = paymentRecordReducerDefaultState, action ) =>
@@ -17,7 +20,10 @@ export default ( state = paymentRecordReducerDefaultState, action ) =>
 		case 'ADD_RECORD':
 			return [ 
 				...state, 
-				{...action.record, amountPaid: action.record.recordType === 'DEBT' ? 0 : ""} 
+				{
+					...action.record, 
+					amountPaid: action.record.recordType === 'DEBT' ? 0 : ""
+				} 
 			]
 
 		case 'REMOVE_RECORD':
