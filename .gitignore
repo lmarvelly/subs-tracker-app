@@ -3,3 +3,4 @@ readme.md
 public/dist/
 .env.development
 .env.test
+__snapshots__
