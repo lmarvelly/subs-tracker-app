@@ -27,9 +27,9 @@ const unsubscribe = store.subscribe(() =>
 	const visibleMembers = getVisibleMembers( state.members, state.memberFilters );
 
 	// console.log( 'RECORD FILTERS: ', state.recordFilters );
-	console.log( 'MEMBERS FILTERS: ', state.memberFilters );
+	// console.log( 'MEMBERS FILTERS: ', state.memberFilters );
  	// console.log( 'FILTERED RECORDS: ', visibleRecords );
- 	console.log( 'FILTERED MEMBERS: ', visibleMembers );
+ 	// console.log( 'FILTERED MEMBERS: ', visibleMembers );
 });
 
 
