@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import selectRecords from '../selectors/records';
 import RecordItem from './RecordItem';
 
-const PaymentRecord = (props) => (
+export const PaymentRecord = (props) => (
 	<div>
 		<h1>Payment Record</h1>
 		{
+			props.paymentRecord.length === 0 ? ( <p>No Payments</p> )
+			:
 			props.paymentRecord.map(( record ) =>
 			{
 				const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
