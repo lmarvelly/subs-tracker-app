@@ -16,7 +16,7 @@ import moment from 'moment';
  * 
  * @returns 
  */
-const RecordItem = ( {name, dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
+const RecordListItem = ( {name, dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
 {
 	return (
 		<div>
@@ -35,4 +35,4 @@ const RecordItem = ( {name, dispatch, id, playerUuid, amount, amountOwed, amount
 	);
 }
 
-export default RecordItem;
+export default RecordListItem;

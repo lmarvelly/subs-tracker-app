@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import selectRecords from '../selectors/records';
-import RecordItem from './RecordItem';
+import RecordListItem from './RecordListItem';
 
 export const PaymentRecord = (props) => (
 	<div>
@@ -15,7 +15,7 @@ export const PaymentRecord = (props) => (
 				const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
 
 				return (
-					<RecordItem key={record.id} name={`${member.firstName} ${member.surname}`} {...record} />
+					<RecordListItem key={record.id} name={`${member.firstName} ${member.surname}`} {...record} />
 				)
 			})
 		}
