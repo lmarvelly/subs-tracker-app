@@ -62,11 +62,19 @@ export const members =
 export const seasons = 
 [
 	{
+		seasonName: 'Donations', 
+		seasonUuid: 'donation'
+	},
+	{
 		seasonName: '2020/2021', 
 		seasonUuid: 'season1'
 	},
 	{
 		seasonName: '2021/2022', 
+		seasonUuid: 'season2'
+	},
+	{
+		seasonName: '2019/2020', 
 		seasonUuid: 'season2'
 	}
 ]
