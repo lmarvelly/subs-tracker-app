@@ -1,3 +1,5 @@
+Change Seasons to Seasons/categorys?
+
 Seasons TODO list
 	* Add season filters on SeasonPage
 	* Delete Season
