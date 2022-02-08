@@ -1,3 +1,11 @@
+Seasons TODO list
+	* Add season filters on SeasonPage
+	* Delete Season
+	* Edit Season
+	* Link to edit Season
+	* Select Season/Other when creating/editing Records
+
+
 REFACTORING
 	
 
