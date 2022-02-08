@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 import paymentRecordReducer from '../reducers/records';
 import recordFilterReducer from '../reducers/recordFilters';
-import membersRecordReducerDefaultState from '../reducers/members';
+import membersRecordReducer from '../reducers/members';
 import memberFilterReducer from '../reducers/memberFilters';
 
 /**
@@ -20,7 +20,7 @@ export default () => {
 		{
 			paymentRecord: paymentRecordReducer,
 			recordFilters:  recordFilterReducer,
-			members: membersRecordReducerDefaultState,
+			members: membersRecordReducer,
 			memberFilters: memberFilterReducer
 		}),
 		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
