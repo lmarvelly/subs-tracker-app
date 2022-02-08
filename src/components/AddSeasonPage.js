@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import SeasonForm from './SeasonForm';
 
 const AddSeasonPage = ( props ) => (
 	<div>
 		<h1>Add Season Page</h1>
 
-		<form action=""><input type="text" /></form>
+		<SeasonForm />
 	</div>
 );
 
