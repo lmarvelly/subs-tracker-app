@@ -13,7 +13,7 @@ const AddSeasonPage = ( props ) => (
 				( season ) =>
 				{
 					props.dispatch( addSeason({ ...season }));
-					props.history.push('/');
+					props.history.push('/seasons');
 				}
 			}
 		/>
