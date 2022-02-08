@@ -26,6 +26,7 @@ const unsubscribe = store.subscribe(() =>
 	const state = store.getState();
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.recordFilters );
 	const visibleMembers = getVisibleMembers( state.members, state.memberFilters );
+	console.log(state.seasons);
 
 	// console.log( 'RECORD FILTERS: ', state.recordFilters );
 	// console.log( 'MEMBERS FILTERS: ', state.memberFilters );
