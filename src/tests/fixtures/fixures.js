@@ -57,4 +57,16 @@ export const members =
 		middleNames: '', 
 		surname: 'Cousins'
 	}
+];
+
+export const seasons = 
+[
+	{
+		seasonName: '2020/2021', 
+		seasonUuid: 'season1'
+	},
+	{
+		seasonName: '2021/2022', 
+		seasonUuid: 'season2'
+	}
 ]
