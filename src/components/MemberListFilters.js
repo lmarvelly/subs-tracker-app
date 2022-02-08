@@ -40,7 +40,6 @@ class MemberListFilters extends Component
 						value={ this.props.memberFilters.text }
 						onChange=
 						{
-							console.log( 'Props: ', this.props),
 							(e) =>
 							{
 								this.props.dispatch( setMemberTextFilter( e.target.value ) )
