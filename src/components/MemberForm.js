@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
 
 export default class MemberForm extends Component
 {
