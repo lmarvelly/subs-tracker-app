@@ -10,4 +10,14 @@ const SeasonPage = ( props ) =>
 	);
 }
 
-export default connect()(SeasonPage);
+// Add visible Season Filters
+const mapStateToProps = ( state ) =>
+{
+	return {
+		seasons: state.seasons
+	}
+}
+
+
+
+export default connect( mapStateToProps )(SeasonPage);
