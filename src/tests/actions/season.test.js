@@ -7,7 +7,7 @@ test('should create member object', () =>
 	expect(action).toEqual(
 	{
 		type: 'ADD_SEASON',
-		"season":
+		season:
 		{
 			seasonName: '2021/2022', 
 			seasonUuid: expect.any(String)
