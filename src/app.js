@@ -6,6 +6,7 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import getVisibleRecords from './selectors/records';
 import getVisibleMembers from './selectors/members';
+import getVisibleSeasons from './selectors/seasons';
 
 import { addRecord, editRecord, removeRecord } from './actions/records';
 import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from './actions/recordFilters';
@@ -26,12 +27,15 @@ const unsubscribe = store.subscribe(() =>
 	const state = store.getState();
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.recordFilters );
 	const visibleMembers = getVisibleMembers( state.members, state.memberFilters );
-	console.log(state.seasons);
+	const visibleSeasons = getVisibleSeasons( state.seasons, state.seasonFilters );
 
 	// console.log( 'RECORD FILTERS: ', state.recordFilters );
 	// console.log( 'MEMBERS FILTERS: ', state.memberFilters );
+	// console.log( 'SEASON FILTERS: ', state.seasonFilters );
+
  	// console.log( 'FILTERED RECORDS: ', visibleRecords );
  	// console.log( 'FILTERED MEMBERS: ', visibleMembers );
+ 	// console.log( 'FILTERED SEASONS: ', visibleSeasons );
 });
 
 
