@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 		<NavLink to='/' activeClassName='is-active' exact={true}>Home</NavLink>
 		<NavLink to='/add-record' activeClassName='is-active'>Add Record</NavLink>
 		<NavLink to='/add-member' activeClassName='is-active'>Add Member</NavLink>
+		<NavLink to='/add-season' activeClassName='is-active'>Add Season</NavLink>
 		<NavLink to='/members' activeClassName='is-active'>Members Page</NavLink>
 		<NavLink to='/help' activeClassName='is-active'>Help Page</NavLink>
 	</header>

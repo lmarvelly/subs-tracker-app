@@ -41,6 +41,10 @@ store.dispatch( sortAlphabetAsc() );
 // store.dispatch( sortAlphabetDesc() );
 // store.dispatch( setMemberTextFilter('Jason') );
 
+const season1 = store.dispatch(
+	addSeason({ seasonName: '2020/2021' })
+);
+
 const record = store.dispatch( 
 	addRecord( 
 		{ 
