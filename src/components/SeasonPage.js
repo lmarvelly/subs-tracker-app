@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+import SeasonFormFilters from './SeasonListFilters';
 import SeasonListItem from './SeasonListItem';
 
 const SeasonPage = ( props ) =>
 {
 	return (
 		<div>
+			<SeasonFormFilters />
+			
 			<h2>Season List</h2>
 			{
 				props.seasons.map( ( season ) =>
