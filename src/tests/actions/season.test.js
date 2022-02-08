@@ -1,4 +1,4 @@
-import { addSeason } from '../../actions/season';
+import { addSeason } from '../../actions/seasons';
 
 test('should create member object', () => 
 {

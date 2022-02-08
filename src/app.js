@@ -11,7 +11,7 @@ import { addRecord, editRecord, removeRecord } from './actions/records';
 import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from './actions/recordFilters';
 import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from './actions/memberFilters';
 import { addMember, removeMember } from './actions/members';
-import { addSeason } from './actions/season';
+import { addSeason } from './actions/seasons';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
