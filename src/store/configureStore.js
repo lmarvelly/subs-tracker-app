@@ -3,6 +3,7 @@ import paymentRecordReducer from '../reducers/records';
 import recordFilterReducer from '../reducers/recordFilters';
 import membersRecordReducer from '../reducers/members';
 import memberFilterReducer from '../reducers/memberFilters';
+import seasonsRecordReducer from '../reducers/seasons';
 
 /**
  * STORE CREATION
@@ -21,7 +22,8 @@ export default () => {
 			paymentRecord: paymentRecordReducer,
 			recordFilters:  recordFilterReducer,
 			members: membersRecordReducer,
-			memberFilters: memberFilterReducer
+			memberFilters: memberFilterReducer,
+			seasons: seasonsRecordReducer
 		}),
 		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 	);
