@@ -13,6 +13,7 @@ import { NavLink } from 'react-router-dom';
 		<NavLink to='/add-member' activeClassName='is-active'>Add Member</NavLink>
 		<NavLink to='/add-season' activeClassName='is-active'>Add Season</NavLink>
 		<NavLink to='/members' activeClassName='is-active'>Members Page</NavLink>
+		<NavLink to='/seasons' activeClassName='is-active'>Seasons Page</NavLink>
 		<NavLink to='/help' activeClassName='is-active'>Help Page</NavLink>
 	</header>
 );
