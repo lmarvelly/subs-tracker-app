@@ -1,9 +1,9 @@
 Change Seasons to Seasons/categorys?
 
 Seasons TODO list
-	* Add season filters on SeasonPage
 	* Delete Season
-	* Edit Season
+	* Edit Season functions
+	* Edit Season page
 	* Link to edit Season
 	* Select Season/Other when creating/editing Records
 
