@@ -55,7 +55,6 @@ class SeasonListFilters extends Component
 const mapStateToProps = ( state ) =>
 {
 	return {
-		seasons: state.seasons,
 		seasonFilters: state.seasonFilters
 	}
 }
