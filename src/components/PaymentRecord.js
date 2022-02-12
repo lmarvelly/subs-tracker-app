@@ -13,9 +13,15 @@ export const PaymentRecord = (props) => (
 			props.paymentRecord.map(( record ) =>
 			{
 				const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
+				const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid )
 
 				return (
-					<RecordListItem key={record.id} name={`${member.firstName} ${member.surname}`} {...record} />
+					<RecordListItem 
+						key={record.id} 
+						name={`${member.firstName} ${member.surname}`} 
+						seasonName={season.seasonName}
+						{...record} 
+					/>
 				)
 			})
 		}
@@ -34,7 +40,8 @@ const mapStateToProps = (state) =>
 {
 	return{
 		members: state.members,
-		paymentRecord: selectRecords(state.paymentRecord, state.recordFilters)
+		paymentRecord: selectRecords(state.paymentRecord, state.recordFilters),
+		seasons: state.seasons
 	}
 };
 

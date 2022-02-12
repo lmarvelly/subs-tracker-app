@@ -16,7 +16,7 @@ import moment from 'moment';
  * 
  * @returns 
  */
-const RecordListItem = ( {name, dispatch, id, playerUuid, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
+const RecordListItem = ( {name, dispatch, id, playerUuid, seasonName, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
 {
 	return (
 		<div>
@@ -24,6 +24,7 @@ const RecordListItem = ( {name, dispatch, id, playerUuid, amount, amountOwed, am
 				<h2>Description: { description }</h2>
 			</Link>
 			<h3>Player: { name }</h3>
+			<p>Season: { seasonName }</p>
 			{
 				recordType === 'PAYMENT' && <p>Payment Amount: { amount }</p>
 			}
