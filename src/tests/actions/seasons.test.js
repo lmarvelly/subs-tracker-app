@@ -1,6 +1,6 @@
-import { addSeason } from '../../actions/seasons';
+import { addSeason, removeSeason } from '../../actions/seasons';
 
-test('should create member object', () => 
+test('should create a Add Season Action Object', () => 
 {
 	const action = addSeason({ seasonName: '2021/2022' });
 
@@ -12,5 +12,16 @@ test('should create member object', () =>
 			seasonName: '2021/2022', 
 			seasonUuid: expect.any(String)
 		}
+	});
+});
+
+test('should create a Delete Season Action Object', () => 
+{
+	const action = removeSeason('abc123');
+
+	expect( action ).toEqual(
+	{
+		type: 'DELETE_SEASON',
+		seasonUuid: 'abc123'
 	});
 });
