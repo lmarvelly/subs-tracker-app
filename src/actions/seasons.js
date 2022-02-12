@@ -12,6 +12,6 @@ export const addSeason = ({ seasonName = '', seasonUuid = '' }) =>(
 
 export const removeSeason = (seasonUuid) =>
 ({
-	type: 'DELETE_SEASON',
+	type: 'REMOVE_SEASON',
 	seasonUuid
 });

@@ -21,7 +21,7 @@ test('should create a Delete Season Action Object', () =>
 
 	expect( action ).toEqual(
 	{
-		type: 'DELETE_SEASON',
+		type: 'REMOVE_SEASON',
 		seasonUuid: 'abc123'
 	});
 });
