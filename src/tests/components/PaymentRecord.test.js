@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 
 // Importing the named export. To dynamically pass in props and make sure it's rendering correctly.
 import { PaymentRecord } from '../../components/PaymentRecord';
-import { records, members } from '../fixtures/fixures';
+import { records, members, seasons } from '../fixtures/fixures';
 
 test('should render PaymentRecord with Payments/Debts', () => 
 {
 	const wrapper = shallow( 
-		<PaymentRecord paymentRecord={records} members={members} />
+		<PaymentRecord paymentRecord={records} members={members} seasons={seasons} />
 	);
 
 	expect(wrapper).toMatchSnapshot();
