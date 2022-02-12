@@ -11,6 +11,30 @@ class SeasonListFilters extends Component
 			<div>
 				<h2>Season Filters</h2>
 				<form>
+					<select
+						value={ this.props.seasonFilters.sortBy }
+						onChange=
+						{
+							(e) =>
+							{
+								switch (e.target.value) 
+								{
+									case 'ascending':
+										this.props.dispatch( sortAsc() );
+										break;
+									case 'descending':
+										this.props.dispatch( sortDesc() );
+										break;
+								
+									default:
+										break;
+								}
+							}
+						}
+					>
+						<option value="descending">Descending</option>
+						<option value="ascending">Ascending</option>
+					</select>
 					<input 
 						type="text"
 						value={this.props.seasonFilters.text}
