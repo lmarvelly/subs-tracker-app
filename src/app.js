@@ -63,6 +63,7 @@ const record = store.dispatch(
 		{ 
 			recordType: 'DEBT',
 			playerUuid: store.getState().members[1].playerUuid, 
+			seasonUuid: store.getState().seasons[0].seasonUuid,
 			description: 'Training subs two weeks', 
 			amountOwed: 700
 		} 
@@ -73,7 +74,8 @@ const record1 = store.dispatch(
 	addRecord( 
 		{ 
 			recordType: 'PAYMENT',
-			playerUuid: store.getState().members[1].playerUuid, 
+			playerUuid: store.getState().members[1].playerUuid,
+			seasonUuid: store.getState().seasons[0].seasonUuid,
 			description: 'Training subs', 
 			amount: 400
 		} 
@@ -84,7 +86,8 @@ const record2 = store.dispatch(
 	addRecord( 
 		{ 
 			recordType: 'PAYMENT',
-			playerUuid: store.getState().members[0].playerUuid, 
+			playerUuid: store.getState().members[0].playerUuid,
+			seasonUuid: store.getState().seasons[1].seasonUuid,
 			description: '5s subs', 
 			amount: 500
 		} 
@@ -96,6 +99,7 @@ const record3 = store.dispatch(
 		{ 
 			recordType: 'PAYMENT',
 			playerUuid: store.getState().members[2].playerUuid, 
+			seasonUuid: store.getState().seasons[1].seasonUuid,
 			description: 'donation', 
 			amount: 5000
 		} 
