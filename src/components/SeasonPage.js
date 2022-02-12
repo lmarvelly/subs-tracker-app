@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SeasonFormFilters from './SeasonListFilters';
 import SeasonListItem from './SeasonListItem';
+import getVisibleSeasons from '../selectors/seasons';
 
 const SeasonPage = ( props ) =>
 {
@@ -25,7 +26,7 @@ const SeasonPage = ( props ) =>
 const mapStateToProps = ( state ) =>
 {
 	return {
-		seasons: state.seasons
+		seasons: getVisibleSeasons( state.seasons, state.seasonFilters )
 	}
 };
 
