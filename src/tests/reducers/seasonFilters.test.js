@@ -4,7 +4,7 @@ test('filters should equal default properties', () =>
 {
 	const state = filtersReducer( undefined, { type: '@@INIT' } );
 
-	expect( state.sortBy ).toBe( 'ascending' );
+	expect( state.sortBy ).toBe( 'descending' );
 });
 
 test('filters should sort in Ascending order', () => 
