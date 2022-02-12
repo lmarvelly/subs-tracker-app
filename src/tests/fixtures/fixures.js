@@ -47,7 +47,7 @@ export const members =
 export const records = 
 [{
 	playerUuid: members[0].playerUuid,
-	seasonUuid: seasons[2].playerUuid,
+	seasonUuid: seasons[2].seasonUuid,
 	id: 'record1',
 	recordType: 'DEBT',
 	description: 'Training subs',
@@ -59,7 +59,7 @@ export const records =
 },
 {
 	playerUuid: members[1].playerUuid,
-	seasonUuid: seasons[1].playerUuid,
+	seasonUuid: seasons[1].seasonUuid,
 	id: 'record2',
 	recordType: 'PAYMENT',
 	description: 'Training subs',
@@ -71,7 +71,7 @@ export const records =
 },
 {
 	playerUuid: members[2].playerUuid,
-	seasonUuid: seasons[2].playerUuid,
+	seasonUuid: seasons[2].seasonUuid,
 	id: 'record3',
 	recordType: 'PAYMENT',
 	description: '5s subs',
