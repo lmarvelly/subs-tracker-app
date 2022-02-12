@@ -11,7 +11,17 @@ class SeasonListFilters extends Component
 			<div>
 				<h2>Season Filters</h2>
 				<form>
-					
+					<input 
+						type="text"
+						value={this.props.seasonFilters.text}
+						onChange=
+						{
+							( e ) =>
+							{
+								this.props.dispatch( setSeasonTextFilter( e.target.value ) )
+							}
+						}
+					/>
 				</form>
 			</div>
 		);
@@ -21,7 +31,8 @@ class SeasonListFilters extends Component
 const mapStateToProps = ( state ) =>
 {
 	return {
-		seasons: state.seasons
+		seasons: state.seasons,
+		seasonFilters: state.seasonFilters
 	}
 }
 
