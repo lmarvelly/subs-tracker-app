@@ -1,5 +1,5 @@
 import recordReducer from '../../reducers/records';
-import { members, records } from '../fixtures/fixures';
+import { members, records, seasons } from '../fixtures/fixures';
 
 test('should set default state', () => 
 {
@@ -39,7 +39,8 @@ test('should add a New Payment Record', () =>
 	const record = 
 	{ 
 		recordType: 'PAYMENT',
-		playerUuid: members[1].playerUuid, 
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[0],
 		description: 'Training subs', 
 		amount: 400,
 		amountPaid: '',
@@ -62,7 +63,8 @@ test('should add a New Debt Record', () =>
 	const newRecord = 
 	{ 
 		recordType: 'DEBT',
-		playerUuid: members[1].playerUuid, 
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[1],
 		description: '5\'s subs', 
 		amount: '',
 		amountPaid: 0,
