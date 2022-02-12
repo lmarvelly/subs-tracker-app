@@ -1,7 +1,7 @@
 const seasonReducerDefaultState = 
 {
 	text: '',
-	sortBy: 'ascending'
+	sortBy: 'descending'
 }
 
 export default ( state = seasonReducerDefaultState, action ) =>
