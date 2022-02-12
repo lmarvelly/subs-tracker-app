@@ -85,7 +85,8 @@ test('should edit a Payment Record', () =>
 {
 	const description = 'Training subs';
 	const amount = 400;
-	const updates = { description, amount }
+	const seasonUuid = seasons[0];
+	const updates = { description, amount, seasonUuid }
 	const action =
 	{
 		type: 'EDIT_RECORD',
