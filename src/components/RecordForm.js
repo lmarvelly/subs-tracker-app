@@ -12,6 +12,7 @@ export default class RecordForm extends Component
 		this.state = {
 			id: props.record ? this.props.record.id : '',
 			playerUuid: props.record ? props.record.playerUuid : '',
+			seasonUuid: props.season ? props.season.seasonUuid : '',
 			recordType: props.record ? props.record.recordType : 'PAYMENT',
 			description: props.record ? props.record.description : '',
 			note: props.record ? props.record.note : '',
@@ -172,12 +173,28 @@ export default class RecordForm extends Component
 					{
 						this.state.error && <p>{this.state.error}</p>
 					}
+					<select>
+						<option>Please Select Season</option>
+						{
+							this.props.seasons.map( (season) =>
+							{
+								return (
+									<option
+										key={season.seasonUuid}
+										value={season.seasonUuid}
+									>
+										{`${season.seasonName}`}
+									</option>
+								)
+							})
+						}
+					</select>
 					<select 
 						id='playerName'
 						onChange={ this.onNameChange }
 						value={ this.state.playerUuid }
 					>
-						<option hidden >Please Select</option>
+						<option hidden >Please Select Member</option>
 						{
 							this.props.members.map( ( member ) => 
 							{

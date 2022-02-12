@@ -8,6 +8,7 @@ const AddRecordPage = ( props ) => (
 		<h1>Add Record Page</h1>
 		<RecordForm 
 			members={ props.members }
+			seasons={ props.seasons }
 			onSubmit={ ( record ) => {
 				props.dispatch( addRecord( record ) );
 
@@ -19,7 +20,10 @@ const AddRecordPage = ( props ) => (
 
 const mapStateToProps = ( state, props ) =>
 {
-	return { members: state.members }
+	return { 
+		members: state.members,
+		seasons: state.seasons
+	}
 }
 
 export default connect( mapStateToProps )( AddRecordPage );
