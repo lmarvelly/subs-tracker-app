@@ -50,6 +50,14 @@ const season1 = store.dispatch(
 	addSeason({ seasonName: '2020/2021' })
 );
 
+const season2 = store.dispatch(
+	addSeason({ seasonName: '2019/2020' })
+);
+
+const season3 = store.dispatch(
+	addSeason({ seasonName: 'Donations' })
+);
+
 const record = store.dispatch( 
 	addRecord( 
 		{ 
