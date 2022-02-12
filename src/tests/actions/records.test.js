@@ -42,7 +42,8 @@ test( 'Should set up Add Record action object with provided values', () =>
 		amount: 5000,
 		createdAt: 100000,
 		description: 'Donation',
-		playerUuid: 'qwerty',
+		playerUuid: 'player1',
+		seasonUuid: 'season1',
 		recordType: 'PAYMENT'
 	}
 
@@ -74,6 +75,7 @@ test( 'Should set up Add Record action object with default values', () =>
 		{
 			recordType: 'PAYMENT',
 			playerUuid: '',
+			seasonUuid: '',
 			id: expect.any(String),
 			description: '',
 			note: '',
