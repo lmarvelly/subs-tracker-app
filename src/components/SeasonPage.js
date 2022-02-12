@@ -15,7 +15,7 @@ const SeasonPage = ( props ) =>
 			{
 				props.seasons.map( ( season ) =>
 				{
-					return <SeasonListItem seasonName={ season.seasonName } />
+					return <SeasonListItem key={ season.seasonUuid } seasonName={ season.seasonName } />
 				})
 			}
 		</div>
