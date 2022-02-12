@@ -26,6 +26,7 @@ export const addRecord = (
 	{
 		recordType = 'PAYMENT',
 		playerUuid = '',
+		seasonUuid = '',
 		description = '',
 		note = '',  
 		createdAt = moment().valueOf(),
@@ -39,6 +40,7 @@ export const addRecord = (
 		record: 
 		{
 			playerUuid,
+			seasonUuid,
 			id: uuid(),
 			recordType,
 			description,
