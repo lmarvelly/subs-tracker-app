@@ -13,11 +13,16 @@ import moment from "moment";
  * @param {*} records 
  * @param {*} filters
  */
-export default ( records, { text, sortBy = 'dateAscending', startDate, endDate, playerUuid } ) =>
+export default ( records, members, { text, memberTextFilter, sortBy = 'dateAscending', startDate, endDate } ) =>
 {
 	return records.filter( (record) =>
 	{
-		const idMatch = playerUuid ? record.playerUuid === playerUuid : true;
+		const member = members.find( ( member ) => 
+			record.playerUuid === member.playerUuid
+		);
+		const memberName = `${member.firstName} ${member.middleNames} ${member.surname} ${member.nickname}`;
+		// TODO: Improve searching through names
+		const idMatch = memberName.toLowerCase().includes(memberTextFilter.toLowerCase());
 		const createdAtMoment = moment( record.createdAt );
 		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
 		const endDateMatch  = endDate ? endDate.isSameOrAfter( createdAtMoment, 'day' ) : true ; // if the record is created the same day or after the endDate then it's filtered out
