@@ -6,9 +6,20 @@ export default class SeasonForm extends Component
 	{
 		super( props );
 
-		this.state = 
+		if ( props.season ) 
 		{
-			seasonName: ''
+			this.state = 
+			{
+				seasonUuid: props.season.seasonUuid ? props.season.seasonUuid : '',
+				seasonName: props.season.seasonName ? props.season.seasonName : ''
+			}	
+		}
+		else
+		{
+			this.state = 
+			{
+				seasonName: ''
+			}
 		}
 	}
 
@@ -21,7 +32,9 @@ export default class SeasonForm extends Component
 	onSubmit = ( e ) =>
 	{
 		e.preventDefault();
+		const seasonUuid = this.state.seasonUuid;
 		const seasonName = this.state.seasonName;
+		const season = () => ({ seasonUuid, seasonName });
 
 		if( !seasonName )
 		{
@@ -29,7 +42,7 @@ export default class SeasonForm extends Component
 		}
 		else
 		{
-			this.props.onSubmit({ seasonName });
+			this.props.onSubmit( season() );
 		}
 	}
 

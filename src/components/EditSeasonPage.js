@@ -6,6 +6,10 @@ import { editSeason, removeSeason } from '../actions/seasons';
 
 const EditSeasonPage = ( props ) =>
 {
+	const season = props.seasons.find( ( season ) =>
+		season.seasonUuid === props.match.params.id
+	);
+	console.log(season);
 	const deleteButton = 
 		<button
 			onClick=
@@ -24,7 +28,20 @@ const EditSeasonPage = ( props ) =>
 	return (
 		<div>
 			<h2>Edit Season Page</h2>
-			<SeasonForm />
+			<SeasonForm
+				season={season}
+				onSubmit={( season =>
+				{
+					props.dispatch(
+						editSeason(
+							season.seasonUuid,
+							season
+						)
+					);
+
+					props.history.push('/seasons');
+				})}
+			/>
 			{ deleteButton }
 		</div>
 	);
