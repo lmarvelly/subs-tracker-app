@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
-import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate } from '../actions/recordFilters';
+import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setMemberFilter } from '../actions/recordFilters';
 
 /**
  * Both inputs are Controlled Components (Input where the input is
@@ -17,11 +17,6 @@ import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount,
  */
 class RecordListFilters extends Component
 {
-	// constructor( props )
-	// {
-	// 	super()
-	// }
-
 	state = 
 	{
 		calenderFocused: null
@@ -45,6 +40,10 @@ class RecordListFilters extends Component
 					list='memberFilter' 
 					type="text" 
 					placeholder='Filter by member'
+					onChange={(e) =>
+					{
+						this.props.dispatch( setMemberFilter( e.target.value ) )
+					}}
 				/>
 				<datalist id='memberFilter'>
 					{
