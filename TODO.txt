@@ -1,7 +1,6 @@
 Change Seasons to Seasons/categorys?
 
 Seasons TODO list
-	* Delete Season
 	* Edit Season functions
 	* Edit Season page
 	* Link to edit Season
