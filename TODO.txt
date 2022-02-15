@@ -7,9 +7,8 @@ Change Seasons to Seasons/categorys?
 
 Seasons TODO list
 	* Select season to filter by on Dashboard
-	* Edit Season functions
+	* Adapt form to Edit Seasons
 	* Delete subs/debts related to season?
-	* Link to edit Season
 	* Select Season/Other when creating/editing Records
 
 
