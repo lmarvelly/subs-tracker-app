@@ -46,7 +46,7 @@ store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousin
 store.dispatch( sortAlphabetAsc() );
 // store.dispatch( sortAlphabetDesc() );
 // store.dispatch( setMemberTextFilter('Jason') );
-// store.dispatch( setMemberTextFilter( store.getState().members[0].playerUuid ) )
+// store.dispatch( setMemberFilter( store.getState().members[0].playerUuid ) )
 
 const season1 = store.dispatch(
 	addSeason({ seasonName: '2020/2021' })

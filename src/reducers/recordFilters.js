@@ -54,7 +54,7 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 		case 'SET_FILTER_BY_MEMBER':
 			return {
 				...state,
-				playerUuid: action.playerUuid
+				text: action.text
 			}
 		default:
 			return state;
