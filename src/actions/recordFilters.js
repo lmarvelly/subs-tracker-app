@@ -45,7 +45,7 @@ export const setTextFilter = ( text = '' ) =>
 // FILTER BY MEMBER
 export const setMemberFilter = ( text = '' ) =>
 ({
-	type: 'SET_FILTER_BY_MEMBER',
+	type: 'SET_MEMBER_FILTER_TEXT',
 	text
 });
 

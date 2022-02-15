@@ -75,7 +75,7 @@ test('should generate Filter By Member action object', () =>
 	const action = setMemberFilter( text );
 	expect(action).toEqual(
 	{
-		type: 'SET_FILTER_BY_MEMBER',
+		type: 'SET_MEMBER_FILTER_TEXT',
 		text
 	});
 });
