@@ -4,6 +4,7 @@ import moment from "moment";
  * Destruct Filters
  * {
  * 	text
+ * 	playerUuid
  * 	sortBy
  * 	startDate
  * 	endDate
