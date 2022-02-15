@@ -20,6 +20,7 @@ REMOVE
 	* Record Sort By Amount
 
 FEATURES
+	* Archiving when asked to delete. To delete perminently you have to delete from archives
 	* Should amount for Debts be amountPaid minus debtAmount?
 	* Sort Members Alphabetically ascending/descending
 	* Add Season Components
