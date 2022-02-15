@@ -7,7 +7,6 @@ Change Seasons to Seasons/categorys?
 
 Seasons TODO list
 	* Edit Season functions
-	* Edit Season page
 	* Delete subs/debts related to season?
 	* Link to edit Season
 	* Select Season/Other when creating/editing Records
