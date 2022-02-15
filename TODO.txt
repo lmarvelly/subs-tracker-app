@@ -9,7 +9,6 @@ Seasons TODO list
 	* Select season to filter by on Dashboard
 	* Adapt form to Edit Seasons
 	* Delete subs/debts related to season?
-	* Select Season/Other when creating/editing Records
 
 
 REFACTORING
