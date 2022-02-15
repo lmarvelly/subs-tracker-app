@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 
-export const addSeason = ({ seasonName = '', seasonUuid = '' }) =>(
+export const addSeason = ({ seasonName = '', seasonUuid = '' }) => (
 {
 	type: 'ADD_SEASON',
 	season:
@@ -8,6 +8,13 @@ export const addSeason = ({ seasonName = '', seasonUuid = '' }) =>(
 		seasonName,
 		seasonUuid: uuid()
 	}
+});
+
+export const editSeason = ( seasonUuid, updates ) => (
+{
+	type: 'EDIT_SEASON',
+	seasonUuid,
+	updates
 });
 
 export const removeSeason = (seasonUuid) =>

@@ -1,4 +1,4 @@
-import { addSeason, removeSeason } from '../../actions/seasons';
+import { addSeason, editSeason, removeSeason } from '../../actions/seasons';
 
 test('should create a Add Season Action Object', () => 
 {
@@ -14,6 +14,19 @@ test('should create a Add Season Action Object', () =>
 		}
 	});
 });
+
+test('should edit a Season', () => 
+{
+	const action = editSeason('abcd', { seasonName: 'New Season' });
+
+	expect( action ).toEqual(
+	{
+		type: 'EDIT_SEASON',
+		seasonUuid: 'abcd',
+		updates: { seasonName: 'New Season' }
+	});
+});
+
 
 test('should create a Delete Season Action Object', () => 
 {
