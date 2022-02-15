@@ -24,6 +24,7 @@ const EditRecordPage = ( props ) =>
 			<RecordForm
 				record={ props.record }
 				members={ props.members } // TODO change to member rather than all the members
+				seasons={ props.seasons }
 				onSubmit={ ( record ) => {
 					props.dispatch(
 						editRecord( 
@@ -46,7 +47,8 @@ const mapStateToProps = ( state, props ) =>
 { 
 	return {
 		members: state.members,
-		record: state.paymentRecord.find( ( record ) => record.id === props.match.params.id)
+		record: state.paymentRecord.find( ( record ) => record.id === props.match.params.id),
+		seasons: state.seasons
 	}
 };
 
