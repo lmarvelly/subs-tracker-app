@@ -29,6 +29,13 @@ export default class RecordForm extends Component
 	componentDidMount(){
 		this.setState({ playerUuid: document.getElementById('playerName').value  });
 	};
+	onSeasonNameChange = ( e ) => {
+		console.log(this.state.seasonUuid);
+		console.log(e.target.value);
+		const seasonUuid = e.target.value;
+
+		this.setState( () => ({ seasonUuid }) );
+	}
 	onNameChange = ( e ) => {
 		const playerUuid = e.target.value;
 		this.setState( () => ({ playerUuid }) );
@@ -86,6 +93,7 @@ export default class RecordForm extends Component
 		{
 			id: this.state.id,
 			playerUuid: this.state.playerUuid,
+			seasonUuid: this.state.seasonUuid,
 			description: this.state.description,
 			createdAt: this.state.createdAt.valueOf(),
 			note: this.state.note
@@ -175,7 +183,7 @@ export default class RecordForm extends Component
 					}
 					<select
 						id='seasonName'
-
+						onChange={ this.onSeasonNameChange }
 						value={ this.state.seasonUuid }
 					>
 						<option hidden>Please Select Season</option>
