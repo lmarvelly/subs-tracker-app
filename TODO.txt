@@ -3,35 +3,39 @@ ERRORS
 	Amount filter is descending not ascending
 	Invalid prop added to Route (May need updating)
 
-Change Seasons to Seasons/categorys?
-
-Seasons TODO list
-	* Select season to filter by on Dashboard
-	* Adapt form to Edit Seasons
-	* Delete subs/debts related to season?
-
 
 REFACTORING
-	
 
-REMOVE
-	* Record Sort By Amount
 
 FEATURES
-	* Archiving when asked to delete. To delete perminently you have to delete from archives
-	* Should amount for Debts be amountPaid minus debtAmount?
-	* Sort Members Alphabetically ascending/descending
-	* Add Season Components
-	* Remove Amount Paid when creating dept record/make sure the right boxes apear when creating/editing
-	* Change Members prop in RecordForm to member rather so we're not passing down all the members
-	Add debt handling
-	Add searchbar for members
-	Add member balance
+
+	SEASONS:
+		* Filter Records by Season
+		* Select season to filter by on Dashboard
+		* Adapt form to Edit Seasons
+		* Delete subs/debts related to season?
+		* Archived when deleted. To delete perminently you have to delete from archives
+		* Change Seasons to Seasons/categorys?
+
+	RECORDS:
+		* Should amount for Debts be amountPaid minus debtAmount?
+		* Remove Amount Paid when creating dept record/make sure the right boxes apear when creating/editing
+		* Change Members prop in RecordForm to member rather so we're not passing down all the members
+		* Add debt handling
+		* Record Sort By Amount
+
+	MEMBERS:
+		* Add searchbar for members
+		* Add member balance
 
 	FILTERS:
+		* Filter records by Members
 		* Show only Debts/Payments
 		* Reset filters button
 		* More intellegent search filter e.g. search for full name like 'Jason Cousins'
+
+	ARCHIVING:
+		* 
 
 TESTING
 	
