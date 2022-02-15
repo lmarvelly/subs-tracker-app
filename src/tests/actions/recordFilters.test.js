@@ -71,11 +71,11 @@ test('Should generate Set End Date action object', () =>
 
 test('should generate Filter By Member action object', () => 
 {
-	const playerUuid = 'id123';
-	const action = setMemberFilter( playerUuid );
+	const text = 'member name';
+	const action = setMemberFilter( text );
 	expect(action).toEqual(
 	{
 		type: 'SET_FILTER_BY_MEMBER',
-		playerUuid
+		text
 	});
 });

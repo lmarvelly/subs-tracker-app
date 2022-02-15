@@ -37,6 +37,15 @@ class RecordListFilters extends Component
 		return(
 			<div>
 				<input 
+					list='memberFilter' 
+					type="text" 
+					placeholder='Filter by member'
+				/>
+				<datalist id='memberFilter'>
+					<option>Filter by Member</option>
+				</datalist>
+
+				<input 
 					type="text" 
 					placeholder='Search Descriptions'
 					value={ this.props.recordFilters.text } // This is needed to make it a controlled component

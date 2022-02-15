@@ -43,10 +43,10 @@ export const setTextFilter = ( text = '' ) =>
 // RESET
 
 // FILTER BY MEMBER
-export const setMemberFilter = ( playerUuid = '' ) =>
+export const setMemberFilter = ( text = '' ) =>
 ({
 	type: 'SET_FILTER_BY_MEMBER',
-	playerUuid
+	text
 });
 
 // FILTER BY SEASON
