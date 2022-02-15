@@ -9,13 +9,14 @@ import getVisibleMembers from './selectors/members';
 import getVisibleSeasons from './selectors/seasons';
 
 import { addRecord, editRecord, removeRecord } from './actions/records';
-import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from './actions/recordFilters';
+import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter, setMemberFilter } from './actions/recordFilters';
 import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from './actions/memberFilters';
 import { addMember, removeMember } from './actions/members';
 import { addSeason } from './actions/seasons';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
+import members from './selectors/members';
 
 const store = configureStore();
 
@@ -45,6 +46,7 @@ store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousin
 store.dispatch( sortAlphabetAsc() );
 // store.dispatch( sortAlphabetDesc() );
 // store.dispatch( setMemberTextFilter('Jason') );
+// store.dispatch( setMemberFilter( store.getState().members[0].playerUuid ) )
 
 const season1 = store.dispatch(
 	addSeason({ seasonName: '2020/2021' })
