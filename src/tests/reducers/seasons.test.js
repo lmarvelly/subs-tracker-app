@@ -17,6 +17,27 @@ test('should add a new season', () =>
 	expect( state ).toEqual([ ...seasons, season ]);
 });
 
+test('should edit a seasons name', () =>
+{
+	const seasonName = '1999/2000';
+	const seasonUuid = seasons[1].seasonUuid;
+
+	const action =
+	{
+		type: 'EDIT_SEASON',
+		seasonUuid,
+		updates: 
+		{
+			seasonName
+		}
+	}
+
+	const state = seasonReducer( seasons, action );
+
+	expect( state[1].seasonName ).toBe( seasonName );
+});
+
+
 test('should remove a season', () => 
 {
 	const seasonUuid = seasons[1].seasonUuid;

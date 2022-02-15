@@ -11,6 +11,20 @@ export default ( state = seasonReducerDefaultState, action ) =>
 					...action.season
 				}
 			]
+		
+		case 'EDIT_SEASON':
+			return state.map( ( season ) =>
+				{
+					if( season.seasonUuid === action.seasonUuid )
+					{
+						return {
+							...season,
+							...action.updates
+						}
+					}
+					else { return season };
+				})
+
 		case 'REMOVE_SEASON':
 			return state.filter( ({ seasonUuid }) => seasonUuid !== action.seasonUuid );
 	
