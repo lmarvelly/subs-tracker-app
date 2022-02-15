@@ -11,6 +11,7 @@ test('should setup default filter values', () =>
 	expect( state ).toEqual(
 	{
 		text: '',
+		memberTextFilter: '',
 		playerUuid: '',
 		sortBy: 'dateAscending',
 		startDate: moment().startOf('month'),
@@ -49,6 +50,7 @@ test('should set sortBy to dateAscending', () =>
 	const currentState =
 	{
 		text: '',
+		memberTextFilter: '',
 		startDate: undefined,
 		endDate: undefined,
 		sortBy: 'amount' // set to be amount so we can see the change
@@ -64,6 +66,7 @@ test('should set sortBy to dateDescending', () =>
 	const currentState =
 	{
 		text: '',
+		memberTextFilter: '',
 		startDate: undefined,
 		endDate: undefined,
 		sortBy: 'dateAscending' // set to be amount so we can see the change
@@ -89,5 +92,5 @@ test('should set member text filter to "Player Name"', () =>
 	const action = { type: 'SET_MEMBER_FILTER_TEXT', text };
 	const state = filtersReducer( undefined, action );
 
-	expect( state.text ).toBe( text );
+	expect( state.memberTextFilter ).toBe( text );
 });

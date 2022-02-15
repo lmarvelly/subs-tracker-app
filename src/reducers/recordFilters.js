@@ -3,6 +3,7 @@ import moment from 'moment';
 const paymentRecordReducerFilterDefaultState = 
 {
 	text: '',
+	memberTextFilter: '',
 	playerUuid: '',
 	sortBy: 'dateAscending',
 	startDate: moment().startOf('month'),
@@ -54,7 +55,7 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 		case 'SET_MEMBER_FILTER_TEXT':
 			return {
 				...state,
-				text: action.text
+				memberTextFilter: action.text
 			}
 		default:
 			return state;
