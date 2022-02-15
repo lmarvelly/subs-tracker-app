@@ -6,13 +6,13 @@ import AddRecordPage from '../components/AddRecordPage';
 import AddMemberPage from '../components/AddMemberPage';
 import AddSeasonPage from '../components/AddSeasonPage';
 import EditRecordPage from '../components/EditRecordPage';
+import EditMemberPage from '../components/EditMemberPage';
+import EditSeasonPage from '../components/EditSeasonPage';
+import Header from '../components/Header';
 import HelpPage from '../components/HelpPage';
 import MemberPage from '../components/MemberPage';
 import SeasonPage from '../components/SeasonPage';
-import EditMemberPage from '../components/EditMemberPage';
 import NotFoundPage from '../components/NotFoundPage';
-
-import Header from '../components/Header';
 
 /**
  * @class <BrowserRouter> can only take on element so all routes
@@ -38,9 +38,10 @@ const AppRouter = () => (
 				<Route path='/add-member' component={AddMemberPage} />
 				<Route path='/add-season' component={AddSeasonPage}/>
 				<Route path='/edit-record/:id' component={EditRecordPage} />
+				<Route path='/edit-member/:id' component={EditMemberPage} />
+				<Route path='/edit-season/:id' component={EditSeasonPage} />
 				<Route path='/members' component={MemberPage} />
 				<Route path='/seasons' component={SeasonPage} />
-				<Route path='/edit-member/:id' component={EditMemberPage} />
 				<Route path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>
