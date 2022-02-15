@@ -17,6 +17,11 @@ import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount,
  */
 class RecordListFilters extends Component
 {
+	// constructor( props )
+	// {
+	// 	super()
+	// }
+
 	state = 
 	{
 		calenderFocused: null
@@ -42,7 +47,14 @@ class RecordListFilters extends Component
 					placeholder='Filter by member'
 				/>
 				<datalist id='memberFilter'>
-					<option>Filter by Member</option>
+					{
+						this.props.members.map( ( member ) =>
+						{
+							return (
+								<option>{`${member.firstName} ${member.middleNames} ${member.surname}`}</option>
+							)
+						})
+					}
 				</datalist>
 
 				<input 
@@ -109,7 +121,8 @@ class RecordListFilters extends Component
 const mapStateToProps = ( state ) => 
 {
 	return {
-		recordFilters: state.recordFilters
+		recordFilters: state.recordFilters,
+		members: state.members
 	};
 };
 
