@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter } from '../../actions/recordFilters';
+import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter, setMemberFilter } from '../../actions/recordFilters';
 
 test('Should generate Sort By Date Ascending action object', () =>
 {
@@ -66,5 +66,16 @@ test('Should generate Set End Date action object', () =>
 	{
 		type: 'SET_END_DATE',
 		endDate: moment(0)
+	});
+});
+
+test('should generate Filter By Member action object', () => 
+{
+	const playerUuid = 'id123';
+	const action = setMemberFilter( playerUuid );
+	expect(action).toEqual(
+	{
+		type: 'SET_FILTER_BY_MEMBER',
+		playerUuid
 	});
 });
