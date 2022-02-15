@@ -11,6 +11,7 @@ test('should setup default filter values', () =>
 	expect( state ).toEqual(
 	{
 		text: '',
+		playerUuid: '',
 		sortBy: 'dateAscending',
 		startDate: moment().startOf('month'),
 		endDate: moment().endOf('month')
@@ -82,3 +83,11 @@ test('should set filterText to be "testing"', () =>
 	expect( state.text ).toBe( text );
 });
 
+test('should set playerUuid to 123abc', () => 
+{
+	const playerUuid = '123abc';
+	const action = { type: 'SET_FILTER_BY_MEMBER', playerUuid };
+	const state = filtersReducer( undefined, action );
+
+	expect( state.playerUuid ).toBe( playerUuid );
+});
