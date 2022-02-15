@@ -1,3 +1,8 @@
+ERRORS
+	Error when season is deleted but related records are still there
+	Amount filter is descending not ascending
+	Invalid prop added to Route (May need updating)
+
 Change Seasons to Seasons/categorys?
 
 Seasons TODO list
@@ -32,6 +37,3 @@ FEATURES
 TESTING
 	
 
-ERRORS
-	Amount filter is descending not ascending
-	Invalid prop added to Route
