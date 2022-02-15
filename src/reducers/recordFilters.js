@@ -51,7 +51,7 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 				...state, 
 				sortBy: 'amount'
 			}
-		case 'SET_FILTER_BY_MEMBER':
+		case 'SET_MEMBER_FILTER_TEXT':
 			return {
 				...state,
 				text: action.text

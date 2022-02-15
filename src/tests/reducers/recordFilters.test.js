@@ -86,7 +86,7 @@ test('should set filterText to be "testing"', () =>
 test('should set member text filter to "Player Name"', () => 
 {
 	const text = 'Player Name';
-	const action = { type: 'SET_FILTER_BY_MEMBER', text };
+	const action = { type: 'SET_MEMBER_FILTER_TEXT', text };
 	const state = filtersReducer( undefined, action );
 
 	expect( state.text ).toBe( text );
