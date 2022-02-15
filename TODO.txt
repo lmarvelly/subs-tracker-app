@@ -18,6 +18,7 @@ FEATURES
 		* Change Seasons to Seasons/categorys?
 
 	RECORDS:
+		* Add onClick to Member filter to select a member from dropdown
 		* Should amount for Debts be amountPaid minus debtAmount?
 		* Remove Amount Paid when creating dept record/make sure the right boxes apear when creating/editing
 		* Change Members prop in RecordForm to member rather so we're not passing down all the members
