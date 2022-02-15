@@ -29,6 +29,7 @@ FEATURES
 		* Add member balance
 
 	FILTERS:
+		* Reset Filters button 
 		* Filter records by Members
 		* Show only Debts/Payments
 		* Reset filters button
