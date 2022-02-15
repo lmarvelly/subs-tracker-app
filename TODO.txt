@@ -1,5 +1,6 @@
 Current Todo: 
 	* Filter records by Member (datalist)
+	* Add Member Name filter to record selector
 
 
 ERRORS
@@ -31,6 +32,7 @@ FEATURES
 	MEMBERS:
 		* Add searchbar for members
 		* Add member balance
+		* Change button when editing to "Save Record"
 
 	FILTERS:
 		* Reset Filters button 
