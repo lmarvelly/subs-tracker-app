@@ -12,7 +12,7 @@ export default class RecordForm extends Component
 		this.state = {
 			id: props.record ? this.props.record.id : '',
 			playerUuid: props.record ? props.record.playerUuid : '',
-			seasonUuid: props.season ? props.season.seasonUuid : '',
+			seasonUuid: props.record ? props.record.seasonUuid : '',
 			recordType: props.record ? props.record.recordType : 'PAYMENT',
 			description: props.record ? props.record.description : '',
 			note: props.record ? props.record.note : '',
@@ -173,8 +173,12 @@ export default class RecordForm extends Component
 					{
 						this.state.error && <p>{this.state.error}</p>
 					}
-					<select>
-						<option>Please Select Season</option>
+					<select
+						id='seasonName'
+
+						value={ this.state.seasonUuid }
+					>
+						<option hidden>Please Select Season</option>
 						{
 							this.props.seasons.map( (season) =>
 							{
