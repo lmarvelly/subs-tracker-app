@@ -30,8 +30,6 @@ export default class RecordForm extends Component
 		this.setState({ playerUuid: document.getElementById('playerName').value  });
 	};
 	onSeasonNameChange = ( e ) => {
-		console.log(this.state.seasonUuid);
-		console.log(e.target.value);
 		const seasonUuid = e.target.value;
 
 		this.setState( () => ({ seasonUuid }) );
