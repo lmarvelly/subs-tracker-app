@@ -6,6 +6,7 @@ ERRORS
 Change Seasons to Seasons/categorys?
 
 Seasons TODO list
+	* Select season to filter by on Dashboard
 	* Edit Season functions
 	* Delete subs/debts related to season?
 	* Link to edit Season
