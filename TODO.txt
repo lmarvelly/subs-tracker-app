@@ -1,3 +1,7 @@
+Current Todo: 
+	* Filter records by Member (datalist)
+
+
 ERRORS
 	Error when season is deleted but related records are still there
 	Amount filter is descending not ascending
@@ -39,5 +43,5 @@ FEATURES
 		* 
 
 TESTING
-	
+	* Write Record selector for Member filter
 
