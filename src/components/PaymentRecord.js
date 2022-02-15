@@ -40,7 +40,7 @@ const mapStateToProps = (state) =>
 {
 	return{
 		members: state.members,
-		paymentRecord: selectRecords(state.paymentRecord, state.recordFilters),
+		paymentRecord: selectRecords(state.paymentRecord, state.members, state.recordFilters),
 		seasons: state.seasons
 	}
 };
