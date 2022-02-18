@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
-import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setMemberFilterText } from '../actions/recordFilters';
+import { 
+	setTextFilter, sortByDateAscending, sortByDateDescending, 
+	sortByAmount, setStartDate, setEndDate, setMemberFilterText,
+	setSeasonFilter 
+} from '../actions/recordFilters';
 
 /**
  * Both inputs are Controlled Components (Input where the input is
@@ -49,7 +53,6 @@ class RecordListFilters extends Component
 					{
 						this.props.members.map( ( member ) =>
 						{
-							console.log();
 							return (
 								<option key={member.playerUuid}>{`${member.firstName} ${member.middleNames} ${member.surname}`}</option>
 							)
@@ -69,6 +72,32 @@ class RecordListFilters extends Component
 						}
 					}
 				/>
+
+				<select
+					onChange=
+					{
+						( e ) =>
+						{
+							this.props.dispatch( setSeasonFilter( e.target.value ) )
+						}
+					}
+				>
+					<option hidden>Filter by season</option>
+					{
+						this.props.seasons.map( ( season ) =>
+						{
+							return (
+								<option 
+									key={season.seasonUuid}
+									value={season.seasonUuid}
+								>
+									{season.seasonName}
+								</option>
+							)
+						})
+					}
+				</select>
+
 				<select 
 					value={ this.props.recordFilters.sortBy } // This is needed to make it a controlled component
 					onChange=
@@ -122,9 +151,9 @@ const mapStateToProps = ( state ) =>
 {
 	return {
 		recordFilters: state.recordFilters,
-		members: state.members
+		members: state.members,
+		seasons: state.seasons
 	};
 };
 
-// connect()
 export default connect( mapStateToProps )( RecordListFilters );
