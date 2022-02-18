@@ -9,8 +9,6 @@ REFACTORING
 FEATURES
 
 	SEASONS:
-		* Filter Records by Season
-		* Select season to filter by on Dashboard
 		* Delete subs/debts related to season?
 		* Archived when deleted. To delete perminently you have to delete from archives
 		* Change Seasons to Seasons/categorys?
