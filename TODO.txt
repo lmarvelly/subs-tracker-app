@@ -1,6 +1,5 @@
 ERRORS
-	Error when season is deleted but related records are still there
-	Amount filter is descending not ascending
+	* Error when season is deleted but related records are still there
 	Invalid prop added to Route (May need updating)
 
 
@@ -12,7 +11,6 @@ FEATURES
 	SEASONS:
 		* Filter Records by Season
 		* Select season to filter by on Dashboard
-		* Adapt form to Edit Seasons
 		* Delete subs/debts related to season?
 		* Archived when deleted. To delete perminently you have to delete from archives
 		* Change Seasons to Seasons/categorys?
@@ -20,10 +18,10 @@ FEATURES
 	RECORDS:
 		* Add onClick to Member filter to select a member from dropdown
 		* Should amount for Debts be amountPaid minus debtAmount?
-		* Remove Amount Paid when creating dept record/make sure the right boxes apear when creating/editing
 		* Change Members prop in RecordForm to member rather so we're not passing down all the members
 		* Add debt handling
 		* Record Sort By Amount?
+		* Remove Amount Paid when creating dept record/make sure the right boxes apear when creating/editing
 
 	MEMBERS:
 		* Add searchbar for members
