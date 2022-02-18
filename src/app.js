@@ -64,7 +64,7 @@ const season3 = store.dispatch(
 	addSeason({ seasonName: 'Donations' })
 );
 
-// store.dispatch( setSeasonFilter( store.getState().seasons[0].seasonUuid ) );
+// store.dispatch( setSeasonFilter( store.getState().seasons[1].seasonUuid ) );
 
 const record = store.dispatch( 
 	addRecord( 

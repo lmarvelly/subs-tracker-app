@@ -1,6 +1,6 @@
 import moment from 'moment';
 import selectRecord from '../../selectors/records';
-import { records, members } from '../fixtures/fixures';
+import { records, members, seasons, } from '../fixtures/fixures';
 
 test('Should filter by text value', () =>
 {
