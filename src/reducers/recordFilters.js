@@ -57,6 +57,11 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 				...state,
 				memberTextFilter: action.text
 			}
+		case 'SET_SEASON_FILTER':
+			return {
+				...state,
+				seasonFilter: action.seasonUuid
+			}
 		default:
 			return state;
 	}
