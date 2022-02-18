@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
-import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setMemberFilter } from '../actions/recordFilters';
+import { setTextFilter, sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setMemberFilterText } from '../actions/recordFilters';
 
 /**
  * Both inputs are Controlled Components (Input where the input is
@@ -42,7 +42,7 @@ class RecordListFilters extends Component
 					placeholder='Filter by member'
 					onChange={(e) =>
 					{
-						this.props.dispatch( setMemberFilter( e.target.value ) )
+						this.props.dispatch( setMemberFilterText( e.target.value ) )
 					}}
 				/>
 				<datalist id='memberFilter'>

@@ -43,7 +43,7 @@ export const setTextFilter = ( text = '' ) =>
 // RESET
 
 // FILTER BY MEMBER
-export const setMemberFilter = ( text = '' ) =>
+export const setMemberFilterText = ( text = '' ) =>
 ({
 	type: 'SET_MEMBER_FILTER_TEXT',
 	text

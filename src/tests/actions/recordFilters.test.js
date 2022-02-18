@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter, setMemberFilter } from '../../actions/recordFilters';
+import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter, setMemberFilterText } from '../../actions/recordFilters';
 
 test('Should generate Sort By Date Ascending action object', () =>
 {
@@ -72,7 +72,7 @@ test('Should generate Set End Date action object', () =>
 test('should generate Filter By Member action object', () => 
 {
 	const text = 'member name';
-	const action = setMemberFilter( text );
+	const action = setMemberFilterText( text );
 	expect(action).toEqual(
 	{
 		type: 'SET_MEMBER_FILTER_TEXT',
