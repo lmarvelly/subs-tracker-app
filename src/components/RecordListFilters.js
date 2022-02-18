@@ -74,6 +74,7 @@ class RecordListFilters extends Component
 				/>
 
 				<select
+					value={ this.props.recordFilters.seasonUuid }
 					onChange=
 					{
 						( e ) =>
