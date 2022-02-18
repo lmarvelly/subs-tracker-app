@@ -94,3 +94,12 @@ test('should set member text filter to "Player Name"', () =>
 
 	expect( state.memberTextFilter ).toBe( text );
 });
+
+test('should set Season Filter to be a seasonUuid', () => 
+{
+	const seasonUuid = 'abcd1234';
+	const action = { type: 'SET_SEASON_FILTER', seasonUuid };
+	const state = filtersReducer( undefined, action );
+
+	expect( state.seasonFilter ).toBe( seasonUuid );
+});
