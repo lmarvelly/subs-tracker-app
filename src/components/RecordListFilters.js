@@ -49,8 +49,9 @@ class RecordListFilters extends Component
 					{
 						this.props.members.map( ( member ) =>
 						{
+							console.log();
 							return (
-								<option>{`${member.firstName} ${member.middleNames} ${member.surname}`}</option>
+								<option key={member.playerUuid}>{`${member.firstName} ${member.middleNames} ${member.surname}`}</option>
 							)
 						})
 					}
