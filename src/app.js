@@ -9,7 +9,11 @@ import getVisibleMembers from './selectors/members';
 import getVisibleSeasons from './selectors/seasons';
 
 import { addRecord, editRecord, removeRecord } from './actions/records';
-import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter, setMemberFilterText } from './actions/recordFilters';
+import { 
+	sortByDateAscending, sortByDateDescending, sortByAmount, 
+	setStartDate, setEndDate, setTextFilter, setMemberFilterText,
+	setSeasonFilter 
+} from './actions/recordFilters';
 import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from './actions/memberFilters';
 import { addMember, removeMember } from './actions/members';
 import { addSeason } from './actions/seasons';
@@ -59,6 +63,8 @@ const season2 = store.dispatch(
 const season3 = store.dispatch(
 	addSeason({ seasonName: 'Donations' })
 );
+
+// store.dispatch( setSeasonFilter( store.getState().seasons[0].seasonUuid ) );
 
 const record = store.dispatch( 
 	addRecord( 
