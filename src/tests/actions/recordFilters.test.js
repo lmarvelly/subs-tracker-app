@@ -1,5 +1,10 @@
 import moment from 'moment';
-import { sortByDateAscending, sortByDateDescending, sortByAmount, setStartDate, setEndDate, setTextFilter, setMemberFilterText } from '../../actions/recordFilters';
+import 
+{ 
+	sortByDateAscending, sortByDateDescending, sortByAmount, 
+	setStartDate, setEndDate, setTextFilter, setMemberFilterText,
+	setSeasonFilter
+} from '../../actions/recordFilters';
 
 test('Should generate Sort By Date Ascending action object', () =>
 {
@@ -77,5 +82,17 @@ test('should generate Filter By Member action object', () =>
 	{
 		type: 'SET_MEMBER_FILTER_TEXT',
 		text
+	});
+});
+
+test('should generate Filter By Season action object', () => 
+{
+	const seasonUuid = 'abc123';
+	const action = setSeasonFilter( seasonUuid );
+
+	expect(action).toEqual(
+	{
+		type: 'SET_SEASON_FILTER',
+		seasonUuid
 	});
 });

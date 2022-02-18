@@ -50,3 +50,8 @@ export const setMemberFilterText = ( text = '' ) =>
 });
 
 // FILTER BY SEASON
+export const setSeasonFilter = ( seasonUuid ) =>
+({
+	type: 'SET_SEASON_FILTER',
+	seasonUuid
+});
