@@ -21,3 +21,8 @@ test('should render Record Form with Record, member and season data', () =>
 	const wrapper = shallow(<RecordForm record={records[0]} members={ members } seasons={ seasons } />);
 	expect(wrapper).toMatchSnapshot();
 });
+
+// test('should render error for invalid form submission', () => 
+// {
+// 	const wrapper = shallow;
+// });
