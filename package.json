@@ -50,7 +50,7 @@
 	},
 	"devDependencies": {
 		"dotenv": "4.0.0",
-		"enzyme": "3.0.0",
+		"enzyme": "3.11.0",
 		"enzyme-to-json": "3.0.1",
 		"jest": "20.0.4",
 		"react-test-renderer": "16",
