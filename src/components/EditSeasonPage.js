@@ -16,7 +16,6 @@ const EditSeasonPage = ( props ) =>
 			{
 				(e) =>
 				{
-					console.log(props.match.params.id);
 					confirm('Are you sure you want to delete season') &&
 					props.dispatch( removeSeason( props.match.params.id ) );
 					props.history.push('/seasons');
