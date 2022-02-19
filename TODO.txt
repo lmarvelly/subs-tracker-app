@@ -1,6 +1,6 @@
 ERRORS
-	* Archive when deleting records/members/seasons if they are 
-	  connected to other objects
+	* Deleting objects. They need to be archived when deleting 
+	  records/members/seasons if they are connected to other objects
 	* Error when season is deleted but related records are still there
 	* Invalid prop added to Route (May need updating)
 
