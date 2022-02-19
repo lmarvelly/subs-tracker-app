@@ -1,6 +1,7 @@
 ERRORS
+	* Add Handling to Record Form when there are no Seasons/Members
 	* Error when season is deleted but related records are still there
-	Invalid prop added to Route (May need updating)
+	* Invalid prop added to Route (May need updating)
 
 
 REFACTORING
