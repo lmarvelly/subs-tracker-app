@@ -233,7 +233,7 @@ export default class RecordForm extends Component
 					<input 
 						type="text"
 						placeholder="Description"
-						value= { this.state.description }
+						value={ this.state.description }
 						onChange={ this.onDescriptionChange }
 					/>
 					<br />
@@ -253,6 +253,7 @@ export default class RecordForm extends Component
 					<textarea
 						placeholder="Add a note e.g. 'To be paid by 01/01/23' (optional)"
 						onChange={ this.onNoteChange }
+						value={this.state.note}
 					>
 					</textarea>
 					<button>Add Payment Record</button>
