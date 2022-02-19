@@ -41,4 +41,4 @@ FEATURES
 
 TESTING
 	* Write Record selector for Member filter
-
+	* Write tests for all the forms inputs/dropdowns and submitions
