@@ -13,6 +13,7 @@ test('should setup default filter values', () =>
 		text: '',
 		memberTextFilter: '',
 		playerUuid: '',
+		seasonFilter: "",
 		sortBy: 'dateAscending',
 		startDate: moment().startOf('month'),
 		endDate: moment().endOf('month')
