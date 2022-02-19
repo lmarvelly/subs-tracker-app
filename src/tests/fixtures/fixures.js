@@ -16,7 +16,7 @@ export const seasons =
 	},
 	{
 		seasonName: '2019/2020', 
-		seasonUuid: 'season2'
+		seasonUuid: 'season3'
 	}
 ]
 
