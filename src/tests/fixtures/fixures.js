@@ -51,7 +51,7 @@ export const records =
 	id: 'record1',
 	recordType: 'DEBT',
 	description: 'Training subs',
-	note: '',
+	note: 'To be paid next week',
 	createdAt: 0,
 	amount: "",
 	amountOwed: 400,
