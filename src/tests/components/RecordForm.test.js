@@ -58,5 +58,66 @@ test('should set note on textarea change', () =>
 	expect(wrapper.state('note')).toBe(value);
 });
 
+// TODO: not working properly. Not changing amount
+test('Should set amount if input data is valid', () =>
+{
+	const value = '11.00';
+	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	
+	wrapper.find('input').at(1).simulate('change',
+	{
+		target: { value }
+	});
+
+	console.log('WRAPPER:', wrapper.find('input').at(1).value);
+	// console.log('State:', wrapper.state('amount'));
+
+	expect(wrapper.state('amount')).toBe(value);
+});
+
+test('Should not set amount if input data is invalid', () =>
+{
+	const value = '10.001';
+	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	
+	wrapper.find('input').at(1).simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(wrapper.state('amount')).toBe('');
+});
+
+test('should call onSubmit prop for valid form submission', () => 
+{
+	const onSubmitSpy = jest.fn();
+	const wrapper = shallow(
+		<RecordForm 
+			record={records[0]} 
+			onSubmit={onSubmitSpy}
+			members={[]} 
+			seasons={[]} 
+		/>);
+	
+	wrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(wrapper.state('error')).toBe('');
+	expect(onSubmitSpy).toHaveBeenLastCalledWith(
+	{
+		id: records[0].id,
+		playerUuid: records[0].playerUuid,
+		seasonUuid: records[0].seasonUuid,
+		recordType: records[0].recordType,
+		description: records[0].description,
+		note: records[0].note,
+		createdAt: records[0].createdAt,
+		amountOwed: records[0].amountOwed,
+		amountPaid: records[0].amountPaid
+	});
+});
+
 
 // Add tests for all the rest of the inputs/dropdowns
