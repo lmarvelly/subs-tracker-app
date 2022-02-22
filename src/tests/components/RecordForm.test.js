@@ -89,7 +89,7 @@ test('Should not set amount if input data is invalid', () =>
 	expect(wrapper.state('amount')).toBe('');
 });
 
-test('should call onSubmit prop for valid form submission', () => 
+test('should call onSubmit prop for valid form submission for a Debt', () => 
 {
 	const onSubmitSpy = jest.fn();
 	const wrapper = shallow(
@@ -117,6 +117,36 @@ test('should call onSubmit prop for valid form submission', () =>
 		createdAt: records[0].createdAt,
 		amountOwed: records[0].amountOwed,
 		amountPaid: records[0].amountPaid
+	});
+});
+
+test('should call onSubmit prop for valid form submission for a Payment', () => 
+{
+	const onSubmitSpy = jest.fn();
+	const wrapper = shallow(
+		<RecordForm 
+			record={records[1]} 
+			onSubmit={onSubmitSpy}
+			members={[]} 
+			seasons={[]} 
+		/>);
+	
+	wrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(wrapper.state('error')).toBe('');
+	expect(onSubmitSpy).toHaveBeenLastCalledWith(
+	{
+		id: records[1].id,
+		playerUuid: records[1].playerUuid,
+		seasonUuid: records[1].seasonUuid,
+		recordType: records[1].recordType,
+		description: records[1].description,
+		note: records[1].note,
+		createdAt: records[1].createdAt,
+		amount: records[1].amount
 	});
 });
 
