@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RecordForm from './RecordForm';
 import { addRecord } from '../actions/records';
+import { records } from '../tests/fixtures/fixures';
 
 
 
@@ -47,8 +48,8 @@ class AddRecordPage extends Component
 					members={ this.props.members }
 					seasons={ this.props.seasons }
 					onSubmit={ ( record ) => {
-						this.props.dispatch( addRecord( record ) );
-
+						// using props.onSubmit this instead of "this.props.dispatch( addRecord( record ) )";
+						this.props.onSubmit(record); 
 						this.props.history.push('/'); // return to dashboard
 					}}
 				/>
@@ -65,4 +66,20 @@ const mapStateToProps = ( state, props ) =>
 	}
 }
 
-export default connect( mapStateToProps )( AddRecordPage );
+/**
+ * Simular to mapStateToProps except it gives us access to 
+ * dispatch. Needs to be passed into connect()
+ * 
+ * This is a lot easier to test dispatch than testing dispatch 
+ * inside of onSubmit prop which used to be inside the RecordForm 
+ * component.
+ * 
+ * We use the shorthand here which used the curly braces to 
+ * implicitly return an object
+ */
+const mapDispatchToProps = (dispatch) => (
+{
+	onSubmit: (record) => dispatch( addRecord( record ) )
+});
+
+export default connect( mapStateToProps, mapDispatchToProps )( AddRecordPage );
