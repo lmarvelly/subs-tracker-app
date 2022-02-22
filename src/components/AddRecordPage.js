@@ -33,7 +33,6 @@ export class AddRecordPage extends Component
 	{ 
 		const doMembersExist = this.state.members.length > 0;
 		const doSeasonsExist = this.state.seasons.length > 0;
-		console.log('Members exist', doMembersExist, 'seasons exist', doSeasonsExist);
 
 		if ( !doMembersExist || !doSeasonsExist )
 		{
