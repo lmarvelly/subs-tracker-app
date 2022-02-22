@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 import RecordForm from '../../components/RecordForm';
 import { records, members, seasons } from '../fixtures/fixures';
 
@@ -63,16 +64,16 @@ test('Should set amount if input data is valid', () =>
 {
 	const value = '11.00';
 	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
-	
+
 	wrapper.find('input').at(1).simulate('change',
 	{
 		target: { value }
 	});
 
-	console.log('WRAPPER:', wrapper.find('input').at(1).value);
-	// console.log('State:', wrapper.state('amount'));
+	// wrapper.find('#amountToPay').at(0).prop('onChange')({target: { value }});
+	expect(wrapper.state('amount')).toEqual(value);
 
-	expect(wrapper.state('amount')).toBe(value);
+	// expect(wrapper.state('amount')).toBe(value);
 });
 
 test('Should not set amount if input data is invalid', () =>
@@ -117,6 +118,23 @@ test('should call onSubmit prop for valid form submission', () =>
 		amountOwed: records[0].amountOwed,
 		amountPaid: records[0].amountPaid
 	});
+});
+
+test('should set up new date on date change', () => 
+{
+	const now = moment();
+	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	wrapper.find('SingleDatePicker').prop('onDateChange')(now);
+	expect(wrapper.state('createdAt')).toEqual(now);
+});
+
+test('should set up on focus change', () => 
+{
+	const focused = true;
+	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	// Remember to call things as objects
+	wrapper.find('SingleDatePicker').prop('onFocusChange')({focused});
+	expect(wrapper.state('calenderFocused')).toEqual(focused);
 });
 
 
