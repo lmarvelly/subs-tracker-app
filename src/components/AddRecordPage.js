@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RecordForm from './RecordForm';
 import { addRecord } from '../actions/records';
-import { records } from '../tests/fixtures/fixures';
-
 
 /**
  * Use classes to avoid inline functions. This avoids rerendering
