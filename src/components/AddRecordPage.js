@@ -5,12 +5,24 @@ import { addRecord } from '../actions/records';
 import { records } from '../tests/fixtures/fixures';
 
 
-
-class AddRecordPage extends Component
+/**
+ * Use classes to avoid inline functions. This avoids rerendering
+ * on every render.
+ * We put an export in front of the class keyword so we can test
+ * the unconnected version.
+ */ 
+export class AddRecordPage extends Component
 {
 	constructor( props )
 	{
 		super( props );
+	}
+
+	onSubmit = ( record ) =>
+	{
+			// using props.onSubmit this instead of "this.props.dispatch( addRecord( record ) )";
+			this.props.onSubmit(record); 
+			this.props.history.push('/'); // return to dashboard
 	}
 
 	componentDidMount()
@@ -47,11 +59,7 @@ class AddRecordPage extends Component
 				<RecordForm 
 					members={ this.props.members }
 					seasons={ this.props.seasons }
-					onSubmit={ ( record ) => {
-						// using props.onSubmit this instead of "this.props.dispatch( addRecord( record ) )";
-						this.props.onSubmit(record); 
-						this.props.history.push('/'); // return to dashboard
-					}}
+					onSubmit={ this.onSubmit }
 				/>
 			</div>
 		);
