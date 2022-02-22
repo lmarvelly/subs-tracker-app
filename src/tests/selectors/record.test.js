@@ -47,7 +47,7 @@ test('Should filter by startDate', () =>
 
 	const result = selectRecord( records, members, filters );
 
-	expect(result).toEqual([ records[0], records[1] ]);
+	expect(result).toEqual([ records[0], records[3], records[1] ]);
 });
 
 test('Should sort by dateAscending', () =>
@@ -62,7 +62,7 @@ test('Should sort by dateAscending', () =>
 
 	const result = selectRecord(records, members, filters);
 
-	expect(result).toEqual([ records[2], records[0], records[1] ]);
+	expect(result).toEqual([ records[2], records[0], records[3], records[1] ]);
 });
 
 test('Should sort by dateDescending', () =>
@@ -77,7 +77,7 @@ test('Should sort by dateDescending', () =>
 
 	const result = selectRecord(records, members, filters);
 
-	expect(result).toEqual([ records[1], records[0], records[2] ]);
+	expect(result).toEqual([ records[1], records[3], records[0], records[2] ]);
 });
 
 // Should sort amount

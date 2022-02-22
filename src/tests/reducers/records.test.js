@@ -18,7 +18,7 @@ test('should remove a record using it\'s ID', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state ).toEqual([ records[0], records[2] ]);
+	expect( state ).toEqual([ records[0], records[2], records[3] ]);
 });
 
 test('should not remove a record with ID that does not exist', () => 
@@ -54,7 +54,7 @@ test('should add a New Payment Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state[3] ).toEqual(record);
+	expect( state[4] ).toEqual(record);
 	expect( state ).toEqual([ ...records, record ]);
 });
 
@@ -64,7 +64,7 @@ test('should add a New Debt Record', () =>
 	{ 
 		recordType: 'DEBT',
 		playerUuid: members[1].playerUuid,
-		seasonUuid: seasons[1],
+		seasonUuid: seasons[1].seasonUuid,
 		description: '5\'s subs', 
 		amount: '',
 		amountPaid: 0,
@@ -78,7 +78,7 @@ test('should add a New Debt Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state[3] ).toEqual(newRecord);
+	expect( state[4] ).toEqual(newRecord);
 });
 
 test('should edit a Payment Record', () => 

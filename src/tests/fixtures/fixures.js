@@ -81,16 +81,16 @@ export const records =
 	amountOwed: '',
 	amountPaid: ''
 },
-// {
-// 	playerUuid: 'player3',
-// 	seasonUuid: 'donation',
-// 	id: 'record2',
-// 	recordType: 'PAYMENT',
-// 	description: 'Donation',
-// 	note: '',
-// 	createdAt: moment(0).subtract(3, 'days').valueOf(),
-// 	amount: 5000,
-// 	amountOwed: '',
-// 	amountPaid: ''
-// }
+{
+	playerUuid: members[2].playerUuid,
+	seasonUuid: seasons[0].seasonUuid,
+	id: 'record4',
+	recordType: 'PAYMENT',
+	description: 'Donation',
+	note: '',
+	createdAt: moment(0).subtract(3, 'days').valueOf(),
+	amount: 5000,
+	amountOwed: '',
+	amountPaid: ''
+}
 ];
