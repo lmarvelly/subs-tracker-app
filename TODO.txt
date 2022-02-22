@@ -4,6 +4,7 @@ ERRORS
 	  MAYBE add a string like 'ARCHIVE' in front of uuid 
 	* Error when season is deleted but related records are still there
 	* Invalid prop added to Route (May need updating)
+	* Amount input test not working correctly
 
 
 REFACTORING
