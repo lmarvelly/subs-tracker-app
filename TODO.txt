@@ -18,6 +18,7 @@ FEATURES
 		* Change Seasons to Seasons/categorys?
 
 	RECORDS:
+		* Add dropdown to description with words like 'Training Subs' or 'Match subs'
 		* Add onClick to Member filter to select a member from dropdown
 		* Should amount for Debts be amountPaid minus debtAmount?
 		* Change Members prop in RecordForm to member rather so we're not passing down all the members
