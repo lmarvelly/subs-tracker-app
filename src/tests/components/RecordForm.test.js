@@ -46,4 +46,17 @@ test('should test description on input change', () =>
 	expect(wrapper.state('description')).toBe(value);
 });
 
+test('should set note on textarea change', () =>
+{
+	const value = 'New Note';
+	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	wrapper.find('textarea').at(0).simulate('change',
+	{
+		target: { value } // setting the value of e.target.value
+	});
+
+	expect(wrapper.state('note')).toBe(value);
+});
+
+
 // Add tests for all the rest of the inputs/dropdowns
