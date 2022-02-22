@@ -14,6 +14,12 @@ export class AddRecordPage extends Component
 	constructor( props )
 	{
 		super( props );
+
+		this.state =
+		{
+			members: this.props.members ? this.props.members : [],
+			seasons: this.props.seasons ? this.props.seasons : []
+		}
 	}
 
 	onSubmit = ( record ) =>
@@ -25,10 +31,11 @@ export class AddRecordPage extends Component
 
 	componentDidMount()
 	{ 
-		const doMembersExist = this.props.members.length < 1;
-		const doSeasonsExist = this.props.seasons.length < 1;
+		const doMembersExist = this.state.members.length > 0;
+		const doSeasonsExist = this.state.seasons.length > 0;
+		console.log('Members exist', doMembersExist, 'seasons exist', doSeasonsExist);
 
-		if ( doMembersExist || doSeasonsExist )
+		if ( !doMembersExist || !doSeasonsExist )
 		{
 			const message = () =>
 			{
