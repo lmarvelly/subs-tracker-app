@@ -30,6 +30,7 @@ FEATURES
 		* Remove Amount Paid when creating dept record/make sure the right boxes apear when creating/editing
 
 	MEMBERS:
+		* Check if Member name already exists
 		* Add searchbar for members
 		* Add member balance
 		* Change button when editing to "Save Record"
