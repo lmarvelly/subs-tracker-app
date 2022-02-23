@@ -24,7 +24,8 @@ beforeEach( () =>
 	);
 });
 
-test('should render edit page without data then redirect to dashboard', () => {
+test('should render edit page without data then redirect to dashboard', () => 
+{
 	expect(wrapper).toMatchSnapshot();
 	expect(history.push).toHaveBeenLastCalledWith('/');
 });
@@ -32,4 +33,12 @@ test('should render edit page without data then redirect to dashboard', () => {
 test('should handle render edit page with record data', () => 
 {
 	expect(wrapper2).toMatchSnapshot();
+});
+
+test('should handle onSubmit', () => 
+{
+	wrapper2.find('RecordForm').prop('onSubmit')(record);
+
+	expect(history.push).toHaveBeenLastCalledWith('/');
+	expect(editRecord).toHaveBeenLastCalledWith(record);
 });
