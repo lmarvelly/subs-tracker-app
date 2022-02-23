@@ -9,7 +9,6 @@ const EditSeasonPage = ( props ) =>
 	const season = props.seasons.find( ( season ) =>
 		season.seasonUuid === props.match.params.id
 	);
-	console.log(season);
 	const deleteButton = 
 		<button
 			onClick=
