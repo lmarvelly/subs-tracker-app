@@ -21,7 +21,15 @@ beforeEach( () =>
 	);
 });
 
-test('should render Add Member Page', () => {
+test('should render Add Member Page', () => 
+{
 	expect(wrapper).toMatchSnapshot();
 });
 
+test('should handle onSubmit', () => 
+{
+	wrapper.find('MemberForm').prop('onSubmit')(member);
+
+	expect(history.push).toHaveBeenLastCalledWith('/members');
+	expect(addMember).toHaveBeenLastCalledWith(member);
+});
