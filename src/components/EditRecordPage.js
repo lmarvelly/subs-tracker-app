@@ -41,7 +41,7 @@ export class EditRecordPage extends Component
 	onRemove = () =>
 	{
 		confirm('Are you sure you want to remove record?') &&
-		this.props.removeRecord( this.props.record.id );
+		this.props.removeRecord( { id: this.props.record.id } );
 		this.props.history.push('/'); // return to dashboard
 	}
 
@@ -72,10 +72,10 @@ const mapStateToProps = ( state, props ) =>
 	}
 };
 
-const mapDispatchToProps = ( dispatch ) => (
+const mapDispatchToProps = ( dispatch, props ) => (
 {
 	editRecord: ( record ) => dispatch( editRecord( record.id, record ) ),
-	removeRecord: ( id ) => dispatch( removeRecord( { id } ) )
+	removeRecord: ( data ) => dispatch( removeRecord( data ) )
 });
 
 // The HOC passes the props through
