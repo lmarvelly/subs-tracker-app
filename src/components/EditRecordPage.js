@@ -31,7 +31,7 @@ export class EditRecordPage extends Component
 	</button>
 
 	render()
-	{
+	{ 
 		return (
 			<div>
 				<RecordForm
