@@ -3,10 +3,11 @@ import { shallow } from 'enzyme';
 import { EditRecordPage } from '../../components/EditRecordPage';
 import { records, members, seasons } from '../fixtures/fixures';
 
-let editRecord, history, wrapper, wrapper2;
+let record, editRecord, history, wrapper, wrapper2;
 
 beforeEach( () => 
 {
+	record = records[1];
 	editRecord = jest.fn();
 	history = { push: jest.fn() };
 	wrapper = shallow(
@@ -14,6 +15,7 @@ beforeEach( () =>
 	);
 	wrapper2 = shallow(
 		<EditRecordPage 
+			record={record}
 			seasons={seasons} 
 			members={members} 
 			editRecord={editRecord} 
@@ -22,6 +24,12 @@ beforeEach( () =>
 	);
 });
 
-test('should not render edit page without date and should redirect to dashboard', () => {
-  ;
+test('should render edit page without data then redirect to dashboard', () => {
+	expect(wrapper).toMatchSnapshot();
+	expect(history.push).toHaveBeenLastCalledWith('/');
+});
+
+test('should handle render edit page with record data', () => 
+{
+	expect(wrapper2).toMatchSnapshot();
 });
