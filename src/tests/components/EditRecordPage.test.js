@@ -3,25 +3,32 @@ import { shallow } from 'enzyme';
 import { EditRecordPage } from '../../components/EditRecordPage';
 import { records, members, seasons } from '../fixtures/fixures';
 
-let record, editRecord, history, wrapper, wrapper2;
+let record, editRecord, removeRecord, history, wrapper, wrapper2;
 
+/**
+ * We can test editRecord and removeRecord easily because they have
+ * been added to mapDispatchToProps
+ */
 beforeEach( () => 
 {
 	record = records[1];
 	editRecord = jest.fn();
+	removeRecord = jest.fn();
 	history = { push: jest.fn() };
 	wrapper = shallow(
-		<EditRecordPage editRecord={editRecord} history={history} />
+		<EditRecordPage history={history} />
 	);
 	wrapper2 = shallow(
 		<EditRecordPage 
 			record={record}
 			seasons={seasons} 
 			members={members} 
-			editRecord={editRecord} 
+			editRecord={editRecord}
+			removeRecord={removeRecord}
 			history={history} 
 		/>
 	);
+	// jest.spyOn(confirm())
 });
 
 test('should render edit page without data then redirect to dashboard', () => 
@@ -41,4 +48,17 @@ test('should handle onSubmit', () =>
 
 	expect(history.push).toHaveBeenLastCalledWith('/');
 	expect(editRecord).toHaveBeenLastCalledWith(record);
+});
+
+// Remove Record
+test('should handle removeRecord', () => 
+{
+	console.log('Length: ', wrapper2.find('button').length);
+	wrapper2.find('button').at(0).simulate('click');
+
+	expect(history.push).toHaveBeenLastCalledWith('/');
+	// expect(removeRecord).toHaveBeenLastCalledWith(
+	// {
+	// 	id: record.id
+	// });
 });
