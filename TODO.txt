@@ -18,6 +18,7 @@ FEATURES
 		* Change Seasons to Seasons/categorys?
 
 	RECORDS:
+		* Edit Records form should have a button that says Save Changes or something like that
 		* Add dropdown to description with words like 'Training Subs' or 'Match subs'
 		* Add onClick to Member filter to select a member from dropdown
 		* Should amount for Debts be amountPaid minus debtAmount?
