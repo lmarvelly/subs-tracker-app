@@ -15,6 +15,22 @@ export class EditRecordPage extends Component
 	constructor( props )
 	{
 		super( props );
+		this.state =
+		{
+			error: this.props.record ? false : true
+		}
+		
+		console.log('Record Error: ', this.state.error);
+	}
+
+	// Adding alert() CAUSES ERRORS
+	componentDidMount()
+	{
+		if(!this.props.record)
+		{
+			// alert('Whoops something went wrong');
+			this.props.history.push('/'); // return to dashboard
+		}
 	}
 
 	deleteButton = <button onClick = 
@@ -22,7 +38,7 @@ export class EditRecordPage extends Component
 		(e) =>
 		{
 			confirm('Are you sure you want to remove record?') &&
-			this.props.removeRecord( { id: this.props.record.id } );
+			this.props.removeRecord( this.props.record.id );
 			this.props.history.push('/'); // return to dashboard
 		}
 	}
@@ -31,7 +47,7 @@ export class EditRecordPage extends Component
 	</button>
 
 	render()
-	{ 
+	{
 		return (
 			<div>
 				<RecordForm
@@ -65,7 +81,7 @@ const mapStateToProps = ( state, props ) =>
 const mapDispatchToProps = ( dispatch ) => (
 {
 	editRecord: ( record ) => dispatch( editRecord( record.id, record ) ),
-	removeRecord: ( { id } ) => dispatch( removeRecord( { id } ) )
+	removeRecord: ( id ) => dispatch( removeRecord( { id } ) )
 });
 
 // The HOC passes the props through
