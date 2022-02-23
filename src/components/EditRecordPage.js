@@ -38,18 +38,12 @@ export class EditRecordPage extends Component
 		this.props.history.push('/'); // return to dashboard
 	}
 
-	deleteButton = <button onClick = 
+	onRemove = () =>
 	{
-		(e) =>
-		{
-			confirm('Are you sure you want to remove record?') &&
-			this.props.removeRecord( this.props.record.id );
-			this.props.history.push('/'); // return to dashboard
-		}
+		confirm('Are you sure you want to remove record?') &&
+		this.props.removeRecord( this.props.record.id );
+		this.props.history.push('/'); // return to dashboard
 	}
-	>
-		Delete
-	</button>
 
 	render()
 	{
@@ -61,7 +55,7 @@ export class EditRecordPage extends Component
 					seasons={ this.props.seasons }
 					onSubmit={ this.onSubmit }
 				/>
-				{ this.deleteButton }
+				<button onClick={ this.onRemove }>Remove</button>
 			</div>
 		)
 	}
