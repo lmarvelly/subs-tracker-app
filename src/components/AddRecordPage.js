@@ -25,7 +25,7 @@ export class AddRecordPage extends Component
 	onSubmit = ( record ) =>
 	{
 			// using props.onSubmit this instead of "this.props.dispatch( addRecord( record ) )";
-			this.props.onSubmit(record); 
+			this.props.addRecord(record); 
 			this.props.history.push('/'); // return to dashboard
 	}
 
@@ -91,7 +91,7 @@ const mapStateToProps = ( state, props ) =>
  */
 const mapDispatchToProps = (dispatch) => (
 {
-	onSubmit: (record) => dispatch( addRecord( record ) )
+	addRecord: (record) => dispatch( addRecord( record ) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( AddRecordPage );
