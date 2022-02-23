@@ -26,11 +26,18 @@ export class EditRecordPage extends Component
 	// Adding alert() CAUSES ERRORS
 	componentDidMount()
 	{
-		if(!this.props.record)
+		if(this.state.error)
 		{
 			// alert('Whoops something went wrong');
 			this.props.history.push('/'); // return to dashboard
 		}
+	}
+
+	onSubmit = ( record ) => 
+	{
+		this.props.editRecord( record );
+
+		this.props.history.push('/'); // return to dashboard
 	}
 
 	deleteButton = <button onClick = 
@@ -54,12 +61,7 @@ export class EditRecordPage extends Component
 					record={ this.props.record }
 					members={ this.props.members } // TODO change to member rather than all the members
 					seasons={ this.props.seasons }
-					onSubmit={ ( record ) => 
-					{
-						this.props.editRecord( record );
-	
-						this.props.history.push('/'); // return to dashboard
-					}}
+					onSubmit={ this.onSubmit }
 				/>
 				{ this.deleteButton }
 			</div>
