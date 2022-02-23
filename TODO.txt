@@ -43,7 +43,8 @@ FEATURES
 		* More intellegent search filter e.g. search for full name like 'Jason Cousins'
 
 	ARCHIVING:
-		* 
+		* Arctive Members
+		* Archive Seasons
 
 TESTING
 	* Write Record selector for Member filter
