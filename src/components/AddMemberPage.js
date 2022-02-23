@@ -12,7 +12,7 @@ export class AddMemberPage extends Component
 
 	onSubmit =  ( member ) => 
 	{
-		this.props.dispatch( addMember({ ...member }) );
+		this.props.addMember( { ...member } );
 		this.props.history.push('/members'); // Return to members page
 	}
 
@@ -30,4 +30,10 @@ export class AddMemberPage extends Component
 	};
 };
 
-export default connect()( AddMemberPage );
+// Using mapDispatchToProps to make testing easier
+const mapDispatchToProps = ( dispatch ) => (
+{
+	addMember: ({ ...member }) => dispatch( addMember({ ...member }) )
+});
+
+export default connect( undefined, mapDispatchToProps )( AddMemberPage );
