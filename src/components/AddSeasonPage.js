@@ -10,6 +10,12 @@ export class AddSeasonPage extends Component
 		super( props );
 	}
 
+	onSubmit = ( season ) =>
+	{
+		this.props.addSeason({ ...season });
+		this.props.history.push('/seasons');
+	}
+
 	render()
 	{
 		return(
@@ -17,14 +23,7 @@ export class AddSeasonPage extends Component
 				<h1>Add Season Page</h1>
 
 				<SeasonForm
-					onSubmit=
-					{
-						( season ) =>
-						{
-							this.props.addSeason({ ...season });
-							this.props.history.push('/seasons');
-						}
-					}
+					onSubmit={ this.onSubmit }
 				/>
 			</div>
 		);
