@@ -19,8 +19,6 @@ export class EditRecordPage extends Component
 		{
 			error: this.props.record ? false : true
 		}
-		
-		console.log('Record Error: ', this.state.error);
 	}
 
 	// Adding alert() CAUSES ERRORS
