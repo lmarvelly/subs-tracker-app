@@ -17,6 +17,7 @@ import {
 import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from './actions/memberFilters';
 import { addMember, removeMember } from './actions/members';
 import { addSeason } from './actions/seasons';
+import { seasons, members, records } from './tests/fixtures/fixures';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
@@ -43,75 +44,75 @@ const unsubscribe = store.subscribe(() =>
 });
 
 
-// store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickname: 'Lukio'}) );
-// store.dispatch( addMember({firstName: 'Harri', middleNames: '', surname: 'Messenger' }) );
-// store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousins'}) );
+store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickname: 'Lukio'}) );
+store.dispatch( addMember({firstName: 'Harri', middleNames: '', surname: 'Messenger' }) );
+store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousins'}) );
 store.dispatch( sortAlphabetAsc() );
 // store.dispatch( sortAlphabetDesc() );
 // store.dispatch( setMemberTextFilter('Jason') );
 // store.dispatch( setMemberFilterText( store.getState().members[0].playerUuid ) )
 
-// const season1 = store.dispatch(
-// 	addSeason({ seasonName: '2020/2021' })
-// );
+const season1 = store.dispatch(
+	addSeason({ seasonName: '2020/2021' })
+);
 
-// const season2 = store.dispatch(
-// 	addSeason({ seasonName: '2019/2020' })
-// );
+const season2 = store.dispatch(
+	addSeason({ seasonName: '2019/2020' })
+);
 
-// const season3 = store.dispatch(
-// 	addSeason({ seasonName: 'Donations' })
-// );
+const season3 = store.dispatch(
+	addSeason({ seasonName: 'Donations' })
+);
 
 // store.dispatch( setSeasonFilter( store.getState().seasons[1].seasonUuid ) );
 
-// const record = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'DEBT',
-// 			playerUuid: store.getState().members[1].playerUuid, 
-// 			seasonUuid: store.getState().seasons[0].seasonUuid,
-// 			description: 'Training subs two weeks', 
-// 			amountOwed: 700
-// 		} 
-// 	)
-// );
+const record = store.dispatch( 
+	addRecord( 
+		{ 
+			recordType: 'DEBT',
+			playerUuid: store.getState().members[1].playerUuid, 
+			seasonUuid: store.getState().seasons[0].seasonUuid,
+			description: 'Training subs two weeks', 
+			amountOwed: 700
+		} 
+	)
+);
 
-// const record1 = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'PAYMENT',
-// 			playerUuid: store.getState().members[1].playerUuid,
-// 			seasonUuid: store.getState().seasons[0].seasonUuid,
-// 			description: 'Training subs', 
-// 			amount: 400
-// 		} 
-// 	)
-// );
+const record1 = store.dispatch( 
+	addRecord( 
+		{ 
+			recordType: 'PAYMENT',
+			playerUuid: store.getState().members[1].playerUuid,
+			seasonUuid: store.getState().seasons[0].seasonUuid,
+			description: 'Training subs', 
+			amount: 400
+		} 
+	)
+);
 
-// const record2 = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'PAYMENT',
-// 			playerUuid: store.getState().members[0].playerUuid,
-// 			seasonUuid: store.getState().seasons[1].seasonUuid,
-// 			description: '5s subs', 
-// 			amount: 500
-// 		} 
-// 	)
-// );
+const record2 = store.dispatch( 
+	addRecord( 
+		{ 
+			recordType: 'PAYMENT',
+			playerUuid: store.getState().members[0].playerUuid,
+			seasonUuid: store.getState().seasons[1].seasonUuid,
+			description: '5s subs', 
+			amount: 500
+		} 
+	)
+);
 
-// const record3 = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'PAYMENT',
-// 			playerUuid: store.getState().members[2].playerUuid, 
-// 			seasonUuid: store.getState().seasons[1].seasonUuid,
-// 			description: 'donation', 
-// 			amount: 5000
-// 		} 
-// 	)
-// );
+const record3 = store.dispatch( 
+	addRecord( 
+		{ 
+			recordType: 'PAYMENT',
+			playerUuid: store.getState().members[2].playerUuid, 
+			seasonUuid: store.getState().seasons[1].seasonUuid,
+			description: 'donation', 
+			amount: 5000
+		} 
+	)
+);
 
 
 
