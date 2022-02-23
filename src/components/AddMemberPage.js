@@ -36,4 +36,5 @@ const mapDispatchToProps = ( dispatch ) => (
 	addMember: ({ ...member }) => dispatch( addMember({ ...member }) )
 });
 
+// undefined is where mapStateToProps is usually
 export default connect( undefined, mapDispatchToProps )( AddMemberPage );
