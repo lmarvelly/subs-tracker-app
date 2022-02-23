@@ -1,4 +1,5 @@
 ERRORS
+	* Make sure there are no inline functions. They need to be made into there own function calls
 	* Deleting objects. They need to be archived when deleting 
 	  records/members/seasons if they are connected to other objects.
 	  MAYBE add a string like 'ARCHIVE' in front of uuid 
