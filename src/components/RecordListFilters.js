@@ -156,7 +156,9 @@ const mapStateToProps = ( state ) =>
 /**
  * @param {*} dispatch 
  * We use the shorthand here which used the curly braces to 
- * implicitly return an object
+ * implicitly return each object. Each object has a dispatch call
+ * with an action object passed into it.
+ * 
  * @returns 
  */
 const mapDispatchToProps = ( dispatch ) =>
