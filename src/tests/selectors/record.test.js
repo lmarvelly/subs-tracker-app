@@ -80,4 +80,34 @@ test('Should sort by dateDescending', () =>
 	expect(result).toEqual([ records[1], records[3], records[0], records[2] ]);
 });
 
+test('Should filter by member text filter', () =>
+{
+	const filters = 
+	{
+		text: '',
+		memberTextFilter: 'Har',
+		sortBy: 'dateDescending',
+		startDate: undefined,
+		endDate: undefined
+	};
+	const result = selectRecord(records, members, filters);
+
+	expect(result).toEqual([ records[1] ]);
+});
+
+test('Should filter by member text filter', () =>
+{
+	const filters = 
+	{
+		text: '',
+		memberTextFilter: 'Mar',
+		sortBy: 'dateDescending',
+		startDate: undefined,
+		endDate: undefined
+	};
+	const result = selectRecord(records, members, filters);
+
+	expect(result).toEqual([ records[0] ]);
+});
+
 // Should sort amount
