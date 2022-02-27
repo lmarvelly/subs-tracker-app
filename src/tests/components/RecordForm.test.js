@@ -62,16 +62,20 @@ test('should set note on textarea change', () =>
 // TODO: not working properly. Not changing amount
 test('Should set amount if input data is valid', () =>
 {
-	const value = '11.00';
+	const value = '1';
 	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	const input = wrapper.find('input').at(1);
 
-	wrapper.find('input').at(1).simulate('change',
+	input.simulate('change',
 	{
 		target: { value }
 	});
 
+	console.log(input.value);
+
+	expect(input.value).toBe(value);
 	// wrapper.find('#amountToPay').at(0).prop('onChange')({target: { value }});
-	expect(wrapper.state('amount')).toEqual(value);
+	// expect(wrapper.state('amount')).toEqual(value);
 
 	// expect(wrapper.state('amount')).toBe(value);
 });
@@ -80,12 +84,14 @@ test('Should not set amount if input data is invalid', () =>
 {
 	const value = '10.001';
 	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
-	
-	wrapper.find('input').at(1).simulate('change',
+	const input = wrapper.find('input').at(1);
+
+	input.simulate('change',
 	{
 		target: { value }
 	});
 
+	expect(input.value).toBe('10.00');
 	expect(wrapper.state('amount')).toBe('');
 });
 
