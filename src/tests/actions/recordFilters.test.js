@@ -1,9 +1,6 @@
 import moment from 'moment';
-import 
-{ 
-	sortByDateAscending, sortByDateDescending, sortByAmount, 
-	setStartDate, setEndDate, setTextFilter, setMemberFilterText,
-	setSeasonFilter
+import { sortByDateAscending, sortByDateDescending, setStartDate, 
+	setEndDate, setTextFilter, setMemberFilterText, setSeasonFilter
 } from '../../actions/recordFilters';
 
 test('Should generate Sort By Date Ascending action object', () =>
@@ -21,15 +18,6 @@ test('Should generate Sort By Date Descending action object', () =>
 	expect(action).toEqual(
 	{
 		type: 'SORT_BY_DATE_DESCENDING'
-	});
-});
-
-test('Should generate Sort By Amount action object', () =>
-{
-	const action = sortByAmount();
-	expect(action).toEqual(
-	{
-		type: 'SORT_BY_AMOUNT'
 	});
 });
 

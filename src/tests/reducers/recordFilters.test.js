@@ -20,13 +20,6 @@ test('should setup default filter values', () =>
 	});
 });
 
-test('should set sortBy to amount', () => 
-{
-	const state = filtersReducer( undefined, { type: 'SORT_BY_AMOUNT' });
-
-	expect( state.sortBy ).toBe('amount');
-});
-
 test('should set startDate to the First of March of current year', () => 
 {
 	const startDate = moment().startOf('year').add( 2, 'months');
@@ -54,7 +47,7 @@ test('should set sortBy to dateAscending', () =>
 		memberTextFilter: '',
 		startDate: undefined,
 		endDate: undefined,
-		sortBy: 'amount' // set to be amount so we can see the change
+		sortBy: 'dateAscending' // set to be amount so we can see the change
 	}
 	const action = { type: 'SORT_BY_DATE_ASCENDING' };
 	const state = filtersReducer( currentState, action );

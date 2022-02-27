@@ -48,11 +48,6 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 				...state, 
 				endDate: action.endDate 
 			}
-		case 'SORT_BY_AMOUNT':
-			return { 
-				...state, 
-				sortBy: 'amount'
-			}
 		case 'SET_MEMBER_FILTER_TEXT':
 			return {
 				...state,

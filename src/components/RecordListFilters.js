@@ -3,8 +3,8 @@ import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
 import { setTextFilter, sortByDateAscending, sortByDateDescending, 
-	sortByAmount, setStartDate, setEndDate, setMemberFilterText,
-	setSeasonFilter } from '../actions/recordFilters';
+	setStartDate, setEndDate, setMemberFilterText, setSeasonFilter 
+} from '../actions/recordFilters';
 
 /**
  * Both inputs are Controlled Components (Input where the input is
@@ -55,15 +55,11 @@ class RecordListFilters extends Component
 		switch (e.target.value) 
 		{
 			case 'dateAscending':
-				this.props.dispatch( sortByDateAscending() );
+				this.props.sortByDateAscending();
 				break;
 		
 			case 'dateDescending':
-				this.props.dispatch( sortByDateDescending() );
-				break;
-		
-			case 'amount':
-				this.props.dispatch( sortByAmount() );
+				this.props.sortByDateDescending();
 				break;
 		
 			default:
@@ -127,7 +123,6 @@ class RecordListFilters extends Component
 				>
 					<option value="dateAscending">Date Ascending</option>
 					<option value="dateDescending">Date Descending</option>
-					<option value="amount">Amount</option>
 				</select>
 				<DateRangePicker
 					startDate={ this.props.recordFilters.startDate }
@@ -170,7 +165,9 @@ const mapDispatchToProps = ( dispatch ) =>
 	setEndDate: ( endDate ) => dispatch( setEndDate( endDate ) ),
 	setMemberFilterText: ( text ) => dispatch( setMemberFilterText( text ) ),
 	setTextFilter: ( text ) => dispatch( setTextFilter( text ) ),
-	setSeasonFilter: ( seasonUuid ) => dispatch( setSeasonFilter( seasonUuid ) )
+	setSeasonFilter: ( seasonUuid ) => dispatch( setSeasonFilter( seasonUuid ) ),
+	sortByDateAscending: () => dispatch( sortByDateAscending() ),
+	sortByDateDescending: () => dispatch( sortByDateDescending() ),
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( RecordListFilters );

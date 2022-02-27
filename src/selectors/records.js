@@ -41,9 +41,5 @@ export default ( records, members, { text, memberTextFilter, sortBy = 'dateAscen
 		{
 			return a.createdAt > b.createdAt ? 1 : -1; // 1 if true, -1 if false
 		}
-		else if( sortBy === 'amount' ) 
-		{
-			return a.amount < b.createdAt ? 1 : -1;
-		}
 	});
 }
