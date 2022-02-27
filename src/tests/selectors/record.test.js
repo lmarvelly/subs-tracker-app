@@ -5,7 +5,7 @@ import { records, members, seasons, } from '../fixtures/fixures';
 test('Should filter by text value', () =>
 {
 	const filters = {
-		text: 'train',
+		descriptionTextFilter: 'train',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: undefined,
@@ -21,7 +21,7 @@ test('Should filter by startDate', () =>
 {
 	const filters = 
 	{
-		text: '',
+		descriptionTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: moment(0),
@@ -38,7 +38,7 @@ test('Should filter by startDate', () =>
 {
 	const filters = 
 	{
-		text: '',
+		descriptionTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: undefined,
@@ -53,7 +53,7 @@ test('Should filter by startDate', () =>
 test('Should sort by dateAscending', () =>
 {
 	const filters = {
-		text: '',
+		descriptionTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: undefined,
@@ -68,7 +68,7 @@ test('Should sort by dateAscending', () =>
 test('Should sort by dateDescending', () =>
 {
 	const filters = {
-		text: '',
+		descriptionTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateDescending',
 		startDate: undefined,
@@ -84,7 +84,7 @@ test('Should filter by member text filter', () =>
 {
 	const filters = 
 	{
-		text: '',
+		descriptionTextFilter: '',
 		memberTextFilter: 'Har',
 		sortBy: 'dateDescending',
 		startDate: undefined,
@@ -99,7 +99,7 @@ test('Should filter by member text filter', () =>
 {
 	const filters = 
 	{
-		text: '',
+		descriptionTextFilter: '',
 		memberTextFilter: 'Mar',
 		sortBy: 'dateDescending',
 		startDate: undefined,

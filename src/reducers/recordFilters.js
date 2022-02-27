@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const paymentRecordReducerFilterDefaultState = 
 {
-	text: '',
+	descriptionTextFilter: '',
 	memberTextFilter: '',
 	playerUuid: '',
 	sortBy: 'dateAscending',
@@ -26,7 +26,7 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 		case 'SET_DESCRIPTION_FILTER_TEXT':
 			return { 
 				...state, 
-				text: action.text 
+				descriptionTextFilter: action.text 
 			}
 		case 'SORT_BY_DATE_ASCENDING':
 			return { 

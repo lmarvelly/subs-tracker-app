@@ -13,7 +13,7 @@ import moment from "moment";
  * @param {*} records 
  * @param {*} filters
  */
-export default ( records, members, { text, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
+export default ( records, members, { descriptionTextFilter, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
 {
 	return records.filter( (record) =>
 	{
@@ -26,7 +26,7 @@ export default ( records, members, { text, memberTextFilter, sortBy = 'dateAscen
 		const createdAtMoment = moment( record.createdAt );
 		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
 		const endDateMatch  = endDate ? endDate.isSameOrAfter( createdAtMoment, 'day' ) : true ; // if the record is created the same day or after the endDate then it's filtered out
-		const textMatch = record.description.toLowerCase().includes(text.toLowerCase());
+		const textMatch = record.description.toLowerCase().includes(descriptionTextFilter.toLowerCase());
 		
 		const seasonMatch = seasonFilter ? seasonFilter === record.seasonUuid : true;
 		
