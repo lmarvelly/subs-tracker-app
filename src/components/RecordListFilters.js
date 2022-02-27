@@ -51,6 +51,27 @@ class RecordListFilters extends Component
 		this.props.dispatch( setSeasonFilter( e.target.value ) )
 	}
 
+	onSortChange = (e) =>
+	{
+		switch (e.target.value) 
+		{
+			case 'dateAscending':
+				this.props.dispatch( sortByDateAscending() );
+				break;
+		
+			case 'dateDescending':
+				this.props.dispatch( sortByDateDescending() );
+				break;
+		
+			case 'amount':
+				this.props.dispatch( sortByAmount() );
+				break;
+		
+			default:
+				break;
+		}
+	}
+
 	render()
 	{	
 		return(
@@ -103,29 +124,8 @@ class RecordListFilters extends Component
 
 				<select 
 					value={ this.props.recordFilters.sortBy } // This is needed to make it a controlled component
-					onChange=
-					{
-						(e) =>
-						{
-							switch (e.target.value) 
-							{
-								case 'dateAscending':
-									this.props.dispatch( sortByDateAscending() );
-									break;
-							
-								case 'dateDescending':
-									this.props.dispatch( sortByDateDescending() );
-									break;
-							
-								case 'amount':
-									this.props.dispatch( sortByAmount() );
-									break;
-							
-								default:
-									break;
-							}
-						}
-					}>
+					onChange={ this.onSortChange }
+				>
 					<option value="dateAscending">Date Ascending</option>
 					<option value="dateDescending">Date Descending</option>
 					<option value="amount">Amount</option>
