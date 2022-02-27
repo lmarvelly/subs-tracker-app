@@ -23,7 +23,7 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 {
 	switch ( action.type )
 	{
-		case 'SET_FILTER_TEXT':
+		case 'SET_DESCRIPTION_FILTER_TEXT':
 			return { 
 				...state, 
 				text: action.text 
