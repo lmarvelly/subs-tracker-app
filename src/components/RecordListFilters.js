@@ -15,9 +15,12 @@ import { setTextFilter, sortByDateAscending, sortByDateDescending,
  * @param {function} onChange is an On Change handler propery that 
  * takes in a function
  * 
+ * Need to export the Class so we can import the named import to 
+ * test it
+ * 
  * @returns 
  */
-class RecordListFilters extends Component
+export class RecordListFilters extends Component
 {
 	state = 
 	{
