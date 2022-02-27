@@ -4,7 +4,6 @@ import moment from 'moment';
 import RecordForm from '../../components/RecordForm';
 import { records, members, seasons } from '../fixtures/fixures';
 
-// TODO render without members or seasons array
 test('should render Record Form component correctly', () => 
 {
 	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
@@ -59,7 +58,7 @@ test('should set note on textarea change', () =>
 	expect(wrapper.state('note')).toBe(value);
 });
 
-// TODO: not working properly. Not changing amount
+// TODO: not working properly. Not changing amount. This may need to use render or mount instead
 test('Should set amount if input data is valid', () =>
 {
 	const value = '1';
@@ -91,7 +90,6 @@ test('Should not set amount if input data is invalid', () =>
 		target: { value }
 	});
 
-	expect(input.value).toBe('10.00');
 	expect(wrapper.state('amount')).toBe('');
 });
 

@@ -51,14 +51,15 @@ test('should handle onSubmit', () =>
 });
 
 // Remove Record
+// TODO this test is failing
 test('should handle removeRecord', () => 
 {
-	console.log('Length: ', wrapper2.find('button').length);
 	wrapper2.find('button').at(0).simulate('click');
 
 	expect(history.push).toHaveBeenLastCalledWith('/');
-	// expect(removeRecord).toHaveBeenLastCalledWith(
-	// {
-	// 	id: record.id
-	// });
+	expect(removeRecord).toHaveBeenCalled();
+	expect(removeRecord).toHaveBeenLastCalledWith(
+	{
+		id: record.id
+	});
 });
