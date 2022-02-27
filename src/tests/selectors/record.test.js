@@ -109,5 +109,3 @@ test('Should filter by member text filter', () =>
 
 	expect(result).toEqual([ records[0] ]);
 });
-
-// Should sort amount
