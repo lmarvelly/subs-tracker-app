@@ -37,7 +37,7 @@ class RecordListFilters extends Component
 
 	onMemberTextChange = (e) =>
 	{
-		this.props.dispatch( setMemberFilterText( e.target.value ) )
+		this.props.setMemberFilterText( e.target.value )
 	}
 
 	onDecriptionChange = (e) => 
@@ -168,6 +168,7 @@ const mapDispatchToProps = ( dispatch ) =>
 ({
 	setStartDate: ( startDate ) => dispatch(setStartDate( startDate )),
 	setEndDate: ( endDate ) => dispatch( setEndDate( endDate ) ),
+	setMemberFilterText: ( text ) => dispatch( setMemberFilterText( text ) ),
 	setTextFilter: ( text ) => dispatch( setTextFilter( text ) )
 });
 
