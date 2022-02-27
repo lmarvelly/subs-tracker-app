@@ -64,6 +64,16 @@ test('Should generate Set End Date action object', () =>
 
 test('should generate Filter By Member action object', () => 
 {
+	const action = setMemberFilterText( '' );
+	expect(action).toEqual(
+	{
+		type: 'SET_MEMBER_FILTER_TEXT',
+		text: ''
+	});
+});
+
+test('should generate default Filter By Member action object', () => 
+{
 	const text = 'member name';
 	const action = setMemberFilterText( text );
 	expect(action).toEqual(
