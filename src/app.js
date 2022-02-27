@@ -9,10 +9,8 @@ import getVisibleMembers from './selectors/members';
 import getVisibleSeasons from './selectors/seasons';
 
 import { addRecord, editRecord, removeRecord } from './actions/records';
-import { 
-	sortByDateAscending, sortByDateDescending, sortByAmount, 
-	setStartDate, setEndDate, setTextFilter, setMemberFilterText,
-	setSeasonFilter 
+import { sortByDateAscending, sortByDateDescending, setStartDate, 
+	setEndDate, setTextFilter, setMemberFilterText, setSeasonFilter 
 } from './actions/recordFilters';
 import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from './actions/memberFilters';
 import { addMember, removeMember } from './actions/members';
