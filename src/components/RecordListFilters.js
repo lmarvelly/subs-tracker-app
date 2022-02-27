@@ -36,6 +36,16 @@ class RecordListFilters extends Component
 		this.setState(() => ({ calenderFocused }))
 	}
 
+	onMemberTextChange = (e) =>
+	{
+		this.props.dispatch( setMemberFilterText( e.target.value ) )
+	}
+
+	onDecriptionChange = (e) => 
+	{
+		this.props.dispatch( setTextFilter( e.target.value ) );
+	}
+
 	render()
 	{	
 		return(
@@ -44,10 +54,7 @@ class RecordListFilters extends Component
 					list='memberFilter' 
 					type="text" 
 					placeholder='Filter by member'
-					onChange={(e) =>
-					{
-						this.props.dispatch( setMemberFilterText( e.target.value ) )
-					}}
+					onChange={ this.onMemberTextChange }
 				/>
 				<datalist id='memberFilter'>
 					{
@@ -64,13 +71,7 @@ class RecordListFilters extends Component
 					type="text" 
 					placeholder='Search Descriptions'
 					value={ this.props.recordFilters.text } // This is needed to make it a controlled component
-					onChange=
-					{
-						(e) => 
-						{
-							this.props.dispatch( setTextFilter( e.target.value ) );
-						}
-					}
+					onChange={ this.onDecriptionChange }
 				/>
 
 				<select
