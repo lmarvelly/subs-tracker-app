@@ -46,6 +46,11 @@ class RecordListFilters extends Component
 		this.props.dispatch( setTextFilter( e.target.value ) );
 	}
 
+	onSeasonChange = ( e ) =>
+	{
+		this.props.dispatch( setSeasonFilter( e.target.value ) )
+	}
+
 	render()
 	{	
 		return(
@@ -77,14 +82,10 @@ class RecordListFilters extends Component
 				<select
 					value={ this.props.recordFilters.seasonUuid }
 					onChange=
-					{
-						( e ) =>
-						{
-							this.props.dispatch( setSeasonFilter( e.target.value ) )
-						}
-					}
+					{ this.onSeasonChange }
 				>
 					<option hidden>Filter by season</option>
+					<option value=''>Show All</option>
 					{
 						this.props.seasons.map( ( season ) =>
 						{
