@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { sortByDateAscending, sortByDateDescending, setStartDate, 
-	setEndDate, setTextFilter, setMemberFilterText, setSeasonFilter
+	setEndDate, setDescriptionTextFilter, setMemberFilterText, setSeasonFilter
 } from '../../actions/recordFilters';
 
 test('Should generate Sort By Date Ascending action object', () =>
@@ -24,7 +24,7 @@ test('Should generate Sort By Date Descending action object', () =>
 test('Should generate Filter By Decription Text action object', () =>
 {
 	const text = 'Testing text';
-	const action = setTextFilter(text);
+	const action = setDescriptionTextFilter(text);
 	expect(action).toEqual(
 	{
 		type: 'SET_DESCRIPTION_FILTER_TEXT',
@@ -34,7 +34,7 @@ test('Should generate Filter By Decription Text action object', () =>
 
 test('Should generate default Filter By Decription Text action object', () =>
 {
-	const action = setTextFilter('');
+	const action = setDescriptionTextFilter('');
 	expect(action).toEqual(
 	{
 		type: 'SET_DESCRIPTION_FILTER_TEXT',

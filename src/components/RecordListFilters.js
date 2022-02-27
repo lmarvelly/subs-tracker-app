@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
-import { setTextFilter, sortByDateAscending, sortByDateDescending, 
+import { setDescriptionTextFilter, sortByDateAscending, sortByDateDescending, 
 	setStartDate, setEndDate, setMemberFilterText, setSeasonFilter 
 } from '../actions/recordFilters';
 
@@ -45,7 +45,7 @@ export class RecordListFilters extends Component
 
 	onDecriptionChange = (e) => 
 	{
-		this.props.setTextFilter( e.target.value );
+		this.props.setDescriptionTextFilter( e.target.value );
 	}
 
 	onSeasonChange = ( e ) =>
@@ -169,7 +169,7 @@ const mapDispatchToProps = ( dispatch ) =>
 	setStartDate: ( startDate ) => dispatch(setStartDate( startDate )),
 	setEndDate: ( endDate ) => dispatch( setEndDate( endDate ) ),
 	setMemberFilterText: ( text ) => dispatch( setMemberFilterText( text ) ),
-	setTextFilter: ( text ) => dispatch( setTextFilter( text ) ),
+	setDescriptionTextFilter: ( text ) => dispatch( setDescriptionTextFilter( text ) ),
 	setSeasonFilter: ( seasonUuid ) => dispatch( setSeasonFilter( seasonUuid ) ),
 	sortByDateAscending: () => dispatch( sortByDateAscending() ),
 	sortByDateDescending: () => dispatch( sortByDateDescending() ),
