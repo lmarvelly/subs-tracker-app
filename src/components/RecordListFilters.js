@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
-import { 
-	setTextFilter, sortByDateAscending, sortByDateDescending, 
+import { setTextFilter, sortByDateAscending, sortByDateDescending, 
 	sortByAmount, setStartDate, setEndDate, setMemberFilterText,
-	setSeasonFilter 
-} from '../actions/recordFilters';
+	setSeasonFilter } from '../actions/recordFilters';
 
 /**
  * Both inputs are Controlled Components (Input where the input is
@@ -26,9 +24,10 @@ class RecordListFilters extends Component
 		calenderFocused: null
 	}
 
-	onDatesChange = ( { startDate, endDate } ) => {
-		this.props.dispatch( setStartDate( startDate ) );
-		this.props.dispatch( setEndDate( endDate ) );
+	onDatesChange = ( { startDate, endDate } ) => 
+	{
+		this.props.setStartDate( startDate );
+		this.props.setEndDate( endDate );
 	};
 
 	onFocusChange = ( calenderFocused ) =>
@@ -43,7 +42,7 @@ class RecordListFilters extends Component
 
 	onDecriptionChange = (e) => 
 	{
-		this.props.dispatch( setTextFilter( e.target.value ) );
+		this.props.setTextFilter( e.target.value )
 	}
 
 	onSeasonChange = ( e ) =>
@@ -159,4 +158,17 @@ const mapStateToProps = ( state ) =>
 	};
 };
 
-export default connect( mapStateToProps )( RecordListFilters );
+/**
+ * @param {*} dispatch 
+ * We use the shorthand here which used the curly braces to 
+ * implicitly return an object
+ * @returns 
+ */
+const mapDispatchToProps = ( dispatch ) =>
+({
+	setStartDate: ( startDate ) => dispatch(setStartDate( startDate )),
+	setEndDate: ( endDate ) => dispatch( setEndDate( endDate ) ),
+	setTextFilter: ( text ) => dispatch( setTextFilter( text ) )
+});
+
+export default connect( mapStateToProps, mapDispatchToProps )( RecordListFilters );
