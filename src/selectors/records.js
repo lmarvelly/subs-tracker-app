@@ -3,11 +3,12 @@ import moment from "moment";
 /**
  * Destruct Filters
  * {
- * 	text
- * 	playerUuid
+ * 	descriptionTextFilter
+ * 	memberTextFilter
  * 	sortBy
  * 	startDate
  * 	endDate
+ * 	seasonFilter
  * }
  * 
  * @param {*} records 
