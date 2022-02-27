@@ -32,22 +32,22 @@ class RecordListFilters extends Component
 
 	onFocusChange = ( calenderFocused ) =>
 	{
-		this.setState(() => ({ calenderFocused }))
+		this.setState(() => ({ calenderFocused }));
 	}
 
 	onMemberTextChange = (e) =>
 	{
-		this.props.setMemberFilterText( e.target.value )
+		this.props.setMemberFilterText( e.target.value );
 	}
 
 	onDecriptionChange = (e) => 
 	{
-		this.props.setTextFilter( e.target.value )
+		this.props.setTextFilter( e.target.value );
 	}
 
 	onSeasonChange = ( e ) =>
 	{
-		this.props.dispatch( setSeasonFilter( e.target.value ) )
+		this.props.setSeasonFilter( e.target.value );
 	}
 
 	onSortChange = (e) =>
@@ -169,7 +169,8 @@ const mapDispatchToProps = ( dispatch ) =>
 	setStartDate: ( startDate ) => dispatch(setStartDate( startDate )),
 	setEndDate: ( endDate ) => dispatch( setEndDate( endDate ) ),
 	setMemberFilterText: ( text ) => dispatch( setMemberFilterText( text ) ),
-	setTextFilter: ( text ) => dispatch( setTextFilter( text ) )
+	setTextFilter: ( text ) => dispatch( setTextFilter( text ) ),
+	setSeasonFilter: ( seasonUuid ) => dispatch( setSeasonFilter( seasonUuid ) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( RecordListFilters );
