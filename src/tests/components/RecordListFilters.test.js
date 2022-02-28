@@ -35,3 +35,35 @@ test('should Render RecordListFilters correctly', () =>
 {
 	expect(wrapper).toMatchSnapshot();
 });
+
+test('should Render RecordListFilters with Alt Data 1 correctly', () => 
+{
+	wrapper.setProps(
+	{
+		recordFilters: altFilters1
+	});
+
+	expect(wrapper).toMatchSnapshot();
+});
+
+// Error: memberTextFilter value missing
+test('should Render RecordListFilters with Alt Data 2 correctly', () => 
+{
+	wrapper.setProps(
+	{
+		recordFilters: altFilters2
+	});
+
+	expect(wrapper).toMatchSnapshot();
+});
+
+// Error: memberTextFilter value missing
+test('should Render RecordListFilters with Alt Data 3 correctly', () => 
+{
+	wrapper.setProps(
+	{
+		recordFilters: altFilters3
+	});
+
+	expect(wrapper).toMatchSnapshot();
+});
