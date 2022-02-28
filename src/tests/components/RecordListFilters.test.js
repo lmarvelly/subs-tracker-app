@@ -46,7 +46,7 @@ test('should Render RecordListFilters with Alt Data 1 correctly', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-// Error: memberTextFilter value missing
+// Error: memberTextFilter value prop missing
 test('should Render RecordListFilters with Alt Data 2 correctly', () => 
 {
 	wrapper.setProps(
@@ -57,7 +57,7 @@ test('should Render RecordListFilters with Alt Data 2 correctly', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-// Error: memberTextFilter value missing
+// Error: memberTextFilter value prop missing
 test('should Render RecordListFilters with Alt Data 3 correctly', () => 
 {
 	wrapper.setProps(
