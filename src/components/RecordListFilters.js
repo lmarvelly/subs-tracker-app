@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates'; 
 
-import { setDescriptionTextFilter, sortByDateAscending, sortByDateDescending, 
-	setStartDate, setEndDate, setMemberFilterText, setSeasonFilter 
+import { setDescriptionTextFilter, setMemberFilterText, sortByDateAscending, 
+	sortByDateDescending, setStartDate, setEndDate, setSeasonFilter 
 } from '../actions/recordFilters';
 
 /**
