@@ -7,6 +7,12 @@
 
 
 
+### Commands when firing up Project ###
+	cd Documents/Programming/Personal/subs-tracker-app/subs-tracker-app
+	yarn dev-server
+	yarn test -- --watch
+
+
 ### ADDING NEW MEMBER FUNCTIONALITY ###
 1. Create Member Reducer with 
 		Add Member
