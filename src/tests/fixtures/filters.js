@@ -4,13 +4,6 @@ import { seasons } from "./fixures";
 
 const defaultFilters =
 {
-	// descriptionTextFilter: '',
-	// memberTextFilter: '',
-	// sortBy: 'dateAscending',
-	// startDate: undefined,
-	// endDate: undefined,
-	// seasonFilter: ''
-
 	descriptionTextFilter: '',
 	memberTextFilter: '',
 	playerUuid: '',
