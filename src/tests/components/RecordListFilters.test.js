@@ -96,7 +96,6 @@ test('should Render RecordListFilters with Alt Data 3 correctly', () =>
 test('should handle text change on Member Filter', () =>
 {
 	const value = 'Luke';
-	console.log(wrapper.find('input').at(0).type());
 	wrapper.find('input').at(0).simulate('change', 
 	{
 		target: { value }
@@ -105,16 +104,49 @@ test('should handle text change on Member Filter', () =>
 	expect(setMemberFilterText).toHaveBeenLastCalledWith( value );
 });
 
-test('should sortBy date', () => 
+test('should handle text change on Description Filter', () =>
 {
-	const value = 'dateDescending';
+	const value = 'Training';
+	wrapper.find('input').at(1).simulate('change', 
+	{
+		target: { value }
+	});
+
+	expect(setDescriptionTextFilter).toHaveBeenLastCalledWith( value );
+});
+
+test('should call when Season Filter select value is changed', () => 
+{
+	const value = 'donation';
 	const select = wrapper.find('select').at(0);
 	select.simulate('change',
 	{
 		target: { value }
 	});
 
-	console.log('State:', wrapper.state());
+	expect(setSeasonFilter).toHaveBeenLastCalledWith( value );
+});
 
-	expect(wrapper.state('sortBy')).toBe(sortBy);
+test('should call sortByDateAscending when Date Filter select value is changed', () => 
+{
+	const value = 'dateAscending';
+	const select = wrapper.find('select').at(1);
+	console.log(select.simulate('change',
+	{
+		target: { value }
+	}));
+
+	expect(sortByDateAscending).toHaveBeenCalled();
+});
+
+test('should call sortByDateDescending when select value is changed', () => 
+{
+	const value = 'dateDescending';
+	const select = wrapper.find('select').at(1);
+	select.simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(sortByDateDescending).toHaveBeenCalled();
 });
