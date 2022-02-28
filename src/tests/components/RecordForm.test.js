@@ -4,27 +4,33 @@ import moment from 'moment';
 import RecordForm from '../../components/RecordForm';
 import { records, members, seasons } from '../fixtures/fixures';
 
+let wrapper, altWrapper, paymentWrapper, debtWrapper;
+
+beforeEach( () =>
+{
+	wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	altWrapper = shallow(<RecordForm members={ members } seasons={ seasons } />);
+	paymentWrapper = shallow(<RecordForm record={records[1]} members={ members } seasons={ seasons } />);
+	debtWrapper = shallow(<RecordForm record={records[0]} members={ members } seasons={ seasons } />);
+});
+
 test('should render Record Form component correctly', () => 
 {
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
 	expect(wrapper).toMatchSnapshot();
 });
 
 test('should render Record Form with member and season data', () => 
 {
-	const wrapper = shallow(<RecordForm members={ members } seasons={ seasons } />);
-	expect(wrapper).toMatchSnapshot();
+	expect(altWrapper).toMatchSnapshot();
 });
 
 test('should render Record Form with Record, member and season data', () =>
 {
-	const wrapper = shallow(<RecordForm record={records[0]} members={ members } seasons={ seasons } />);
-	expect(wrapper).toMatchSnapshot();
+	expect(debtWrapper).toMatchSnapshot();
 });
 
 test('should render error for invalid form submission', () => 
 {
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
 	expect(wrapper).toMatchSnapshot();
 	wrapper.find('form').simulate('submit', 
 	{
@@ -37,7 +43,6 @@ test('should render error for invalid form submission', () =>
 test('should test description on input change', () => 
 {
 	const value = 'New description';
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
 	wrapper.find('input').at(0).simulate('change',
 	{
 		target: { value } // Setting the value of e.target.value
@@ -49,7 +54,6 @@ test('should test description on input change', () =>
 test('should set note on textarea change', () =>
 {
 	const value = 'New Note';
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
 	wrapper.find('textarea').at(0).simulate('change',
 	{
 		target: { value } // setting the value of e.target.value
@@ -62,15 +66,14 @@ test('should set note on textarea change', () =>
 test('Should set amount if input data is valid', () =>
 {
 	const value = '1';
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
-	const input = wrapper.find('input').at(1);
+	const input = paymentWrapper.find('input').at(1);
 
 	input.simulate('change',
 	{
 		target: { value }
 	});
 
-	console.log(input.value);
+	console.log('Input Value:', input.value);
 
 	expect(input.value).toBe(value);
 	// wrapper.find('#amountToPay').at(0).prop('onChange')({target: { value }});
@@ -82,8 +85,7 @@ test('Should set amount if input data is valid', () =>
 test('Should not set amount if input data is invalid', () =>
 {
 	const value = '10.001';
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
-	const input = wrapper.find('input').at(1);
+	const input = paymentWrapper.find('input').at(1);
 
 	input.simulate('change',
 	{
