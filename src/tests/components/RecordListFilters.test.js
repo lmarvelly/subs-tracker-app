@@ -93,7 +93,6 @@ test('should Render RecordListFilters with Alt Data 3 correctly', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-// Failing. this.props.setMemberFilterText is not a function
 test('should handle text change on Member Filter', () =>
 {
 	const value = 'Luke';
@@ -103,7 +102,7 @@ test('should handle text change on Member Filter', () =>
 		target: { value }
 	});
 
-	expect(wrapper.find('input').at(0).value).toBe(value);
+	expect(setMemberFilterText).toHaveBeenLastCalledWith( value );
 });
 
 test('should sortBy date', () => 
@@ -115,7 +114,7 @@ test('should sortBy date', () =>
 		target: { value }
 	});
 
-	console.log('State:', wrapper.state);
+	console.log('State:', wrapper.state());
 
 	expect(wrapper.state('sortBy')).toBe(sortBy);
 });
