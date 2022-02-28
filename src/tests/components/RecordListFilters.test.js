@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 import { RecordListFilters } from '../../components/RecordListFilters';
 import { members, seasons } from '../fixtures/fixures';
 import { defaultFilters, altFilters1, altFilters2, altFilters3 } from '../fixtures/filters';
@@ -73,6 +74,7 @@ test('should Render RecordListFilters with Alt Data 1 correctly', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
+// memberFilter value is missing
 test('should Render RecordListFilters with Alt Data 2 correctly', () => 
 {
 	wrapper.setProps(
@@ -83,6 +85,7 @@ test('should Render RecordListFilters with Alt Data 2 correctly', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
+// memberFilter value is missing
 test('should Render RecordListFilters with Alt Data 3 correctly', () => 
 {
 	wrapper.setProps(
@@ -98,7 +101,7 @@ test('should handle text change on Member Filter', () =>
 	const value = 'Luke';
 	wrapper.find('input').at(0).simulate('change', 
 	{
-		target: { value }
+		target: { value } // This becomes the e.target.value
 	});
 
 	expect(setMemberFilterText).toHaveBeenLastCalledWith( value );
@@ -129,12 +132,16 @@ test('should call when Season Filter select value is changed', () =>
 
 test('should call sortByDateAscending when Date Filter select value is changed', () => 
 {
+	wrapper.setProps(
+	{
+		recordFilters: altFilters1 // date is now sorted by dateDescending
+	});
 	const value = 'dateAscending';
 	const select = wrapper.find('select').at(1);
-	console.log(select.simulate('change',
+	select.simulate('change',
 	{
 		target: { value }
-	}));
+	});
 
 	expect(sortByDateAscending).toHaveBeenCalled();
 });
@@ -149,4 +156,24 @@ test('should call sortByDateDescending when select value is changed', () =>
 	});
 
 	expect(sortByDateDescending).toHaveBeenCalled();
+});
+
+test('should handle date changes', () => 
+{
+	const startDate = moment(0).add( 3, 'years' );
+	const endDate = moment(0).add( 6, 'years' );
+	const picker = wrapper.find('DateRangePicker').at(0);
+	picker.prop('onDatesChange')({startDate, endDate})
+
+	expect(setStartDate).toHaveBeenCalledWith(startDate);
+	expect(setEndDate).toHaveBeenCalledWith(endDate);
+});
+
+test('should handle date focus changes', () => 
+{
+	const calenderFocused = 'endDate';
+	const picker = wrapper.find('DateRangePicker').at(0);
+	picker.prop('onFocusChange')(calenderFocused);
+
+	expect(wrapper.state('calenderFocused')).toBe(calenderFocused);
 });
