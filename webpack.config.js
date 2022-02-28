@@ -10,8 +10,15 @@ if (process.env.NODE_ENV === 'test') {
   require('dotenv').config({ path: '.env.development' });
 }
 
+/**
+ * module.exports gets exported as the settings for webpack
+ * 
+ * @param {*} env This is the argument (--env production) that is
+ * passed in from package.json 
+ * @returns 
+ */ 
 module.exports = (env) => {
-  const isProduction = env === 'production';
+  const isProduction = env === 'production'; // if not production then runs developement (see devTool and devServer)
   const CSSExtract = new ExtractTextPlugin('styles.css');
 
   return {
@@ -57,7 +64,8 @@ module.exports = (env) => {
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
       })
     ],
-    devtool: isProduction ? 'source-map' : 'inline-source-map',
+	// Doc: https://v4.webpack.js.org/configuration/devtool/#devtool
+    devtool: isProduction ? 'source-map' : 'inline-source-map', // 'source-map' slow but good for development
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,
