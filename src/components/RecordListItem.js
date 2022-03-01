@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import numeral from 'numeral';
+require("numeral/locales/en-gb");
 
 /**
  * @param {*} props Is deconstructed into
@@ -26,10 +28,10 @@ const RecordListItem = ( {name, dispatch, id, playerUuid, seasonName, amount, am
 			<h3>Player: { name }</h3>
 			<p>Season: { seasonName }</p>
 			{
-				recordType === 'PAYMENT' && <p>Payment Amount: { amount }</p>
+				recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(amount / 100).format('0,0.00')}` }</p>
 			}
 			{
-				recordType === 'DEBT' && <div><p>Debt amount: { amountOwed }</p><p>Amount paid: { amountPaid }</p></div>
+				recordType === 'DEBT' && <div><p>Debt amount: { `£${numeral(amountOwed / 100).format('0,0.00')}` }</p><p>Amount paid: { `£${numeral(amountPaid / 100).format('0,0.00')}` }</p></div>
 			}
 			<p>Created At: { moment( createdAt).format( "DD-MM-YYYY") }</p>
 		</div>
