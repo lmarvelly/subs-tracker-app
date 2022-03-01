@@ -1,6 +1,6 @@
 {
-	"name": "sups_tracker",
-	"version": "beta-1.0.0",
+	"name": "subs_tracker",
+	"version": "2.0.1",
 	"main": "index.js",
 	"author": "Luke Marvelly",
 	"license": "MIT",
