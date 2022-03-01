@@ -14,26 +14,32 @@ export class RecordTotal extends Component
 	getTotalIncome = () =>
 	{
 		let totalIncome = 0;
+		let totalDebt = 0;
 		this.props.paymentRecord.map( (record) =>
 		{
 			if ( typeof record.amount === 'number' ) // if amount is a number
 			{
 				totalIncome += record.amount;
 			}
-			else if ( typeof record.amountPaid === 'number' ) // if amount is a number
+			if ( typeof record.amountPaid === 'number' ) // if amount is a number
 			{
 				totalIncome += record.amountPaid;
 			}
+			if ( typeof record.amountOwed === 'number' )
+			{
+				totalDebt += record.amountOwed;
+			}
 		});
 		
-		return totalIncome;
+		return { totalIncome, totalDebt };
 	};
 
 	render()
 	{
 		return(
 			<div>
-				<h1>{`Total income: £${numeral(this.getTotalIncome() / 100).format('0,0.00')}`}</h1>
+				<h1>{`Total income: £${numeral(this.getTotalIncome().totalIncome / 100).format('0,0.00')}`}</h1>
+				<h1>{`Total debt: £${numeral(this.getTotalIncome().totalDebt / 100).format('0,0.00')}`}</h1>
 			</div>
 		);
 	}
