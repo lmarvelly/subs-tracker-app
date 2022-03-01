@@ -1,5 +1,4 @@
 node_modules/
-readme.md
 public/dist/
 .env.development
 .env.test
