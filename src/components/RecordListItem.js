@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
-require("numeral/locales/en-gb");
 
 /**
  * @param {*} props Is deconstructed into
