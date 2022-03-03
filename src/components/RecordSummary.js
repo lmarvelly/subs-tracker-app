@@ -5,43 +5,15 @@ import numeral from 'numeral';
 import selectRecords from '../selectors/records';
 import recordTotals from '../selectors/record-totals';
 
-export class RecordSummary extends Component
+export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 0, totaldebt: 0 } }) =>
 {
-	constructor( props )
-	{
-		super( props );
-
-		this.state = 
-		{
-			recordLength: 0,
-			recordTotals: { totalIncome: 0, totalDebt: 0 }
-		}
-	}
-
-	componentDidMount()
-	{
-		this.setState(() => 
-		({
-			recordLength: this.props.recordLength ? this.props.recordLength : 0,
-			recordTotals: 
-				this.props.recordTotals 
-				? 
-				this.props.recordTotals
-				:
-				{ totalIncome: 0, totalDebt: 0 }
-		}));
-	}
-
-	render()
-	{
-		return(
-			<div>
-				<h1>{`Total records: ${this.state.recordLength}`}</h1>
-				<h1>{`Total income: £${numeral(this.state.recordTotals.totalIncome / 100).format('0,0.00')}`}</h1>
-				<h1>{`Total debt: £${numeral(this.state.recordTotals.totalDebt / 100).format('0,0.00')}`}</h1>
-			</div>
-		);
-	}
+	return(
+		<div>
+			<h1>{`Total records: ${recordLength}`}</h1>
+			<h1>{`Total income: £${numeral(recordTotals.totalIncome / 100).format('0,0.00')}`}</h1>
+			<h1>{`Total debt: £${numeral(recordTotals.totalDebt / 100).format('0,0.00')}`}</h1>
+		</div>
+	);
 }
 
 const mapStateToProps = ( state ) =>
