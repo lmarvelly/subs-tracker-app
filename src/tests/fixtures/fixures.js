@@ -92,5 +92,17 @@ export const records =
 	amount: 5000,
 	amountOwed: '',
 	amountPaid: ''
+},
+{
+	playerUuid: members[1].playerUuid,
+	seasonUuid: seasons[1].seasonUuid,
+	id: 'record5',
+	recordType: 'DEBT',
+	description: 'Glasgow',
+	note: '',
+	createdAt: moment(0).add(3, 'days').valueOf(),
+	amount: '',
+	amountOwed: 7500,
+	amountPaid: 3500
 }
 ];
