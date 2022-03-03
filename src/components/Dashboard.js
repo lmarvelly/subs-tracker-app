@@ -1,11 +1,11 @@
 import React from 'react';
 import PaymentRecord from './PaymentRecord';
 import RecordListFilters from './RecordListFilters';
-import RecordTotals from './RecordTotals';
+import RecordSummary from './RecordSummary';
 
 const Dashboard = () => (
 	<div>
-		<RecordTotals />
+		<RecordSummary />
 		<RecordListFilters />
 		<PaymentRecord />
 	</div>

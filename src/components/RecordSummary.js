@@ -4,6 +4,12 @@ import numeral from 'numeral';
 
 import selectRecords from '../selectors/records';
 
+/**
+ * 
+ * ##### TODO: This needs to be refactored to use 
+ * ##### record-totals selector
+ * 
+ */
 export class RecordTotal extends Component
 {
 	constructor( props )
