@@ -4,11 +4,10 @@ import { shallow } from 'enzyme';
 import { RecordSummary } from '../../components/RecordSummary';
 // Importing the named export. To dynamically pass in props and make sure it's rendering correctly.
 import { records, members, seasons } from '../fixtures/fixures';
-import { defaultFilters } from '../fixtures/filters';
 import recordTotals from '../../selectors/record-totals';
 
 test('should render Record Totals correctly without data', () => 
-{ 
+{
 	const wrapper = shallow(<RecordSummary />);
 
 	expect(wrapper).toMatchSnapshot();
