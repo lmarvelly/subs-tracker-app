@@ -18,7 +18,7 @@ test('should remove a record using it\'s ID', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state ).toEqual([ records[0], records[2], records[3] ]);
+	expect( state ).toEqual([ records[0], records[2], records[3], records[4] ]);
 });
 
 test('should not remove a record with ID that does not exist', () => 
@@ -54,7 +54,8 @@ test('should add a New Payment Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state[4] ).toEqual(record);
+	console.log('STATE:',state);
+	expect( state[5] ).toEqual(record);
 	expect( state ).toEqual([ ...records, record ]);
 });
 
@@ -78,7 +79,7 @@ test('should add a New Debt Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state[4] ).toEqual(newRecord);
+	expect( state[5] ).toEqual(newRecord);
 });
 
 test('should edit a Payment Record', () => 
