@@ -11,6 +11,7 @@ export default ( records ) =>
 		if ( typeof record.amountPaid === 'number' ) // if amount is a number
 		{
 			totalIncome += record.amountPaid;
+			totalDebt -= record.amountPaid;
 		}
 		if ( typeof record.amountOwed === 'number' )
 		{
