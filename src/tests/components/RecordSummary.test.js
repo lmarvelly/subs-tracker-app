@@ -13,7 +13,51 @@ test('should render Record Totals correctly without data', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should render Record Totals correctly with record data', () => 
+test('should render Record Totals correctly with data from a single debt record', () => 
+{
+	const singleRecord = [records[0]];
+	const recordSeason = [seasons.find((season) => season.seasonUuid === singleRecord[0].seasonUuid)];
+	const totals = recordTotals(singleRecord);
+	const length = singleRecord.length;
+
+	const wrapper = shallow(
+		<RecordSummary 
+			recordLength={ length } 
+			recordTotals=
+			{{
+				totalIncome: totals.totalIncome,
+				totalDebt: totals.totalDebt
+			}}
+			seasons={recordSeason}
+		/>
+	);
+
+	expect(wrapper).toMatchSnapshot();
+});
+
+test('should render Record Totals correctly with data from a single payment record', () => 
+{
+	const singleRecord = [records[2]];
+	const recordSeason = [seasons.find((season) => season.seasonUuid === singleRecord[0].seasonUuid)];
+	const totals = recordTotals(singleRecord);
+	const length = singleRecord.length;
+
+	const wrapper = shallow(
+		<RecordSummary 
+			recordLength={ length } 
+			recordTotals=
+			{{
+				totalIncome: totals.totalIncome,
+				totalDebt: totals.totalDebt
+			}}
+			seasons={recordSeason}
+		/>
+	);
+
+	expect(wrapper).toMatchSnapshot();
+});
+
+test('should render Record Totals correctly with multiple records data', () => 
 {
 	const totals = recordTotals( records );
 	const length = records.length;
