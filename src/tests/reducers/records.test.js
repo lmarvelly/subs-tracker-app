@@ -54,7 +54,6 @@ test('should add a New Payment Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	console.log('STATE:',state);
 	expect( state[5] ).toEqual(record);
 	expect( state ).toEqual([ ...records, record ]);
 });
