@@ -3,49 +3,22 @@ import { connect } from 'react-redux';
 import numeral from 'numeral';
 
 import selectRecords from '../selectors/records';
+import recordTotals from '../selectors/record-totals';
 
-/**
- * 
- * ##### TODO: This needs to be refactored to use 
- * ##### record-totals selector
- * 
- */
-export class RecordTotal extends Component
+export class RecordSummary extends Component
 {
 	constructor( props )
 	{
 		super( props );
 	}
 
-	getTotalIncome = () =>
-	{
-		let totalIncome = 0;
-		let totalDebt = 0;
-		this.props.paymentRecord.map( (record) =>
-		{
-			if ( typeof record.amount === 'number' ) // if amount is a number
-			{
-				totalIncome += record.amount;
-			}
-			if ( typeof record.amountPaid === 'number' ) // if amount is a number
-			{
-				totalIncome += record.amountPaid;
-			}
-			if ( typeof record.amountOwed === 'number' )
-			{
-				totalDebt += record.amountOwed;
-			}
-		});
-		
-		return { totalIncome, totalDebt };
-	};
-
 	render()
 	{
 		return(
 			<div>
-				<h1>{`Total income: £${numeral(this.getTotalIncome().totalIncome / 100).format('0,0.00')}`}</h1>
-				<h1>{`Total debt: £${numeral(this.getTotalIncome().totalDebt / 100).format('0,0.00')}`}</h1>
+				<h1>{`Total records: ${this.props.recordLength}`}</h1>
+				<h1>{`Total income: £${numeral(this.props.recordTotals.totalIncome / 100).format('0,0.00')}`}</h1>
+				<h1>{`Total debt: £${numeral(this.props.recordTotals.totalDebt / 100).format('0,0.00')}`}</h1>
 			</div>
 		);
 	}
@@ -53,9 +26,11 @@ export class RecordTotal extends Component
 
 const mapStateToProps = ( state ) =>
 {
+	const paymentRecord = selectRecords(state.paymentRecord, state.members, state.recordFilters)
 	return{
-		paymentRecord: selectRecords(state.paymentRecord, state.members, state.recordFilters),
+		recordLength: paymentRecord.length,
+		recordTotals: recordTotals(paymentRecord)
 	}
 }
 
-export default connect( mapStateToProps )( RecordTotal )
+export default connect( mapStateToProps )( RecordSummary )
