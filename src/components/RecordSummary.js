@@ -7,9 +7,10 @@ import recordTotals from '../selectors/record-totals';
 
 export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 0, totaldebt: 0 } }) =>
 {
+	const recordWord = recordLength === 1 ? 'record' : 'records';
 	return(
 		<div>
-			<h1>{`Total records: ${recordLength}`}</h1>
+			<h1>{`Viewing: ${recordLength} ${recordWord}`}</h1>
 			<h1>{`Total income: £${numeral(recordTotals.totalIncome / 100).format('0,0.00')}`}</h1>
 			<h1>{`Total debt: £${numeral(recordTotals.totalDebt / 100).format('0,0.00')}`}</h1>
 		</div>
