@@ -13,6 +13,22 @@ test('should render Record Totals correctly without data', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
+test('should render Record Totals correctly with empty data arrays', () => 
+{
+	const wrapper = shallow(
+		<RecordSummary 
+			recordLength={ 0 } 
+			recordTotals=
+			{{
+				totalIncome: 0,
+				totalDebt: 0
+			}}
+			seasons={[]} 
+		/>);
+
+	expect(wrapper).toMatchSnapshot();
+});
+
 test('should render Record Totals correctly with data from a single debt record', () => 
 {
 	const singleRecord = [records[0]];
