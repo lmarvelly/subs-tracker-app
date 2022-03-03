@@ -12,15 +12,19 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 
 	const seasonWording = () =>
 	{
-		const season = seasons.find( ( season ) => season.seasonUuid === seasonFilter );
+		let season = seasons.find( ( season ) => season.seasonUuid === seasonFilter );
 
-		if( seasonFilter )
+		if( seasonFilter || seasons.length === 1 )
 		{
+			if(!season)
+			{
+				season = seasons[0];
+			}
 			return `from ${season.seasonName}`;
 		}
 		else 
 		{
-			return `${seasons.length} seasons`;
+			return `from ${seasons.length} seasons`;
 		}
 	};
 
@@ -35,7 +39,8 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 
 const mapStateToProps = ( state ) =>
 {
-	const paymentRecord = selectRecords(state.paymentRecord, state.members, state.recordFilters)
+	const paymentRecord = selectRecords(state.paymentRecord, state.members, state.recordFilters);
+
 	return{
 		recordLength: paymentRecord.length,
 		recordTotals: recordTotals(paymentRecord),
