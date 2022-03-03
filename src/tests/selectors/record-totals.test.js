@@ -26,6 +26,11 @@ test('Should get the right amounts for one debt', () =>
 test('Should get the right amounts for both amount paid and debts', () => 
 { 
 	const totals = recordTotals( records );
-	expect(totals.totalIncome).toBe(5900);
-	expect(totals.totalDebt).toBe(400);
+	expect(totals.totalIncome).toBe(9400);
+	expect(totals.totalDebt).toBe(4400);
+});
+
+test('Should make sure Dept Payments are being subtracked from Debt total', () =>
+{
+
 });
