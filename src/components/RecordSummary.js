@@ -10,15 +10,35 @@ export class RecordSummary extends Component
 	constructor( props )
 	{
 		super( props );
+
+		this.state = 
+		{
+			recordLength: 0,
+			recordTotals: { totalIncome: 0, totalDebt: 0 }
+		}
+	}
+
+	componentDidMount()
+	{
+		this.setState(() => 
+		({
+			recordLength: this.props.recordLength ? this.props.recordLength : 0,
+			recordTotals: 
+				this.props.recordTotals 
+				? 
+				this.props.recordTotals
+				:
+				{ totalIncome: 0, totalDebt: 0 }
+		}));
 	}
 
 	render()
 	{
 		return(
 			<div>
-				<h1>{`Total records: ${this.props.recordLength}`}</h1>
-				<h1>{`Total income: £${numeral(this.props.recordTotals.totalIncome / 100).format('0,0.00')}`}</h1>
-				<h1>{`Total debt: £${numeral(this.props.recordTotals.totalDebt / 100).format('0,0.00')}`}</h1>
+				<h1>{`Total records: ${this.state.recordLength}`}</h1>
+				<h1>{`Total income: £${numeral(this.state.recordTotals.totalIncome / 100).format('0,0.00')}`}</h1>
+				<h1>{`Total debt: £${numeral(this.state.recordTotals.totalDebt / 100).format('0,0.00')}`}</h1>
 			</div>
 		);
 	}
