@@ -24,7 +24,7 @@
 		"css-loader": "0.28.4",
 		"express": "4.17.3",
 		"extract-text-webpack-plugin": "3.0.2",
-		"firebase": "^8.2.10",
+		"firebase": "8.10.0",
 		"history": "4.7.2",
 		"moment": "2.18.1",
 		"node-sass": "^5.0.0",
