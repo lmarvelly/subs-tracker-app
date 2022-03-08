@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import database from '../firebase/firebase';
 
 /**
@@ -14,7 +13,7 @@ import database from '../firebase/firebase';
  * 
  * 
  * @param {string} playerUuid
- * @param {string} id: uuid()
+ * @param {string} id: firebase should return a unique key
  * @param {string} recordType 'SUB_PAYMENT'
  * @param {string} description
  * @param {number} amount
@@ -55,7 +54,8 @@ export const addRecord = (record) => (
  */
 export const startAddRecord = ( recordData = {} ) =>
 {
-	return (dispatch) => {
+	return (dispatch) => 
+	{
 		const {
 			recordType = 'PAYMENT',
 			playerUuid = '',
@@ -69,7 +69,8 @@ export const startAddRecord = ( recordData = {} ) =>
 			amount = ""
 		} = recordData; // Deconstruct record object
 
-		const record = {
+		const record = 
+		{
 			recordType, playerUuid, seasonUuid, description, note,
 			createdAt, amountOwed, 
 			amountPaid: recordType === 'DEBT' ? 0 : "", 
