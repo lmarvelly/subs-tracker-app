@@ -1,6 +1,7 @@
 
 import moment from 'moment';
 import { addRecord, editRecord, removeRecord } from '../../actions/records';
+import { records } from '../fixtures/fixures';
 
 /**
  * We use toEqual because when we use toBe() it compares two 
@@ -37,53 +38,35 @@ test( 'Should set up edit Record action object', () =>
 
 test( 'Should set up Add Record action object with provided values', () =>
 {
-	const recordData = 
-	{
-		amount: 5000,
-		createdAt: 100000,
-		description: 'Donation',
-		playerUuid: 'player1',
-		seasonUuid: 'season1',
-		recordType: 'PAYMENT'
-	}
-
-	const action = addRecord( recordData );
+	const action = addRecord( records[3] );
 
 	expect( action ).toEqual(
 	{
 		type: 'ADD_RECORD',
-		record:
-		{
-			...recordData,
-			id: expect.any(String),
-			note: '',
-
-			amountOwed: '',
-			amountPaid: ''
-		}
+		record: records[3]
 	});
 });
 
-test( 'Should set up Add Record action object with default values', () =>
-{
-	const action = addRecord({});
+// test( 'Should set up Add Record action object with default values', () =>
+// {
+// 	const action = addRecord({});
 
-	expect( action ).toEqual(
-	{
-		type: 'ADD_RECORD',
-		record:
-		{
-			recordType: 'PAYMENT',
-			playerUuid: '',
-			seasonUuid: '',
-			id: expect.any(String),
-			description: '',
-			note: '',
-			createdAt: expect.any(Number),
+// 	expect( action ).toEqual(
+// 	{
+// 		type: 'ADD_RECORD',
+// 		record:
+// 		{
+// 			recordType: 'PAYMENT',
+// 			playerUuid: '',
+// 			seasonUuid: '',
+// 			id: expect.any(String),
+// 			description: '',
+// 			note: '',
+// 			createdAt: expect.any(Number),
 
-			amountOwed: "",
-			amountPaid: "",
-			amount: ""
-		}
-	});
-});
+// 			amountOwed: "",
+// 			amountPaid: "",
+// 			amount: ""
+// 		}
+// 	});
+// });

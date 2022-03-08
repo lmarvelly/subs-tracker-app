@@ -1,51 +1,28 @@
 import { addMember, editMember, removeMember } from "../../actions/members";
+import { members } from '../fixtures/fixures';
 
 test('Should add a new members. Some have more properties than others', () => 
 {
-	const newMember = { firstName: 'Luke', surname: 'Marvelly' };
-	const action = addMember( newMember );
+	const action = addMember( members[0] );
 	expect(action).toEqual(
 	{
 		type: 'ADD_MEMBER',
-		member: 
-		{
-			playerUuid: expect.any(String),
-			firstName: 'Luke',
-			middleNames: '', 
-			surname: 'Marvelly',
-			nickname: '',
-		}
+		member: members[0]
 	});
 
 
-	const newMember2 = { firstName: 'Harri', surname: 'Messenger', middleNames: 'Jason' };
-	const action2 = addMember( newMember2 );
+	const action2 = addMember( members[1] );
 	expect(action2).toEqual(
 	{
 		type: 'ADD_MEMBER',
-		member: 
-		{
-			playerUuid: expect.any(String),
-			firstName: 'Harri',
-			middleNames: 'Jason', 
-			surname: 'Messenger',
-			nickname: '',
-		}
+		member: members[1]
 	});
 
-	const newMember3 = { firstName: 'Jason', surname: 'Cousins', middleNames: 'Jacub', nickname: 'Oldest Dragon' };
-	const action3 = addMember( newMember3 );
+	const action3 = addMember( members[3] );
 	expect(action3).toEqual(
 	{
 		type: 'ADD_MEMBER',
-		member: 
-		{
-			playerUuid: expect.any(String),
-			firstName: 'Jason',
-			middleNames: 'Jacub', 
-			surname: 'Cousins',
-			nickname: 'Oldest Dragon',
-		}
+		member: members[3]
 	});
 });
 
