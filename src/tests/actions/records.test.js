@@ -4,7 +4,7 @@ import {
 	addRecord, editRecord, removeRecord, startAddRecord
 } from '../../actions/records';
 import { records } from '../fixtures/fixures';
-import firebase from '../../firebase/firebase';
+import database from '../../firebase/firebase';
 
 const createMockStore = configureMockStore([thunk]);
 
@@ -56,8 +56,15 @@ test( 'Should set up Add Record action object with provided values', () =>
  * @param done This test case will only pass if done() is called.
  * This forces Jest() to wait until the moment in time that done()
  * is called.
+ * 
+ * Chaining promises (Adding something after the call has run)
+ * Following the chain:
+ *  	createMockstore --> dispatch() --> startAddRecord() --> addRecord()
+ * 	The actual object is returned from addRecord()
+ * 		type: 'ADD_RECORD',
+ * 		record
  */
-test('should add Record to Database and Store', () =>
+test('should add Debt Record to the Database using the Store', (done) =>
 {
 	const store = createMockStore({});
 	const recordData = 
@@ -72,15 +79,7 @@ test('should add Record to Database and Store', () =>
 		amountPaid: 0
 	}
 
-	/**
-	 * Chaining promises (Adding something after the call has run)
-	 * Following the chain:
-	 *  	createMockstore --> dispatch() --> startAddRecord() --> addRecord()
-	 * 	The actual object is returned from addRecord()
-	 * 		type: 'ADD_RECORD',
-	 * 		record
-	 */
-	store.dispatch(startAddRecord(recordData)).then((done) =>
+	const promise = store.dispatch(startAddRecord(recordData)).then(() =>
 	{
 		const actions = store.getActions();
 		expect(actions[0]).toEqual(
@@ -94,16 +93,106 @@ test('should add Record to Database and Store', () =>
 			}
 		});
 
-		// snapshot contains all the 
-		database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value').then((snapshot) =>
-		{
-			expect(snapshot.val()).toEqual({amount: "", ...recordData});
-			done();
-		});
+		return database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value');
+		
+	})
+	
+	promise.then((snapshot) => // snapshot contains the values from the last promise
+	{
+		expect(snapshot.val()).toEqual({amount: "", ...recordData});
+		done();
 	});
 });
 
-test('should add Record with defaults to Database and Store', () =>
-{
 
+test('should add a Payment Record to the Database using the Store', (done) =>
+{
+	const store = createMockStore({});
+	const recordData = 
+	{
+		playerUuid: '123abc',
+		seasonUuid: 'abc123',
+		recordType: 'PAYMENT',
+		description: 'GFSN GAME',
+		createdAt: 1000,
+		amount: 250
+	}
+
+	const promise = store.dispatch(startAddRecord(recordData)).then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'ADD_RECORD', 
+			record:
+			{
+				id: expect.any(String),
+				note: '',
+				amountOwed: '',
+				amountPaid: '',
+				...recordData
+			}
+		});
+
+		return database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value');
+		
+	});
+
+	promise.then((snapshot) => // snapshot contains the values from the last promise
+	{
+		expect(snapshot.val()).toEqual(
+		{
+			note: '', 
+			amountOwed: '',
+			amountPaid: '',
+			...recordData
+		});
+		done();
+	});
+});
+
+
+test('should add Record with defaults to Database and Store', (done) =>
+{
+	const store = createMockStore({});
+
+	const defaultRecord = 
+	{
+		recordType: 'PAYMENT',
+		playerUuid: '',
+		seasonUuid: '',
+		description: '',
+		note: '',  
+		createdAt: 0,
+	
+		amountOwed: '',
+		amountPaid: '',
+		amount: 0
+	}
+
+	const promise = store.dispatch(startAddRecord({})).then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'ADD_RECORD', 
+			record: 
+			{
+				id: expect.any(String),
+				...defaultRecord
+			}
+		});
+
+		return database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value');
+		
+	});
+	
+	promise.then((snapshot) =>
+	{
+		expect(snapshot.val()).toEqual(
+		{
+			...defaultRecord 
+		});
+		done();
+	});
 });
