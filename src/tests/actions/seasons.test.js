@@ -1,17 +1,14 @@
 import { addSeason, editSeason, removeSeason } from '../../actions/seasons';
+import { seasons } from '../fixtures/fixures';
 
 test('should create a Add Season Action Object', () => 
 {
-	const action = addSeason({ seasonName: '2021/2022' });
+	const action = addSeason(seasons[0]);
 
 	expect(action).toEqual(
 	{
 		type: 'ADD_SEASON',
-		season:
-		{
-			seasonName: '2021/2022', 
-			seasonUuid: expect.any(String)
-		}
+		season: seasons[0]
 	});
 });
 
