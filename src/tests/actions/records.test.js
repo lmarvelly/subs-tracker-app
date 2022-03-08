@@ -4,6 +4,7 @@ import {
 	addRecord, editRecord, removeRecord, startAddRecord
 } from '../../actions/records';
 import { records } from '../fixtures/fixures';
+import firebase from '../../firebase/firebase';
 
 const createMockStore = configureMockStore([thunk]);
 
@@ -56,7 +57,7 @@ test( 'Should set up Add Record action object with provided values', () =>
  * This forces Jest() to wait until the moment in time that done()
  * is called.
  */
-test('should add Record to Database and Store', (done) =>
+test('should add Record to Database and Store', () =>
 {
 	const store = createMockStore({});
 	const recordData = 
@@ -79,10 +80,9 @@ test('should add Record to Database and Store', (done) =>
 	 * 		type: 'ADD_RECORD',
 	 * 		record
 	 */
-	store.dispatch(startAddRecord(recordData)).then(() =>
+	store.dispatch(startAddRecord(recordData)).then((done) =>
 	{
 		const actions = store.getActions();
-		console.log(actions[0]);
 		expect(actions[0]).toEqual(
 		{
 			type: 'ADD_RECORD', 
@@ -94,7 +94,12 @@ test('should add Record to Database and Store', (done) =>
 			}
 		});
 
-		done();
+		// snapshot contains all the 
+		database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value').then((snapshot) =>
+		{
+			expect(snapshot.val()).toEqual({amount: "", ...recordData});
+			done();
+		});
 	});
 });
 
