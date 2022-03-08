@@ -78,7 +78,7 @@ export const startAddRecord = ( recordData = {} ) =>
 		}
 
 		// Added return statement here for chaining together promises in records.test.js
-		return database.ref('subs-tracker/records').push(record).then((ref) =>
+		return database.ref('subs-tracker/main/records').push(record).then((ref) =>
 			{
 				dispatch(addRecord(
 				{

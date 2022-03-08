@@ -93,8 +93,7 @@ test('should add Debt Record to the Database using the Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value');
-		
+		return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
 	})
 	
 	promise.then((snapshot) => // snapshot contains the values from the last promise
@@ -134,7 +133,7 @@ test('should add a Payment Record to the Database using the Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
 		
 	});
 
@@ -183,7 +182,7 @@ test('should add Record with defaults to Database and Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
 		
 	});
 	
