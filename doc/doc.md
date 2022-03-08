@@ -5,8 +5,7 @@
 4. Redux store changes
 
 ### HOW TO ADD NEW ACTION ###
-
-### NEW RECORD ACTION EXAMPLE ###
+### New Record Action example ###
 1. Add function to actions/records.js (rememeber action.debt is the debt object)
 2. Add to record reducer reducers/records.js
 3. In AddRecordpage.js add handler 
