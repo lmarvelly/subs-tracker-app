@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RecordForm from './RecordForm';
-import { addRecord } from '../actions/records';
+import { startAddRecord } from '../actions/records';
 
 /**
  * Use classes to avoid inline functions. This avoids rerendering
@@ -24,8 +24,8 @@ export class AddRecordPage extends Component
 
 	onSubmit = ( record ) =>
 	{
-			// using props.onSubmit this instead of "this.props.dispatch( addRecord( record ) )";
-			this.props.addRecord(record); 
+			// using props.onSubmit this instead of "this.props.dispatch( startAddRecord( record ) )";
+			this.props.startAddRecord(record); 
 			this.props.history.push('/'); // return to dashboard
 	}
 
@@ -91,7 +91,7 @@ const mapStateToProps = ( state, props ) =>
  */
 const mapDispatchToProps = (dispatch) => (
 {
-	addRecord: (record) => dispatch( addRecord( record ) )
+	startAddRecord: (record) => dispatch( startAddRecord( record ) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( AddRecordPage );
