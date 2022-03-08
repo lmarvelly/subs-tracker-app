@@ -26,6 +26,10 @@ promise.then((data) =>
 {
 	console.log(data);
 })
+.then(() => // You can add another function to run after the first one has finished
+{
+	console.log('This will run if first then() call is resolved');
+})
 .catch((error) => // there are different ways to report an error.
 {
 	console.log('Error:', error);
