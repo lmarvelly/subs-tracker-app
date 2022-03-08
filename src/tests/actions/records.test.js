@@ -63,21 +63,38 @@ test('should add Record to Database and Store', (done) =>
 	{
 		playerUuid: '123abc',
 		seasonUuid: 'abc123',
-		id: 'record1',
 		recordType: 'DEBT',
 		description: 'Training subs',
 		note: 'To be paid next week',
 		createdAt: 1000,
-		// amount: "",
 		amountOwed: 400,
 		amountPaid: 0
 	}
 
-	// Chaining promises (Adding something after the call has run)
+	/**
+	 * Chaining promises (Adding something after the call has run)
+	 * Following the chain:
+	 *  	createMockstore --> dispatch() --> startAddRecord() --> addRecord()
+	 * 	The actual object is returned from addRecord()
+	 * 		type: 'ADD_RECORD',
+	 * 		record
+	 */
 	store.dispatch(startAddRecord(recordData)).then(() =>
 	{
-		expect(1).toBe(1);
-		done(); // 
+		const actions = store.getActions();
+		console.log(actions[0]);
+		expect(actions[0]).toEqual(
+		{
+			type: 'ADD_RECORD', 
+			record:
+			{
+				id: expect.any(String),
+				amount: "",
+				...recordData
+			}
+		});
+
+		done();
 	});
 });
 
@@ -85,27 +102,3 @@ test('should add Record with defaults to Database and Store', () =>
 {
 
 });
-
-// test( 'Should set up Add Record action object with default values', () =>
-// {
-// 	const action = addRecord({});
-
-// 	expect( action ).toEqual(
-// 	{
-// 		type: 'ADD_RECORD',
-// 		record:
-// 		{
-// 			recordType: 'PAYMENT',
-// 			playerUuid: '',
-// 			seasonUuid: '',
-// 			id: expect.any(String),
-// 			description: '',
-// 			note: '',
-// 			createdAt: expect.any(Number),
-
-// 			amountOwed: "",
-// 			amountPaid: "",
-// 			amount: ""
-// 		}
-// 	});
-// });
