@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { AddMemberPage } from '../../components/AddMemberPage';
 
-let addMember, member, history, wrapper;
+let startAddMember, member, history, wrapper;
 
 beforeEach( () => 
 {
@@ -14,10 +14,10 @@ beforeEach( () =>
 		surname: 'Hobson', 
 		nickname: 'Johnson'
 	};
-	addMember = jest.fn();
+	startAddMember = jest.fn();
 	history = { push: jest.fn() };
 	wrapper = shallow(
-		<AddMemberPage addMember={addMember} history={history} />
+		<AddMemberPage startAddMember={startAddMember} history={history} />
 	);
 });
 
@@ -31,5 +31,5 @@ test('should handle onSubmit', () =>
 	wrapper.find('MemberForm').prop('onSubmit')(member);
 
 	expect(history.push).toHaveBeenLastCalledWith('/members');
-	expect(addMember).toHaveBeenLastCalledWith(member);
+	expect(startAddMember).toHaveBeenLastCalledWith(member);
 });
