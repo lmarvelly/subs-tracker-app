@@ -17,25 +17,7 @@ const firebaseConfig =
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const database = firebase.database();
 
-// ref is short for reference
-database.ref().set(
-{
-	name: "Luke Marvelly",
-	age: 34,
-	isSingle: true,
-	location: {
-		city: 'Cardiff',
-		country: 'Wales'
-	}
-});
-
-database.ref('age').set(37);
-database.ref('location/city').set('Aberystwyth');
-
-database.ref('attributes/').set(
-{
-	height: '5.10ft',
-	weight: '11.1lb'
-});
+export { firebase, database as default };
