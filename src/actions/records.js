@@ -1,5 +1,10 @@
 import uuid from 'uuid';
-import moment from 'moment';
+import database from '../firebase/firebase';
+
+/**
+ * Normally returning functions wouldn't work with Redux but we can
+ * now do this with redux-thunk
+ */
 
 /**
  * ADD A SUB PAYMENT
@@ -22,36 +27,67 @@ import moment from 'moment';
  * @object playerUuid, id, recordType, description, amount, createdAt
  * 
  */
-export const addRecord = (
-	{
-		recordType = 'PAYMENT',
-		playerUuid = '',
-		seasonUuid = '',
-		description = '',
-		note = '',  
-		createdAt = moment().valueOf(),
+export const addRecord = (record) => (
+{
+	type: 'ADD_RECORD',
+	record
+});
 
-		amountOwed = "",
-		amountPaid = "",
-		amount = ""
-	}) => (
-	{
-		type: 'ADD_RECORD',
-		record: 
-		{
-			playerUuid,
-			seasonUuid,
-			id: uuid(),
-			recordType,
-			description,
-			note,
-			createdAt,
-			amount,
-			amountOwed,
-			amountPaid: recordType === 'DEBT' ? 0 : ""
+/**
+ * @param {*} recordData 
+ * @returns A deconstructed record
+ * 
+ * This could be written like so:
+ * 	return (dispatch) => {
+ * 		const record = {
+ * 			recordType = 'PAYMENT',
+ * 			playerUuid = '',
+ * 			seasonUuid = '',
+ * 			description = '',
+ * 			note = '',  
+ * 			createdAt = 0,
+ * 
+ * 			amountOwed = "",
+ * 			amountPaid = "",
+ * 			amount = ""
+ * 		}
+ * 	} 
+ */
+export const startAddRecord = ( recordData = {} ) =>
+{
+	return (dispatch) => {
+		const {
+			recordType = 'PAYMENT',
+			playerUuid = '',
+			seasonUuid = '',
+			description = '',
+			note = '',  
+			createdAt = 0,
+		
+			amountOwed = "",
+			amountPaid = "",
+			amount = ""
+		} = recordData; // Deconstruct record object
+
+		const record = {
+			recordType, playerUuid, seasonUuid, description, note,
+			createdAt, amountOwed, 
+			amountPaid: recordType === 'DEBT' ? 0 : "", 
+			amount
 		}
-	}
-);
+
+		database.ref('subs-tracker/records')
+			.push(record)
+			.then((ref) =>
+			{
+				dispatch(addRecord(
+				{
+					id: ref.key, // the key that firebase generates
+					...record
+				}));
+			});
+	};
+};
 
 /**
  * EDIT RECORD
@@ -66,8 +102,6 @@ export const editRecord = ( id, updates ) =>
 	updates
 })
 
-// PAY_DEBT
-// ADD_OTHER
 
 /**
  * REMOVE_RECORD
