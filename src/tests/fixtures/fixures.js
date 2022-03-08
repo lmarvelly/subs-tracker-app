@@ -39,7 +39,8 @@ export const members =
 		playerUuid: 'player3',
 		firstName: 'Jason', 
 		middleNames: '', 
-		surname: 'Cousins'
+		surname: 'Cousins',
+		nickname: 'Oldest Dragon'
 	}
 ];
 
