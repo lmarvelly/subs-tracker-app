@@ -1,14 +1,31 @@
-import uuid from 'uuid';
+import database from '../firebase/firebase';
 
-export const addSeason = ({ seasonName = '', seasonUuid = '' }) => (
+export const addSeason = ( season ) => (
 {
 	type: 'ADD_SEASON',
-	season:
-	{
-		seasonName,
-		seasonUuid: uuid()
-	}
+	season
 });
+
+export const startAddSeason = ( seasonData = {} ) =>
+{
+	return (dispatch) =>
+	{
+		const { seasonName } = seasonData;
+
+		const season = { seasonName };
+
+		database.ref('subs-tracker/seasons')
+			.push(season)
+			.then((ref) => 
+			{
+				dispatch(addSeason(
+				{
+					seasonUuid: ref.key,
+					...season
+				}))
+			});
+	};
+};
 
 export const editSeason = ( seasonUuid, updates ) => (
 {
