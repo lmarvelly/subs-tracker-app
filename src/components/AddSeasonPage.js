@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SeasonForm from './SeasonForm';
-import { addSeason } from '../actions/seasons';
+import { startAddSeason } from '../actions/seasons';
 
 export class AddSeasonPage extends Component
 {
@@ -12,7 +12,7 @@ export class AddSeasonPage extends Component
 
 	onSubmit = ( season ) =>
 	{
-		this.props.addSeason({ ...season });
+		this.props.startAddSeason({ ...season });
 		this.props.history.push('/seasons');
 	}
 
@@ -33,7 +33,7 @@ export class AddSeasonPage extends Component
 // Using mapDispatchToProps to make testing easier
 const mapDispatchToProps = ( dispatch ) => (
 {
-	addSeason: ({ ...season }) => dispatch( addSeason({ ...season }) )
+	startAddSeason: ({ ...season }) => dispatch( startAddSeason({ ...season }) )
 });
 
 export default connect( undefined, mapDispatchToProps )( AddSeasonPage );
