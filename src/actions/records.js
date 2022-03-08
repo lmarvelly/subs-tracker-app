@@ -66,7 +66,7 @@ export const startAddRecord = ( recordData = {} ) =>
 		
 			amountOwed = "",
 			amountPaid = "",
-			amount = ""
+			amount = recordType === 'PAYMENT' ? 0 : ''
 		} = recordData; // Deconstruct record object
 
 		const record = 
