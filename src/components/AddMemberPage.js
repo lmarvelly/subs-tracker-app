@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MemberForm from './MemberForm';
-import { addMember } from '../actions/members';
+import { startAddMember } from '../actions/members';
 
 export class AddMemberPage extends Component
 {
@@ -12,7 +12,7 @@ export class AddMemberPage extends Component
 
 	onSubmit =  ( member ) => 
 	{
-		this.props.addMember( { ...member } );
+		this.props.startAddMember( { ...member } );
 		this.props.history.push('/members'); // Return to members page
 	}
 
@@ -33,7 +33,7 @@ export class AddMemberPage extends Component
 // Using mapDispatchToProps to make testing easier
 const mapDispatchToProps = ( dispatch ) => (
 {
-	addMember: ({ ...member }) => dispatch( addMember({ ...member }) )
+	startAddMember: ({ ...member }) => dispatch( startAddMember({ ...member }) )
 });
 
 // undefined is where mapStateToProps is usually
