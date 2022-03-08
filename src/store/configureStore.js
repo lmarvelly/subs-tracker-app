@@ -1,10 +1,14 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+
 import paymentRecordReducer from '../reducers/records';
 import recordFilterReducer from '../reducers/recordFilters';
 import membersRecordReducer from '../reducers/members';
 import memberFilterReducer from '../reducers/memberFilters';
 import seasonsRecordReducer from '../reducers/seasons';
 import seasonFilterReducer from '../reducers/seasonFilters';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 /**
  * STORE CREATION
@@ -15,7 +19,6 @@ import seasonFilterReducer from '../reducers/seasonFilters';
  * default.
  * @param {object} recordFilterReducer this is the object of filters
  */
-
 export default () => {
 	const store = createStore(
 		combineReducers(
@@ -27,9 +30,8 @@ export default () => {
 			seasons: seasonsRecordReducer,
 			seasonFilters: seasonFilterReducer
 		}),
-		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+		composeEnhancers(applyMiddleware(thunk))
 	);
 
 	return store;
 };
-
