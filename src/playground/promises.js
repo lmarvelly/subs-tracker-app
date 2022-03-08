@@ -10,11 +10,11 @@ const promise = new Promise((resolve, reject) =>
 {
 	setTimeout(() => 
 	{
-		// resolve(
-		// {
-		// 	name: 'Luke',
-		// 	age: 34
-		// });
+		resolve(
+		{
+			name: 'Luke',
+			age: 34
+		});
 		reject('Whoops! Something went wrong')
 	}, 1500);
 });
@@ -25,10 +25,13 @@ console.log('before');
 promise.then((data) =>
 {
 	console.log(data);
+
+	return {name: 'Luke'}
 })
-.then(() => // You can add another function to run after the first one has finished
+.then(({name}) => // You can add another function to run after the first one has finished
 {
 	console.log('This will run if first then() call is resolved');
+	console.log(`We can access data. Name = ${name}`);
 })
 .catch((error) => // there are different ways to report an error.
 {
