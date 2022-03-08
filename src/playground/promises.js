@@ -24,12 +24,19 @@ console.log('before');
 // This happens after promise is complete
 promise.then((data) =>
 {
-	console.log(data);
+	console.log('1.', data);
 
-	return {name: 'Luke'}
+	return new Promise((resolve, reject) =>
+	{
+		setTimeout(() => 
+		{
+			console.log('2. This is my other promise');
+		}, 3500);
+	});
 })
 .then(({name}) => // You can add another function to run after the first one has finished
 {
+	console.log('3. Does this run?');
 	console.log('This will run if first then() call is resolved');
 	console.log(`We can access data. Name = ${name}`);
 })
