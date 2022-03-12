@@ -64,8 +64,7 @@ module.exports = (env) => {
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
       })
     ],
-	// Doc: https://v4.webpack.js.org/configuration/devtool/#devtool
-    devtool: isProduction ? 'source-map' : 'inline-source-map', // 'source-map' slow but good for development
+    devtool: isProduction ? 'source-map' : 'inline-source-map', // 'source-map' slow but good for development. Documentation: https://v4.webpack.js.org/configuration/devtool/#devtool
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,
