@@ -131,3 +131,16 @@ test('should not edit a Payment Record if not found', () =>
 
 	expect( state ).toEqual( records );
 });
+
+
+test('should set records', () => 
+{
+	const action =
+	{
+		type: 'SET_RECORDS',
+		records: [records[2]]
+	}
+	const state = recordReducer( records, action )
+
+	expect( state ).toEqual( [records[2]] );
+});
