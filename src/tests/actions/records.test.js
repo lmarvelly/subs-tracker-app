@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { 
-	addRecord, editRecord, removeRecord, startAddRecord
+import { addRecord, editRecord, removeRecord, startAddRecord, 
+	setRecords
 } from '../../actions/records';
 import { records } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -17,7 +17,6 @@ beforeEach((done) =>
 	{
 		recordData[id] = { recordType, playerUuid, seasonUuid, 
 			description, note, createdAt, amountOwed, amountPaid, amount }
-		console.log(recordData);
 	});
 
 	database.ref('subs-tracker/main/records/')
@@ -210,5 +209,15 @@ test('should add Record with defaults to Database and Store', (done) =>
 			...defaultRecord 
 		});
 		done();
+	});
+});
+
+test('should setup set record action object with data', () => 
+{ 
+	const action = setRecords(records);
+	expect(action).toEqual(
+	{
+		type: 'SET_RECORDS',
+		records
 	});
 });
