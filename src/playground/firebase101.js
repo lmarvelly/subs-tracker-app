@@ -162,7 +162,7 @@ database.ref('records').on('child_added', (snapshot) =>
 });
 
 
-// Retrieve all 'records' from database
+// Retrieve all 'records' from database and parsing them
 database.ref('records')
 	.once('value')
 	.then((snapshot) =>
