@@ -52,5 +52,16 @@ test('should edit Members First Name', () =>
 	}
 	const state = membersReducer( members, action );
 	expect( state[0].firstName ).toBe('David');
-})
+});
 
+test('should set Members', () =>
+{
+	const action = 
+	{
+		type: 'SET_MEMBERS',
+		members: [members[2]]
+	};
+	const state = membersReducer( members, action );
+
+	expect( state ).toEqual( [members[2]] );
+});
