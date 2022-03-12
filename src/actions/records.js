@@ -113,3 +113,17 @@ export const removeRecord = ( { id } = {} ) =>
 	type: 'REMOVE_RECORD',
 	id
 });
+
+/**
+ *  SET_RECORDS
+ */
+export const setRecords = ( records ) => (
+{
+	type: 'SET_RECORDS',
+	records
+});
+
+export const startSetExpenses = () => (
+{
+	
+});
