@@ -42,6 +42,9 @@ export default ( state = paymentRecordReducerDefaultState, action ) =>
 				else { return record };
 			})
 
+		case 'SET_RECORDS':
+			return action.records
+
 		default:
 			return state;
 	}
