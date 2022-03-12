@@ -8,6 +8,23 @@ import database from '../../firebase/firebase';
 
 const createMockStore = configureMockStore([thunk]);
 
+beforeEach((done) =>
+{
+	const recordData = {};
+	records.forEach(({ id, recordType, playerUuid, seasonUuid, 
+		description, note, createdAt, amountOwed, amountPaid, amount 
+	}) =>
+	{
+		recordData[id] = { recordType, playerUuid, seasonUuid, 
+			description, note, createdAt, amountOwed, amountPaid, amount }
+		console.log(recordData);
+	});
+
+	database.ref('subs-tracker/main/records/')
+		.set(recordData)
+		.then(() => done());
+});
+
 /**
  * We use toEqual because when we use toBe() it compares two 
  * objects. Two different objects, even with the same properties,
