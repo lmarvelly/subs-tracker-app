@@ -1,8 +1,15 @@
+### Commands when firing up Project ###
+	cd Documents/Programming/Personal/subs-tracker-app/subs-tracker-app
+	yarn dev-server
+	yarn test -- --watch
+
+
 ### How a basic ACTION GENERATOR WORKS
 1. Component calls action generator
 2. Action generator returns object
 3. Component dispatches object
 4. Redux store changes
+
 
 ### HOW TO ADD NEW ACTION ###
 ### New Record Action example ###
@@ -16,12 +23,6 @@
 2. Action generator returns function
 3. Component dispatches function (?)
 4. Function runs (has the ability to dispatch other actions and do whatever it wants)
-
-
-### Commands when firing up Project ###
-	cd Documents/Programming/Personal/subs-tracker-app/subs-tracker-app
-	yarn dev-server
-	yarn test -- --watch
 
 
 ### ADDING NEW MEMBER FUNCTIONALITY ###
