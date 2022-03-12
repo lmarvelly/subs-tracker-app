@@ -47,3 +47,9 @@ export const removeMember = ( playerUuid ) => (
 	type: 'REMOVE_MEMBER',
 	playerUuid
 });
+
+export const setMembers = ( members ) => (
+{
+	type: 'SET_MEMBERS',
+	members
+});
