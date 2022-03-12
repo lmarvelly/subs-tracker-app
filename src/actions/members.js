@@ -53,3 +53,8 @@ export const setMembers = ( members ) => (
 	type: 'SET_MEMBERS',
 	members
 });
+
+export const startSetMembers = () =>
+{
+	console.log('TODO: Finish this function');
+};
