@@ -23,7 +23,9 @@ export default ( state = membersRecordReducerDefaultState, action ) =>
 				}
 				else { return member }
 			})
-
+		case 'SET_MEMBERS':
+			return action.members
+			
 		default:
 			return state;
 	}
