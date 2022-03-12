@@ -1,4 +1,4 @@
-import { addMember, editMember, removeMember } from "../../actions/members";
+import { addMember, editMember, removeMember, setMembers } from "../../actions/members";
 import { members } from '../fixtures/fixures';
 
 test('Should add a new members. Some have more properties than others', () => 
@@ -46,5 +46,16 @@ test('Should remove member', () =>
 	{
 		type: 'REMOVE_MEMBER',
 		playerUuid: 'abc123'
+	});
+});
+
+test('should setup set record action object with data', () =>
+{
+	const action = setMembers(members);
+	
+	expect(action).toEqual(
+	{
+		type: 'SET_MEMBERS',
+		members
 	});
 });
