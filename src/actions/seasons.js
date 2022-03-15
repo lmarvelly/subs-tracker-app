@@ -65,7 +65,7 @@ export const startSetSeasons = () =>
 				});
 
 				console.log(seasons);// Remove after testing
-				dispatch(setRecords( seasons ));
+				dispatch(setSeasons( seasons ));
 			});
 	}
 };
