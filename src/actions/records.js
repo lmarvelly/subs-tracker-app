@@ -116,6 +116,20 @@ export const removeRecord = ( { id } = {} ) =>
 	id
 });
 
+export const startRemoveRecords = ({ id } = {}) =>
+{
+	return ( dispatch ) =>
+	{
+		return database.ref(`subs-tracker/main/records/${id}`)
+			.remove()
+			.then((ref) =>
+			{
+				console.log('ID: ', id);
+				dispatch(removeRecord({ id }));
+			});
+	};
+};
+
 /**
  *  SET_RECORDS
  */
@@ -146,5 +160,5 @@ export const startSetRecords = () =>
 
 				dispatch(setRecords( records ));
 			});
-	}
+	};
 };
