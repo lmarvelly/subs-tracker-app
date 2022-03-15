@@ -73,7 +73,7 @@ export const startSetMembers = () =>
 					});
 				});
 
-				console.log(members);// Remove after testing
+				console.log('', members);// Remove after testing
 				dispatch(setMembers( members ));
 			});
 	}
