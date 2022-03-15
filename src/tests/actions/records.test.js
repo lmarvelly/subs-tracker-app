@@ -10,17 +10,17 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
 {
-	const recordData = {};
+	const recordsData = {};
 	records.forEach(({ id, recordType, playerUuid, seasonUuid, 
 		description, note, createdAt, amountOwed, amountPaid, amount 
 	}) =>
 	{
-		recordData[id] = { recordType, playerUuid, seasonUuid, 
+		recordsData[id] = { recordType, playerUuid, seasonUuid, 
 			description, note, createdAt, amountOwed, amountPaid, amount }
 	});
 
 	database.ref('subs-tracker/main/records/')
-		.set(recordData)
+		.set(recordsData)
 		.then(() => done());
 });
 
