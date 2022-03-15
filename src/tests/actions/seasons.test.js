@@ -8,10 +8,14 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
 {
-	// const 
+	const seasonsData = {};
+	seasons.forEach(({ seasonUuid, seasonName }) =>
+	{
+		seasonsData[seasonUuid] = { seasonName };
+	});
 
 	database.ref('subs-tracker/seasons')
-		.set({})
+		.set(seasonsData)
 		.then(() => done());
 });
 
