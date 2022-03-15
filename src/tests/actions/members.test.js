@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addMember, editMember, removeMember, setMembers, startSetMembers } from "../../actions/members";
+import { addMember, editMember, removeMember, setMembers, startAddMember, startSetMembers } from "../../actions/members";
 import { members } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -90,6 +90,44 @@ test('should setup set member action object with data', () =>
 	});
 });
 
+test('should add a member to the database', (done) => 
+{ 
+	const store = createMockStore({});
+	const memberData = 
+	{
+		firstName: 'John', 
+		middleNames: 'Nobody', 
+		surname: 'Doe', 
+		nickname: 'That Guy'
+	};
+
+	const promise = store.dispatch(startAddMember(memberData)).then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'ADD_MEMBER',
+			member:
+			{
+				playerUuid: expect.any(String),
+				...memberData
+			}
+		});
+
+		return database.ref(`subs-tracker/members/${actions[0].member.playerUuid}`).once('value');
+	});
+
+	promise.then((snapshot) =>
+	{
+		expect(snapshot.val()).toEqual(
+		{
+			...memberData 
+		});
+		done();
+	});
+	
+});
+
 test('should fetch members from firebase', (done) =>
 { 
 	const store = createMockStore({});
@@ -98,6 +136,7 @@ test('should fetch members from firebase', (done) =>
 	store.dispatch(startSetMembers()).then(() =>
 	{
 		const actions = store.getActions();
+		console.log(actions);
 		expect(actions[0]).toEqual(
 		{
 			type: 'SET_MEMBERS',
