@@ -22,7 +22,7 @@ export const startAddSeason = ( seasonData = {} ) =>
 				{
 					seasonUuid: ref.key,
 					...season
-				}))
+				}));
 			});
 	};
 };
@@ -39,3 +39,34 @@ export const removeSeason = (seasonUuid) =>
 	type: 'REMOVE_SEASON',
 	seasonUuid
 });
+
+export const setSeasons = ( seasons ) => (
+{
+	type: 'SET_SEASONS',
+	seasons
+});
+
+export const startSetSeasons = () =>
+{
+	return (dispatch) =>
+	{
+		return database.ref('subs-tracker/seasons')
+			.once('value')
+			.then((snapshot) =>
+			{
+				const seasons = [];
+
+				snapshot.forEach((childSnapshot) =>
+				{
+					seasons.push(
+					{
+						seasonUuid: childSnapshot.key,
+						...childSnapshot.val()
+					});
+				});
+
+				console.log(seasons);// Remove after testing
+				dispatch(setRecords( seasons ));
+			});
+	}
+};
