@@ -56,5 +56,25 @@ export const setMembers = ( members ) => (
 
 export const startSetMembers = () =>
 {
-	console.log('TODO: Finish this function');
+	return (dispatch) =>
+	{
+		return database.ref('subs-tracker/members')
+			.once('value')
+			.then((snapshot) =>
+			{
+				const members = [];
+
+				snapshot.forEach((childSnapshot) =>
+				{
+					members.push(
+					{
+						memberUuid: childSnapshot.key,
+						...childSnapshot.val()
+					});
+				});
+
+				console.log(members);// Remove after testing
+				dispatch(setMembers( members ));
+			});
+	}
 };
