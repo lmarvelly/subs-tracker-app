@@ -22,7 +22,7 @@ export const startAddMember = ( memberData = {} ) =>
 			firstName, middleNames, surname, nickname
 		}
 
-		database.ref('subs-tracker/members')
+		return database.ref('subs-tracker/members')
 			.push(member)
 			.then((ref) =>
 			{
