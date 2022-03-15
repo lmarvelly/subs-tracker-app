@@ -73,14 +73,14 @@ test('should add a season to the database', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/seasons/${actions[0].season.id}`).once('value');
+		return database.ref(`subs-tracker/seasons/${actions[0].season.seasonUuid}`).once('value');
 	});
 
 	promise.then((snapshot) =>
 	{
 		expect(snapshot.val()).toEqual(
 		{
-			...defaultSeason 
+			...seasonData 
 		});
 		done();
 	});
@@ -94,4 +94,9 @@ test('should setup set season action object with data', () =>
 		type: 'SET_SEASONS',
 		seasons
 	});
+});
+
+test('should retreive seasons from database', () => 
+{ 
+	// Insert code
 });
