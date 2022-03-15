@@ -3,18 +3,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
+import thunk from 'redux-thunk';
+
 import configureStore from './store/configureStore';
-import getVisibleRecords from './selectors/records';
 import getVisibleMembers from './selectors/members';
 import getVisibleSeasons from './selectors/seasons';
+import getVisibleRecords from './selectors/records';
 
-import { addRecord, editRecord, removeRecord } from './actions/records';
+import { addRecord, editRecord, removeRecord, startSetRecords } from './actions/records';
 import { sortByDateAscending, sortByDateDescending, setStartDate, 
 	setEndDate, setDescriptionTextFilter, setMemberFilterText, setSeasonFilter 
 } from './actions/recordFilters';
 import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from './actions/memberFilters';
-import { addMember, removeMember } from './actions/members';
-import { addSeason } from './actions/seasons';
+import { addMember, removeMember, startSetMember, startSetMembers } from './actions/members';
+import { addSeason, startSetSeasons } from './actions/seasons';
 import { seasons, members, records } from './tests/fixtures/fixures';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
@@ -29,9 +31,9 @@ const store = configureStore();
 const unsubscribe = store.subscribe(() => 
 {
 	const state = store.getState();
- 	const visibleRecords = getVisibleRecords( state.paymentRecord, state.members, state.recordFilters );
 	const visibleMembers = getVisibleMembers( state.members, state.memberFilters );
 	const visibleSeasons = getVisibleSeasons( state.seasons, state.seasonFilters );
+ 	const visibleRecords = getVisibleRecords( state.paymentRecord, state.members, state.recordFilters );
 
 	// console.log( 'RECORD FILTERS: ', state.recordFilters );
 	// console.log( 'MEMBERS FILTERS: ', state.memberFilters );
@@ -43,75 +45,75 @@ const unsubscribe = store.subscribe(() =>
 });
 
 
-store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickname: 'Lukio'}) );
-store.dispatch( addMember({firstName: 'Harri', middleNames: '', surname: 'Messenger' }) );
-store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousins'}) );
+// store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickname: 'Lukio'}) );
+// store.dispatch( addMember({firstName: 'Harri', middleNames: '', surname: 'Messenger' }) );
+// store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousins'}) );
 store.dispatch( sortAlphabetAsc() );
 // store.dispatch( sortAlphabetDesc() );
 // store.dispatch( setMemberTextFilter('Jason') );
 // store.dispatch( setMemberFilterText( store.getState().members[0].playerUuid ) )
 
-const season1 = store.dispatch(
-	addSeason({ seasonName: '2020/2021' })
-);
+// const season1 = store.dispatch(
+// 	addSeason({ seasonName: '2020/2021' })
+// );
 
-const season2 = store.dispatch(
-	addSeason({ seasonName: '2019/2020' })
-);
+// const season2 = store.dispatch(
+// 	addSeason({ seasonName: '2019/2020' })
+// );
 
-const season3 = store.dispatch(
-	addSeason({ seasonName: 'Donations' })
-);
+// const season3 = store.dispatch(
+// 	addSeason({ seasonName: 'Donations' })
+// );
 
 // store.dispatch( setSeasonFilter( store.getState().seasons[1].seasonUuid ) );
 
-const record = store.dispatch( 
-	addRecord( 
-		{ 
-			recordType: 'DEBT',
-			playerUuid: store.getState().members[1].playerUuid, 
-			seasonUuid: store.getState().seasons[0].seasonUuid,
-			description: 'Training subs two weeks', 
-			amountOwed: 700
-		} 
-	)
-);
+// const record = store.dispatch( 
+// 	addRecord( 
+// 		{ 
+// 			recordType: 'DEBT',
+// 			playerUuid: store.getState().members[1].playerUuid, 
+// 			seasonUuid: store.getState().seasons[0].seasonUuid,
+// 			description: 'Training subs two weeks', 
+// 			amountOwed: 700
+// 		} 
+// 	)
+// );
 
-const record1 = store.dispatch( 
-	addRecord( 
-		{ 
-			recordType: 'PAYMENT',
-			playerUuid: store.getState().members[1].playerUuid,
-			seasonUuid: store.getState().seasons[0].seasonUuid,
-			description: 'Training subs', 
-			amount: 400
-		} 
-	)
-);
+// const record1 = store.dispatch( 
+// 	addRecord( 
+// 		{ 
+// 			recordType: 'PAYMENT',
+// 			playerUuid: store.getState().members[1].playerUuid,
+// 			seasonUuid: store.getState().seasons[0].seasonUuid,
+// 			description: 'Training subs', 
+// 			amount: 400
+// 		} 
+// 	)
+// );
 
-const record2 = store.dispatch( 
-	addRecord( 
-		{ 
-			recordType: 'PAYMENT',
-			playerUuid: store.getState().members[0].playerUuid,
-			seasonUuid: store.getState().seasons[1].seasonUuid,
-			description: '5s subs', 
-			amount: 500
-		} 
-	)
-);
+// const record2 = store.dispatch( 
+// 	addRecord( 
+// 		{ 
+// 			recordType: 'PAYMENT',
+// 			playerUuid: store.getState().members[0].playerUuid,
+// 			seasonUuid: store.getState().seasons[1].seasonUuid,
+// 			description: '5s subs', 
+// 			amount: 500
+// 		} 
+// 	)
+// );
 
-const record3 = store.dispatch( 
-	addRecord( 
-		{ 
-			recordType: 'PAYMENT',
-			playerUuid: store.getState().members[2].playerUuid, 
-			seasonUuid: store.getState().seasons[1].seasonUuid,
-			description: 'donation', 
-			amount: 5000
-		} 
-	)
-);
+// const record3 = store.dispatch( 
+// 	addRecord( 
+// 		{ 
+// 			recordType: 'PAYMENT',
+// 			playerUuid: store.getState().members[2].playerUuid, 
+// 			seasonUuid: store.getState().seasons[1].seasonUuid,
+// 			description: 'donation', 
+// 			amount: 5000
+// 		} 
+// 	)
+// );
 
 
 
@@ -131,5 +133,31 @@ const jsx = (
 	</React.StrictMode>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+// Render Loading Message
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
+// store.dispatch(startSetMember());
+
+// Renders after Promise, startSetRecords, has finished
+store.dispatch(startSetSeasons())
+	.then(store.dispatch(startSetMembers()))
+	.then(store.dispatch(startSetRecords()))
+	.then(() =>
+		{
+			ReactDOM.render(jsx, document.getElementById('app'));
+		})
+
+// Renders after Promise, startSetRecords, has finished
+
+	.then(() =>
+	{
+		ReactDOM.render(jsx, document.getElementById('app'));
+	});
+
+// Run this once Members and Seasons can be retreived from database
+// Renders after Promise, startSetRecords, has finished
+// store.dispatch(startSetRecords())
+// 	.then(() =>
+// 	{
+// 		ReactDOM.render(jsx, document.getElementById('app'));
+// 	});
