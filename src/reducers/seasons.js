@@ -27,7 +27,10 @@ export default ( state = seasonReducerDefaultState, action ) =>
 
 		case 'REMOVE_SEASON':
 			return state.filter( ({ seasonUuid }) => seasonUuid !== action.seasonUuid );
-	
+				
+		case 'SET_SEASONS':
+			return action.seasons
+
 		default:
 			return state;
 	}
