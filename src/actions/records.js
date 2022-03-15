@@ -116,7 +116,7 @@ export const removeRecord = ( { id } = {} ) =>
 	id
 });
 
-export const startRemoveRecords = ({ id } = {}) =>
+export const startRemoveRecord = ({ id } = {}) =>
 {
 	return ( dispatch ) =>
 	{
