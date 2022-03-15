@@ -68,12 +68,11 @@ export const startSetMembers = () =>
 				{
 					members.push(
 					{
-						memberUuid: childSnapshot.key,
+						playerUuid: childSnapshot.key,
 						...childSnapshot.val()
 					});
 				});
 
-				console.log('', members);// Remove after testing
 				dispatch(setMembers( members ));
 			});
 	}
