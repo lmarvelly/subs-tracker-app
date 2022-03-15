@@ -1,7 +1,13 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addRecord, editRecord, removeRecord, startAddRecord, 
-	setRecords, startSetRecords
+import { 
+	addRecord, 
+	startAddRecord, 
+	editRecord, 
+	removeRecord, 
+	startRemoveRecords,
+	setRecords, 
+	startSetRecords
 } from '../../actions/records';
 import { records } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -18,6 +24,8 @@ beforeEach((done) =>
 		recordsData[id] = { recordType, playerUuid, seasonUuid, 
 			description, note, createdAt, amountOwed, amountPaid, amount }
 	});
+
+	console.log('Record Data:', recordsData);
 
 	database.ref('subs-tracker/main/records/')
 		.set(recordsData)
@@ -238,6 +246,30 @@ test('should fetch records from firebase', (done) =>
 			type: 'SET_RECORDS',
 			records
 		});
+		done();
+	});
+});
+
+test('should remove a record from test database', (done) => 
+{
+	const store = createMockStore({});
+	const id = records[0].id;
+
+	store.dispatch(startRemoveRecords({ id }))
+	.then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'REMOVE_RECORD',
+			id
+		});
+		// Return the value a single time
+		return database.ref(`subs-tracker/main/records/${id}`).once('value');
+	})
+	.then((snapshot) =>
+	{
+		expect(snapshot.val()).toBeFalsy();
 		done();
 	});
 });
