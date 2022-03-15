@@ -13,7 +13,7 @@ export const startAddSeason = ( seasonData = {} ) =>
 		const { seasonName = '' } = seasonData;
 		const season = { seasonName };
 
-		database.ref('subs-tracker/seasons')
+		return database.ref('subs-tracker/seasons')
 			.push(season)
 			.then((ref) => 
 			{
