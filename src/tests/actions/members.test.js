@@ -1,5 +1,37 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import { addMember, editMember, removeMember, setMembers } from "../../actions/members";
 import { members } from '../fixtures/fixures';
+import database from '../../firebase/firebase';
+
+const createMockStore = configureMockStore([thunk]);
+
+beforeEach((done) =>
+{
+	const membersData = {};
+	members.forEach(({ 
+		playerUuid = '',
+		firstName = '',
+		middleNames = '',
+		surname = '',
+		nickname = ''
+	}) =>
+	{
+		membersData[playerUuid] = 
+		{ 
+			firstName,
+			middleNames,
+			surname,
+			nickname 
+		};
+	});
+
+	console.log(membersData);
+
+	database.ref('subs-tracker/members')
+		.set(membersData)
+		.then(() => done());
+});
 
 test('Should add a new members. Some have more properties than others', () => 
 {
