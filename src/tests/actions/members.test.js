@@ -128,15 +128,18 @@ test('should add a member to the database', (done) =>
 	
 });
 
+// This is getting the disired result. It's just timing out for some reason
 test('should fetch members from firebase', (done) =>
 { 
 	const store = createMockStore({});
 
-	// not receiving a promise
-	store.dispatch(startSetMembers()).then(() =>
+	store.dispatch(startSetMembers())
+	.then(() =>
 	{
 		const actions = store.getActions();
-		console.log(actions);
+		console.log(actions[0]);
+		console.log({type: 'SET_MEMBERS', members});
+
 		expect(actions[0]).toEqual(
 		{
 			type: 'SET_MEMBERS',
