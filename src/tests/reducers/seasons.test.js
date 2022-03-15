@@ -49,3 +49,15 @@ test('should remove a season', () =>
 	const state = seasonReducer( seasons, action );
 	expect( state ).toEqual([seasons[0], seasons[2], seasons[3]]);
 });
+
+test('should set seasons', () => 
+{
+	const action =
+	{
+		type: 'SET_SEASONS',
+		seasons: [seasons[1]]
+	}
+	const state = seasonReducer( seasons, action );
+
+	expect( state ).toEqual( [seasons[1]] );
+});
