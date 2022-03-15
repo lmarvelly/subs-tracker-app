@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
-import { editRecord, removeRecord } from '../actions/records';
+import { editRecord, startRemoveRecord } from '../actions/records';
 
 /**
  * Use classes to avoid inline functions. This avoids rerendering
@@ -41,8 +41,9 @@ export class EditRecordPage extends Component
 	onRemove = () =>
 	{
 		confirm('Are you sure you want to remove record?') &&
-		this.props.removeRecord( { id: this.props.record.id } );
+		this.props.startRemoveRecord( { id: this.props.record.id } );
 		this.props.history.push('/'); // return to dashboard
+		console.log(this.props.record.id);
 	}
 
 	render()
@@ -75,7 +76,7 @@ const mapStateToProps = ( state, props ) =>
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	editRecord: ( record ) => dispatch( editRecord( record.id, record ) ),
-	removeRecord: ( data ) => dispatch( removeRecord( data ) )
+	startRemoveRecord: ( data ) => dispatch( startRemoveRecord( data ) )
 });
 
 // The HOC passes the props through
