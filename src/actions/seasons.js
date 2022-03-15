@@ -17,11 +17,11 @@ export const startAddSeason = ( seasonData = {} ) =>
 			.push(season)
 			.then((ref) => 
 			{
-				console.log(dispatch(addSeason(
+				dispatch(addSeason(
 				{
 					seasonUuid: ref.key,
 					...season
-				})));
+				}));
 			});
 	};
 };
