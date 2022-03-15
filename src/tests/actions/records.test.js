@@ -5,7 +5,7 @@ import {
 	startAddRecord, 
 	editRecord, 
 	removeRecord, 
-	startRemoveRecords,
+	startRemoveRecord,
 	setRecords, 
 	startSetRecords
 } from '../../actions/records';
@@ -255,7 +255,7 @@ test('should remove a record from test database', (done) =>
 	const store = createMockStore({});
 	const id = records[0].id;
 
-	store.dispatch(startRemoveRecords({ id }))
+	store.dispatch(startRemoveRecord({ id }))
 	.then(() =>
 	{
 		const actions = store.getActions();
