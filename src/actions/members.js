@@ -11,10 +11,10 @@ export const startAddMember = ( memberData = {} ) =>
 	return (dispatch) => 
 	{
 		const {
-			firstName,
-			middleNames,
-			surname,
-			nickname
+			firstName = '',
+			middleNames = '',
+			surname = '',
+			nickname = ''
 		} = memberData; // Deconstruct member data
 
 		const member = 
