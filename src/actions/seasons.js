@@ -64,7 +64,6 @@ export const startSetSeasons = () =>
 					});
 				});
 
-				console.log(seasons);// Remove after testing
 				dispatch(setSeasons( seasons ));
 			});
 	}

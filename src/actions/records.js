@@ -144,7 +144,6 @@ export const startSetRecords = () =>
 					});
 				});
 
-				console.log('RECORDS: ', records);// Remove after testing
 				dispatch(setRecords( records ));
 			});
 	}
