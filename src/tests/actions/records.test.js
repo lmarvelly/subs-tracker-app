@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { addRecord, editRecord, removeRecord, startAddRecord, 
-	setRecords
+	setRecords, startSetRecords
 } from '../../actions/records';
 import { records } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -219,5 +219,25 @@ test('should setup set record action object with data', () =>
 	{
 		type: 'SET_RECORDS',
 		records
+	});
+});
+
+/**
+ * Use done to tell jest that this test is a failier if done() is
+ * not called
+ */ 
+test('should fetch records from firebase', (done) =>
+{ 
+	const store = createMockStore({});
+
+	store.dispatch(startSetRecords()).then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'SET_RECORDS',
+			records
+		});
+		done();
 	});
 });
