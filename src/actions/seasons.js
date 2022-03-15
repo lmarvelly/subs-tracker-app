@@ -10,19 +10,18 @@ export const startAddSeason = ( seasonData = {} ) =>
 {
 	return (dispatch) =>
 	{
-		const { seasonName } = seasonData;
-
+		const { seasonName = '' } = seasonData;
 		const season = { seasonName };
 
 		database.ref('subs-tracker/seasons')
 			.push(season)
 			.then((ref) => 
 			{
-				dispatch(addSeason(
+				console.log(dispatch(addSeason(
 				{
 					seasonUuid: ref.key,
 					...season
-				}));
+				})));
 			});
 	};
 };
