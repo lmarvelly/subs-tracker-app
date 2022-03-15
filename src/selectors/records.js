@@ -14,7 +14,7 @@ import moment from "moment";
  * @param {*} records 
  * @param {*} filters
  */
-export default ( records, members, { descriptionTextFilter, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
+export default ( records = {}, members = {}, { descriptionTextFilter, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
 {
 	return records.filter( (record) =>
 	{
