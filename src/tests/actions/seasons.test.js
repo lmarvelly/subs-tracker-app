@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addSeason, editSeason, removeSeason, startAddSeason } from '../../actions/seasons';
+import { addSeason, editSeason, removeSeason, setSeasons, startAddSeason } from '../../actions/seasons';
 import { seasons } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -79,5 +79,15 @@ test('should add a season to the database', (done) =>
 			...defaultSeason 
 		});
 		done();
+	});
+});
+
+test('should setup set season action object with data', () => 
+{ 
+	const action = setSeasons(seasons);
+	expect(action).toEqual(
+	{
+		type: 'SET_SEASONS',
+		seasons
 	});
 });
