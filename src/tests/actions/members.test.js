@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addMember, editMember, removeMember, setMembers } from "../../actions/members";
+import { addMember, editMember, removeMember, setMembers, startSetMembers } from "../../actions/members";
 import { members } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -25,8 +25,6 @@ beforeEach((done) =>
 			nickname 
 		};
 	});
-
-	console.log(membersData);
 
 	database.ref('subs-tracker/members')
 		.set(membersData)
@@ -81,7 +79,7 @@ test('Should remove member', () =>
 	});
 });
 
-test('should setup set record action object with data', () =>
+test('should setup set member action object with data', () =>
 {
 	const action = setMembers(members);
 	
@@ -89,5 +87,22 @@ test('should setup set record action object with data', () =>
 	{
 		type: 'SET_MEMBERS',
 		members
+	});
+});
+
+test('should fetch members from firebase', (done) =>
+{ 
+	const store = createMockStore({});
+
+	// not receiving a promise
+	store.dispatch(startSetMembers()).then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'SET_MEMBERS',
+			members
+		});
+		done();
 	});
 });
