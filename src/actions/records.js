@@ -124,7 +124,6 @@ export const startRemoveRecord = ({ id } = {}) =>
 			.remove()
 			.then((ref) =>
 			{
-				console.log('ID: ', id);
 				dispatch(removeRecord({ id }));
 			});
 	};
