@@ -25,14 +25,9 @@ export class EditMemberPage extends Component
 
 	onSubmit = ( member ) =>
 		{
-			this.props.dispatch(
-				startEditMember(
-					member.playerUuid,
-					member
-				) 
-			);
+			this.props.startEditMember(member);
 			
-			this.props.dispatch(startSetMembers());
+			this.props.startSetMembers();
 			this.props.history.push('/members');
 		}
 
@@ -75,4 +70,9 @@ const mapStateToProps = ( state, props ) =>
 	}
 };
 
-export default connect( mapStateToProps )( EditMemberPage );
+const mapDispatchToProps = ( dispatch, props ) => ({
+	startEditMember: ( member ) => dispatch( startEditMember(member.playerUuid, member) ),
+	startSetMembers: () => dispatch( startSetMembers() )
+});
+
+export default connect( mapStateToProps, mapDispatchToProps )( EditMemberPage );
