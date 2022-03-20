@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import MemberForm from './MemberForm';
-import { editMember, removeMember } from '../actions/members';
+import { startEditMember, removeMember } from '../actions/members';
 
 const EditMemberPage = ( props ) =>
 {
@@ -32,7 +32,7 @@ const EditMemberPage = ( props ) =>
 				onSubmit={( member =>
 				{
 					props.dispatch(
-						editMember(
+						startEditMember(
 							member.playerUuid,
 							member
 						) 
