@@ -7,6 +7,7 @@ import {
 	setMembers, 
 	startAddMember, 
 	startEditMember, 
+	startRemoveMember, 
 	startSetMembers 
 } from "../../actions/members";
 import { members } from '../fixtures/fixures';
@@ -186,3 +187,26 @@ test('should fetch members from firebase', (done) =>
 
 
 // TODO: START REMOVE MEMBER
+test('should remove member from database', (done) => 
+{
+	const store = createMockStore({});
+	const playerUuid = members[0].playerUuid;
+
+	store.dispatch(startRemoveMember(playerUuid))
+	.then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'REMOVE_MEMBER',
+			playerUuid
+		});
+
+		return database.ref(`subs-tracker/members/${playerUuid}`).once('value');
+	})
+	.then((snapshot) =>
+	{
+		expect(snapshot.val()).toBeFalsy();
+		done();
+	});
+});
