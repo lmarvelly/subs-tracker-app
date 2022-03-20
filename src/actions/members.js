@@ -1,4 +1,5 @@
 import database from '../firebase/firebase';
+import { removeRecord } from './records';
 
 export const addMember = ( member ) => (
 {
@@ -58,6 +59,19 @@ export const removeMember = ( playerUuid ) => (
 	type: 'REMOVE_MEMBER',
 	playerUuid
 });
+
+export const startRemoveMember = ( playerUuid ) => 
+{
+	return (dispatch) =>
+	{
+		return database.ref(`subs-tracker/members/${playerUuid}`)
+			.remove()
+			.then((ref) =>
+			{
+				dispatch(removeMember(playerUuid));
+			});
+	}
+};
 
 export const setMembers = ( members ) => (
 {
