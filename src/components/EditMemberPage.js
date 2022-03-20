@@ -9,7 +9,6 @@ export class EditMemberPage extends Component
 	constructor( props )
 	{
 		super( props );
-		console.log('MEMBER:', this.props.member);
 		this.state =
 		{
 			error: this.props.member ? false : true
@@ -20,8 +19,6 @@ export class EditMemberPage extends Component
 	{
 		if (this.state.error) 
 		{
-			console.log('Whoops something went wrong!');
-			console.log('MEMBERS:', this.props.members);
 			this.props.history.push('/members');
 		}
 	}
