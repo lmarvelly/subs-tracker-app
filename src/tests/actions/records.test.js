@@ -7,7 +7,8 @@ import {
 	removeRecord, 
 	startRemoveRecord,
 	setRecords, 
-	startSetRecords
+	startSetRecords,
+	startEditRecord
 } from '../../actions/records';
 import { records } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -270,4 +271,38 @@ test('should remove a record from test database', (done) =>
 		expect(snapshot.val()).toBeFalsy();
 		done();
 	});
+});
+
+test('should edit a Debt record on the database', (done) => 
+{
+	const store = createMockStore({});
+	const id = records[0].id;
+	const updates = 
+	{
+		amountOwed: 500,
+		amountPaid: 250
+	}
+
+	const promise = store.dispatch(startEditRecord(id, updates))
+		.then(() =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+			{
+				type: 'EDIT_RECORD',
+				id,
+				updates
+			});
+
+			console.log(actions[0]);
+
+			return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
+		});
+	
+		promise.then((snapshot) =>
+		{
+			expect(snapshot.val().amountOwed).toBe(500);
+			expect(snapshot.val().amountPaid).toBe(250);
+			done();
+		});
 });
