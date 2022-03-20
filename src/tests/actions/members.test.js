@@ -123,9 +123,8 @@ test('should edit a member from database', (done) =>
 			return database.ref(`subs-tracker/members/${playerUuid}`).once('value');
 		}).then((snapshot) =>
 		{
-			console.log('SNAPSHOT: ', snapshot.val());
-			// expect(snapshot.val().firstName).toBe(updates.firstName);
-			// expect(snapshot.val().nickname).toBe(updates.nickname);
+			expect(snapshot.val().firstName).toBe(updates.firstName);
+			expect(snapshot.val().nickname).toBe(updates.nickname);
 			done();
 		});
 });
