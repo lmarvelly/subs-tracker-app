@@ -296,9 +296,7 @@ test('should edit a Debt record on the database', (done) =>
 			});
 
 			return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
-		});
-	
-		promise.then((snapshot) =>
+		}).then((snapshot) =>
 		{
 			expect(snapshot.val().amountOwed).toBe(500);
 			expect(snapshot.val().amountPaid).toBe(250);
