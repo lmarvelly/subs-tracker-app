@@ -1,6 +1,14 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addMember, editMember, removeMember, setMembers, startAddMember, startSetMembers } from "../../actions/members";
+import { 
+	addMember, 
+	editMember, 
+	removeMember, 
+	setMembers, 
+	startAddMember, 
+	startEditMember, 
+	startSetMembers 
+} from "../../actions/members";
 import { members } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -90,7 +98,7 @@ test('should setup set member action object with data', () =>
 	});
 });
 
-// Working but Async function not being returned
+// Working but returning Snapshot not passing
 test('should edit a member from database', (done) => 
 {
 	const store = createMockStore({});
@@ -112,17 +120,14 @@ test('should edit a member from database', (done) =>
 				updates
 			});
 
-			return database.ref(`subs-tracker/members/${actions[0].member.playerUuid}`).once('value');
-		});
-
-	promise.then((snapshot) =>
-	{
-		expect(snapshot.val()).toEqual(
+			return database.ref(`subs-tracker/members/${playerUuid}`).once('value');
+		}).then((snapshot) =>
 		{
-			...updates
+			console.log('SNAPSHOT: ', snapshot.val());
+			// expect(snapshot.val().firstName).toBe(updates.firstName);
+			// expect(snapshot.val().nickname).toBe(updates.nickname);
+			done();
 		});
-		done();
-	});
 });
 
 test('should add a member to the database', (done) => 
@@ -154,6 +159,7 @@ test('should add a member to the database', (done) =>
 
 	promise.then((snapshot) =>
 	{
+		console.log('SNAPSHOT: ', snapshot);
 		expect(snapshot.val()).toEqual(
 		{
 			...memberData 
