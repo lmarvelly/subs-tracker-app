@@ -86,5 +86,9 @@ export const startSetMembers = () =>
 
 				dispatch(setMembers( members ));
 			});
+<<<<<<< HEAD
 	};
+=======
+	}
+>>>>>>> 561952b737f1e25b79558b1ccd15a578bc50cd81
 };
