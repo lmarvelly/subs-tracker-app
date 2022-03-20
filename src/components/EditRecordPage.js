@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
-import { editRecord, startRemoveRecord } from '../actions/records';
+import { startEditRecord, startRemoveRecord } from '../actions/records';
 
 /**
  * Use classes to avoid inline functions. This avoids rerendering
@@ -33,7 +33,7 @@ export class EditRecordPage extends Component
 
 	onSubmit = ( record ) => 
 	{
-		this.props.editRecord( record );
+		this.props.startEditRecord( record );
 
 		this.props.history.push('/'); // return to dashboard
 	}
@@ -75,7 +75,7 @@ const mapStateToProps = ( state, props ) =>
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
-	editRecord: ( record ) => dispatch( editRecord( record.id, record ) ),
+	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record ) ),
 	startRemoveRecord: ( data ) => dispatch( startRemoveRecord( data ) )
 });
 
