@@ -44,18 +44,12 @@ export const editMember = ( playerUuid, updates ) => (
 
 export const startEditMember = ( playerUuid, updates ) =>
 {
+	const {firstName = '', middleNames = '', surname = '', nickname = ''} = updates;
 	return ( dispatch ) =>
 	{
 		return database.ref(`subs-tracker/members/${playerUuid}`)
-			.update(updates)
-			.then(() =>
-			{
-				dispatch(editMember(
-				{
-					playerUuid,
-					updates
-				}));
-			});
+			.update({firstName, middleNames, surname, nickname})
+			.then(() => dispatch(editMember(playerUuid, {firstName, middleNames, surname, nickname})))
 	};
 };
 
