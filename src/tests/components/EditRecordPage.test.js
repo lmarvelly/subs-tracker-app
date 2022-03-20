@@ -3,16 +3,16 @@ import { shallow } from 'enzyme';
 import { EditRecordPage } from '../../components/EditRecordPage';
 import { records, members, seasons } from '../fixtures/fixures';
 
-let record, editRecord, startRemoveRecord, history, wrapper, wrapper2;
+let record, startEditRecord, startRemoveRecord, history, wrapper, wrapper2;
 
 /**
- * We can test editRecord and startRemoveRecord easily because they have
+ * We can test startEditRecord and startRemoveRecord easily because they have
  * been added to mapDispatchToProps
  */
 beforeEach( () => 
 {
 	record = records[1];
-	editRecord = jest.fn();
+	startEditRecord = jest.fn();
 	startRemoveRecord = jest.fn();
 	history = { push: jest.fn() };
 	wrapper = shallow(
@@ -23,7 +23,7 @@ beforeEach( () =>
 			record={record}
 			seasons={seasons} 
 			members={members} 
-			editRecord={editRecord}
+			startEditRecord={startEditRecord}
 			startRemoveRecord={startRemoveRecord}
 			history={history} 
 		/>
@@ -47,7 +47,7 @@ test('should handle onSubmit', () =>
 	wrapper2.find('RecordForm').prop('onSubmit')(record);
 
 	expect(history.push).toHaveBeenLastCalledWith('/');
-	expect(editRecord).toHaveBeenLastCalledWith(record);
+	expect(startEditRecord).toHaveBeenLastCalledWith(record);
 });
 
 // Remove Record
