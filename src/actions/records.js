@@ -124,10 +124,6 @@ export const startRemoveRecord = ({ id } = {}) =>
 			.remove()
 			.then((ref) =>
 			{
-<<<<<<< HEAD
-=======
-				console.log('ID: ', id);
->>>>>>> 561952b737f1e25b79558b1ccd15a578bc50cd81
 				dispatch(removeRecord({ id }));
 			});
 	};

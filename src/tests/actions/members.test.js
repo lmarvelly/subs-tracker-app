@@ -1,18 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-<<<<<<< HEAD
-import { 
-	addMember, 
-	editMember, 
-	removeMember, 
-	setMembers, 
-	startAddMember, 
-	startEditMember, 
-	startSetMembers 
-} from "../../actions/members";
-=======
 import { addMember, editMember, removeMember, setMembers, startAddMember, startSetMembers } from "../../actions/members";
->>>>>>> 561952b737f1e25b79558b1ccd15a578bc50cd81
 import { members } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -102,7 +90,6 @@ test('should setup set member action object with data', () =>
 	});
 });
 
-<<<<<<< HEAD
 // Working but Async function not being returned
 test('should edit a member from database', (done) => 
 {
@@ -138,8 +125,6 @@ test('should edit a member from database', (done) =>
 	});
 });
 
-=======
->>>>>>> 561952b737f1e25b79558b1ccd15a578bc50cd81
 test('should add a member to the database', (done) => 
 { 
 	const store = createMockStore({});
@@ -183,7 +168,6 @@ test('should fetch members from firebase', (done) =>
 { 
 	const store = createMockStore({});
 
-<<<<<<< HEAD
 	store.dispatch(startSetMembers()).then(() =>
 	{
 		const actions = store.getActions();
@@ -197,20 +181,3 @@ test('should fetch members from firebase', (done) =>
 
 
 // TODO: START REMOVE MEMBER
-=======
-	store.dispatch(startSetMembers())
-	.then(() =>
-	{
-		const actions = store.getActions();
-		console.log(actions[0]);
-		console.log({type: 'SET_MEMBERS', members});
-
-		expect(actions[0]).toEqual(
-		{
-			type: 'SET_MEMBERS',
-			members
-		});
-		done();
-	});
-});
->>>>>>> 561952b737f1e25b79558b1ccd15a578bc50cd81
