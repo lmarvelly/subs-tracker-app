@@ -25,8 +25,6 @@ beforeEach((done) =>
 			description, note, createdAt, amountOwed, amountPaid, amount }
 	});
 
-	console.log('Record Data:', recordsData);
-
 	database.ref('subs-tracker/main/records/')
 		.set(recordsData)
 		.then(() => done());
