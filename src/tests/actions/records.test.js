@@ -273,6 +273,7 @@ test('should remove a record from test database', (done) =>
 	});
 });
 
+// Editing fine but not returning promise for snapshot
 test('should edit a Debt record on the database', (done) => 
 {
 	const store = createMockStore({});
@@ -293,8 +294,6 @@ test('should edit a Debt record on the database', (done) =>
 				id,
 				updates
 			});
-
-			console.log(actions[0]);
 
 			return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
 		});
