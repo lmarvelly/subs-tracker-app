@@ -42,6 +42,23 @@ export const editMember = ( playerUuid, updates ) => (
 	updates
 });
 
+export const startEditMember = ( playerUuid, updates ) =>
+{
+	return ( dispatch ) =>
+	{
+		return database.ref(`subs-tracker/members/${playerUuid}`)
+			.update({...updates})
+			.then((ref) =>
+			{
+				dispatch(editMember(
+				{
+					playerUuid,
+					updates
+				}));
+			});
+	};
+};
+
 export const removeMember = ( playerUuid ) => (
 {
 	type: 'REMOVE_MEMBER',
@@ -75,5 +92,5 @@ export const startSetMembers = () =>
 
 				dispatch(setMembers( members ));
 			});
-	}
+	};
 };
