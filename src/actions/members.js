@@ -47,8 +47,8 @@ export const startEditMember = ( playerUuid, updates ) =>
 	return ( dispatch ) =>
 	{
 		return database.ref(`subs-tracker/members/${playerUuid}`)
-			.update({...updates})
-			.then((ref) =>
+			.update(updates)
+			.then(() =>
 			{
 				dispatch(editMember(
 				{
