@@ -32,6 +32,16 @@ export const addRecord = (record) => (
 	record
 });
 
+export const startEditRecord = ( id, updates ) =>
+{
+	return ( dispatch ) =>
+	{
+		return database.ref(`subs-tracker/main/records/${id}`)
+			.update(updates)
+			.then(() => dispatch(editRecord(id, updates)));
+	}
+}
+
 /**
  * @param {*} recordData 
  * @returns A deconstructed record
