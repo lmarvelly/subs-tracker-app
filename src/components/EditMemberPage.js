@@ -1,55 +1,80 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MemberForm from './MemberForm';
-import { startEditMember, removeMember } from '../actions/members';
+import { startEditMember, removeMember, startSetMembers } from '../actions/members';
 
-const EditMemberPage = ( props ) =>
+export class EditMemberPage extends Component
 {
-	const member = props.members.find( ( member ) => 
-		member.playerUuid === props.match.params.id 
-	);
-	const deleteButton = 
-	<button
-		onClick=
+	constructor( props )
+	{
+		super( props );
+		console.log('MEMBER:', this.props.member);
+		this.state =
 		{
-			(e) =>
-			{
-				confirm('Are you sure you want to remove record?' ) &&
-				props.dispatch( removeMember( props.match.params.id ) );
-				props.history.push('/members'); // return to members page
-			}
+			error: this.props.member ? false : true
 		}
-	>
-		Delete
-	</button>
+	}
 
-	return (
-		<div>
-			<h2>Edit Member Page</h2>
-			<MemberForm
-				member={member}
-				onSubmit={( member =>
+	componentDidMount()
+	{
+		if (this.state.error) 
+		{
+			console.log('Whoops something went wrong!');
+			console.log('MEMBERS:', this.props.members);
+			this.props.history.push('/members');
+		}
+	}
+
+	onSubmit = ( member ) =>
+		{
+			this.props.dispatch(
+				startEditMember(
+					member.playerUuid,
+					member
+				) 
+			);
+			
+			this.props.dispatch(startSetMembers());
+			this.props.history.push('/members');
+		}
+
+	deleteButton = 
+		<button
+			onClick=
+			{
+				(e) =>
 				{
-					props.dispatch(
-						startEditMember(
-							member.playerUuid,
-							member
-						) 
-					);
+					confirm('Are you sure you want to remove record?' ) &&
+					this.props.dispatch( removeMember( this.props.match.params.id ) );
+					this.props.history.push('/members'); // return to members page
+				}
+			}
+		>
+			Delete
+		</button>
 
-					props.history.push('/members');
-				})}
-			/>
-			{ deleteButton }
-		</div>
-	);
+	render()
+	{
+		return (
+			<div>
+				<h2>Edit Member Page</h2>
+				<MemberForm
+					member={this.props.member}
+					onSubmit={this.onSubmit}
+				/>
+				{ this.deleteButton }
+			</div>
+		);
+	}
 }
 
+
 const mapStateToProps = ( state, props ) =>
-{
+{	
 	return {
-		members: state.members
+			member: state.members.find( ( member ) => member.playerUuid === props.match.params.id 
+		)
 	}
 };
 
