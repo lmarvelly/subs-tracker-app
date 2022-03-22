@@ -4,12 +4,27 @@ import moment from 'moment';
 import RecordForm from '../../components/RecordForm';
 import { records, members, seasons } from '../fixtures/fixures';
 
-let wrapper, altWrapper, paymentWrapper, debtWrapper;
+let wrapper, 
+	altWrapper, 
+	paymentWrapper, 
+	debtWrapper,
+	onSeasonNameChange;
 
 beforeEach( () =>
 {
+	// Functions
+	onSeasonNameChange = jest.fn();
+
+	// Wrappers
 	wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
-	altWrapper = shallow(<RecordForm members={ members } seasons={ seasons } />);
+	altWrapper = shallow(
+		<RecordForm 
+			members={ members } 
+			seasons={ seasons } 
+
+			onSeasonNameChange={ onSeasonNameChange }
+		/>
+	);
 	paymentWrapper = shallow(<RecordForm record={records[1]} members={ members } seasons={ seasons } />);
 	debtWrapper = shallow(<RecordForm record={records[0]} members={ members } seasons={ seasons } />);
 });
@@ -66,20 +81,15 @@ test('should set note on textarea change', () =>
 test('Should set amount if input data is valid', () =>
 {
 	const value = '1';
-	const input = paymentWrapper.find('input').at(1);
-
+	const input = paymentWrapper.find('#amountToPay');
+	
 	input.simulate('change',
 	{
 		target: { value }
 	});
 
-	console.log('Input Value:', input.value);
-
 	expect(input.value).toBe(value);
-	// wrapper.find('#amountToPay').at(0).prop('onChange')({target: { value }});
-	// expect(wrapper.state('amount')).toEqual(value);
-
-	// expect(wrapper.state('amount')).toBe(value);
+	expect(wrapper.state('amount')).toBe(value);
 });
 
 test('Should not set amount if input data is invalid', () =>
@@ -159,7 +169,6 @@ test('should call onSubmit prop for valid form submission for a Payment', () =>
 test('should set up new date on date change', () => 
 {
 	const now = moment();
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
 	wrapper.find('SingleDatePicker').prop('onDateChange')(now);
 	expect(wrapper.state('createdAt')).toEqual(now);
 });
@@ -167,11 +176,26 @@ test('should set up new date on date change', () =>
 test('should set up on focus change', () => 
 {
 	const focused = true;
-	const wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
 	// Remember to call things as objects
 	wrapper.find('SingleDatePicker').prop('onFocusChange')({focused});
 	expect(wrapper.state('calenderFocused')).toEqual(focused);
 });
 
+test('should check if Season Dropdown was changed', () => 
+{
+	const value = "season1";
+	const input = altWrapper.find('#seasonName');
+	input.simulate('change',
+	{
+		target: { value }
+	});
 
+	expect(onSeasonNameChange).toHaveBeenCalled();
+
+	expect(altWrapper.state('seasons')).toEqual(
+	{
+		seasonName: value,
+		seasonUuid: expect.any(String)
+	});
+});
 // Add tests for all the rest of the inputs/dropdowns
