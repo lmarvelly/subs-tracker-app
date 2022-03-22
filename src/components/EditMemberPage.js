@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MemberForm from './MemberForm';
-import { startEditMember, removeMember, startSetMembers } from '../actions/members';
+import { startEditMember, removeMember } from '../actions/members';
 
 export class EditMemberPage extends Component
 {
@@ -71,8 +71,7 @@ const mapStateToProps = ( state, props ) =>
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
-	startEditMember: ( member ) => dispatch( startEditMember(member.playerUuid, member) ),
-	startSetMembers: () => dispatch( startSetMembers() )
+	startEditMember: ( member ) => dispatch( startEditMember(member.playerUuid, member) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditMemberPage );
