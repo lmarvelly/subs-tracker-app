@@ -43,7 +43,6 @@ export class EditRecordPage extends Component
 		confirm('Are you sure you want to remove record?') &&
 		this.props.startRemoveRecord( { id: this.props.record.id } );
 		this.props.history.push('/'); // return to dashboard
-		console.log(this.props.record.id);
 	}
 
 	render()
