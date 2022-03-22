@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import MemberForm from './MemberForm';
-import { startEditMember, removeMember } from '../actions/members';
+import { startEditMember, startRemoveMember } from '../actions/members';
 
 export class EditMemberPage extends Component
 {
@@ -37,7 +37,7 @@ export class EditMemberPage extends Component
 				(e) =>
 				{
 					confirm('Are you sure you want to remove record?' ) &&
-					this.props.dispatch( removeMember( this.props.match.params.id ) );
+					this.props.startRemoveMember( this.props.member.playerUuid ) ;
 					this.props.history.push('/members'); // return to members page
 				}
 			}
@@ -71,7 +71,8 @@ const mapStateToProps = ( state, props ) =>
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
-	startEditMember: ( member ) => dispatch( startEditMember(member.playerUuid, member) )
+	startEditMember: ( member ) => dispatch( startEditMember(member.playerUuid, member) ),
+	startRemoveMember: ( data ) => dispatch( startRemoveMember( data ) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditMemberPage );
