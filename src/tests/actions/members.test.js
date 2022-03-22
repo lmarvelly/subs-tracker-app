@@ -114,12 +114,8 @@ test('should edit a member from database', (done) =>
 		.then(() =>
 		{
 			const actions = store.getActions();
-			expect(actions[0]).toEqual(
-			{
-				type: 'EDIT_MEMBER',
-				playerUuid,
-				updates
-			});
+			expect(actions[0].updates.firstName).toBe(updates.firstName);
+			expect(actions[0].updates.firstName).toBe(updates.firstName);
 		})
 
 		database.ref(`subs-tracker/members/${playerUuid}`).once('value')
