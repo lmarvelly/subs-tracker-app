@@ -29,3 +29,8 @@ test('should render edit Member page without data then redirect to the Members p
 	expect(wrapper).toMatchSnapshot();
 	expect(history.push).toHaveBeenLastCalledWith('/members');
 });
+
+test('should render edit Member page with data', () => 
+{
+	expect(wrapper2).toMatchSnapshot();
+});
