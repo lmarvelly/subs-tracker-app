@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SeasonForm from './SeasonForm';
-import { startEditSeason, removeSeason } from '../actions/seasons';
+import { startEditSeason, startRemoveSeason } from '../actions/seasons';
 
 export class EditSeasonPage extends Component
 {
@@ -37,7 +37,7 @@ export class EditSeasonPage extends Component
 				(e) =>
 				{
 					confirm('Are you sure you want to delete season') &&
-					props.dispatch( removeSeason( props.match.params.id ) );
+					props.dispatch( startRemoveSeason( props.match.params.id ) );
 					props.history.push('/seasons');
 				}
 			}
@@ -71,7 +71,6 @@ const mapStateToProps = ( state, props ) =>
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	startEditSeason: ( season ) => dispatch( startEditSeason(season.seasonUuid, season) ),
-	startSetSeason: () => dispatch( startSetSeason() )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditSeasonPage );
