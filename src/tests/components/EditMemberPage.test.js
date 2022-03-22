@@ -61,3 +61,12 @@ test('should handle startRemoveMember', () =>
 	expect(startRemoveMember).toHaveBeenCalled();
 	expect(startRemoveMember).toHaveBeenLastCalledWith(member.playerUuid);
 });
+
+test('should not call startRemoveMember', () => 
+{
+	window.confirm = jest.fn(() => false);
+	wrapper2.find('button').at(0).simulate('click');
+
+	expect(history.push).toHaveBeenLastCalledWith('/members');
+	expect(startRemoveMember).not.toHaveBeenCalled();
+});
