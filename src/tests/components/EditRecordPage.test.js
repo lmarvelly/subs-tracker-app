@@ -50,7 +50,6 @@ test('should handle onSubmit', () =>
 	expect(startEditRecord).toHaveBeenLastCalledWith(record);
 });
 
-// Remove Record
 test('should handle startRemoveRecord', () => 
 {
 	window.confirm = jest.fn(() => true);
@@ -62,4 +61,26 @@ test('should handle startRemoveRecord', () =>
 	{
 		id: record.id
 	});
+});
+
+test('should handle startRemoveRecord', () => 
+{
+	window.confirm = jest.fn(() => true);
+	wrapper2.find('button').at(0).simulate('click');
+
+	expect(history.push).toHaveBeenLastCalledWith('/');
+	expect(startRemoveRecord).toHaveBeenCalled();
+	expect(startRemoveRecord).toHaveBeenLastCalledWith(
+	{
+		id: record.id
+	});
+});
+
+test('should not call startRemoveRecord', () => 
+{
+	window.confirm = jest.fn(() => false);
+	wrapper2.find('button').at(0).simulate('click');
+
+	expect(history.push).toHaveBeenLastCalledWith('/');
+	expect(startRemoveRecord).not.toHaveBeenCalled();
 });
