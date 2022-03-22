@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import SeasonForm from './SeasonForm';
-import { editSeason, removeSeason } from '../actions/seasons';
+import { startEditSeason, removeSeason } from '../actions/seasons';
 
 const EditSeasonPage = ( props ) =>
 {
@@ -31,7 +31,7 @@ const EditSeasonPage = ( props ) =>
 				onSubmit={( season =>
 				{
 					props.dispatch(
-						editSeason(
+						startEditSeason(
 							season.seasonUuid,
 							season
 						)
