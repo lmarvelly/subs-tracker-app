@@ -120,14 +120,15 @@ test('should edit a member from database', (done) =>
 				playerUuid,
 				updates
 			});
+		})
 
-			return database.ref(`subs-tracker/members/${playerUuid}`).once('value');
-		}).then((snapshot) =>
-		{
-			expect(snapshot.val().firstName).toBe(updates.firstName);
-			expect(snapshot.val().nickname).toBe(updates.nickname);
-			done();
-		});
+		database.ref(`subs-tracker/members/${playerUuid}`).once('value')
+			.then((snapshot) => 
+			{
+				expect(snapshot.val().firstName).toBe(updates.firstName);
+				expect(snapshot.val().nickname).toBe(updates.nickname);
+				done();
+			});
 });
 
 test('should add a member to the database', (done) => 
@@ -159,7 +160,6 @@ test('should add a member to the database', (done) =>
 
 	promise.then((snapshot) =>
 	{
-		console.log('SNAPSHOT: ', snapshot);
 		expect(snapshot.val()).toEqual(
 		{
 			...memberData 
@@ -174,11 +174,15 @@ test('should fetch members from firebase', (done) =>
 { 
 	const store = createMockStore({});
 
-	store.dispatch(startSetMembers()).then(() =>
+	const promise = store.dispatch(startSetMembers())
+
+	members[1].nickname = ''; 
+
+	promise.then(() =>
 	{
 		const actions = store.getActions();
-		// console.log(actions[0]);
-		// console.log({ type: 'SET_MEMBERS', members });
+		console.log('ACTIONS: ', actions[0]);
+		console.log('MEMBERS:', members);
 
 		expect(actions[0]).toEqual({ type: 'SET_MEMBERS', members });
 		done();
