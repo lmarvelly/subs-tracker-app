@@ -1,5 +1,5 @@
 // import moment from "moment";
-const moment = jest.requireActual('moment');
+const moment = require.requireActual('moment');
 
 export default ( timestamp = 0 ) =>
 {
