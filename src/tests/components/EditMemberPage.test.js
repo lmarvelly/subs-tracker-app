@@ -50,3 +50,18 @@ test('should handle onSubmit', () =>
 	expect(history.push).toHaveBeenLastCalledWith('/members');
 	expect(startEditMember).toHaveBeenLastCalledWith(member);
 });
+
+// Remove Member
+// TODO this test is failing
+test('should handle startRemoveMember', () => 
+{
+	console.log(wrapper2.find('button'));
+	wrapper2.find('button').at(0).simulate('click');
+
+	expect(history.push).toHaveBeenLastCalledWith('/members');
+	expect(startRemoveMember).toHaveBeenCalled();
+	expect(startRemoveMember).toHaveBeenLastCalledWith(
+	{
+		id: record.id
+	});
+});
