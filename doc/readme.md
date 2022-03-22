@@ -57,3 +57,7 @@ git push heroku master
 
 # View Logs. This is helpful if you're getting errors
 heroku logs
+
+
+# Build Project
+npm install
