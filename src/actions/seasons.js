@@ -1,4 +1,5 @@
 import database from '../firebase/firebase';
+import { editMember } from './members';
 
 export const addSeason = ( season ) => (
 {
@@ -25,6 +26,16 @@ export const startAddSeason = ( seasonData = {} ) =>
 			});
 	};
 };
+
+export const startEditSeason = ( seasonUuid, updates ) =>
+{
+	return ( dispatch ) =>
+	{
+		return database.ref(`subs-tracker/seasons/${seasonUuid}`)
+			.update(updates)
+			.then( () => dispatch( editSeason( seasonUuid, updates )));
+	}
+}; 
 
 export const editSeason = ( seasonUuid, updates ) => (
 {
