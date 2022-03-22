@@ -29,10 +29,12 @@ export const startAddSeason = ( seasonData = {} ) =>
 
 export const startEditSeason = ( seasonUuid, updates ) =>
 {
+	const { seasonName } = updates;
+
 	return ( dispatch ) =>
 	{
 		return database.ref(`subs-tracker/seasons/${seasonUuid}`)
-			.update(updates)
+			.update({ seasonName })
 			.then( () => dispatch( editSeason( seasonUuid, updates )));
 	}
 }; 
