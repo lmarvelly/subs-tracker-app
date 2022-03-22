@@ -51,15 +51,12 @@ test('should handle onSubmit', () =>
 	expect(startEditSeason).toHaveBeenLastCalledWith(season);
 });
 
-// Remove Season
 test('should handle startRemoveSeason', () => 
 {
+	window.confirm = jest.fn(() => true);
 	wrapper2.find('button').at(0).simulate('click');
 
 	expect(history.push).toHaveBeenLastCalledWith('/seasons');
 	expect(startRemoveSeason).toHaveBeenCalled();
-	expect(startRemoveSeason).toHaveBeenLastCalledWith(
-	{
-		seasonUuid: season.seasonUuid
-	});
+	expect(startRemoveSeason).toHaveBeenLastCalledWith(season.seasonUuid);
 });
