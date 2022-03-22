@@ -62,6 +62,6 @@ test('should handle startRemoveMember', () =>
 	expect(startRemoveMember).toHaveBeenCalled();
 	expect(startRemoveMember).toHaveBeenLastCalledWith(
 	{
-		id: record.id
+		id: member.id
 	});
 });
