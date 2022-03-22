@@ -27,7 +27,6 @@ export class EditMemberPage extends Component
 	{
 		this.props.startEditMember(member);
 		
-		this.props.startSetMembers();
 		this.props.history.push('/members');
 	}
 
@@ -70,7 +69,8 @@ const mapStateToProps = ( state, props ) =>
 	}
 };
 
-const mapDispatchToProps = ( dispatch, props ) => ({
+const mapDispatchToProps = ( dispatch, props ) => (
+{
 	startEditMember: ( member ) => dispatch( startEditMember(member.playerUuid, member) ),
 	startSetMembers: () => dispatch( startSetMembers() )
 });
