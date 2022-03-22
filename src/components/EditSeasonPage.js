@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SeasonForm from './SeasonForm';
 import { startEditSeason, removeSeason } from '../actions/seasons';
 
-const EditSeasonPage = ( props ) =>
+export class EditSeasonPage extends Component
 {
-	const season = props.seasons.find( ( season ) =>
-		season.seasonUuid === props.match.params.id
-	);
-	const deleteButton = 
+	constructor( props )
+	{
+		super( props )
+		this.state =
+		{
+			error: this.props.season ? false : true
+		};
+	};
+
+	componentDidMount()
+	{
+		if( this.state.error )
+		{
+			this.props.history.push('/seasons');
+		};
+	};
+
+	onSubmit = ( season ) =>
+	{
+		this.props.startEditSeason( season );
+		this.props.history.push('/seasons');
+	};
+
+	deleteButton = 
+	(
 		<button
 			onClick=
 			{
@@ -23,33 +44,34 @@ const EditSeasonPage = ( props ) =>
 		>
 			Remove Season
 		</button>
-	return (
-		<div>
-			<h2>Edit Season Page</h2>
-			<SeasonForm
-				season={season}
-				onSubmit={( season =>
-				{
-					props.dispatch(
-						startEditSeason(
-							season.seasonUuid,
-							season
-						)
-					);
-
-					props.history.push('/seasons');
-				})}
-			/>
-			{ deleteButton }
-		</div>
 	);
-}
 
-const mapStateToProps = ( state ) =>
+	render()
+	{
+		return (
+			<div>
+				<h2>Edit Season Page</h2>
+				<SeasonForm
+					season={this.props.season}
+					onSubmit={this.onSubmit}
+				/>
+				{ this.deleteButton }
+			</div>
+		);
+	}
+};
+
+const mapStateToProps = ( state, props ) =>
 {
 	return {
-		seasons: state.seasons
-	}
-}
+		season: state.seasons.find( ( season ) => season.seasonUuid === props.match.params.id),
+	};
+};
 
-export default connect( mapStateToProps )( EditSeasonPage );
+const mapDispatchToProps = ( dispatch, props ) => (
+{
+	startEditSeason: ( season ) => dispatch( startEditSeason(season.seasonUuid, season) ),
+	startSetSeason: () => dispatch( startSetSeason() )
+});
+
+export default connect( mapStateToProps, mapDispatchToProps )( EditSeasonPage );
