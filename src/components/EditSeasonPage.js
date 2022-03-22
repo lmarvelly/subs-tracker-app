@@ -37,8 +37,8 @@ export class EditSeasonPage extends Component
 				(e) =>
 				{
 					confirm('Are you sure you want to delete season') &&
-					props.dispatch( startRemoveSeason( props.match.params.id ) );
-					props.history.push('/seasons');
+					this.props.startRemoveSeason( this.props.season.seasonUuid );
+					this.props.history.push('/seasons');
 				}
 			}
 		>
@@ -71,6 +71,7 @@ const mapStateToProps = ( state, props ) =>
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	startEditSeason: ( season ) => dispatch( startEditSeason(season.seasonUuid, season) ),
+	startRemoveSeason: ( data ) => dispatch( startRemoveSeason( data ) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditSeasonPage );
