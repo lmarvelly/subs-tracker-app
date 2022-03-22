@@ -181,8 +181,6 @@ test('should fetch members from firebase', (done) =>
 	promise.then(() =>
 	{
 		const actions = store.getActions();
-		console.log('ACTIONS: ', actions[0]);
-		console.log('MEMBERS:', members);
 
 		expect(actions[0]).toEqual({ type: 'SET_MEMBERS', members });
 		done();
