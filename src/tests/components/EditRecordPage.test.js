@@ -51,9 +51,9 @@ test('should handle onSubmit', () =>
 });
 
 // Remove Record
-// TODO this test is failing
 test('should handle startRemoveRecord', () => 
 {
+	window.confirm = jest.fn(() => true);
 	wrapper2.find('button').at(0).simulate('click');
 
 	expect(history.push).toHaveBeenLastCalledWith('/');
