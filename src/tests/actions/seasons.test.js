@@ -1,6 +1,14 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addSeason, editSeason, removeSeason, setSeasons, startAddSeason, startSetSeasons } from '../../actions/seasons';
+import { 
+	addSeason, 
+	editSeason, 
+	removeSeason, 
+	setSeasons, 
+	startAddSeason, 
+	startEditSeason, 
+	startSetSeasons 
+} from '../../actions/seasons';
 import { seasons } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -110,4 +118,30 @@ test('should retreive seasons from database', (done) =>
 		});
 		done();
 	});
+});
+
+// Test is changing Season Name but snapshot is not being returned
+test('should edit a season from database', () =>
+{
+	const store = createMockStore();
+	const seasonUuid = seasons[1].seasonUuid;
+	const updates = { seasonName: 'New Kit' };
+
+	store.dispatch(startEditSeason(seasonUuid, updates))
+		.then( () =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+			{
+				type: 'EDIT_SEASON',
+				seasonUuid,
+				updates
+			});
+			return database.ref(`subs-tracker/seasons/${seasonUuid}`).once('value');
+		})
+		.then( (snapshot) =>
+		{
+			expect(snapshot.val().seasonName).toBe(updates.seasonName);
+			done();
+		});
 });
