@@ -8,13 +8,15 @@
 		"build:dev": "webpack",
 		"build:prod": "webpack -p --env production",
 		"dev-server": "webpack-dev-server",
-		"test": "cross-env NODE_ENV=test jest --config=jest.config.json",
+		"test": "cross-env NODE_ENV=test jest --config=jest.config.json --env=jsdom",
 		"start": "node server/server.js",
 		"heroku-postbuild": "yarn run build:prod"
 	},
 	"dependencies": {
+		"@babel/preset-env": "^7.16.11",
 		"babel-cli": "6.24.1",
 		"babel-core": "6.25.0",
+		"babel-jest": "27.5.1",
 		"babel-loader": "7.1.1",
 		"babel-plugin-transform-class-properties": "6.24.1",
 		"babel-plugin-transform-object-rest-spread": "6.23.0",
@@ -22,12 +24,13 @@
 		"babel-preset-react": "6.24.1",
 		"css-loader": "0.28.4",
 		"express": "4.17.3",
-		"extract-text-webpack-plugin": "3.0.2",
 		"firebase": "8.10.0",
 		"history": "4.7.2",
+		"mini-css-extract-plugin": "^2.6.0",
 		"moment": "2.18.1",
-		"node-sass": "^5.0.0",
+		"node-sass": "^7.0.1",
 		"normalize.css": "7.0.0",
+		"npm": "^6.14.16",
 		"numeral": "2.0.6",
 		"react": "16.14.0",
 		"react-addons-shallow-compare": "15.6.0",
@@ -40,24 +43,32 @@
 		"redux": "4.1.2",
 		"redux-mock-store": "1.5.4",
 		"redux-thunk": "2.4.1",
-		"sass-loader": "6.0.6",
+		"sass-loader": "^12.6.0",
 		"style-loader": "0.18.2",
 		"uuid": "3.1.0",
 		"validator": "8.2.0",
-		"webpack": "3.1.0"
+		"webpack": "^5.70.0"
 	},
 	"devDependencies": {
+		"@babel/preset-react": "^7.16.7",
 		"cross-env": "5.2.1",
 		"dotenv": "16.0.0",
 		"enzyme": "3.11.0",
 		"enzyme-adapter-react-16": "1.15.6",
 		"enzyme-to-json": "3.6.2",
-		"jest": "20.0.4",
-		"mini-css-extract-plugin": "2.5.3",
+		"jest": "^27.5.1",
 		"react-test-renderer": "16.14.0",
-		"webpack-dev-server": "2.5.1"
+		"sass": "^1.49.9",
+		"webpack-dev-server": "^4.7.4"
 	},
 	"engines": {
 		"node": "^12.20.0"
+	},
+	"jest": {
+		"testEnvironment": "jsdom",
+		"globals": {
+			"window": {},
+			"alert": {}
+		}
 	}
 }

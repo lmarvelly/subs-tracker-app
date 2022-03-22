@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('mini-css-extract-plugin');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';  // This value is set by Heroku when. If it's not set then we're in developement
 
