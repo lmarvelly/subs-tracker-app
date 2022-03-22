@@ -37,3 +37,29 @@ test('should render edit Season page without data then redirect to the Seasons p
 	expect(wrapper).toMatchSnapshot();
 	expect(history.push).toHaveBeenLastCalledWith('/seasons');
 });
+
+test('should handle render edit page with record data', () => 
+{
+	expect(wrapper2).toMatchSnapshot();
+});
+
+test('should handle onSubmit', () => 
+{
+	wrapper2.find('SeasonForm').prop('onSubmit')(season);
+
+	expect(history.push).toHaveBeenLastCalledWith('/seasons');
+	expect(startEditSeason).toHaveBeenLastCalledWith(season);
+});
+
+// Remove Season
+test('should handle startRemoveSeason', () => 
+{
+	wrapper2.find('button').at(0).simulate('click');
+
+	expect(history.push).toHaveBeenLastCalledWith('/seasons');
+	expect(startRemoveSeason).toHaveBeenCalled();
+	expect(startRemoveSeason).toHaveBeenLastCalledWith(
+	{
+		seasonUuid: season.seasonUuid
+	});
+});
