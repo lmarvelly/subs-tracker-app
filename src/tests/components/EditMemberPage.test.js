@@ -52,16 +52,12 @@ test('should handle onSubmit', () =>
 });
 
 // Remove Member
-// TODO this test is failing
 test('should handle startRemoveMember', () => 
 {
-	console.log(wrapper2.find('button'));
+	window.confirm = jest.fn(() => true);
 	wrapper2.find('button').at(0).simulate('click');
 
 	expect(history.push).toHaveBeenLastCalledWith('/members');
 	expect(startRemoveMember).toHaveBeenCalled();
-	expect(startRemoveMember).toHaveBeenLastCalledWith(
-	{
-		id: member.id
-	});
+	expect(startRemoveMember).toHaveBeenLastCalledWith(member.playerUuid);
 });
