@@ -3,6 +3,8 @@
 	yarn dev-server
 	yarn test -- --watch
 
+### File permisions
+	sudo chown -R <user> subs-tracker-app
 
 ### How a basic ACTION GENERATOR WORKS
 1. Component calls action generator
