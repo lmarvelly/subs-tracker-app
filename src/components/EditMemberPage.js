@@ -24,12 +24,12 @@ export class EditMemberPage extends Component
 	}
 
 	onSubmit = ( member ) =>
-		{
-			this.props.startEditMember(member);
-			
-			this.props.startSetMembers();
-			this.props.history.push('/members');
-		}
+	{
+		this.props.startEditMember(member);
+		
+		this.props.startSetMembers();
+		this.props.history.push('/members');
+	}
 
 	deleteButton = 
 		<button
