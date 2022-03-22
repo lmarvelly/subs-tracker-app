@@ -7,6 +7,7 @@ import {
 	setSeasons, 
 	startAddSeason, 
 	startEditSeason, 
+	startRemoveSeason, 
 	startSetSeasons 
 } from '../../actions/seasons';
 import { seasons } from '../fixtures/fixures';
@@ -142,6 +143,30 @@ test('should edit a season from database', () =>
 		.then( (snapshot) =>
 		{
 			expect(snapshot.val().seasonName).toBe(updates.seasonName);
+			done();
+		});
+});
+
+test('should remove a season from the database', (done) => 
+{
+	const store = createMockStore({});
+	const seasonUuid = seasons[1].seasonUuid;
+
+	store.dispatch(startRemoveSeason(seasonUuid))
+		.then(() =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+				{
+					type: 'REMOVE_SEASON',
+					seasonUuid
+				});
+
+			return database.ref(`subs-tracker/seasons/${seasonUuid}`).once('value');
+		})
+		.then((snapshot) =>
+		{
+			expect(snapshot.val()).toBeFalsy();
 			done();
 		});
 });
