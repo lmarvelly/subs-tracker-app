@@ -21,7 +21,7 @@ import { seasons, members, records } from './tests/fixtures/fixures';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 
 const store = configureStore();
 
@@ -44,77 +44,7 @@ const unsubscribe = store.subscribe(() =>
  	// console.log( 'FILTERED SEASONS: ', visibleSeasons );
 });
 
-
-// store.dispatch( addMember({firstName: 'Luke', middleNames: 'Owen Lloyd', surname: 'Marvelly', nickname: 'Lukio'}) );
-// store.dispatch( addMember({firstName: 'Harri', middleNames: '', surname: 'Messenger' }) );
-// store.dispatch( addMember({firstName: 'Jason', middleNames: '', surname: 'Cousins'}) );
 store.dispatch( sortAlphabetAsc() );
-// store.dispatch( sortAlphabetDesc() );
-// store.dispatch( setMemberTextFilter('Jason') );
-// store.dispatch( setMemberFilterText( store.getState().members[0].playerUuid ) )
-
-// const season1 = store.dispatch(
-// 	addSeason({ seasonName: '2020/2021' })
-// );
-
-// const season2 = store.dispatch(
-// 	addSeason({ seasonName: '2019/2020' })
-// );
-
-// const season3 = store.dispatch(
-// 	addSeason({ seasonName: 'Donations' })
-// );
-
-// store.dispatch( setSeasonFilter( store.getState().seasons[1].seasonUuid ) );
-
-// const record = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'DEBT',
-// 			playerUuid: store.getState().members[1].playerUuid, 
-// 			seasonUuid: store.getState().seasons[0].seasonUuid,
-// 			description: 'Training subs two weeks', 
-// 			amountOwed: 700
-// 		} 
-// 	)
-// );
-
-// const record1 = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'PAYMENT',
-// 			playerUuid: store.getState().members[1].playerUuid,
-// 			seasonUuid: store.getState().seasons[0].seasonUuid,
-// 			description: 'Training subs', 
-// 			amount: 400
-// 		} 
-// 	)
-// );
-
-// const record2 = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'PAYMENT',
-// 			playerUuid: store.getState().members[0].playerUuid,
-// 			seasonUuid: store.getState().seasons[1].seasonUuid,
-// 			description: '5s subs', 
-// 			amount: 500
-// 		} 
-// 	)
-// );
-
-// const record3 = store.dispatch( 
-// 	addRecord( 
-// 		{ 
-// 			recordType: 'PAYMENT',
-// 			playerUuid: store.getState().members[2].playerUuid, 
-// 			seasonUuid: store.getState().seasons[1].seasonUuid,
-// 			description: 'donation', 
-// 			amount: 5000
-// 		} 
-// 	)
-// );
-
 
 
 /**
@@ -136,8 +66,6 @@ const jsx = (
 // Render Loading Message
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
-// store.dispatch(startSetMember());
-
 // Renders after Promise, startSetRecords, has finished
 store.dispatch(startSetSeasons())
 	.then(store.dispatch(startSetMembers()))
@@ -147,17 +75,15 @@ store.dispatch(startSetSeasons())
 			ReactDOM.render(jsx, document.getElementById('app'));
 		})
 
-// Renders after Promise, startSetRecords, has finished
-
-	.then(() =>
+// Firebase authentication
+firebase.auth().onAuthStateChanged((user) =>
+{
+	if(user)
 	{
-		ReactDOM.render(jsx, document.getElementById('app'));
-	});
-
-// Run this once Members and Seasons can be retreived from database
-// Renders after Promise, startSetRecords, has finished
-// store.dispatch(startSetRecords())
-// 	.then(() =>
-// 	{
-// 		ReactDOM.render(jsx, document.getElementById('app'));
-// 	});
+		console.log('Log in');
+	}
+	else
+	{
+		console.log('Log out');
+	}
+});
