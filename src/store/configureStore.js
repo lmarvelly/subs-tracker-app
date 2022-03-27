@@ -7,6 +7,7 @@ import membersRecordReducer from '../reducers/members';
 import memberFilterReducer from '../reducers/memberFilters';
 import seasonsRecordReducer from '../reducers/seasons';
 import seasonFilterReducer from '../reducers/seasonFilters';
+import authReducer from '../reducers/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -28,7 +29,8 @@ export default () => {
 			members: membersRecordReducer,
 			memberFilters: memberFilterReducer,
 			seasons: seasonsRecordReducer,
-			seasonFilters: seasonFilterReducer
+			seasonFilters: seasonFilterReducer,
+			auth: authReducer
 		}),
 		composeEnhancers(applyMiddleware(thunk))
 	);
