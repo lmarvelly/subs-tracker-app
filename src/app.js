@@ -69,7 +69,6 @@ const renderApp = () =>
 {
 	if(!hasRendered)
 	{
-		console.log('Render App');
 		ReactDOM.render(jsx, document.getElementById('app'));
 		hasRendered = true;
 	}
@@ -89,9 +88,7 @@ firebase.auth().onAuthStateChanged((user) =>
 			.then(store.dispatch(startSetRecords()))
 			.then(() =>
 			{
-				console.log('App has rendered:', hasRendered);
 				renderApp();
-				console.log('App has rendered:', hasRendered);
 				if(history.location.pathname === '/')
 				{
 					history.push('/dashboard');
