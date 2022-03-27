@@ -13,6 +13,7 @@ import HelpPage from '../components/HelpPage';
 import MemberPage from '../components/MemberPage';
 import SeasonPage from '../components/SeasonPage';
 import NotFoundPage from '../components/NotFoundPage';
+import LoginPage from '../components/LoginPage';
 
 /**
  * @class <BrowserRouter> can only take on element so all routes
@@ -33,7 +34,8 @@ const AppRouter = () => (
 		<div>
 			<Header />
 			<Switch>
-				<Route path='/' component={Dashboard} exact={true} />
+				<Route path='/' component={LoginPage} exact={true} />
+				<Route path='/dashboard' component={Dashboard} exact={true} />
 				<Route path='/add-record' component={AddRecordPage} />
 				<Route path='/add-member' component={AddMemberPage} />
 				<Route path='/add-season' component={AddSeasonPage}/>
