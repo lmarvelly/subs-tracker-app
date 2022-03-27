@@ -1,6 +1,12 @@
 import { firebase, googleAuthProvider } from '../firebase/firebase';
 
-// Return a Promise from firebase
+export const login = (uid) => (
+{
+	type: 'LOGIN',
+	uid
+});
+
+// Returns a Promise from firebase
 export const startLogin = () =>
 {
 	return () => {
@@ -8,7 +14,12 @@ export const startLogin = () =>
 	};
 };
 
-// Return a Promise from firebase
+export const logout = () => (
+{
+	type: 'LOGOUT'
+});
+
+// Returns a Promise from firebase
 export const startLogout = () =>
 {
 	return () => {
