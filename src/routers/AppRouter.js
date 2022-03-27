@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 
 import Dashboard from '../components/Dashboard';
 import AddRecordPage from '../components/AddRecordPage';
@@ -15,10 +16,12 @@ import SeasonPage from '../components/SeasonPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 
+// Export History to be used in other files
+export const history = createHistory();
+
 /**
- * @class <BrowserRouter> can only take on element so all routes
- * need to be inside a div. We do this so we can have a Navbar on 
- * the top of each page
+ * @class We're using <Router> rather than <BrowserRouter> to get 
+ * the App history rather than the Browsers
  * 
  * @class <Route> needs a path to link to and a component to render
  * ':id' creates a dynamic way of getting the Sub using the ID. 
@@ -30,7 +33,7 @@ import LoginPage from '../components/LoginPage';
  * NotFoundPage will show for any address that are not found.
  */
 const AppRouter = () => (
-	<BrowserRouter>
+	<Router history={history}>
 		<div>
 			<Header />
 			<Switch>
@@ -48,7 +51,7 @@ const AppRouter = () => (
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>
-	</BrowserRouter>
+	</Router>
 );
 
 export default AppRouter;
