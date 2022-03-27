@@ -6,3 +6,20 @@ test('should set default State', () =>
 
 	expect(state).toEqual({});
 });
+
+test('should Login', () =>
+{
+	const uid = 'userID';
+	const action = { type: 'LOGIN', uid };
+	const state = authReducer( undefined, action );
+
+	expect(state).toEqual({ 'uid': uid});
+});
+
+test('should Logout', () =>
+{
+	const action = { type: 'LOGIN' };
+	const state = authReducer( undefined, action );
+
+	expect(state).toEqual({});
+});
