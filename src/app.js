@@ -13,6 +13,7 @@ import { startSetRecords } from './actions/records';
 import { sortAlphabetAsc } from './actions/memberFilters';
 import { startSetMembers } from './actions/members';
 import { startSetSeasons } from './actions/seasons';
+import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
@@ -38,9 +39,6 @@ const unsubscribe = store.subscribe(() =>
  	// console.log( 'FILTERED MEMBERS: ', visibleMembers );
  	// console.log( 'FILTERED SEASONS: ', visibleSeasons );
 });
-
-store.dispatch( sortAlphabetAsc() );
-
 
 /**
  * Provider provides the store to all of our Components to connect
@@ -77,12 +75,14 @@ firebase.auth().onAuthStateChanged((user) =>
 {
 	if(user)
 	{
+		store.dispatch(login(user.uid));
 		// App renders after Promises are complete
 		store.dispatch(startSetSeasons())
 			.then(store.dispatch(startSetMembers()))
 			.then(store.dispatch(startSetRecords()))
 			.then(() =>
 			{
+				store.dispatch( sortAlphabetAsc() ); // Should sort Member alphabetically
 				renderApp();
 				if(history.location.pathname === '/')
 				{
@@ -92,6 +92,7 @@ firebase.auth().onAuthStateChanged((user) =>
 	}
 	else
 	{
+		store.dispatch(logout())
 		renderApp();
 		history.push('/');
 	}
