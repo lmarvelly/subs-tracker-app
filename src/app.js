@@ -63,27 +63,44 @@ const jsx = (
 	</React.StrictMode>
 );
 
+// To stop App rendering multiple times
+let hasRendered = false;
+const renderApp = () =>
+{
+	if(!hasRendered)
+	{
+		console.log('Render App');
+		ReactDOM.render(jsx, document.getElementById('app'));
+		hasRendered = true;
+	}
+}
+
 // Render Loading Message
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
-
-// Renders after Promise, startSetRecords, has finished
-store.dispatch(startSetSeasons())
-	.then(store.dispatch(startSetMembers()))
-	.then(store.dispatch(startSetRecords()))
-	.then(() =>
-		{
-			ReactDOM.render(jsx, document.getElementById('app'));
-		})
 
 // Firebase authentication
 firebase.auth().onAuthStateChanged((user) =>
 {
 	if(user)
 	{
-		history.push('/dashboard');
+		// App renders after Promises are complete
+		store.dispatch(startSetSeasons())
+			.then(store.dispatch(startSetMembers()))
+			.then(store.dispatch(startSetRecords()))
+			.then(() =>
+			{
+				console.log('App has rendered:', hasRendered);
+				renderApp();
+				console.log('App has rendered:', hasRendered);
+				if(history.location.pathname === '/')
+				{
+					history.push('/dashboard');
+				};
+			});
 	}
 	else
 	{
+		renderApp();
 		history.push('/');
 	}
 });
