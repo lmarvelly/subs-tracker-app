@@ -80,10 +80,10 @@ firebase.auth().onAuthStateChanged((user) =>
 {
 	if(user)
 	{
-		console.log('Log in');
+		history.push('/dashboard');
 	}
 	else
 	{
-		console.log('Log out');
+		history.push('/');
 	}
 });
