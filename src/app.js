@@ -3,21 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
-import thunk from 'redux-thunk';
 
 import configureStore from './store/configureStore';
 import getVisibleMembers from './selectors/members';
 import getVisibleSeasons from './selectors/seasons';
 import getVisibleRecords from './selectors/records';
 
-import { addRecord, editRecord, removeRecord, startSetRecords } from './actions/records';
-import { sortByDateAscending, sortByDateDescending, setStartDate, 
-	setEndDate, setDescriptionTextFilter, setMemberFilterText, setSeasonFilter 
-} from './actions/recordFilters';
-import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from './actions/memberFilters';
-import { addMember, removeMember, startSetMember, startSetMembers } from './actions/members';
-import { addSeason, startSetSeasons } from './actions/seasons';
-import { seasons, members, records } from './tests/fixtures/fixures';
+import { startSetRecords } from './actions/records';
+import { sortAlphabetAsc } from './actions/memberFilters';
+import { startSetMembers } from './actions/members';
+import { startSetSeasons } from './actions/seasons';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
