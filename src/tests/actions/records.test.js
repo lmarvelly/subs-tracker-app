@@ -13,6 +13,8 @@ import {
 import { records } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
+const uid = 'testuid';
+const defaultAuthState = { auth: { uid }}
 const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
@@ -26,7 +28,7 @@ beforeEach((done) =>
 			description, note, createdAt, amountOwed, amountPaid, amount }
 	});
 
-	database.ref('subs-tracker/main/records/')
+	database.ref(`subs-tracker/users/${uid}/main/records/`)
 		.set(recordsData)
 		.then(() => done());
 });
@@ -89,7 +91,7 @@ test( 'Should set up Add Record action object with provided values', () =>
  */
 test('should add Debt Record to the Database using the Store', (done) =>
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const recordData = 
 	{
 		playerUuid: '123abc',
@@ -116,7 +118,7 @@ test('should add Debt Record to the Database using the Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/main/records/${actions[0].record.id}`).once('value');
 	})
 	
 	promise.then((snapshot) => // snapshot contains the values from the last promise
@@ -129,7 +131,7 @@ test('should add Debt Record to the Database using the Store', (done) =>
 
 test('should add a Payment Record to the Database using the Store', (done) =>
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const recordData = 
 	{
 		playerUuid: '123abc',
@@ -156,7 +158,7 @@ test('should add a Payment Record to the Database using the Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/main/records/${actions[0].record.id}`).once('value');
 		
 	});
 
@@ -176,7 +178,7 @@ test('should add a Payment Record to the Database using the Store', (done) =>
 
 test('should add Record with defaults to Database and Store', (done) =>
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 
 	const defaultRecord = 
 	{
@@ -205,7 +207,7 @@ test('should add Record with defaults to Database and Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/main/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/main/records/${actions[0].record.id}`).once('value');
 		
 	});
 	
@@ -235,7 +237,7 @@ test('should setup set record action object with data', () =>
  */ 
 test('should fetch records from firebase', (done) =>
 { 
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 
 	store.dispatch(startSetRecords()).then(() =>
 	{
@@ -251,7 +253,7 @@ test('should fetch records from firebase', (done) =>
 
 test('should remove a record from test database', (done) => 
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const id = records[0].id;
 
 	store.dispatch(startRemoveRecord({ id }))
@@ -264,7 +266,7 @@ test('should remove a record from test database', (done) =>
 			id
 		});
 		// Return the value a single time
-		return database.ref(`subs-tracker/main/records/${id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`).once('value');
 	})
 	.then((snapshot) =>
 	{
@@ -276,7 +278,7 @@ test('should remove a record from test database', (done) =>
 // Editing fine but not returning promise for snapshot
 test('should edit a Debt record on the database', (done) => 
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const id = records[0].id;
 	const updates = 
 	{
@@ -284,18 +286,23 @@ test('should edit a Debt record on the database', (done) =>
 		amountPaid: 250
 	}
 
-	const promise = store.dispatch(startEditRecord(id, updates))
+	const promise = store.dispatch(startEditRecord(id, records[0].recordType, updates))
 		.then(() =>
 		{
 			const actions = store.getActions();
+			console.log(actions[0]);
 			expect(actions[0]).toEqual(
 			{
 				type: 'EDIT_RECORD',
 				id,
-				updates
+				updates:
+				{
+					...updates,
+					amount: ''
+				}
 			});
 
-			return database.ref(`subs-tracker/main/records/${id}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/main/records/${id}`).once('value');
 		}).then((snapshot) =>
 		{
 			expect(snapshot.val().amountOwed).toBe(500);
