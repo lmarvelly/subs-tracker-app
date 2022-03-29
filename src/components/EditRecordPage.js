@@ -74,7 +74,7 @@ const mapStateToProps = ( state, props ) =>
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
-	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record ) ),
+	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record.recordType, record ) ),
 	startRemoveRecord: ( data ) => dispatch( startRemoveRecord( data ) )
 });
 

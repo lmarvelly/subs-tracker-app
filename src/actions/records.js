@@ -34,6 +34,24 @@ export const addRecord = (record) => (
 
 export const startEditRecord = ( id, type, updates ) =>
 {
+	if(type === 'PAYMENT')
+	{
+		updates =
+		{
+			...updates,
+			amountOwed: '',
+			amountPaid: ''
+		}
+	}
+	if(type === 'DEBT')
+	{
+		updates =
+		{
+			...updates,
+			amount: ''
+		}
+	}
+	
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
