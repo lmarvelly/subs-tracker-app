@@ -12,7 +12,7 @@ import { startLogout } from '../actions/auth';
  export const Header = ({ startLogout }) => (
 	<header>
 		<h1>Subs Tracker</h1>
-		<NavLink to='/' activeClassName='is-active' exact={true}>Home </NavLink>
+		<NavLink to='/dashboard' activeClassName='is-active'>Home </NavLink>
 		<NavLink to='/add-record' activeClassName='is-active'>Add Record </NavLink>
 		<NavLink to='/add-member' activeClassName='is-active'>Add Member </NavLink>
 		<NavLink to='/add-season' activeClassName='is-active'>Add Season </NavLink>
