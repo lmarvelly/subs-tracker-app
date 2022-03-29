@@ -1,6 +1,6 @@
 import { login, logout } from "../../actions/auth";
 
-test('should create a LOGIN action generator', () => 
+test('should create a LOGIN action object', () => 
 {
 	const uid = 'userID'
 	const action = login(uid);
@@ -12,7 +12,7 @@ test('should create a LOGIN action generator', () =>
 	});
 });
 
-test('should create a LOGOUT action generator', () => 
+test('should create a LOGOUT action object', () => 
 {
 	const action = logout();
 
