@@ -290,7 +290,6 @@ test('should edit a Debt record on the database', (done) =>
 		.then(() =>
 		{
 			const actions = store.getActions();
-			console.log(actions[0]);
 			expect(actions[0]).toEqual(
 			{
 				type: 'EDIT_RECORD',
