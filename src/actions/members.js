@@ -9,8 +9,9 @@ export const addMember = ( member ) => (
 
 export const startAddMember = ( memberData = {} ) =>
 {
-	return (dispatch) => 
+	return (dispatch, getState) => 
 	{
+		const uid = getState().auth.uid
 		const {
 			firstName = '',
 			middleNames = '',
@@ -23,7 +24,7 @@ export const startAddMember = ( memberData = {} ) =>
 			firstName, middleNames, surname, nickname
 		}
 
-		return database.ref('subs-tracker/members')
+		return database.ref(`subs-tracker/users/${uid}/members`)
 			.push(member)
 			.then((ref) =>
 			{
@@ -62,9 +63,10 @@ export const removeMember = ( playerUuid ) => (
 
 export const startRemoveMember = ( playerUuid ) => 
 {
-	return (dispatch) =>
+	return (dispatch, getState) =>
 	{
-		return database.ref(`subs-tracker/members/${playerUuid}`)
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
 			.remove()
 			.then((ref) =>
 			{
@@ -81,9 +83,10 @@ export const setMembers = ( members ) => (
 
 export const startSetMembers = () =>
 {
-	return (dispatch) =>
+	return ( dispatch, getState ) =>
 	{
-		return database.ref('subs-tracker/members')
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/members`)
 			.once('value')
 			.then((snapshot) =>
 			{

@@ -8,12 +8,13 @@ export const addSeason = ( season ) => (
 
 export const startAddSeason = ( seasonData = {} ) =>
 {
-	return (dispatch) =>
+	return (dispatch, getState) =>
 	{
+		const uid = getState().auth.uid;
 		const { seasonName = '' } = seasonData;
 		const season = { seasonName };
 
-		return database.ref('subs-tracker/seasons')
+		return database.ref(`subs-tracker/users/${uid}/seasons`)
 			.push(season)
 			.then((ref) => 
 			{
@@ -30,9 +31,10 @@ export const startEditSeason = ( seasonUuid, updates ) =>
 {
 	const { seasonName } = updates;
 
-	return ( dispatch ) =>
+	return ( dispatch, getState ) =>
 	{
-		return database.ref(`subs-tracker/seasons/${seasonUuid}`)
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
 			.update({ seasonName })
 			.then( () => dispatch( editSeason( seasonUuid, updates )));
 	}
@@ -53,9 +55,10 @@ export const removeSeason = (seasonUuid) =>
 
 export const startRemoveSeason = ( seasonUuid ) =>
 {
-	return (dispatch) =>
+	return (dispatch, getState) =>
 	{
-		return database.ref(`subs-tracker/seasons/${seasonUuid}`)
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
 			.remove()
 			.then((ref) =>
 			{
@@ -72,9 +75,10 @@ export const setSeasons = ( seasons ) => (
 
 export const startSetSeasons = () =>
 {
-	return (dispatch) =>
+	return (dispatch, getState) =>
 	{
-		return database.ref('subs-tracker/seasons')
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/seasons`)
 			.once('value')
 			.then((snapshot) =>
 			{
