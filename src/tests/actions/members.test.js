@@ -14,7 +14,7 @@ import { members } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
 const uid = 'testuid';
-const defaultAuthState = { auth: { uid }}
+const defaultAuthState = { auth: { uid }};
 const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
