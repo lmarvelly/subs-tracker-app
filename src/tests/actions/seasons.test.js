@@ -13,6 +13,8 @@ import {
 import { seasons } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
+const uid = 'testuid';
+const defaultAuthState = { auth: { uid }}
 const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
@@ -23,7 +25,7 @@ beforeEach((done) =>
 		seasonsData[seasonUuid] = { seasonName };
 	});
 
-	database.ref('subs-tracker/seasons')
+	database.ref(`subs-tracker/users/${uid}/seasons`)
 		.set(seasonsData)
 		.then(() => done());
 });
@@ -65,7 +67,7 @@ test('should create a Delete Season Action Object', () =>
 
 test('should add a season to the database', (done) => 
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 
 	const seasonData = { seasonName: '1999/2000' };
 
@@ -82,7 +84,7 @@ test('should add a season to the database', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/seasons/${actions[0].season.seasonUuid}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/seasons/${actions[0].season.seasonUuid}`).once('value');
 	});
 
 	promise.then((snapshot) =>
@@ -107,7 +109,7 @@ test('should setup set season action object with data', () =>
 
 test('should retreive seasons from database', (done) => 
 { 
-	const store = createMockStore();
+	const store = createMockStore(defaultAuthState);
 
 	store.dispatch(startSetSeasons()).then(() =>
 	{
@@ -124,7 +126,7 @@ test('should retreive seasons from database', (done) =>
 // Test is changing Season Name but snapshot is not being returned
 test('should edit a season from database', () =>
 {
-	const store = createMockStore();
+	const store = createMockStore(defaultAuthState);
 	const seasonUuid = seasons[1].seasonUuid;
 	const updates = { seasonName: 'New Kit' };
 
@@ -138,7 +140,7 @@ test('should edit a season from database', () =>
 				seasonUuid,
 				updates
 			});
-			return database.ref(`subs-tracker/seasons/${seasonUuid}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`).once('value');
 		})
 		.then( (snapshot) =>
 		{
@@ -149,7 +151,7 @@ test('should edit a season from database', () =>
 
 test('should remove a season from the database', (done) => 
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const seasonUuid = seasons[1].seasonUuid;
 
 	store.dispatch(startRemoveSeason(seasonUuid))
@@ -162,7 +164,7 @@ test('should remove a season from the database', (done) =>
 					seasonUuid
 				});
 
-			return database.ref(`subs-tracker/seasons/${seasonUuid}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`).once('value');
 		})
 		.then((snapshot) =>
 		{
