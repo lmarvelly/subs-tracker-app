@@ -32,11 +32,12 @@ export const addRecord = (record) => (
 	record
 });
 
-export const startEditRecord = ( id, updates ) =>
+export const startEditRecord = ( id, type, updates ) =>
 {
-	return ( dispatch ) =>
+	return ( dispatch, getState ) =>
 	{
-		return database.ref(`subs-tracker/main/records/${id}`)
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`)
 			.update(updates)
 			.then(() => dispatch(editRecord(id, updates)));
 	}
@@ -64,8 +65,9 @@ export const startEditRecord = ( id, updates ) =>
  */
 export const startAddRecord = ( recordData = {} ) =>
 {
-	return (dispatch) => 
+	return ( dispatch, getState ) => 
 	{
+		const uid = getState().auth.uid;
 		const {
 			recordType = 'PAYMENT',
 			playerUuid = '',
@@ -88,7 +90,7 @@ export const startAddRecord = ( recordData = {} ) =>
 		}
 
 		// Added return statement here for chaining together promises in records.test.js
-		return database.ref('subs-tracker/main/records')
+		return database.ref(`subs-tracker/users/${uid}/main/records`)
 			.push(record)
 			.then((ref) =>
 			{
@@ -128,9 +130,10 @@ export const removeRecord = ( { id } = {} ) =>
 
 export const startRemoveRecord = ({ id } = {}) =>
 {
-	return ( dispatch ) =>
+	return ( dispatch, getState ) =>
 	{
-		return database.ref(`subs-tracker/main/records/${id}`)
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`)
 			.remove()
 			.then((ref) =>
 			{
@@ -150,9 +153,10 @@ export const setRecords = ( records ) => (
 
 export const startSetRecords = () =>
 {
-	return (dispatch) =>
+	return ( dispatch, getState ) =>
 	{
-		return database.ref('subs-tracker/main/records')
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/main/records`)
 			.once('value')
 			.then((snapshot) =>
 			{
