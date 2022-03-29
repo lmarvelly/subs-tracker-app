@@ -11,7 +11,7 @@ export const startAddMember = ( memberData = {} ) =>
 {
 	return (dispatch, getState) => 
 	{
-		const uid = getState().auth.uid
+		const uid = getState().auth.uid;
 		const {
 			firstName = '',
 			middleNames = '',
@@ -47,9 +47,10 @@ export const editMember = ( playerUuid, updates ) => (
 export const startEditMember = ( playerUuid, updates ) =>
 {
 	const {firstName = '', middleNames = '', surname = '', nickname = ''} = updates;
-	return ( dispatch ) =>
+	return ( dispatch, getState ) =>
 	{
-		return database.ref(`subs-tracker/members/${playerUuid}`)
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
 			.update({firstName, middleNames, surname, nickname})
 			.then(() => dispatch(editMember(playerUuid, {firstName, middleNames, surname, nickname})))
 	};
