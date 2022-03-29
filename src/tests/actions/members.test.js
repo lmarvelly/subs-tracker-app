@@ -13,6 +13,8 @@ import {
 import { members } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
+const uid = 'testuid';
+const defaultAuthState = { auth: { uid }}
 const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
@@ -35,7 +37,7 @@ beforeEach((done) =>
 		};
 	});
 
-	database.ref('subs-tracker/members')
+	database.ref(`subs-tracker/users/${uid}/members`)
 		.set(membersData)
 		.then(() => done());
 });
@@ -102,7 +104,7 @@ test('should setup set member action object with data', () =>
 // Working but returning Snapshot not passing
 test('should edit a member from database', (done) => 
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const playerUuid = members[0].playerUuid;
 	const updates =
 	{
@@ -115,10 +117,10 @@ test('should edit a member from database', (done) =>
 		{
 			const actions = store.getActions();
 			expect(actions[0].updates.firstName).toBe(updates.firstName);
-			expect(actions[0].updates.firstName).toBe(updates.firstName);
+			expect(actions[0].updates.nickname).toBe(updates.nickname);
 		})
 
-		database.ref(`subs-tracker/members/${playerUuid}`).once('value')
+		database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`).once('value')
 			.then((snapshot) => 
 			{
 				expect(snapshot.val().firstName).toBe(updates.firstName);
@@ -129,7 +131,7 @@ test('should edit a member from database', (done) =>
 
 test('should add a member to the database', (done) => 
 { 
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const memberData = 
 	{
 		firstName: 'John', 
@@ -151,7 +153,7 @@ test('should add a member to the database', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/members/${actions[0].member.playerUuid}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/members/${actions[0].member.playerUuid}`).once('value');
 	});
 
 	promise.then((snapshot) =>
@@ -168,7 +170,7 @@ test('should add a member to the database', (done) =>
 // This is getting the disired result. It's just timing out for some reason
 test('should fetch members from firebase', (done) =>
 { 
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 
 	const promise = store.dispatch(startSetMembers())
 
@@ -187,7 +189,7 @@ test('should fetch members from firebase', (done) =>
 // TODO: START REMOVE MEMBER
 test('should remove member from database', (done) => 
 {
-	const store = createMockStore({});
+	const store = createMockStore(defaultAuthState);
 	const playerUuid = members[0].playerUuid;
 
 	store.dispatch(startRemoveMember(playerUuid))
@@ -200,7 +202,7 @@ test('should remove member from database', (done) =>
 			playerUuid
 		});
 
-		return database.ref(`subs-tracker/members/${playerUuid}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`).once('value');
 	})
 	.then((snapshot) =>
 	{
