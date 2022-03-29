@@ -15,6 +15,7 @@ import SeasonPage from '../components/SeasonPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 // Export History to be used in other files
 export const history = createHistory();
@@ -36,7 +37,7 @@ const AppRouter = () => (
 	<Router history={history}>
 		<div>
 			<Switch>
-				<Route path='/' component={LoginPage} exact={true} />
+				<PublicRoute path='/' component={LoginPage} exact={true} />
 				<PrivateRoute path='/dashboard' component={Dashboard} exact={true} />
 				<PrivateRoute path='/add-record' component={AddRecordPage} />
 				<PrivateRoute path='/add-member' component={AddMemberPage} />
@@ -46,7 +47,7 @@ const AppRouter = () => (
 				<PrivateRoute path='/edit-season/:id' component={EditSeasonPage} />
 				<PrivateRoute path='/members' component={MemberPage} />
 				<PrivateRoute path='/seasons' component={SeasonPage} />
-				<Route path='/help' component={HelpPage} />
+				<PrivateRoute path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>
 		</div>
