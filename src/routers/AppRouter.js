@@ -9,12 +9,12 @@ import AddSeasonPage from '../components/AddSeasonPage';
 import EditRecordPage from '../components/EditRecordPage';
 import EditMemberPage from '../components/EditMemberPage';
 import EditSeasonPage from '../components/EditSeasonPage';
-import Header from '../components/Header';
 import HelpPage from '../components/HelpPage';
 import MemberPage from '../components/MemberPage';
 import SeasonPage from '../components/SeasonPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
+import PrivateRoute from './PrivateRoute';
 
 // Export History to be used in other files
 export const history = createHistory();
@@ -35,18 +35,17 @@ export const history = createHistory();
 const AppRouter = () => (
 	<Router history={history}>
 		<div>
-			<Header />
 			<Switch>
 				<Route path='/' component={LoginPage} exact={true} />
-				<Route path='/dashboard' component={Dashboard} exact={true} />
-				<Route path='/add-record' component={AddRecordPage} />
-				<Route path='/add-member' component={AddMemberPage} />
-				<Route path='/add-season' component={AddSeasonPage}/>
-				<Route path='/edit-record/:id' component={EditRecordPage} />
-				<Route path='/edit-member/:id' component={EditMemberPage} />
-				<Route path='/edit-season/:id' component={EditSeasonPage} />
-				<Route path='/members' component={MemberPage} />
-				<Route path='/seasons' component={SeasonPage} />
+				<PrivateRoute path='/dashboard' component={Dashboard} exact={true} />
+				<PrivateRoute path='/add-record' component={AddRecordPage} />
+				<PrivateRoute path='/add-member' component={AddMemberPage} />
+				<PrivateRoute path='/add-season' component={AddSeasonPage}/>
+				<PrivateRoute path='/edit-record/:id' component={EditRecordPage} />
+				<PrivateRoute path='/edit-member/:id' component={EditMemberPage} />
+				<PrivateRoute path='/edit-season/:id' component={EditSeasonPage} />
+				<PrivateRoute path='/members' component={MemberPage} />
+				<PrivateRoute path='/seasons' component={SeasonPage} />
 				<Route path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>
