@@ -185,12 +185,11 @@ test('should fetch members from firebase', (done) =>
 	});
 });
 
-
 // TODO: START REMOVE MEMBER
-test('should remove member from database', (done) => 
+test('should remove member, with no records from database', (done) => 
 {
 	const store = createMockStore(defaultAuthState);
-	const playerUuid = members[0].playerUuid;
+	const playerUuid = members[3].playerUuid;
 
 	store.dispatch(startRemoveMember(playerUuid))
 	.then(() =>
@@ -207,6 +206,20 @@ test('should remove member from database', (done) =>
 	.then((snapshot) =>
 	{
 		expect(snapshot.val()).toBeFalsy();
+		done();
+	});
+});
+
+test('Fail to remove a member with Records', (done) => 
+{
+	const store = createMockStore(defaultAuthState);
+	const playerUuid = members[1].playerUuid;
+
+	store.dispatch(startRemoveMember(playerUuid))
+	.then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions).toEqual([]);
 		done();
 	});
 });
