@@ -86,6 +86,7 @@ export const startRemoveSeason = ( seasonUuid ) =>
 			else
 			{
 				alert('Cannot Delete. Season contains records');
+				return false;
 			}
 		})
 	}
