@@ -53,17 +53,49 @@ export const removeSeason = (seasonUuid) =>
 	seasonUuid
 });
 
+export const isSeasonInUse = ( seasonUuid, uid ) =>
+{
+	
+}
+
 export const startRemoveSeason = ( seasonUuid ) =>
 {
 	return (dispatch, getState) =>
 	{
+		let canDelete = true;
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
-			.remove()
-			.then((ref) =>
+
+		database.ref(`subs-tracker/users/${uid}/main/records`)
+		.once('value')
+		.then((snapshot) =>
+		{
+			snapshot.forEach((childSnapshot) =>
 			{
-				dispatch(removeSeason(seasonUuid));
+				if(childSnapshot.val().seasonUuid === seasonUuid)
+				{
+					canDelete = false;
+					return true;
+				}
 			});
+
+			if(canDelete)
+			{
+				return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
+					.remove()
+					.then((ref) =>
+					{
+						dispatch(removeSeason(seasonUuid));
+					})
+					.then(() =>
+					{
+						alert('Deleted');
+					});
+			}
+			else
+			{
+				alert('Cannot Delete. Season contains records');
+			}
+		})
 	}
 };
 
