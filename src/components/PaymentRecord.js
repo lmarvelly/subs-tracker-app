@@ -14,11 +14,12 @@ export const PaymentRecord = (props) => (
 			{
 				const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
 				const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid )
+				const name = member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
 
 				return (
 					<RecordListItem 
 						key={record.id} 
-						name={`${member.firstName} ${member.surname}`} 
+						name={name} 
 						seasonName={season.seasonName}
 						{...record} 
 					/>
