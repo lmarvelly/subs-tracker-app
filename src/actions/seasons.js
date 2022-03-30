@@ -53,11 +53,6 @@ export const removeSeason = (seasonUuid) =>
 	seasonUuid
 });
 
-export const isSeasonInUse = ( seasonUuid, uid ) =>
-{
-	
-}
-
 export const startRemoveSeason = ( seasonUuid ) =>
 {
 	return (dispatch, getState) =>
@@ -85,11 +80,8 @@ export const startRemoveSeason = ( seasonUuid ) =>
 					.then((ref) =>
 					{
 						dispatch(removeSeason(seasonUuid));
-					})
-					.then(() =>
-					{
 						alert('Deleted');
-					});
+					})
 			}
 			else
 			{
