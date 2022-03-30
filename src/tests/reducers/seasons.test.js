@@ -47,7 +47,7 @@ test('should remove a season', () =>
 		seasonUuid
 	}
 	const state = seasonReducer( seasons, action );
-	expect( state ).toEqual([seasons[0], seasons[2], seasons[3]]);
+	expect( state ).toEqual([seasons[0], seasons[2], seasons[3], seasons[4]]);
 });
 
 test('should set seasons', () => 
