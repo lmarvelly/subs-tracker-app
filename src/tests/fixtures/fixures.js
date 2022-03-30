@@ -45,6 +45,13 @@ export const members =
 		middleNames: '', 
 		surname: 'Cousins',
 		nickname: 'Oldest Dragon'
+	},
+	{
+		playerUuid: 'player4',
+		firstName: 'Jon', 
+		middleNames: '', 
+		surname: 'Doe',
+		nickname: ''
 	}
 ];
 
