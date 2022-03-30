@@ -65,7 +65,43 @@ export const startRemoveMember = ( playerUuid ) =>
 {
 	return (dispatch, getState) =>
 	{
+		let canDelete = true;
 		const uid = getState().auth.uid;
+
+		return database.ref(`subs-tracker/users/${uid}/main/records`)
+		.once('value')
+		.then((snapshot) =>
+		{
+			snapshot.forEach((childSnapshot) =>
+			{
+				if(childSnapshot.val().playerUuid === playerUuid)
+				{
+					canDelete = false;
+					return true;
+				}
+			});
+
+			if(canDelete)
+			{
+				alert('Deleted');
+				return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
+					.remove()
+					.then((ref) =>
+					{
+						dispatch(removeMember(playerUuid));
+					})
+			}
+			else
+			{
+				alert('Cannot Delete. Member has records');
+			}
+		})
+
+
+
+
+
+		
 		return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
 			.remove()
 			.then((ref) =>
