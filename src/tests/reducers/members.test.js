@@ -33,7 +33,7 @@ test('should remove a member', () =>
 	}
 	const state = membersReducer( members, action );
 
-	expect( state ).toEqual([ members[0], members[2] ])
+	expect( state ).toEqual([ members[0], members[2], members[3] ])
 });
 
 test('should edit Members First Name', () => 
