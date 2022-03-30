@@ -149,10 +149,10 @@ test('should edit a season from database', () =>
 		});
 });
 
-test('should remove a season from the database', (done) => 
+test('should remove a season with no data from the database', (done) => 
 {
 	const store = createMockStore(defaultAuthState);
-	const seasonUuid = seasons[1].seasonUuid;
+	const seasonUuid = seasons[4].seasonUuid;
 
 	store.dispatch(startRemoveSeason(seasonUuid))
 		.then(() =>
@@ -169,6 +169,20 @@ test('should remove a season from the database', (done) =>
 		.then((snapshot) =>
 		{
 			expect(snapshot.val()).toBeFalsy();
+			done();
+		});
+});
+
+test('Attempt to remove a season with data from the database', (done) => 
+{
+	const store = createMockStore(defaultAuthState);
+	const seasonUuid = seasons[1].seasonUuid;
+
+	store.dispatch(startRemoveSeason(seasonUuid))
+		.then(() =>
+		{
+			const actions = store.getActions();
+			expect(actions).toEqual([]);
 			done();
 		});
 });
