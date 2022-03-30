@@ -60,7 +60,7 @@ export const startRemoveSeason = ( seasonUuid ) =>
 		let canDelete = true;
 		const uid = getState().auth.uid;
 
-		database.ref(`subs-tracker/users/${uid}/main/records`)
+		return database.ref(`subs-tracker/users/${uid}/main/records`)
 		.once('value')
 		.then((snapshot) =>
 		{
@@ -75,12 +75,12 @@ export const startRemoveSeason = ( seasonUuid ) =>
 
 			if(canDelete)
 			{
+				alert('Deleted');
 				return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
 					.remove()
 					.then((ref) =>
 					{
 						dispatch(removeSeason(seasonUuid));
-						alert('Deleted');
 					})
 			}
 			else
