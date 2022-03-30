@@ -69,6 +69,7 @@ export const startRemoveSeason = ( seasonUuid ) =>
 				if(childSnapshot.val().seasonUuid === seasonUuid)
 				{
 					canDelete = false;
+					return true; // Stops loop once a match is found
 				}
 			});
 
