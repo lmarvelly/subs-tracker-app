@@ -58,7 +58,7 @@ export default class SeasonForm extends Component
 						value={ this.state.seasonName }
 						onChange={ this.onSeasonNameChange }
 					/>
-					<button>Add Season</button>
+					<button>{this.props.season ? 'Save Changes' : 'Add Season'}</button>
 				</form>
 			</div>
 		);
