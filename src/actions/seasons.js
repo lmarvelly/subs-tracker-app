@@ -69,7 +69,6 @@ export const startRemoveSeason = ( seasonUuid ) =>
 				if(childSnapshot.val().seasonUuid === seasonUuid)
 				{
 					canDelete = false;
-					return true;
 				}
 			});
 
@@ -86,7 +85,6 @@ export const startRemoveSeason = ( seasonUuid ) =>
 			else
 			{
 				alert('Cannot Delete. Season contains records');
-				return false;
 			}
 		})
 	}
