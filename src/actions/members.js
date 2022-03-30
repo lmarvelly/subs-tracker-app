@@ -1,5 +1,4 @@
 import database from '../firebase/firebase';
-import { removeRecord } from './records';
 
 export const addMember = ( member ) => (
 {
