@@ -256,7 +256,7 @@ export default class RecordForm extends Component
 						value={this.state.note}
 					>
 					</textarea>
-					<button>Add Payment Record</button>
+					<button>{this.props.record ? 'Save Changes' : 'Add Payment Record'}</button>
 				</form> 
 			</div>
 		);
