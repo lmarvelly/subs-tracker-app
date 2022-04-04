@@ -36,15 +36,23 @@ export default class RecordForm extends Component
 	};
 	onTypeChange = ( e ) => {
 		const recordType = e.target.value;
-		this.setState( () => ({ recordType }) )
+		this.setState( () => ({ recordType }) );
+		if ( recordType === 'PAYMENT') 
+		{
+			this.setState( () => ({ amount: this.state.amountOwed}) );
+		}
+		if ( recordType === 'DEBT' ) 
+		{
+			this.setState( () => ({ amountOwed: this.state.amount}) );
+		}
 	};
 	onDescriptionChange = ( e ) => {
 		const description = e.target.value;
-		this.setState( () => ({ description }) )
+		this.setState( () => ({ description }) );
 	};
 	onNoteChange = ( e ) => {
 		const note = e.target.value;
-		this.setState( () => ({ note }) )
+		this.setState( () => ({ note }) );
 	};
 	onAmountChange = ( e ) => {
 		const amount = e.target.value;
