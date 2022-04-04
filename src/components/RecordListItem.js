@@ -19,6 +19,16 @@ import numeral from 'numeral';
  */
 const RecordListItem = ( {name, dispatch, id, playerUuid, seasonName, amount, amountOwed, amountPaid, recordType, description, createdAt }) =>
 {
+	const debtItem = (
+		<div>
+			<p>Debt amount: { `£${numeral(amountOwed / 100).format('0,0.00')}` }</p>
+			£<input 
+				type="text" 
+				value={amountPaid / 100} 
+			/>
+		</div>
+	);
+
 	return (
 		<div>
 			<Link to={`/edit-record/${id}`}>
@@ -30,7 +40,7 @@ const RecordListItem = ( {name, dispatch, id, playerUuid, seasonName, amount, am
 				recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(amount / 100).format('0,0.00')}` }</p>
 			}
 			{
-				recordType === 'DEBT' && <div><p>Debt amount: { `£${numeral(amountOwed / 100).format('0,0.00')}` }</p><p>Amount paid: { `£${numeral(amountPaid / 100).format('0,0.00')}` }</p></div>
+				recordType === 'DEBT' && debtItem
 			}
 			<p>Created At: { moment( createdAt).format( "DD-MM-YYYY") }</p>
 		</div>
