@@ -7,7 +7,12 @@ export const LoginPage = ({ startLogin }) => (
 		<div className='box-layout__box'>
 			<h1 className='box-layout__title'>Subs Tracker App</h1>
 			<p>It's time to get your teams subs under control.</p>
-			<button onClick={startLogin}>Login with Google</button>
+			<button 
+				onClick={startLogin}
+				className='button'
+			>
+				Login with Google
+			</button>
 		</div>
 	</div>
 );
