@@ -119,6 +119,10 @@ export default class RecordForm extends Component
 		{
 			this.setState( () => ({ error: 'Please provide name, description and amount' }) );
 		}
+		else if ( this.state.amountPaid > this.state.amountOwed) 
+		{
+			this.setState( () => ({ error: 'Amount Paid cannot be more than Amount Owed' }) );
+		}
 		else
 		{
 			this.setState( () => ({ error: '' }) );
