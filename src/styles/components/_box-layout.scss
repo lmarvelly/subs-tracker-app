@@ -1,0 +1,35 @@
+/**
+ * main axes <------>
+ * 			  ^
+ * cross axes |
+ * 			  |
+ *				  v
+ *
+ * Background image should always be 100% height
+ */
+.box-layout
+{
+	align-items: center;
+	background: url('/images/bg.jpg');
+	background-position: center;
+	background-size: cover;
+	display: flex; // use flexbox
+	height: 100vh; // 100 view height
+	justify-content: center;
+	width: 100vw; // 100 view width
+}
+
+.box-layout__box
+{
+	background: fade-out(white, .15);
+	border-radius: 3px;
+	padding: $l-size $m-size;
+	text-align: center;
+	width: 25rem;
+}
+
+.box-layout__title
+{
+	margin: 0 0 $m-size 0;
+	line-height: 1;
+}
