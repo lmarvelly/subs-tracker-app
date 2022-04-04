@@ -32,35 +32,6 @@ export const addRecord = (record) => (
 	record
 });
 
-export const startEditRecord = ( id, type, updates ) =>
-{
-	if(type === 'PAYMENT')
-	{
-		updates =
-		{
-			...updates,
-			amountOwed: '',
-			amountPaid: ''
-		}
-	}
-	if(type === 'DEBT')
-	{
-		updates =
-		{
-			...updates,
-			amount: ''
-		}
-	}
-	
-	return ( dispatch, getState ) =>
-	{
-		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`)
-			.update(updates)
-			.then(() => dispatch(editRecord(id, updates)));
-	}
-}
-
 /**
  * @param {*} recordData 
  * @returns A deconstructed record
@@ -133,6 +104,37 @@ export const editRecord = ( id, updates ) =>
 	id,
 	updates
 })
+
+export const startEditRecord = ( id, type, updates ) =>
+{
+	if(type === 'PAYMENT')
+	{
+		updates =
+		{
+			...updates,
+			amountOwed: '',
+			amountPaid: ''
+		}
+	}
+	if(type === 'DEBT')
+	{
+		updates =
+		{
+			...updates,
+			amount: ''
+		}
+	}
+
+	console.log('UPDATES: ', updates);
+	
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`)
+			.update(updates)
+			.then(() => dispatch(editRecord(id, updates)));
+	}
+}
 
 
 /**
