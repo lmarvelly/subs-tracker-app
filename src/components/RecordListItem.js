@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
-
-import { startEditRecord } from '../actions/records';
 
 /**
  * @param {*} props Is deconstructed into
@@ -31,6 +28,7 @@ class RecordListItem extends Component
 		}
 
 		this.onAmountChange = this.onAmountChange.bind( this );
+		this.blurAmountHandler = this.blurAmountHandler.bind( this );
 	}
 
 	onAmountChange( e )
@@ -46,21 +44,35 @@ class RecordListItem extends Component
 			}
 			else
 			{
-				alert('Cannot do that')
+				this.setState( () => ({ error: 'Debt Payment cannot be higher than Debt Owed' }) );
 			}
 		}
 	};
+
+	blurAmountHandler( e )
+	{
+		const amountPaid = parseFloat(e.target.value, 10) * 100;
+
+		const record = { ...this.props.record, amountPaid };
+
+		this.props.onSubmit( record );
+	}
 
 	render()
 	{
 		const debtItem = (
 			<div>
 				<p>Debt amount: { `£${numeral(this.props.amountOwed / 100).format('0,0.00')}` }</p>
-				£<input 
-					type="text" 
-					value={this.state.amountPaid}
-					onChange={this.onAmountChange}
-				/>
+				<p>
+					Debt Payment £
+					<input 
+						type="text" 
+						value={this.state.amountPaid}
+						onChange={this.onAmountChange}
+						onBlur={this.blurAmountHandler}
+					/>
+				<span style={{color:"red"}}>{this.state.error}</span>
+				</p>
 			</div>
 		);
 		return(
@@ -82,9 +94,4 @@ class RecordListItem extends Component
 	}
 }
 
-const mapDispatchToProps = ( dispatch, props ) => (
-{
-	startEditRecord: ( record ) => dispatch( startEditRecord(record.id, record.recordType, record) )
-});
-
-export default connect( undefined, mapDispatchToProps )( RecordListItem );
+export default RecordListItem;
