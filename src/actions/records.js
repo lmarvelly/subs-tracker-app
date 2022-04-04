@@ -124,8 +124,6 @@ export const startEditRecord = ( id, type, updates ) =>
 			amount: ''
 		}
 	}
-
-	console.log('UPDATES: ', updates);
 	
 	return ( dispatch, getState ) =>
 	{
