@@ -75,8 +75,8 @@ export default class MemberForm extends Component
 	render(){
 		return(
 		<div>
-			<form onSubmit={ this.onSubmit }>
-				{this.state.error && <p>{ this.state.error }</p>}
+			<form className='form' onSubmit={ this.onSubmit }>
+				{this.state.error && <p className='form__error'>{ this.state.error }</p>}
 				Full Name:
 				<input 
 					type="text" 
