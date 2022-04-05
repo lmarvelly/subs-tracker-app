@@ -149,6 +149,7 @@ export default class RecordForm extends Component
 						<label htmlFor="amountToPay">Amount to Pay</label>
 						<input
 							id='amountToPay'
+							className='text-input'
 							type="text"
 							placeholder="Amount"
 							value={ this.state.amount }
@@ -164,6 +165,7 @@ export default class RecordForm extends Component
 						<label htmlFor="amountInDebt">Debt Amount</label>
 						<input
 							id='amountInDebt'
+							className='text-input'
 							type="text"
 							placeholder="Debt Amount"
 							value={ this.state.amountOwed }
@@ -172,6 +174,7 @@ export default class RecordForm extends Component
 						<label htmlFor="amountPayed">Amount payed</label>
 						<input
 							id='amountPayed'
+							className='text-input'
 							type="text"
 							placeholder="Debt Amount"
 							value={ this.state.amountPaid }
@@ -189,6 +192,7 @@ export default class RecordForm extends Component
 					}
 					<select
 						id='seasonName'
+						className='select'
 						onChange={ this.onSeasonNameChange }
 						value={ this.state.seasonUuid }
 					>
@@ -209,6 +213,7 @@ export default class RecordForm extends Component
 					</select>
 					<select 
 						id='playerName'
+						className='select'
 						onChange={ this.onNameChange }
 						value={ this.state.playerUuid }
 					>
@@ -227,7 +232,8 @@ export default class RecordForm extends Component
 							})
 						}
 					</select>
-					<select 
+					<select
+						className='select'
 						onChange={ this.onTypeChange }
 						value={ this.state.recordType }
 					>
@@ -243,6 +249,7 @@ export default class RecordForm extends Component
 						</option>
 					</select>
 					<input 
+						className='text-input'
 						type="text"
 						placeholder="Description"
 						value={ this.state.description }
