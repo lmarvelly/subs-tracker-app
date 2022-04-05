@@ -6,3 +6,8 @@
 	height: 50px;
 	padding: $s-size;
 }
+
+.select
+{
+	@extend .text-input;
+}

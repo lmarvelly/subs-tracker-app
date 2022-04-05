@@ -96,6 +96,7 @@ export class RecordListFilters extends Component {
 					</div>
 					<div className='input-group__item'>
 						<select
+							className='select'
 							value={this.props.recordFilters.seasonUuid}
 							onChange=
 							{this.onSeasonChange}
@@ -118,6 +119,7 @@ export class RecordListFilters extends Component {
 					</div>
 					<div className='input-group__item'>
 						<select
+							className='select'
 							value={this.props.recordFilters.sortBy} // This is needed to make it a controlled component
 							onChange={this.onSortChange}
 						>
