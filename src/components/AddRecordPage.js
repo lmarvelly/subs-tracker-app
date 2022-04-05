@@ -8,12 +8,10 @@ import { startAddRecord } from '../actions/records';
  * on every render.
  * We put an export in front of the class keyword so we can test
  * the unconnected version.
- */ 
-export class AddRecordPage extends Component
-{
-	constructor( props )
-	{
-		super( props );
+ */
+export class AddRecordPage extends Component {
+	constructor(props) {
+		super(props);
 
 		this.state =
 		{
@@ -22,32 +20,25 @@ export class AddRecordPage extends Component
 		}
 	}
 
-	onSubmit = ( record ) =>
-	{
-			// using props.onSubmit this instead of "this.props.dispatch( startAddRecord( record ) )";
-			this.props.startAddRecord(record); 
-			this.props.history.push('/'); // return to dashboard
+	onSubmit = (record) => {
+		// using props.onSubmit this instead of "this.props.dispatch( startAddRecord( record ) )";
+		this.props.startAddRecord(record);
+		this.props.history.push('/'); // return to dashboard
 	}
 
-	componentDidMount()
-	{ 
+	componentDidMount() {
 		const doMembersExist = this.state.members.length > 0;
 		const doSeasonsExist = this.state.seasons.length > 0;
 
-		if ( !doMembersExist || !doSeasonsExist )
-		{
-			const message = () =>
-			{
-				if( !doMembersExist && !doSeasonsExist )
-				{
+		if (!doMembersExist || !doSeasonsExist) {
+			const message = () => {
+				if (!doMembersExist && !doSeasonsExist) {
 					return 'There are no existing Seasons or Members. Please create both before creating any records.';
 				}
-				else if (!doMembersExist) 
-				{
+				else if (!doMembersExist) {
 					return 'There are no existing Members. Please create a member before creating any records.';
-				} 
-				else if (!doSeasonsExist)
-				{
+				}
+				else if (!doSeasonsExist) {
 					return 'There are no existing Seasons/categories. Please create one before creating any records.';
 				}
 			}
@@ -56,23 +47,27 @@ export class AddRecordPage extends Component
 		}
 	};
 
-	render(){
-		return(
+	render() {
+		return (
 			<div>
-				<h1>Add Record Page</h1>
-				<RecordForm 
-					members={ this.props.members }
-					seasons={ this.props.seasons }
-					onSubmit={ this.onSubmit }
+				<div className='page-header'>
+					<div className='content-container'>
+						<h1 className='page-header__title'>Add Record Page</h1>
+					</div>
+				</div>
+
+				<RecordForm
+					members={this.props.members}
+					seasons={this.props.seasons}
+					onSubmit={this.onSubmit}
 				/>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = ( state, props ) =>
-{
-	return { 
+const mapStateToProps = (state, props) => {
+	return {
 		members: state.members,
 		seasons: state.seasons
 	}
@@ -90,8 +85,8 @@ const mapStateToProps = ( state, props ) =>
  * implicitly return an object
  */
 const mapDispatchToProps = (dispatch) => (
-{
-	startAddRecord: (record) => dispatch( startAddRecord( record ) )
-});
+	{
+		startAddRecord: (record) => dispatch(startAddRecord(record))
+	});
 
-export default connect( mapStateToProps, mapDispatchToProps )( AddRecordPage );
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecordPage);
