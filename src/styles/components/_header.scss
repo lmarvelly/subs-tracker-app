@@ -11,6 +11,23 @@
 	padding: $s-size;
 }
 
+.header__nav
+{
+	justify-content: flex-start;
+	flex-direction: column;
+	.button
+	{
+		margin-right: $s-size;
+		margin-bottom: s-size;
+	}
+
+	@media (min-width: $desktop-breakpoint) 
+	{
+		flex-direction: row;
+		// margin-bottom: $l-size;
+	}
+}
+
 .header__title
 {
 	color: white;
