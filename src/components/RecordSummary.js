@@ -22,13 +22,13 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 			}
 			const seasonName = season.seasonName;
 			return (
-				<span>from <span className='page-header__title-bold'>{seasonName}</span></span>
+				<span>from <span className='bold-font'>{seasonName}</span></span>
 			);
 		}
 		else 
 		{
 			const length = seasons.length;
-			return (<span>from <span className='page-header__title-bold'>{length}</span> seasons</span>);
+			return (<span>from <span className='bold-font'>{length} seasons</span></span>);
 		}
 	};
 
@@ -36,13 +36,13 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 		<div className='page-header'>
 			<div className='content-container'>
 				<h1 className='page-header__title'>
-					Viewing <span className='page-header__title-bold'>{recordLength}</span> {recordWord} {seasonWording()}
+					Viewing <span className='bold-font'>{recordLength} {recordWord}</span> {seasonWording()}
 				</h1>
 				<h1 className='page-header__title'>
-					Total income: £{numeral(recordTotals.totalIncome / 100).format('0,0.00')}
+					Total income: <span className='bold-font'>£{numeral(recordTotals.totalIncome / 100).format('0,0.00')}</span>
 				</h1>
 				<h1 className='page-header__title'>
-					{`Total debt: £${numeral(recordTotals.totalDebt / 100).format('0,0.00')}`}
+					Total debt: <span className='bold-font'>£{numeral(recordTotals.totalDebt / 100).format('0,0.00')}</span>
 				</h1>
 			</div>
 		</div>
