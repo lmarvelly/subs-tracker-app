@@ -10,8 +10,12 @@ import { startLogout } from '../actions/auth';
  * @param startLogout is got from Dispatch Props
  */
  export const Header = ({ startLogout }) => (
-	<header>
-		<Link to='/dashboard' activeClassName='is-active'>
+	<header className='header'>
+		<Link 
+			className='header__title' 
+			to='/dashboard' 
+			activeClassName='is-active'
+		>
 			<h1>Subs Tracker</h1>
 		</Link>
 		<Link to='/add-record' activeClassName='is-active'>Add Record </Link>
