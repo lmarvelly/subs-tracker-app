@@ -181,6 +181,7 @@ export default class RecordForm extends Component
 				)
 			}
 		}
+		// div around Submit button stops it from being directly styled by the form
 		return(
 			<div>
 				<form className='form' onSubmit={ this.onSubmit }>
@@ -271,7 +272,9 @@ export default class RecordForm extends Component
 						value={this.state.note}
 					>
 					</textarea>
-					<button>{this.props.record ? 'Save Changes' : 'Add Payment Record'}</button>
+					<div>
+						<button>{this.props.record ? 'Save Changes' : 'Add Payment Record'}</button>
+					</div>
 				</form> 
 			</div>
 		);

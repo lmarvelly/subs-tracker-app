@@ -72,6 +72,7 @@ export default class MemberForm extends Component
 		}
 	};
 
+	// div around Submit button stops it from being directly styled by the form
 	render(){
 		return(
 		<div>
@@ -106,7 +107,9 @@ export default class MemberForm extends Component
 					value={ this.state.nickname }
 					onChange={ this.onNickNameChange }
 				/><br />
-				<button>{this.props.member ? 'Save Changes' : 'Add Member'}</button>
+				<div>
+					<button>{this.props.member ? 'Save Changes' : 'Add Member'}</button>
+				</div>
 			</form>
 		</div>)
 	}

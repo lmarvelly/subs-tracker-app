@@ -51,6 +51,7 @@ export default class SeasonForm extends Component
 
 	render()
 	{
+		// div around Submit button stops it from being directly styled by the form
 		return(
 			<div>
 				<form className='form' onSubmit={ this.onSubmit }>
@@ -62,7 +63,9 @@ export default class SeasonForm extends Component
 						value={ this.state.seasonName }
 						onChange={ this.onSeasonNameChange }
 					/>
-					<button>{this.props.season ? 'Save Changes' : 'Add Season'}</button>
+					<div>
+						<button>{this.props.season ? 'Save Changes' : 'Add Season'}</button>
+					</div>
 				</form>
 			</div>
 		);
