@@ -108,7 +108,9 @@ export default class MemberForm extends Component
 					onChange={ this.onNickNameChange }
 				/><br />
 				<div>
-					<button>{this.props.member ? 'Save Changes' : 'Add Member'}</button>
+					<button className='button'>
+						{this.props.member ? 'Save Changes' : 'Add Member'}
+					</button>
 				</div>
 			</form>
 		</div>)

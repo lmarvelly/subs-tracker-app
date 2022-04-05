@@ -273,7 +273,9 @@ export default class RecordForm extends Component
 					>
 					</textarea>
 					<div>
-						<button>{this.props.record ? 'Save Changes' : 'Add Payment Record'}</button>
+						<button className='button'>
+							{this.props.record ? 'Save Changes' : 'Add Payment Record'}
+						</button>
 					</div>
 				</form> 
 			</div>
