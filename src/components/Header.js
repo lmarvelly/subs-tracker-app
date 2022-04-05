@@ -20,10 +20,10 @@ import { startLogout } from '../actions/auth';
 				>
 					<h1>Subs Tracker</h1>
 				</Link>
-				<Link to='/members' activeClassName='is-active'>Members Page </Link>
-				<Link to='/seasons' activeClassName='is-active'>Seasons Page </Link>
-				<Link to='/help' activeClassName='is-active'>Help Page </Link>
-				<button onClick={startLogout}>Logout</button>
+				<Link className='button' to='/members' activeClassName='is-active'>Members Page </Link>
+				<Link className='button' to='/seasons' activeClassName='is-active'>Seasons Page </Link>
+				<Link className='button' to='/help' activeClassName='is-active'>Help Page </Link>
+				<button className='button button--link' onClick={startLogout}>Logout</button>
 			</div>
 		</div>
 	</header>
