@@ -25,10 +25,11 @@ export class AddSeasonPage extends Component
 						<h1 className='page-header__title'>Add Season Page</h1>
 					</div>
 				</div>
-
-				<SeasonForm
-					onSubmit={ this.onSubmit }
-				/>
+				<div className='content-container'>
+					<SeasonForm
+						onSubmit={ this.onSubmit }
+					/>
+				</div>
 			</div>
 		);
 	}

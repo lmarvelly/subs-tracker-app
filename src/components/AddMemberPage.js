@@ -26,9 +26,11 @@ export class AddMemberPage extends Component
 					</div>
 				</div>
 
-				<MemberForm
-					onSubmit={ this.onSubmit }
-				/>
+				<div className='content-container'>
+					<MemberForm
+						onSubmit={ this.onSubmit }
+					/>
+				</div>
 			</div>
 		);
 	};

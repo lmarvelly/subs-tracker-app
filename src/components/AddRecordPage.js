@@ -56,11 +56,13 @@ export class AddRecordPage extends Component {
 					</div>
 				</div>
 
-				<RecordForm
-					members={this.props.members}
-					seasons={this.props.seasons}
-					onSubmit={this.onSubmit}
-				/>
+				<div className='content-container'>
+					<RecordForm
+						members={this.props.members}
+						seasons={this.props.seasons}
+						onSubmit={this.onSubmit}
+					/>
+				</div>
 			</div>
 		);
 	}
