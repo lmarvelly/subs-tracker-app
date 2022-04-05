@@ -11,14 +11,16 @@ export default class SeasonForm extends Component
 			this.state = 
 			{
 				seasonUuid: props.season.seasonUuid ? props.season.seasonUuid : '',
-				seasonName: props.season.seasonName ? props.season.seasonName : ''
+				seasonName: props.season.seasonName ? props.season.seasonName : '',
+				error: ''
 			}	
 		}
 		else
 		{
 			this.state = 
 			{
-				seasonName: ''
+				seasonName: '',
+				error: ''
 			}
 		}
 	}
@@ -38,10 +40,11 @@ export default class SeasonForm extends Component
 
 		if( !seasonName )
 		{
-			alert('Please enter a season name');
+			this.setState(() => ({ error: 'Please enter a season name' }));
 		}
 		else
 		{
+			this.setState(() => ({ error: '' }));
 			this.props.onSubmit( season() );
 		}
 	}
@@ -51,6 +54,7 @@ export default class SeasonForm extends Component
 		return(
 			<div>
 				<form onSubmit={ this.onSubmit }>
+					{this.state.error && <p>{ this.state.error }</p>}
 					Season Name:
 					<input 
 						type='text'
