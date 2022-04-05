@@ -267,6 +267,7 @@ export default class RecordForm extends Component
 						isOutsideRange={ () => false }
 					/>
 					<textarea
+						className='textarea'
 						placeholder="Add a note e.g. 'To be paid by 01/01/23' (optional)"
 						onChange={ this.onNoteChange }
 						value={this.state.note}
