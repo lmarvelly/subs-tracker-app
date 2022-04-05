@@ -69,6 +69,7 @@ export class RecordListFilters extends Component {
 				<div className='input-group'>
 					<div className='input-group__item'>
 						<input
+							className='text-input'
 							list='memberFilter'
 							type="text"
 							placeholder='Filter by member'
@@ -86,6 +87,7 @@ export class RecordListFilters extends Component {
 					</div>
 					<div className='input-group__item'>
 						<input
+							className='text-input'
 							type="text"
 							placeholder='Search Descriptions'
 							value={this.props.recordFilters.descriptionTextFilter} // This is needed to make it a controlled component
