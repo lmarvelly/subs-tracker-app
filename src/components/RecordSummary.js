@@ -20,19 +20,31 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 			{
 				season = seasons[0];
 			}
-			return `from ${season.seasonName}`;
+			const seasonName = season.seasonName;
+			return (
+				<span>from <span className='page-header__title-bold'>{seasonName}</span></span>
+			);
 		}
 		else 
 		{
-			return `from ${seasons.length} seasons`;
+			const length = seasons.length;
+			return (<span>from <span className='page-header__title-bold'>{length}</span> seasons</span>);
 		}
 	};
 
 	return(
-		<div>
-			<h1>{`Viewing: ${recordLength} ${recordWord} ${seasonWording()}`}</h1>
-			<h1>{`Total income: £${numeral(recordTotals.totalIncome / 100).format('0,0.00')}`}</h1>
-			<h1>{`Total debt: £${numeral(recordTotals.totalDebt / 100).format('0,0.00')}`}</h1>
+		<div className='page-header'>
+			<div className='content-container'>
+				<h1 className='page-header__title'>
+					Viewing <span className='page-header__title-bold'>{recordLength}</span> {recordWord} {seasonWording()}
+				</h1>
+				<h1 className='page-header__title'>
+					Total income: £{numeral(recordTotals.totalIncome / 100).format('0,0.00')}
+				</h1>
+				<h1 className='page-header__title'>
+					{`Total debt: £${numeral(recordTotals.totalDebt / 100).format('0,0.00')}`}
+				</h1>
+			</div>
 		</div>
 	);
 }
