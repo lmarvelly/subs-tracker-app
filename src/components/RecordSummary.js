@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import numeral from 'numeral';
 
 import selectRecords from '../selectors/records';
@@ -44,6 +45,9 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 				<h1 className='page-header__title'>
 					Total debt: <span className='bold-font'>£{numeral(recordTotals.totalDebt / 100).format('0,0.00')}</span>
 				</h1>
+				<div className='page-header__actions'>
+					<Link className='button' to='/add-record'>Add Record</Link>
+				</div>
 			</div>
 		</div>
 	);

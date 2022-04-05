@@ -5,12 +5,13 @@
 	padding: $l-size 0;
 }
 
+.page-header__actions
+{
+	margin-top: $s-size;
+}
+
 .page-header__title
 {
 	font-weight: 300;
 	margin: 0;
-	// span
-	// {
-	// 	font-weight: 700;
-	// }
 }
