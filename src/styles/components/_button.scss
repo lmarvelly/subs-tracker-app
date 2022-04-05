@@ -11,6 +11,12 @@
 	text-decoration: none;
 }
 
+.button--secondary
+{
+	@extend .button;
+	background: $dark-red;
+}
+
 .button--link
 {
 	background: none;
