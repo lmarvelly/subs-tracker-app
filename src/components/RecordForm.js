@@ -146,12 +146,11 @@ export default class RecordForm extends Component
 			{
 				return(
 					<div>
-						<label htmlFor="amountToPay">Amount to Pay</label>
 						<input
 							id='amountToPay'
 							className='text-input'
 							type="text"
-							placeholder="Amount"
+							placeholder="Amount Paid"
 							value={ this.state.amount }
 							onChange={ this.onAmountChange }
 						/>
@@ -162,7 +161,6 @@ export default class RecordForm extends Component
 			{
 				return(
 					<div>
-						<label htmlFor="amountInDebt">Debt Amount</label>
 						<input
 							id='amountInDebt'
 							className='text-input'
@@ -171,12 +169,11 @@ export default class RecordForm extends Component
 							value={ this.state.amountOwed }
 							onChange={ this.onAmountChange }
 						/>
-						<label htmlFor="amountPayed">Amount payed</label>
 						<input
 							id='amountPayed'
 							className='text-input'
 							type="text"
-							placeholder="Debt Amount"
+							placeholder="Amount Paid"
 							value={ this.state.amountPaid }
 							onChange={ this.onAmountChange }
 						/>
