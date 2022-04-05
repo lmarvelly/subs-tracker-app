@@ -55,8 +55,8 @@ export default class SeasonForm extends Component
 			<div>
 				<form className='form' onSubmit={ this.onSubmit }>
 					{this.state.error && <p className='form__error'>{ this.state.error }</p>}
-					Season Name:
 					<input 
+						className='text-input'
 						type='text'
 						placeholder='Season Name'
 						value={ this.state.seasonName }

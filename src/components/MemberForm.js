@@ -77,30 +77,30 @@ export default class MemberForm extends Component
 		<div>
 			<form className='form' onSubmit={ this.onSubmit }>
 				{this.state.error && <p className='form__error'>{ this.state.error }</p>}
-				Full Name:
-				<input 
+
+				<input
+					className='text-input'
 					type="text" 
 					placeholder="First Name"
 					value={ this.state.firstName }
 					onChange={ this.onFirstNameChange }
 				/>
-				Middle Names:
-				<input 
+				<input
+					className='text-input'
 					type="text" 
 					placeholder="Middle Names (Optional)"
 					value={ this.state.middleNames }
 					onChange={ this.onMiddleNameChange }
 				/>
-				Surname:
-				<input 
+				<input
+					className='text-input'
 					type="text" 
 					placeholder="Surname"
 					value={ this.state.surname }
 					onChange={ this.onSurnameChange }
 				/>
-				<br />
-				Nickname:
-				<input 
+				<input
+					className='text-input'
 					type="text" 
 					placeholder="Nickname"
 					value={ this.state.nickname }
