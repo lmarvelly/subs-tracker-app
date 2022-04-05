@@ -1,0 +1,12 @@
+.input-group
+{
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: $l-size;
+}
+
+.input-group__item
+{
+	margin-bottom: $s-size;
+	margin-right: $s-size;
+}
