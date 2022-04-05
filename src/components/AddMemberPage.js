@@ -20,7 +20,11 @@ export class AddMemberPage extends Component
 	{
 		return (
 			<div>
-				<h1>Add Member Page</h1>
+				<div className='page-header'>
+					<div className='content-container'>
+						<h1 className='page-header__title'>Add Member Page</h1>
+					</div>
+				</div>
 
 				<MemberForm
 					onSubmit={ this.onSubmit }
