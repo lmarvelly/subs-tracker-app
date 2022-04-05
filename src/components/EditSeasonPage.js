@@ -32,6 +32,7 @@ export class EditSeasonPage extends Component
 	deleteButton = 
 	(
 		<button
+			className='button--secondary'
 			onClick=
 			{
 				(e) =>
@@ -50,12 +51,19 @@ export class EditSeasonPage extends Component
 	{
 		return (
 			<div>
-				<h2>Edit Season Page</h2>
-				<SeasonForm
-					season={this.props.season}
-					onSubmit={this.onSubmit}
-				/>
-				{ this.deleteButton }
+				<div className='page-header'>
+					<div className='content-container'>
+						<h1 className='page-header__title'>Edit Season Page</h1>
+					</div>
+				</div>
+				
+				<div className='content-container'>
+					<SeasonForm
+						season={this.props.season}
+						onSubmit={this.onSubmit}
+					/>
+					{ this.deleteButton }
+				</div>
 			</div>
 		);
 	}

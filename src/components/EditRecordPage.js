@@ -49,13 +49,21 @@ export class EditRecordPage extends Component
 	{
 		return (
 			<div>
-				<RecordForm
-					record={ this.props.record }
-					members={ this.props.members } // TODO change to member rather than all the members
-					seasons={ this.props.seasons }
-					onSubmit={ this.onSubmit }
-				/>
-				<button onClick={ this.onRemove }>Remove</button>
+				<div className='page-header'>
+					<div className='content-container'>
+						<h1 className='page-header__title'>Edit Record Page</h1>
+					</div>
+				</div>
+
+				<div className='content-container'>
+					<RecordForm
+						record={ this.props.record }
+						members={ this.props.members } // TODO change to member rather than all the members
+						seasons={ this.props.seasons }
+						onSubmit={ this.onSubmit }
+					/>
+					<button className='button--secondary' onClick={ this.onRemove }>Remove</button>
+				</div>
 			</div>
 		)
 	}
