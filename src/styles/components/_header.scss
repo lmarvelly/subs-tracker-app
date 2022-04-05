@@ -3,6 +3,14 @@
 	background: $dark-blue;
 }
 
+.header__content
+{
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	padding: $s-size;
+}
+
 .header__title
 {
 	color: white;
