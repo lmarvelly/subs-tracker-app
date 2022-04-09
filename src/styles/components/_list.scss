@@ -1,0 +1,9 @@
+.list-header
+{
+	background: lighten($pale-orange, 20%);
+	border: 1px solid darken($pale-orange, 0%);
+	color: $red;
+	display: flex;
+	justify-content: space-between;
+	padding: $s-size $m-size;
+}

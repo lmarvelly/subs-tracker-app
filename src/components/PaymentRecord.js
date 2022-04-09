@@ -16,7 +16,7 @@ export const PaymentRecord = (props) =>
 
 	return (
 		<div className='content-container'>
-			<div>
+			<div className='list-header'>
 				<div className='show-for-mobile'>Records</div>
 				<div className='show-for-desktop'>Record</div>
 				<div className='show-for-desktop'>Amount</div>
