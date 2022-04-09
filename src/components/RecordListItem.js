@@ -76,19 +76,29 @@ class RecordListItem extends Component
 			</div>
 		);
 		return(
-			<div>
-				<Link to={`/edit-record/${this.props.id}`}>
-					<h2>Description: { this.props.description }</h2>
-				</Link>
-				<h3>Player: { this.props.name }</h3>
-				<p>Season: { this.props.seasonName }</p>
-				{
-					this.props.recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</p>
-				}
-				{
-					this.props.recordType === 'DEBT' && debtItem
-				}
-				<p>Created At: { moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
+			<div className='list-item'>
+				<div>
+					<h2>{ this.props.description }</h2>
+					<h3>{ this.props.name }</h3>
+					<p>Created At: { moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
+				</div>
+				<div>
+					<h3>
+					{
+						this.props.recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</p>
+					}
+					{
+						this.props.recordType === 'DEBT' && debtItem
+					}
+					</h3>
+					<p>Season: { this.props.seasonName }</p>
+					<Link 
+						to={`/edit-record/${this.props.id}`} 
+						className='button'
+					>
+						Edit Record
+					</Link>
+				</div>
 			</div>
 		);
 	}
