@@ -15,8 +15,12 @@ export const PaymentRecord = (props) =>
 	};
 
 	return (
-		<div>
-			<h1>Payment Record</h1>
+		<div className='content-container'>
+			<div>
+				<div className='show-for-mobile'>Records</div>
+				<div className='show-for-desktop'>Record</div>
+				<div className='show-for-desktop'>Amount</div>
+			</div>
 			{
 				props.paymentRecord.length === 0 ? ( <p>No Payments</p> )
 				:
