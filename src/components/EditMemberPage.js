@@ -43,7 +43,7 @@ export class EditMemberPage extends Component
 				}
 			}
 		>
-			Delete
+			Remove Member
 		</button>
 
 	render()
