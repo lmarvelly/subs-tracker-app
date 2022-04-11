@@ -169,14 +169,19 @@ export default class RecordForm extends Component
 							value={ this.state.amountOwed }
 							onChange={ this.onAmountChange }
 						/>
-						<input
-							id='amountPayed'
-							className='text-input'
-							type="text"
-							placeholder="Amount Paid"
-							value={ this.state.amountPaid }
-							onChange={ this.onAmountChange }
-						/>
+						{
+							this.props.record && (
+								<input
+									id='amountPayed'
+									className='text-input'
+									type="text"
+									placeholder="Amount Paid"
+									value={ this.state.amountPaid }
+									onChange={ this.onAmountChange }
+								/>
+							)
+						}
+						
 					</div>
 				)
 			}
