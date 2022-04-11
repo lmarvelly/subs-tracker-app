@@ -18,3 +18,6 @@ test('should render one RecordListItem', () =>
 	);
 	expect( wrapper ).toMatchSnapshot();
 });
+
+test('should render Compressed RecordListItem', () => {  });
+test('should render Expanded RecordListItem', () => {  });
