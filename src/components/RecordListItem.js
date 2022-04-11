@@ -41,7 +41,7 @@ class RecordListItem extends Component
 		{
 			if( amount <= (this.props.amountOwed / 100 ))
 			{
-				this.setState( () => ({amountPaid: amount}) );
+				this.setState( () => ({amountPaid: amount, error: ''}) );
 			}
 			else
 			{
@@ -63,7 +63,6 @@ class RecordListItem extends Component
 	{
 		const debtInput = (
 			<div>
-				Debt Payment £
 				<input
 					type="text" 
 					value={this.state.amountPaid}
@@ -75,28 +74,35 @@ class RecordListItem extends Component
 		);
 		const debtItem = (
 			<div>
-				<p>Debt Amount: { `£${numeral(this.props.amountOwed / 100).format('0,0.00')}` }</p>
-				<p>
-					{this.state.expand ? debtInput : `Amount Paid: £${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
-				</p>
+				<h3 className='list-item__data-top'>
+					Debt Amount:
+					<span className='bold-font'> 
+						{ ` £${numeral(this.props.amountOwed / 100).format('0,0.00')}` }
+					</span>
+				</h3>
+				<h3 className='list-item__data-bottom'>
+					Debt Paid: 
+					<span className='bold-font'> 
+						£{this.state.expand ? debtInput : `${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
+					</span>
+					
+				</h3>
 			</div>
 		);
 
 		const compComponent = (
 			<div className='list-item'>
 				<div>
-					<h2>{ this.props.description }</h2>
-					<h3>{ this.props.name }</h3>
+					<h3 className='list-item__title'>{ this.props.description }</h3>
+					<span className='list-item__sub-title'>{ this.props.name }</span>
 				</div>
 				<div>
-					<h3>
 					{
-						this.props.recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</p>
+						this.props.recordType === 'PAYMENT' && <h3 className='list-item__data'>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</h3>
 					}
 					{
 						this.props.recordType === 'DEBT' && debtItem
 					}
-					</h3>
 				</div>
 			</div>
 		);
@@ -104,7 +110,7 @@ class RecordListItem extends Component
 		const expandedComponent = (
 			<div className='list-item'>
 				<div>
-					<h2>{ this.props.description }</h2>
+					<h3>{ this.props.description }</h3>
 					<h3>{ this.props.name }</h3>
 					<p>Created At: { moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
 				</div>

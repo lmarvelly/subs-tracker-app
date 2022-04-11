@@ -21,27 +21,33 @@ export const PaymentRecord = (props) =>
 				<div className='show-for-desktop'>Record</div>
 				<div className='show-for-desktop'>Amount</div>
 			</div>
-			{
-				props.paymentRecord.length === 0 ? ( <p>No Payments</p> )
-				:
-				props.paymentRecord.map(( record ) =>
+			<div className='list-body'>
 				{
-					const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
-					const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid )
-					const name = member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
-
-					return (
-						<RecordListItem 
-							key={record.id} 
-							name={name} 
-							record={record}
-							seasonName={season.seasonName}
-							{...record} 
-							onSubmit={onSubmit}
-						/>
+					props.paymentRecord.length === 0 ? (
+						<div className='list-item list-item--message'>
+							<span>No Payments</span>
+						</div> 
 					)
-				})
-			}
+					:
+					props.paymentRecord.map(( record ) =>
+					{
+						const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
+						const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid )
+						const name = member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
+
+						return (
+							<RecordListItem 
+								key={record.id} 
+								name={name} 
+								record={record}
+								seasonName={season.seasonName}
+								{...record} 
+								onSubmit={onSubmit}
+							/>
+						)
+					})
+				}
+			</div>
 		</div>
 	);
 };

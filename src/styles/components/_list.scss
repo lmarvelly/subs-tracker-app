@@ -1,9 +1,95 @@
 .list-header
 {
-	background: lighten($pale-orange, 20%);
-	border: 1px solid darken($pale-orange, 0%);
-	color: $red;
+	background: $dark-blue;
+	border: 1px solid $dark-blue;
+	color: white;
 	display: flex;
 	justify-content: space-between;
 	padding: $s-size $m-size;
 }
+
+.list-body
+{
+	margin-bottom: $m-size;
+	@media (min-width: $desktop-breakpoint)
+	{
+		margin-bottom: $xl-size;
+	}
+}
+
+.list-item
+{
+	background: $pale-yellow;
+	border: 1px solid $dark-blue;
+	border-top: 0;
+	color: $dark-red;
+	display: flex;
+	flex-direction: column;
+	padding: $s-size;
+	transition: background .3s ease;
+
+	&:hover
+	{
+		background: darken($pale-yellow, 10%);
+	}
+
+	@media (min-width: $desktop-breakpoint)
+	{
+		align-items: center;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: $m-size;
+	}
+}
+
+.list-item--message
+{
+	align-items: center;
+	justify-content: center;
+	padding: $m-size;
+
+	&:hover{
+		background: $pale-yellow;
+	}
+}
+
+.list-item__title
+{
+	margin: 0;
+	word-break: break-all;
+}
+
+.list-item__sub-title
+{
+	color: lighten($dark-red, 7%);
+	font-size: $font-size-small;
+}
+
+.list-item__data-default
+{
+	font-weight: 300;
+	@media (min-width: $desktop-breakpoint)
+	{
+		margin: 0;
+		padding-left: $s-size;
+	}
+}
+
+.list-item__data
+{
+	@extend .list-item__data-default;
+	margin: $s-size 0 0 0;
+}
+
+.list-item__data-top
+{
+	@extend .list-item__data-default;
+	margin: $s-size 0 0 0;
+}
+
+.list-item__data-bottom
+{
+	@extend .list-item__data-default;
+	margin: 0;
+}
+
