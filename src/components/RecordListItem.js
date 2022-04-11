@@ -24,8 +24,12 @@ class RecordListItem extends Component
 		this.state =
 		{
 			amountPaid: this.props.amountPaid / 100,
-			error: ''
+			error: '',
+			expand: false
 		}
+
+		console.log('State:', this.state.amountPaid);
+		console.log('Props:', this.props.amountPaid);
 
 		this.onAmountChange = this.onAmountChange.bind( this );
 		this.blurAmountHandler = this.blurAmountHandler.bind( this );
@@ -58,24 +62,52 @@ class RecordListItem extends Component
 		this.props.onSubmit( record );
 	}
 
+	
+
 	render()
 	{
+		const debtInput = (
+			<div>
+				Debt Payment £
+				<input 
+					ref={ref}
+					type="text" 
+					value={this.state.amountPaid}
+					onChange={this.onAmountChange}
+					onBlur={this.blurAmountHandler}
+				/>
+				<span style={{color:"red"}}>{this.state.error}</span>
+			</div>
+		);
 		const debtItem = (
 			<div>
-				<p>Debt amount: { `£${numeral(this.props.amountOwed / 100).format('0,0.00')}` }</p>
+				<p>Debt Amount: { `£${numeral(this.props.amountOwed / 100).format('0,0.00')}` }</p>
 				<p>
-					Debt Payment £
-					<input 
-						type="text" 
-						value={this.state.amountPaid}
-						onChange={this.onAmountChange}
-						onBlur={this.blurAmountHandler}
-					/>
-				<span style={{color:"red"}}>{this.state.error}</span>
+					{this.state.expand ? debtInput : `Amount Paid: £${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
 				</p>
 			</div>
 		);
-		return(
+
+		const compComponent = (
+			<div className='list-item'>
+				<div>
+					<h2>{ this.props.description }</h2>
+					<h3>{ this.props.name }</h3>
+				</div>
+				<div>
+					<h3>
+					{
+						this.props.recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</p>
+					}
+					{
+						this.props.recordType === 'DEBT' && debtItem
+					}
+					</h3>
+				</div>
+			</div>
+		);
+
+		const expandedComponent = (
 			<div className='list-item'>
 				<div>
 					<h2>{ this.props.description }</h2>
@@ -100,6 +132,10 @@ class RecordListItem extends Component
 					</Link>
 				</div>
 			</div>
+		);
+
+		return(
+			this.state.expand ? expandedComponent : compComponent
 		);
 	}
 }
