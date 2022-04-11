@@ -28,9 +28,6 @@ class RecordListItem extends Component
 			expand: false
 		}
 
-		console.log('State:', this.state.amountPaid);
-		console.log('Props:', this.props.amountPaid);
-
 		this.onAmountChange = this.onAmountChange.bind( this );
 		this.blurAmountHandler = this.blurAmountHandler.bind( this );
 	}
@@ -62,15 +59,12 @@ class RecordListItem extends Component
 		this.props.onSubmit( record );
 	}
 
-	
-
 	render()
 	{
 		const debtInput = (
 			<div>
 				Debt Payment £
-				<input 
-					ref={ref}
+				<input
 					type="text" 
 					value={this.state.amountPaid}
 					onChange={this.onAmountChange}
