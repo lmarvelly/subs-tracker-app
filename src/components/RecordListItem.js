@@ -107,6 +107,7 @@ class RecordListItem extends Component
 		const debtInput = (
 			<div>
 				<input
+					className='text-input'
 					type="text" 
 					onClick={this.onAmountClick}
 					value={this.state.amountPaid}
@@ -124,7 +125,7 @@ class RecordListItem extends Component
 						{ ` £${numeral(this.props.amountOwed / 100).format('0,0.00')}` }
 					</span>
 				</h3>
-				<h3 className='list-item__data-bottom'>
+				<h3 className='list-item__data'>
 					Debt Paid: 
 					<span className='bold-font'> 
 						£{(this.state.expand || this.state.stayExpanded) ? debtInput : `${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
