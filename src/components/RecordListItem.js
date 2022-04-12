@@ -105,61 +105,46 @@ class RecordListItem extends Component
 			</div>
 		);
 
-		const compComponent = (
+		const listItem = (
 			<div className='list-item' onClick={this.clickListItemHandler}>
-				<div>
-					<h3 className='list-item__title'>{ this.props.description }</h3>
-					<span className='list-item__sub-title'>{ this.props.name }</span>
-				</div>
-				<div>
-					{
-						this.props.recordType === 'PAYMENT' && <h3 className='list-item__data'>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</h3>
-					}
-					{
-						this.props.recordType === 'DEBT' && debtItem
-					}
-				</div>
-			</div>
-		);
-
-		const expandedComponent = (
-			<div className='list-item'>
 				<div className='list-item__row'>
 					<div>
-						<h3>{ this.props.description }</h3>
-						<h3>{ this.props.name }</h3>
+						<h3 className='list-item__title'>{ this.props.description }</h3>
+						<span className='list-item__sub-title'>{ this.props.name }</span>
 					</div>
 					<div>
-						<h3>
 						{
-							this.props.recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</p>
+							this.props.recordType === 'PAYMENT' && <h3 className='list-item__data'>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</h3>
 						}
 						{
 							this.props.recordType === 'DEBT' && debtItem
 						}
-						</h3>
 					</div>
 				</div>
-				<div className='list-item__row'>
-					<div>
-						<p>Created At: { moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
-						<p>Season: { this.props.seasonName }</p>
-					</div>
-					<div>
-						<Link 
-							to={`/edit-record/${this.props.id}`} 
-							className='button'
-						>
-							Edit Record
-						</Link>
-					</div>
-					
-				</div>
+				{
+					this.state.expand && (
+						<div className='list-item__row'>
+							<div>
+								<p>{ moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
+								<p>{ this.props.seasonName }</p>
+							</div>
+							<div>
+								<Link 
+									to={`/edit-record/${this.props.id}`} 
+									className='button'
+								>
+									Edit Record
+								</Link>
+							</div>
+						</div>
+					)
+				}
 			</div>
 		);
 
+
 		return(
-			this.state.expand ? expandedComponent : compComponent
+			listItem
 		);
 	}
 }
