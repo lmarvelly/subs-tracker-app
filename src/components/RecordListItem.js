@@ -25,12 +25,19 @@ class RecordListItem extends Component
 		{
 			amountPaid: this.props.amountPaid / 100,
 			error: '',
-			expand: false
+			expand: false,
+			stayExpanded: false
 		}
 
 		this.onAmountChange = this.onAmountChange.bind( this );
 		this.blurAmountHandler = this.blurAmountHandler.bind( this );
 		this.clickListItemHandler = this.clickListItemHandler.bind( this );
+		this.onAmountClick = this.onAmountClick.bind( this );
+	}
+
+	onAmountClick( e )
+	{
+		this.setState(() => ({stayExpanded: true}))
 	}
 
 	onAmountChange( e )
@@ -53,6 +60,18 @@ class RecordListItem extends Component
 
 	blurAmountHandler( e )
 	{
+		this.setState(() => (
+		{
+			expand: true
+		}));
+
+		setTimeout(() => {
+			this.setState(() => (
+			{
+				stayExpanded: false
+			}));
+		}, 500);
+
 		const amountPaid = parseFloat(e.target.value, 10) * 100;
 
 		const record = { ...this.props.record, amountPaid };
@@ -67,6 +86,8 @@ class RecordListItem extends Component
 		}
 
 		this.props.onSubmit( record );
+
+		
 	}
 
 	clickListItemHandler(e)
@@ -75,7 +96,10 @@ class RecordListItem extends Component
 		{
 			this.setState( () => ({amountPaid: this.props.amountPaid / 100}));
 		}
-		this.setState( () => ({expand: !this.state.expand}));
+		if (!this.state.stayExpanded) 
+		{
+			this.setState( () => ({expand: !this.state.expand}));
+		}
 	}
 
 	render()
@@ -84,6 +108,7 @@ class RecordListItem extends Component
 			<div>
 				<input
 					type="text" 
+					onClick={this.onAmountClick}
 					value={this.state.amountPaid}
 					onChange={this.onAmountChange}
 					onBlur={this.blurAmountHandler}
@@ -102,7 +127,7 @@ class RecordListItem extends Component
 				<h3 className='list-item__data-bottom'>
 					Debt Paid: 
 					<span className='bold-font'> 
-						£{this.state.expand ? debtInput : `${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
+						£{(this.state.expand || this.state.stayExpanded) ? debtInput : `${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
 					</span>
 				</h3>
 			</div>
@@ -129,7 +154,7 @@ class RecordListItem extends Component
 					</div>
 				</div>
 				{
-					this.state.expand && (
+					(this.state.expand || this.state.stayExpanded) && (
 						<div className='list-item__row'>
 							<div className='list-item__expanded-data'>
 								<p>{ moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
