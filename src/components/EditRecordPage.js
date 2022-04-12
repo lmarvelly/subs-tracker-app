@@ -62,7 +62,7 @@ export class EditRecordPage extends Component
 						seasons={ this.props.seasons }
 						onSubmit={ this.onSubmit }
 					/>
-					<button className='button--secondary' onClick={ this.onRemove }>Remove Record</button>
+					<button className='button--secondary margin-bottom-large' onClick={ this.onRemove }>Remove Record</button>
 				</div>
 			</div>
 		)

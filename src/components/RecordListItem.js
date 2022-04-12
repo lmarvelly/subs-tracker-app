@@ -150,7 +150,22 @@ class RecordListItem extends Component
 							)
 						}
 						{
-							this.props.recordType === 'DEBT' && debtItem
+							this.props.recordType === 'DEBT' && (
+								<div>
+									<h3 className='list-item__data-top'>
+										Debt Amount:
+										<span className='bold-font'> 
+											{ ` £${numeral(this.props.amountOwed / 100).format('0,0.00')}` }
+										</span>
+									</h3>
+									<h3 className='list-item__data'>
+										Debt Paid: 
+										<span className='bold-font'> 
+											{` £${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
+										</span>
+									</h3>
+								</div>
+							)
 						}
 					</div>
 				</div>
@@ -162,11 +177,20 @@ class RecordListItem extends Component
 								<p>{ this.props.seasonName }</p>
 							</div>
 							<div>
+								<div>
+									{debtInput}
+									<button 
+										className='button--secondary'
+									>
+										Save New Payment Amount
+									</button>
+								</div>
+								
 								<Link 
 									to={`/edit-record/${this.props.id}`} 
 									className='button'
 								>
-									Edit Record
+									Edit Full Record
 								</Link>
 							</div>
 						</div>
