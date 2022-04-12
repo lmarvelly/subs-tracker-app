@@ -22,7 +22,7 @@
 	background: $pale-yellow;
 	border: 1px solid $dark-blue;
 	border-top: 0;
-	color: $dark-red;
+	color: $dark-blue;
 	display: flex;
 	flex-direction: column;
 	padding: $s-size;
@@ -79,7 +79,7 @@
 
 .list-item__sub-title
 {
-	color: lighten($dark-red, 7%);
+	color: lighten($dark-blue, 7%);
 	font-size: $font-size-small;
 }
 
@@ -98,7 +98,7 @@
 .list-item__expanded-data
 {
 	@extend .list-item__data;
-	color: lighten($dark-red, 7%);
+	color: lighten($dark-blue, 10%);
 	margin: $s-size 0;
 }
 
