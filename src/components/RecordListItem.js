@@ -114,7 +114,11 @@ class RecordListItem extends Component
 					</div>
 					<div>
 						{
-							this.props.recordType === 'PAYMENT' && <h3 className='list-item__data'>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</h3>
+							this.props.recordType === 'PAYMENT' && (
+								<h3 className='list-item__data'>
+									Payment Amount: <span className='bold-font'>{`£${numeral(this.props.amount / 100).format('0,0.00')}` }</span>
+								</h3>
+							)
 						}
 						{
 							this.props.recordType === 'DEBT' && debtItem
