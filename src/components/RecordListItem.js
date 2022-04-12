@@ -30,6 +30,7 @@ class RecordListItem extends Component
 
 		this.onAmountChange = this.onAmountChange.bind( this );
 		this.blurAmountHandler = this.blurAmountHandler.bind( this );
+		this.clickListItemHandler = this.clickListItemHandler.bind( this );
 	}
 
 	onAmountChange( e )
@@ -56,7 +57,21 @@ class RecordListItem extends Component
 
 		const record = { ...this.props.record, amountPaid };
 
+		const amount = e.target.value;
+		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
+		{
+			if( amount <= (this.props.amountOwed / 100 ))
+			{
+				this.setState( () => ({ error: ''}) );
+			}
+		}
+
 		this.props.onSubmit( record );
+	}
+
+	clickListItemHandler(e)
+	{
+		this.setState( () => ({expand: !this.state.expand}));
 	}
 
 	render()
@@ -91,7 +106,7 @@ class RecordListItem extends Component
 		);
 
 		const compComponent = (
-			<div className='list-item'>
+			<div className='list-item' onClick={this.clickListItemHandler}>
 				<div>
 					<h3 className='list-item__title'>{ this.props.description }</h3>
 					<span className='list-item__sub-title'>{ this.props.name }</span>
@@ -109,27 +124,36 @@ class RecordListItem extends Component
 
 		const expandedComponent = (
 			<div className='list-item'>
-				<div>
-					<h3>{ this.props.description }</h3>
-					<h3>{ this.props.name }</h3>
-					<p>Created At: { moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
+				<div className='list-item__row'>
+					<div>
+						<h3>{ this.props.description }</h3>
+						<h3>{ this.props.name }</h3>
+					</div>
+					<div>
+						<h3>
+						{
+							this.props.recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</p>
+						}
+						{
+							this.props.recordType === 'DEBT' && debtItem
+						}
+						</h3>
+					</div>
 				</div>
-				<div>
-					<h3>
-					{
-						this.props.recordType === 'PAYMENT' && <p>Payment Amount: { `£${numeral(this.props.amount / 100).format('0,0.00')}` }</p>
-					}
-					{
-						this.props.recordType === 'DEBT' && debtItem
-					}
-					</h3>
-					<p>Season: { this.props.seasonName }</p>
-					<Link 
-						to={`/edit-record/${this.props.id}`} 
-						className='button'
-					>
-						Edit Record
-					</Link>
+				<div className='list-item__row'>
+					<div>
+						<p>Created At: { moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
+						<p>Season: { this.props.seasonName }</p>
+					</div>
+					<div>
+						<Link 
+							to={`/edit-record/${this.props.id}`} 
+							className='button'
+						>
+							Edit Record
+						</Link>
+					</div>
+					
 				</div>
 			</div>
 		);
