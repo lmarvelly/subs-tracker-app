@@ -83,7 +83,7 @@
 	font-size: $font-size-small;
 }
 
-.list-item__data-default
+.list-item__data
 {
 	font-weight: 300;
 	font-size: $font-size-small;
@@ -97,20 +97,13 @@
 
 .list-item__expanded-data
 {
-	@extend .list-item__data-default;
+	@extend .list-item__data;
 	color: lighten($dark-red, 7%);
 	margin: $s-size 0;
 }
 
 .list-item__data-top
 {
-	@extend .list-item__data-default;
+	@extend .list-item__data;
 	margin: $s-size 0 0 0;
 }
-
-.list-item__data-bottom
-{
-	@extend .list-item__data-default;
-	flex-direction: row;
-}
-
