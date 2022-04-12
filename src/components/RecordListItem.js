@@ -71,6 +71,10 @@ class RecordListItem extends Component
 
 	clickListItemHandler(e)
 	{
+		if (this.props.recordType === 'DEBT') 
+		{
+			this.setState( () => ({amountPaid: this.props.amountPaid}));
+		}
 		this.setState( () => ({expand: !this.state.expand}));
 	}
 
@@ -78,7 +82,7 @@ class RecordListItem extends Component
 	{
 		const debtInput = (
 			<div>
-				<input
+				<inputclick
 					type="text" 
 					value={this.state.amountPaid}
 					onChange={this.onAmountChange}
@@ -100,7 +104,6 @@ class RecordListItem extends Component
 					<span className='bold-font'> 
 						£{this.state.expand ? debtInput : `${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
 					</span>
-					
 				</h3>
 			</div>
 		);
@@ -115,7 +118,7 @@ class RecordListItem extends Component
 					<div>
 						{
 							this.props.recordType === 'PAYMENT' && (
-								<h3 className='list-item__data'>
+								<h3 className='list-item__data-top'>
 									Payment Amount: <span className='bold-font'>{`£${numeral(this.props.amount / 100).format('0,0.00')}` }</span>
 								</h3>
 							)
@@ -128,7 +131,7 @@ class RecordListItem extends Component
 				{
 					this.state.expand && (
 						<div className='list-item__row'>
-							<div>
+							<div className='list-item__expanded-data'>
 								<p>{ moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
 								<p>{ this.props.seasonName }</p>
 							</div>
