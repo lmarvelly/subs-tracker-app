@@ -82,7 +82,7 @@ class RecordListItem extends Component
 	{
 		const debtInput = (
 			<div>
-				<inputclick
+				<input
 					type="text" 
 					value={this.state.amountPaid}
 					onChange={this.onAmountChange}
