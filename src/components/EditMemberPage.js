@@ -32,7 +32,7 @@ export class EditMemberPage extends Component
 
 	deleteButton = 
 		<button
-			className='button--secondary'
+			className='button--secondary margin-bottom-large'
 			onClick=
 			{
 				(e) =>
