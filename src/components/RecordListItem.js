@@ -73,7 +73,7 @@ class RecordListItem extends Component
 	{
 		if (this.props.recordType === 'DEBT') 
 		{
-			this.setState( () => ({amountPaid: this.props.amountPaid}));
+			this.setState( () => ({amountPaid: this.props.amountPaid / 100}));
 		}
 		this.setState( () => ({expand: !this.state.expand}));
 	}
