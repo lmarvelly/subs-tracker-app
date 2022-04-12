@@ -91,7 +91,7 @@
 	@media (min-width: $desktop-breakpoint)
 	{
 		// margin: 0;
-		// padding-left: $s-size;
+		// padding-left: $s-size; // Maybe add a indent for other data
 	}
 }
 
@@ -111,7 +111,6 @@
 .list-item__data-bottom
 {
 	@extend .list-item__data-default;
-	// margin: 0;
 	flex-direction: row;
 }
 
