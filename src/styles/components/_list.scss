@@ -95,10 +95,11 @@
 	}
 }
 
-.list-item__data
+.list-item__expanded-data
 {
 	@extend .list-item__data-default;
-	margin: $s-size 0 0 0;
+	color: lighten($dark-red, 7%);
+	margin: $s-size 0;
 }
 
 .list-item__data-top
