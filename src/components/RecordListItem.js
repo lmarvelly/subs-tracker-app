@@ -107,7 +107,7 @@ class RecordListItem extends Component
 		const debtInput = (
 			<div>
 				<input
-					className='text-input'
+					className='text-input margin-bottom-medium'
 					type="text" 
 					onClick={this.onAmountClick}
 					value={this.state.amountPaid}
@@ -115,22 +115,6 @@ class RecordListItem extends Component
 					onBlur={this.blurAmountHandler}
 				/>
 				<span style={{color:"red"}}>{this.state.error}</span>
-			</div>
-		);
-		const debtItem = (
-			<div>
-				<h3 className='list-item__data-top'>
-					Debt Amount:
-					<span className='bold-font'> 
-						{ ` £${numeral(this.props.amountOwed / 100).format('0,0.00')}` }
-					</span>
-				</h3>
-				<h3 className='list-item__data'>
-					Debt Paid: 
-					<span className='bold-font'> 
-						£{(this.state.expand || this.state.stayExpanded) ? debtInput : `${numeral(this.props.amountPaid / 100).format('0,0.00')}`}
-					</span>
-				</h3>
 			</div>
 		);
 
@@ -180,7 +164,7 @@ class RecordListItem extends Component
 								<div>
 									{debtInput}
 									<button 
-										className='button--secondary'
+										className='button--secondary margin-bottom-medium'
 									>
 										Save New Payment Amount
 									</button>
