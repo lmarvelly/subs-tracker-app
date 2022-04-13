@@ -6,8 +6,8 @@ const paymentRecordReducerFilterDefaultState =
 	memberTextFilter: '',
 	playerUuid: '',
 	sortBy: 'dateAscending',
-	startDate: moment().startOf('month'),
-	endDate: moment().endOf('month'),
+	startDate: moment().subtract(1, 'month'),
+	endDate: moment(),
 	seasonFilter: ''
 };
 
