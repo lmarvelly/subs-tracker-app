@@ -131,6 +131,7 @@ export class RecordListFilters extends Component {
 						<DateRangePicker
 							startDate={this.props.recordFilters.startDate}
 							endDate={this.props.recordFilters.endDate}
+							displayFormat={'DD/MM/YYYY'}
 							onDatesChange={this.onDatesChange}
 							focusedInput={this.state.calenderFocused}
 							onFocusChange={this.onFocusChange}
