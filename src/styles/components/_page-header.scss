@@ -7,7 +7,24 @@
 
 .page-header__actions
 {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: center;
+
 	margin-top: $s-size;
+	.button
+	{
+		margin-right: $s-size;
+		margin-bottom: $s-size;
+	}
+
+	@media (min-width: $desktop-breakpoint) 
+	{
+		flex-direction: row;
+		// margin-bottom: $l-size;
+	}
+
 	a
 	{
 		margin-right: $s-size;
