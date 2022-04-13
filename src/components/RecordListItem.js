@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
 
+import DebtPaymentForm from './DebtPaymentForm';
+
 /**
  * @param {*} props Is deconstructed into
  * 	dispatch - this is passed down from PaymentRecord when record was spread {...record}
@@ -29,65 +31,29 @@ class RecordListItem extends Component
 			stayExpanded: false
 		}
 
-		this.onAmountChange = this.onAmountChange.bind( this );
-		this.blurAmountHandler = this.blurAmountHandler.bind( this );
 		this.clickListItemHandler = this.clickListItemHandler.bind( this );
-		this.onAmountClick = this.onAmountClick.bind( this );
+		this.onDebtClick = this.onDebtClick.bind( this );
+		this.onDebtBlur = this.onDebtBlur.bind( this );
 	}
 
-	onAmountClick( e )
+	onDebtClick( e )
 	{
 		this.setState(() => ({stayExpanded: true}))
 	}
 
-	onAmountChange( e )
-	{
-		const amount = e.target.value;
-
-		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
-		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
-		{
-			if( amount <= (this.props.amountOwed / 100 ))
-			{
-				this.setState( () => ({amountPaid: amount, error: ''}) );
-			}
-			else
-			{
-				this.setState( () => ({ error: 'Debt Payment cannot be higher than Debt Owed' }) );
-			}
-		}
-	};
-
-	blurAmountHandler( e )
+	onDebtBlur( e )
 	{
 		this.setState(() => (
 		{
 			expand: true
 		}));
-
+	
 		setTimeout(() => {
 			this.setState(() => (
 			{
 				stayExpanded: false
 			}));
-		}, 500);
-
-		const amountPaid = parseFloat(e.target.value, 10) * 100;
-
-		const record = { ...this.props.record, amountPaid };
-
-		const amount = e.target.value;
-		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
-		{
-			if( amount <= (this.props.amountOwed / 100 ))
-			{
-				this.setState( () => ({ error: ''}) );
-			}
-		}
-
-		this.props.onSubmit( record );
-
-		
+		}, 250);
 	}
 
 	clickListItemHandler(e)
@@ -104,20 +70,6 @@ class RecordListItem extends Component
 
 	render()
 	{
-		const debtInput = (
-			<div>
-				<input
-					className='text-input margin-bottom-medium'
-					type="text" 
-					onClick={this.onAmountClick}
-					value={this.state.amountPaid}
-					onChange={this.onAmountChange}
-					onBlur={this.blurAmountHandler}
-				/>
-				<span style={{color:"red"}}>{this.state.error}</span>
-			</div>
-		);
-
 		const listItem = (
 			<div className='list-item' onClick={this.clickListItemHandler}>
 				<div className='list-item__row'>
@@ -162,12 +114,12 @@ class RecordListItem extends Component
 							</div>
 							<div>
 								<div>
-									{debtInput}
-									<button 
-										className='button--secondary margin-bottom-medium'
+									<div 
+										onClick={this.onDebtClick}
+										onBlur={this.onDebtBlur}
 									>
-										Save New Payment Amount
-									</button>
+										<DebtPaymentForm />
+									</div>
 								</div>
 								
 								<Link 
