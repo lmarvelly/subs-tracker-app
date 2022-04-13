@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
 
-import DebtPaymentForm from './DebtPaymentForm';
-
 /**
  * @param {*} props Is deconstructed into
  * 	dispatch - this is passed down from PaymentRecord when record was spread {...record}
@@ -88,10 +86,6 @@ class RecordListItem extends Component
 
 	clickListItemHandler(e)
 	{
-		if (this.props.recordType === 'DEBT') 
-		{
-			this.setState( () => ({amountPaid: this.props.amountPaid / 100}));
-		}
 		if (!this.state.stayExpanded) 
 		{
 			this.setState( () => ({expand: !this.state.expand}));
