@@ -256,12 +256,11 @@ export default class RecordForm extends Component
 						value={ this.state.description }
 						onChange={ this.onDescriptionChange }
 					/>
-					<br />
+					
 					{
 						moneyInput()
 					}
 					
-					<br />
 					<SingleDatePicker
 						date={ this.state.createdAt }
 						onDateChange={ this.onDateChange }
