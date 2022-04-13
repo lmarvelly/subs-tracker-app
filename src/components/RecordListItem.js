@@ -33,26 +33,56 @@ class RecordListItem extends Component
 
 		this.clickListItemHandler = this.clickListItemHandler.bind( this );
 		this.onDebtClick = this.onDebtClick.bind( this );
-		this.onDebtBlur = this.onDebtBlur.bind( this );
 	}
 
 	onDebtClick( e )
 	{
-		this.setState(() => ({stayExpanded: true}))
-	}
+		this.setState(() => ({stayExpanded: true}));
+		
+		const amountOwed = this.props.amountOwed;
+		const amountPaid = this.props.amountPaid;
+		const parsedAmountOwed = parseFloat(amountOwed / 100).toFixed(2);
+		const parsedAmountPaid = parseFloat(amountPaid / 100).toFixed(2);
 
-	onDebtBlur( e )
-	{
-		this.setState(() => (
+		const input = prompt(`Debt Amount: £${parsedAmountOwed}. Please make a payment of £${parsedAmountOwed} or less`, parsedAmountPaid);
+
+		if ( input !== null && input !== '' && (!input || input.match(/^\d{1,}(\.\d{0,2})?$/))) 
 		{
-			expand: true
-		}));
-	
-		setTimeout(() => {
-			this.setState(() => (
+			if ((input * 100) > amountOwed) 
 			{
-				stayExpanded: false
-			}));
+				alert(`£${parseFloat(input).toFixed(2)} is more than the debt of £${parsedAmountOwed}`);
+			}
+			else
+			{
+				// Submit new debt payment
+				const parsedInput = parseFloat(input, 10).toFixed(2);
+				const amountPaid = parsedInput * 100;
+				const record = { ...this.props.record, amountPaid };
+				this.props.onSubmit( record );
+
+				if (amountPaid === amountOwed) 
+				{
+					alert(`Player has paid off his debt of £${parsedAmountOwed}`);
+				}
+				else
+				{
+					alert(`Player has paid £${parsedInput} off his debt off £${parsedAmountOwed}`);
+				}
+			}
+		}
+		else if (input === '') 
+		{
+			alert(`Cannot enter an empty string`)
+		}
+		else if (input) 
+		{
+			alert(`${input} is invalid`);
+		}
+
+		// Prevent accidently shrinking component
+		setTimeout(() => 
+		{
+			this.setState(() => ({stayExpanded: false}));
 		}, 250);
 	}
 
@@ -91,7 +121,7 @@ class RecordListItem extends Component
 									<h3 className='list-item__data-top'>
 										Debt Amount:
 										<span className='bold-font'> 
-											{ ` £${numeral(this.props.amountOwed / 100).format('0,0.00')}` }
+											{` £${numeral(this.props.amountOwed / 100).format('0,0.00')}`}
 										</span>
 									</h3>
 									<h3 className='list-item__data'>
@@ -112,15 +142,17 @@ class RecordListItem extends Component
 								<p>{ moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
 								<p>{ this.props.seasonName }</p>
 							</div>
-							<div>
-								<div>
-									<div 
-										onClick={this.onDebtClick}
-										onBlur={this.onDebtBlur}
-									>
-										<DebtPaymentForm />
-									</div>
-								</div>
+							<div className='list-item__expanded-data'>
+								{
+									this.props.recordType === 'DEBT' && (
+										<button
+											className='button--secondary margin-bottom-medium'
+											onClick={this.onDebtClick}
+										>
+											Make Debt Payment
+										</button>
+									)
+								}
 								
 								<Link 
 									to={`/edit-record/${this.props.id}`} 
@@ -134,7 +166,6 @@ class RecordListItem extends Component
 				}
 			</div>
 		);
-
 
 		return(
 			listItem
