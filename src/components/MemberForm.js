@@ -106,7 +106,7 @@ export default class MemberForm extends Component
 					placeholder="Nickname"
 					value={ this.state.nickname }
 					onChange={ this.onNickNameChange }
-				/><br />
+				/>
 				<div>
 					<button className='button'>
 						{this.props.member ? 'Save Changes' : 'Add Member'}
