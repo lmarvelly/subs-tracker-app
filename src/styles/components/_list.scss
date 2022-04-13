@@ -98,6 +98,8 @@
 .list-item__expanded-data
 {
 	@extend .list-item__data;
+	display: flex;
+	flex-direction: column;
 	color: lighten($dark-blue, 10%);
 	margin: $s-size 0;
 }
