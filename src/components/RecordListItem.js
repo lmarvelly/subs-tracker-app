@@ -64,7 +64,7 @@ class RecordListItem extends Component
 				}
 				else
 				{
-					alert(`Player has paid £${parsedInput} off his debt off £${parsedAmountOwed}`);
+					alert(`Player has paid £${parsedInput} off his debt of £${parsedAmountOwed}`);
 				}
 			}
 		}
