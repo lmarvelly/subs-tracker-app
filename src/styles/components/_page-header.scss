@@ -5,6 +5,13 @@
 	padding: $l-size 0;
 }
 
+.page-header__content
+{
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
+
 .page-header__actions
 {
 	display: flex;

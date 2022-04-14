@@ -10,26 +10,35 @@ const MemberPage = ( props ) =>
 {
 	return (
 		<div>
-			<Link className='button' to='/add-member'>Add Member</Link>
+			<div className='page-header'>
+				<div className='content-container'>
+					<div className='page-header__content'>
+						<h1 className='page-header__title'>Members</h1>
+						<Link className='button' to='/add-member'>Add Member</Link>
+					</div>
+				</div>
+			</div>
 
-			<MemberListFilters />
-			
-			<h2>Members List</h2>
-			{
-				props.members.map( ( member ) =>
+			<div className='content-container'>
+				<MemberListFilters />
+
+				<div className='list-header'>Members List</div>
 				{
-					return (
-						<MemberItem
-							key={ member.playerUuid }
-							playerUuid={ member.playerUuid }
-							firstName={ member.firstName }
-							middleNames={ member.middleNames }
-							surname={ member.surname }
-							nickname={ member.nickname }
-						/>
-					);
-				})
-			}
+					props.members.map( ( member ) =>
+					{
+						return (
+							<MemberItem
+								key={ member.playerUuid }
+								playerUuid={ member.playerUuid }
+								firstName={ member.firstName }
+								middleNames={ member.middleNames }
+								surname={ member.surname }
+								nickname={ member.nickname }
+							/>
+						);
+					})
+				}
+			</div>
 		</div>
 	);
 }
