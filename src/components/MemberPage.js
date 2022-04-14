@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import MemberListFilters from './MemberListFilters';
-import MemberItem from './MemberItem';
+import MemberListItem from './MemberListItem';
 import getVisibleMembers from '../selectors/members';
 
 const MemberPage = ( props ) =>
@@ -34,7 +34,7 @@ const MemberPage = ( props ) =>
 					props.members.map( ( member ) =>
 					{
 						return (
-							<MemberItem
+							<MemberListItem
 								key={ member.playerUuid }
 								playerUuid={ member.playerUuid }
 								firstName={ member.firstName }
