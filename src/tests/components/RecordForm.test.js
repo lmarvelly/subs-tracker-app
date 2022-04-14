@@ -92,7 +92,20 @@ test('Should set amount if input data is valid', () =>
 	expect(wrapper.state('amount')).toBe(value);
 });
 
-test('Should not set amount if input data is invalid', () =>
+test('shouldnt let user pay more than 1,000,000', () => 
+{
+	const value = '1000000';
+	const input = wrapper.find('#amountToPay');
+	input.simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(input.value).toEqual(undefined);
+	expect(wrapper.state('amount')).toBe('');
+});
+
+test('Should not set amount because input has too many decimal places', () =>
 {
 	const value = '10.001';
 	const input = paymentWrapper.find('input').at(1);
@@ -199,3 +212,4 @@ test('should check if Season Dropdown was changed', () =>
 	});
 });
 // Add tests for all the rest of the inputs/dropdowns
+
