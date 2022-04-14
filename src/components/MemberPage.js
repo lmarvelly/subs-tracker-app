@@ -23,7 +23,14 @@ const MemberPage = ( props ) =>
 
 			<div className='content-container'>
 				<div className='list-header'>Members List</div>
+				<div className='list-body'>
 				{
+					props.members.length === 0 ? (
+						<div className='list-item list-item--message'>
+							<span>No Members</span>
+						</div>
+					)
+					:
 					props.members.map( ( member ) =>
 					{
 						return (
@@ -38,6 +45,7 @@ const MemberPage = ( props ) =>
 						);
 					})
 				}
+				</div>
 			</div>
 		</div>
 	);
