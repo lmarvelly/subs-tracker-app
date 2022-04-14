@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import SeasonFormFilters from './SeasonListFilters';
 import SeasonListItem from './SeasonListItem';
@@ -9,6 +10,8 @@ const SeasonPage = ( props ) =>
 {
 	return (
 		<div>
+			<Link className='button' to='/add-season'>Add Season</Link>
+
 			<SeasonFormFilters />
 			
 			<h2>Season List</h2>
