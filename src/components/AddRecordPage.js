@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import RecordForm from './RecordForm';
 import { startAddRecord } from '../actions/records';
+import getVisibleMembers from '../selectors/members';
+import { sortAlphabetAsc } from '../actions/memberFilters';
 
 /**
  * Use classes to avoid inline functions. This avoids rerendering
@@ -9,9 +12,13 @@ import { startAddRecord } from '../actions/records';
  * We put an export in front of the class keyword so we can test
  * the unconnected version.
  */
-export class AddRecordPage extends Component {
-	constructor(props) {
+export class AddRecordPage extends Component 
+{
+	constructor(props) 
+	{
 		super(props);
+
+		this.props.sortMembersAlphabetAsc();
 
 		this.state =
 		{
@@ -47,7 +54,8 @@ export class AddRecordPage extends Component {
 		}
 	};
 
-	render() {
+	render() 
+	{
 		return (
 			<div>
 				<div className='page-header'>
@@ -68,9 +76,10 @@ export class AddRecordPage extends Component {
 	}
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state, props) => 
+{
 	return {
-		members: state.members,
+		members: getVisibleMembers(state.members, state.memberFilters),
 		seasons: state.seasons
 	}
 }
@@ -88,7 +97,8 @@ const mapStateToProps = (state, props) => {
  */
 const mapDispatchToProps = (dispatch) => (
 	{
-		startAddRecord: (record) => dispatch(startAddRecord(record))
+		startAddRecord: (record) => dispatch(startAddRecord(record)),
+		sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() )
 	});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRecordPage);
