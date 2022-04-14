@@ -15,8 +15,8 @@ test('should setup default filter values', () =>
 		playerUuid: '',
 		seasonFilter: "",
 		sortBy: 'dateAscending',
-		startDate: moment().startOf('month'),
-		endDate: moment().endOf('month')
+		startDate: moment().subtract(1, 'month'),
+		endDate: moment()
 	});
 });
 
