@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
 import { startEditRecord, startRemoveRecord } from '../actions/records';
+import getVisibleMembers from '../selectors/members';
+import getVisibleSeasons from '../selectors/seasons';
+import { sortAlphabetAsc } from '../actions/memberFilters';
+import { sortDesc } from '../actions/seasonFilters';
 
 /**
  * Use classes to avoid inline functions. This avoids rerendering
@@ -15,6 +19,10 @@ export class EditRecordPage extends Component
 	constructor( props )
 	{
 		super( props );
+
+		this.props.sortMembersAlphabetAsc();
+		this.props.sortSeasonsAlphabetDesc();
+
 		this.state =
 		{
 			error: this.props.record ? false : true
@@ -74,16 +82,18 @@ export class EditRecordPage extends Component
 const mapStateToProps = ( state, props ) =>
 { 
 	return {
-		members: state.members,
+		members: getVisibleMembers(state.members, state.memberFilters),
 		record: state.paymentRecord.find( ( record ) => record.id === props.match.params.id),
-		seasons: state.seasons
+		seasons: getVisibleSeasons(state.seasons, state.seasonFilters)
 	}
 };
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record.recordType, record ) ),
-	startRemoveRecord: ( data ) => dispatch( startRemoveRecord( data ) )
+	startRemoveRecord: ( data ) => dispatch( startRemoveRecord( data ) ),
+	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
+	sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
 });
 
 // The HOC passes the props through
