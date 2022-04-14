@@ -95,7 +95,7 @@ test('Should set amount if input data is valid', () =>
 test('shouldnt let user pay more than 1,000,000', () => 
 {
 	const value = '1000000';
-	const input = wrapper.find('#amountToPay');
+	const input = paymentWrapper.find('#amountToPay');
 	input.simulate('change',
 	{
 		target: { value }
@@ -115,6 +115,7 @@ test('Should not set amount because input has too many decimal places', () =>
 		target: { value }
 	});
 
+	expect(input.value).toEqual(undefined);
 	expect(wrapper.state('amount')).toBe('');
 });
 
