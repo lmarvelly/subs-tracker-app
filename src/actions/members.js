@@ -95,20 +95,8 @@ export const startRemoveMember = ( playerUuid ) =>
 			{
 				alert('Cannot Delete. Member has records');
 			}
-		})
-
-
-
-
-
-		
-		return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
-			.remove()
-			.then((ref) =>
-			{
-				dispatch(removeMember(playerUuid));
-			});
-	}
+		});
+	};
 };
 
 export const setMembers = ( members ) => (
