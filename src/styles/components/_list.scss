@@ -98,10 +98,18 @@
 .list-item__expanded-data
 {
 	@extend .list-item__data;
+	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
 	color: lighten($dark-blue, 10%);
 	margin: $s-size 0;
+	width: 100%;
+
+	@media (min-width: $desktop-breakpoint)
+	{
+		flex-direction: row;
+		justify-content: space-between;
+	}
 }
 
 .list-item__data-top

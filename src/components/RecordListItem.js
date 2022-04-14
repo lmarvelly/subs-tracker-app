@@ -131,29 +131,33 @@ class RecordListItem extends Component
 				</div>
 				{
 					(this.state.expand || this.state.stayExpanded) && (
-						<div className='list-item__row'>
-							<div className='list-item__expanded-data'>
-								<p>{ moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
-								<p>{ this.props.seasonName }</p>
+						<div>
+							<div className='list-item__row'>
+								<div className='list-item__expanded-data'>
+									<p>{ moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
+									<p>Season: { this.props.seasonName }</p>
+								</div>
 							</div>
-							<div className='list-item__expanded-data'>
-								{
-									this.props.recordType === 'DEBT' && (
-										<button
-											className='button--secondary margin-bottom-medium'
-											onClick={this.onDebtClick}
-										>
-											Make Debt Payment
-										</button>
-									)
-								}
-								
-								<Link 
-									to={`/edit-record/${this.props.id}`} 
-									className='button'
-								>
-									Edit Full Record
-								</Link>
+							<div className='list-item__row'>
+								<div className='list-item__expanded-data'>
+									{
+										this.props.recordType === 'DEBT' && (
+											<button
+												className='button--secondary'
+												onClick={this.onDebtClick}
+											>
+												Make Debt Payment
+											</button>
+										)
+									}
+									
+									<Link 
+										to={`/edit-record/${this.props.id}`} 
+										className='button'
+									>
+										Edit Full Record
+									</Link>
+								</div>
 							</div>
 						</div>
 					)

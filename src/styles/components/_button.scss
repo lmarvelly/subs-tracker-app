@@ -16,6 +16,12 @@
 {
 	@extend .button;
 	background: $dark-red;
+	margin-right: $s-size;
+	margin-bottom: $s-size;
+	@media (min-width: $desktop-breakpoint) 
+	{
+		margin-bottom: 0;
+	}
 }
 
 .button--link
