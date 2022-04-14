@@ -19,9 +19,9 @@ const MemberPage = ( props ) =>
 				</div>
 			</div>
 
-			<div className='content-container'>
-				<MemberListFilters />
+			<MemberListFilters />
 
+			<div className='content-container'>
 				<div className='list-header'>Members List</div>
 				{
 					props.members.map( ( member ) =>
