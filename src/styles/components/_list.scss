@@ -60,6 +60,18 @@
 	}
 }
 
+.list-item__column
+{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.list-item__align-left
+{
+	align-self: flex-start
+}
+
 .list-item--message
 {
 	align-items: center;

@@ -5,22 +5,24 @@ const MemberItem = ( props) =>
 {
 	
 	return (
-		<div>
-			<span>
-				Full Name:
-				<Link to={`/edit-member/${props.playerUuid}`}>
-					<b>{`${props.firstName} ${props.middleNames} ${props.surname}`}</b>
+		<div className='list-item'>
+			<div className='list-item__row'>
+				<div className='list-item__column'>
+					<span>
+						Full Name: <span className='bold-font'>{`${props.firstName} ${props.middleNames} ${props.surname}`}</span>
+					</span>
+					<span>
+						Nick Name: <span className='bold-font'>{props.nickname}</span>
+					</span>
+				</div>
+
+				<Link
+					className='button list-item__align-left' 
+					to={`/edit-member/${props.playerUuid}`}
+				>
+					Edit Member
 				</Link>
-			</span>
-			<br />
-			<span>
-				Nick Name:
-				<Link to={`/edit-member/${props.playerUuid}`}>
-					<b>{props.nickname}</b>
-				</Link>
-			</span>
-			<br />
-			<br />
+			</div>
 		</div>
 	);
 }
