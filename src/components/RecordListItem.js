@@ -97,8 +97,14 @@ class RecordListItem extends Component
 		const listItem = (
 			<div className='list-item' onClick={this.clickListItemHandler}>
 				<div className='list-item__row'>
+					<h3 className='list-item__title'>{ this.props.description }</h3>
+				</div>
+				{
+					(this.state.expand || this.state.stayExpanded) && <hr />
+				}
+				<div className='list-item__row'>
 					<div>
-						<h3 className='list-item__title'>{ this.props.description }</h3>
+						
 						<span className='list-item__sub-title'>{ this.props.name }</span>
 						{
 							(this.state.expand || this.state.stayExpanded) && (

@@ -40,6 +40,13 @@ body
 	line-height: 1.6;
 }
 
+hr
+{
+	border-top: 1px solid $dark-blue;
+	width: 100%;
+	margin-bottom: $s-size;
+}
+
 button
 {
 	cursor: pointer; // changes mouse cursor to hand
