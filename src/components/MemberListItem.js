@@ -17,14 +17,16 @@ class MemberListItem extends Component
 
 	handleClick()
 	{
-		this.setState({expand: !this.state.expand})
+		this.setState({expand: !this.state.expand});
 	}
 
 	render()
 	{
+		const alternateClass = this.state.expand ? '' : '--light';
+
 		const nickname = this.props.nickname ? `'${this.props.nickname}'` : '';
 		const header = (
-			<h3 className='list-item__title'>
+			<h3 className={`list-item__title${alternateClass}`}>
 				{`${this.props.firstName} ${nickname} ${this.props.surname}`}
 			</h3>
 		);

@@ -89,6 +89,12 @@
 	word-break: break-all;
 }
 
+.list-item__title--light
+{
+	@extend .list-item__title;
+	font-weight: 500;
+}
+
 .list-item__sub-title
 {
 	color: lighten($dark-blue, 7%);
