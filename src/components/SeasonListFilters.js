@@ -8,45 +8,50 @@ class SeasonListFilters extends Component
 	render()
 	{
 		return(
-			<div>
-				<h2>Season Filters</h2>
-				<form>
-					<select
-						value={ this.props.seasonFilters.sortBy }
-						onChange=
-						{
-							(e) =>
+			<div className='content-container'>
+				<div className='input-group'>
+					<div className='input-group__item'>
+						<select
+							className='select'
+							value={ this.props.seasonFilters.sortBy }
+							onChange=
 							{
-								switch (e.target.value) 
+								(e) =>
 								{
-									case 'ascending':
-										this.props.dispatch( sortAsc() );
-										break;
-									case 'descending':
-										this.props.dispatch( sortDesc() );
-										break;
-								
-									default:
-										break;
+									switch (e.target.value) 
+									{
+										case 'ascending':
+											this.props.dispatch( sortAsc() );
+											break;
+										case 'descending':
+											this.props.dispatch( sortDesc() );
+											break;
+									
+										default:
+											break;
+									}
 								}
 							}
-						}
-					>
-						<option value="descending">Descending</option>
-						<option value="ascending">Ascending</option>
-					</select>
-					<input 
-						type="text"
-						value={this.props.seasonFilters.text}
-						onChange=
-						{
-							( e ) =>
+						>
+							<option value="descending">Descending</option>
+							<option value="ascending">Ascending</option>
+						</select>
+					</div>
+					<div className='input-group__item'>
+						<input 
+							className='text-input'
+							type="text"
+							value={this.props.seasonFilters.text}
+							onChange=
 							{
-								this.props.dispatch( setSeasonTextFilter( e.target.value ) )
+								( e ) =>
+								{
+									this.props.dispatch( setSeasonTextFilter( e.target.value ) )
+								}
 							}
-						}
-					/>
-				</form>
+						/>
+					</div>
+				</div>
 			</div>
 		);
 	};
