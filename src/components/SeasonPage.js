@@ -18,21 +18,23 @@ const SeasonPage = ( props ) =>
 					</div>
 				</div>
 			</div>
-
 			
-
 			<SeasonFormFilters />
 			
-			
-			{
-				props.seasons.map( ( season ) =>
+			<div className='content-container'>
+				<div className='list-header'>Seasons List</div>
+				<div className='list-body'>
 				{
-					return <SeasonListItem 
-								key={ season.seasonUuid } 
-								seasonName={ season.seasonName } 
-								seasonUuid={ season.seasonUuid } />
-				})
-			}
+					props.seasons.map( ( season ) =>
+					{
+						return <SeasonListItem 
+									key={ season.seasonUuid } 
+									seasonName={ season.seasonName } 
+									seasonUuid={ season.seasonUuid } />
+					})
+				}
+				</div>
+			</div>
 		</div>
 	);
 };
