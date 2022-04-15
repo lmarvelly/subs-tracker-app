@@ -122,7 +122,11 @@
 	color: lighten($dark-blue, 10%);
 	margin: $s-size 0;
 	width: 100%;
+}
 
+.list-item__expanded-buttons
+{
+	@extend .list-item__expanded-data;
 	@media (min-width: $desktop-breakpoint)
 	{
 		flex-direction: row;
@@ -139,5 +143,8 @@
 .list-item__data-top
 {
 	@extend .list-item__data;
-	margin: $s-size 0 0 0;
+	@media(min-width: $desktop-breakpoint)
+	{
+		margin-top: $s-size;
+	}
 }

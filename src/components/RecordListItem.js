@@ -100,6 +100,18 @@ class RecordListItem extends Component
 					<div>
 						<h3 className='list-item__title'>{ this.props.description }</h3>
 						<span className='list-item__sub-title'>{ this.props.name }</span>
+						{
+							(this.state.expand || this.state.stayExpanded) && (
+								<div className='list-item__expanded-data'>
+									<span className='list-item__sub-title'>
+										Date: {moment( this.props.createdAt).format( "DD-MM-YYYY")}
+									</span>
+									<span className='list-item__sub-title'>
+										Season: { this.props.seasonName }
+									</span>
+								</div>
+							)
+						}
 					</div>
 					<div>
 						{
@@ -133,13 +145,7 @@ class RecordListItem extends Component
 					(this.state.expand || this.state.stayExpanded) && (
 						<div>
 							<div className='list-item__row'>
-								<div className='list-item__expanded-data'>
-									<p>{ moment( this.props.createdAt).format( "DD-MM-YYYY") }</p>
-									<p>Season: { this.props.seasonName }</p>
-								</div>
-							</div>
-							<div className='list-item__row'>
-								<div className='list-item__expanded-data'>
+								<div className='list-item__expanded-buttons'>
 									{
 										this.props.recordType === 'DEBT' && (
 											<button
