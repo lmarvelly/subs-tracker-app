@@ -33,7 +33,7 @@ class SeasonListItem extends Component
 					{
 						this.state.expand && (
 							<Link
-								className='button list-item__align-left margin-top-medium--mobile' 
+								className='button list-item__align-center margin-top-medium--mobile' 
 								to={`/edit-season/${this.props.seasonUuid}`}
 							>
 								Edit Season

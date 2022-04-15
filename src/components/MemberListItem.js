@@ -46,7 +46,7 @@ class MemberListItem extends Component
 				</div>
 				<div className='list-item__row'>
 					<Link
-						className='button list-item__align-left' 
+						className='button list-item__align-center' 
 						to={`/edit-member/${this.props.playerUuid}`}
 					>
 						Edit Member
