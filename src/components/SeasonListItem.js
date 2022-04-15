@@ -1,16 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 
-const SeasonListItem = ( props ) =>
+class SeasonListItem extends Component
 {
-	
-	return(
-		<div>
-			<span>
-				Season Name: <Link to={`/edit-season/${props.seasonUuid}`}>{ props.seasonName }</Link>
-			</span>
-		</div>
-	);
-};
+	constructor( props )
+	{
+		super( props );
+
+		this.state =
+		{
+			expand: false
+		}
+
+		this.handleClick = this.handleClick.bind( this );
+	}
+
+	handleClick()
+	{
+		this.setState({expand: !this.state.expand});
+	}
+
+	render()
+	{
+		const alternateClass = this.state.expand ? '' : '--light';
+
+		return(
+			<div className='list-item' onClick={this.handleClick}>
+				<div className='list-item__row'>
+					<h3 className={`list-item__title${alternateClass}`}>
+						{this.props.seasonName}
+					</h3>
+					{
+						this.state.expand && (
+							<Link
+								className='button list-item__align-left' 
+								to={`/edit-season/${this.props.seasonUuid}`}
+							>
+								Edit Season
+							</Link>
+						)
+					}
+				</div>
+			</div>
+		);
+	}
+}
 
 export default SeasonListItem;
