@@ -69,3 +69,13 @@ button:disabled
 {
 	margin-bottom: $m-size;
 }
+
+.margin-top-medium--mobile
+{
+	margin-top: $m-size;
+
+	@media (min-width: $desktop-breakpoint)
+	{
+		margin-top: 0;
+	}
+}
