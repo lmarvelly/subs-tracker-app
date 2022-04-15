@@ -11,6 +11,13 @@ class MemberListItem extends Component
 		{
 			expand: false
 		}
+
+		this.handleClick = this.handleClick.bind( this );
+	}
+
+	handleClick()
+	{
+		this.setState({expand: !this.state.expand})
 	}
 
 	render()
@@ -19,41 +26,43 @@ class MemberListItem extends Component
 		const header = (
 			<h3 className='list-item__title'>
 				{`${this.props.firstName} ${nickname} ${this.props.surname}`}
-			</h3>);
+			</h3>
+		);
 
 		const expandedComponent = (
 			<div>
-				<div className='list-item__column'>
-					<span>
-						Full Name: <span className='bold-font'>{`${this.props.firstName} ${this.props.middleNames} ${this.props.surname}`}</span>
-					</span>
-					<span>
-						Nick Name: <span className='bold-font'>{this.props.nickname}</span>
-					</span>
-				</div>
+				<div className='list-item__row'>
+					<div className='list-item__expanded-data--column'>
+						<span>
+							Full Name: <span className='bold-font'>{`${this.props.firstName} ${this.props.middleNames} ${this.props.surname}`}</span>
+						</span>
+						<span>
+							Nick Name: <span className='bold-font'>{this.props.nickname}</span>
+						</span>
+					</div>
 
-				<Link
-					className='button list-item__align-left' 
-					to={`/edit-member/${this.props.playerUuid}`}
-				>
-					Edit Member
-				</Link>
+				</div>
+				<div className='list-item__row'>
+					<Link
+						className='button list-item__align-left' 
+						to={`/edit-member/${this.props.playerUuid}`}
+					>
+						Edit Member
+					</Link>
+				</div>
 			</div>
 		);
 
-		// const mobileComponent = ();
-
 		return (
-			<div className='list-item'>
-				<div className='list-item__row'>
-					{
-						header
-					}
-
-					{
-						this.state.expand && expandedComponent
-					}
+			<div className='list-item' onClick={this.handleClick}>
+				<div>
+				{
+					header
+				}
 				</div>
+				{
+					this.state.expand && expandedComponent
+				}
 			</div>
 		);
 	}

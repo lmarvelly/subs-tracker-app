@@ -124,6 +124,12 @@
 	}
 }
 
+.list-item__expanded-data--column
+{
+	@extend .list-item__expanded-data;
+	flex-direction: column;
+}
+
 .list-item__data-top
 {
 	@extend .list-item__data;
