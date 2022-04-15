@@ -33,6 +33,7 @@ class MemberListItem extends Component
 
 		const expandedComponent = (
 			<div>
+				<hr />
 				<div className='list-item__row'>
 					<div className='list-item__expanded-data--column'>
 						<span>
@@ -42,7 +43,6 @@ class MemberListItem extends Component
 							Nick Name: <span className='bold-font'>{this.props.nickname}</span>
 						</span>
 					</div>
-
 				</div>
 				<div className='list-item__row'>
 					<Link
