@@ -94,6 +94,9 @@ class RecordListItem extends Component
 
 	render()
 	{
+		// Needs this when it's collapsed
+		const classCollapsedName = this.state.expand ? '' : '-top';
+		
 		const listItem = (
 			<div className='list-item' onClick={this.clickListItemHandler}>
 				<div className='list-item__row'>
@@ -122,7 +125,7 @@ class RecordListItem extends Component
 					<div>
 						{
 							this.props.recordType === 'PAYMENT' && (
-								<h3 className='list-item__data-top'>
+								<h3 className={`list-item__data${classCollapsedName}`}>
 									Payment Amount: <span className='bold-font'>{`£${numeral(this.props.amount / 100).format('0,0.00')}` }</span>
 								</h3>
 							)
@@ -130,7 +133,7 @@ class RecordListItem extends Component
 						{
 							this.props.recordType === 'DEBT' && (
 								<div>
-									<h3 className='list-item__data-top'>
+									<h3 className={`list-item__data${classCollapsedName}`}>
 										Debt Amount:
 										<span className='bold-font'> 
 											{` £${numeral(this.props.amountOwed / 100).format('0,0.00')}`}
