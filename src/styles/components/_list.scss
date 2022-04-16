@@ -99,6 +99,7 @@
 {
 	color: lighten($dark-blue, 7%);
 	font-size: $font-size-small;
+	word-break: break-all;
 }
 
 .list-item__data
