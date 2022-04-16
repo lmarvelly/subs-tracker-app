@@ -18,19 +18,10 @@ import 'normalize.css/normalize.css'; // Normalizes all styles starting points o
 import './styles/styles.scss'; // SASS styles form
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
+import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
 
-/**
- * This can be called to unsubscribe from store updates
- */
-const unsubscribe = store.subscribe(() => 
-{
-	const state = store.getState();
-	const visibleMembers = getVisibleMembers( state.members, state.memberFilters );
-	const visibleSeasons = getVisibleSeasons( state.seasons, state.seasonFilters );
- 	const visibleRecords = getVisibleRecords( state.paymentRecord, state.members, state.recordFilters );
-});
 
 /**
  * Provider provides the store to all of our Components to connect
@@ -60,7 +51,7 @@ const renderApp = () =>
 }
 
 // Render Loading Message
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 // Firebase authentication
 firebase.auth().onAuthStateChanged((user) =>
