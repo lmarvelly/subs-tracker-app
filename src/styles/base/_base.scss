@@ -57,9 +57,9 @@ button:disabled
 	cursor: default;
 }
 
-select
+select, input
 {
-	max-width: 100%;
+	width: 100%;
 }
 
 .is-active
