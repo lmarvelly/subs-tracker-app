@@ -30,14 +30,6 @@ const unsubscribe = store.subscribe(() =>
 	const visibleMembers = getVisibleMembers( state.members, state.memberFilters );
 	const visibleSeasons = getVisibleSeasons( state.seasons, state.seasonFilters );
  	const visibleRecords = getVisibleRecords( state.paymentRecord, state.members, state.recordFilters );
-
-	// console.log( 'RECORD FILTERS: ', state.recordFilters );
-	// console.log( 'MEMBERS FILTERS: ', state.memberFilters );
-	// console.log( 'SEASON FILTERS: ', state.seasonFilters );
-
- 	// console.log( 'FILTERED RECORDS: ', visibleRecords );
- 	// console.log( 'FILTERED MEMBERS: ', visibleMembers );
- 	// console.log( 'FILTERED SEASONS: ', visibleSeasons );
 });
 
 /**
