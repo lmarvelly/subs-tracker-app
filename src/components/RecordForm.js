@@ -48,11 +48,17 @@ export default class RecordForm extends Component
 	};
 	onDescriptionChange = ( e ) => {
 		const description = e.target.value;
-		this.setState( () => ({ description }) );
+		if ( description.length <= 30 ) 
+		{
+			this.setState( () => ({ description }) );
+		}
 	};
 	onNoteChange = ( e ) => {
 		const note = e.target.value;
-		this.setState( () => ({ note }) );
+		if ( note.length <= 50 ) 
+		{
+			this.setState( () => ({ note }) );
+		}
 	};
 	onAmountChange = ( e ) => {
 		const amount = e.target.value;
