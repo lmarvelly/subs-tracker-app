@@ -28,7 +28,10 @@ export default class SeasonForm extends Component
 	onSeasonNameChange = ( e ) =>
 	{
 		const seasonName = e.target.value;
-		this.setState( () => ({ seasonName }));
+		if (seasonName.length <= 30) 
+		{
+			this.setState( () => ({ seasonName }) );
+		}
 	}
 
 	onSubmit = ( e ) =>

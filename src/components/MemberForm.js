@@ -33,22 +33,34 @@ export default class MemberForm extends Component
 
 	onFirstNameChange = ( e ) => {
 		const firstName = e.target.value;
-		this.setState( () => ({ firstName }) );
+		if (firstName.length <= 15) 
+		{
+			this.setState( () => ({ firstName }) );
+		}
 	}
 
 	onMiddleNameChange = ( e ) => {
 		const middleNames = e.target.value;
-		this.setState( () => ({ middleNames }) );
+		if (middleNames.length <= 15) 
+		{
+			this.setState( () => ({ middleNames }) );
+		}
 	}
 
 	onSurnameChange = ( e ) => {
 		const surname = e.target.value;
-		this.setState( () => ({ surname }) );
+		if (surname.length <= 15) 
+		{
+			this.setState( () => ({ surname }) );
+		}
 	}
 
 	onNickNameChange = ( e ) => {
 		const nickname = e.target.value;
-		this.setState( () => ({ nickname }) );
+		if (nickname.length <= 20) 
+		{
+			this.setState( () => ({ nickname }) );
+		}
 	}
 
 	onSubmit = ( e ) => {
