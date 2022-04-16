@@ -97,7 +97,8 @@
 
 .list-item__sub-title
 {
-	color: lighten($dark-blue, 7%);
+	color: $dark-blue;
+	opacity: 0.8;
 	font-size: $font-size-small;
 	word-break: break-all;
 }
@@ -120,7 +121,8 @@
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
-	color: lighten($dark-blue, 10%);
+	color: $dark-blue;
+	opacity: 0.9;
 	margin: $s-size 0;
 	width: 100%;
 }
