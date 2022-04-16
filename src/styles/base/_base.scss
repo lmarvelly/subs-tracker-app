@@ -57,6 +57,11 @@ button:disabled
 	cursor: default;
 }
 
+select
+{
+	max-width: 100%;
+}
+
 .is-active
 {
 	font-weight: bold;
