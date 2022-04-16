@@ -54,29 +54,29 @@ const renderApp = () =>
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 // Firebase authentication
-// firebase.auth().onAuthStateChanged((user) =>
-// {
-// 	if(user)
-// 	{
-// 		store.dispatch(login(user.uid));
-// 		// App renders after Promises are complete
-// 		store.dispatch(startSetSeasons())
-// 			.then(store.dispatch(startSetMembers()))
-// 			.then(store.dispatch(startSetRecords()))
-// 			.then(() =>
-// 			{
-// 				store.dispatch( sortAlphabetAsc() ); // Should sort Member alphabetically
-// 				renderApp();
-// 				if(history.location.pathname === '/')
-// 				{
-// 					history.push('/dashboard');
-// 				};
-// 			});
-// 	}
-// 	else
-// 	{
-// 		store.dispatch(logout())
-// 		renderApp();
-// 		history.push('/');
-// 	}
-// });
+firebase.auth().onAuthStateChanged((user) =>
+{
+	if(user)
+	{
+		store.dispatch(login(user.uid));
+		// App renders after Promises are complete
+		store.dispatch(startSetSeasons())
+			.then(store.dispatch(startSetMembers()))
+			.then(store.dispatch(startSetRecords()))
+			.then(() =>
+			{
+				store.dispatch( sortAlphabetAsc() ); // Should sort Member alphabetically
+				renderApp();
+				if(history.location.pathname === '/')
+				{
+					history.push('/dashboard');
+				};
+			});
+	}
+	else
+	{
+		store.dispatch(logout())
+		renderApp();
+		history.push('/');
+	}
+});
