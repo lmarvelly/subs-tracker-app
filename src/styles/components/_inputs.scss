@@ -1,6 +1,6 @@
 .text-input
 {
-	border: 1px solid $pale-orange;
+	border: 1px solid $light-blue;
 	font-size: $font-size-large;
 	font-weight: 300;
 	height: 50px;
@@ -10,6 +10,11 @@
 .select
 {
 	@extend .text-input;
+	padding: $xs-size $s-size;
+	@media (min-width: $desktop-breakpoint) 
+	{
+		padding: $xs-size;
+	}
 }
 
 .textarea
