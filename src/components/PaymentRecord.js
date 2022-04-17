@@ -5,8 +5,6 @@ import { startEditRecord } from '../actions/records';
 import selectRecords from '../selectors/records';
 import RecordListItem from './RecordListItem';
 
-// Write onSubmit function to be passed down to RecordListItem
-
 export const PaymentRecord = (props) => 
 {
 	const onSubmit = ( record ) =>
