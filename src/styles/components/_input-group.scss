@@ -3,6 +3,7 @@
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	margin-bottom: $m-size;
 
 	@media (min-width: $desktop-breakpoint) 
@@ -18,7 +19,7 @@
 
 	@media (min-width: $desktop-breakpoint) 
 	{
-		margin-right: $s-size;
+		width: 47%;
 	}
 }
 
