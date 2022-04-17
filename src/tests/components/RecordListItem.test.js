@@ -3,70 +3,56 @@ import { shallow } from 'enzyme';
 import RecordListItem from '../../components/RecordListItem';
 import { records, members, seasons } from '../fixtures/fixures';
 
-test('should render one compressed RecordListItem payment', () => 
+let wrapper1, wrapper2;
+
+beforeEach( () => 
 {
-	const record = records[1];
-	const member = members.find( (member) => record.playerUuid === member.playerUuid );
+	const record1 = records[1];
+	const member1 = members.find( (member1) => record1.playerUuid === member1.playerUuid );
 	
-	const wrapper = shallow(
-		<RecordListItem 
-			key={record.id}
-			name={`${member.firstName} ${member.surname}`}
+	wrapper1 = shallow(
+		<RecordListItem
+			key={record1.id}
+			name={`${member1.firstName} ${member1.surname}`}
 			seasonName={ seasons[0].seasonName }
-			{...record} 
+			{...record1} 
 		/>
 	);
-	expect( wrapper ).toMatchSnapshot();
+
+	const record2 = records[0];
+	const member2 = members.find( (member2) => record2.playerUuid === member2.playerUuid );
+
+	wrapper2 = shallow(
+		<RecordListItem 
+			key={record2.id}
+			name={`${member2.firstName} ${member2.surname}`}
+			seasonName={ seasons[0].seasonName }
+			{...record2} 
+		/>
+	);
+});
+
+
+test('should render one compressed RecordListItem payment', () => 
+{
+	expect( wrapper1 ).toMatchSnapshot();
 });
 
 test('should render one expanded RecordListItem payment', () => 
 {
-	const record = records[1];
-	const member = members.find( (member) => record.playerUuid === member.playerUuid );
-	
-	const wrapper = shallow(
-		<RecordListItem
-			key={record.id}
-			name={`${member.firstName} ${member.surname}`}
-			seasonName={ seasons[0].seasonName }
-			{...record} 
-		/>
-	);
-	wrapper.find('.list-item').simulate('click');
+	wrapper1.find('.list-item').simulate('click');
 
-	expect( wrapper ).toMatchSnapshot();
+	expect( wrapper1 ).toMatchSnapshot();
 });
 
 test('should render one compressed RecordListItem Debt', () => 
 {
-	const record = records[0];
-	const member = members.find( (member) => record.playerUuid === member.playerUuid );
-	
-	const wrapper = shallow(
-		<RecordListItem 
-			key={record.id}
-			name={`${member.firstName} ${member.surname}`}
-			seasonName={ seasons[0].seasonName }
-			{...record} 
-		/>
-	);
-	expect( wrapper ).toMatchSnapshot();
+	expect( wrapper2 ).toMatchSnapshot();
 });
 
 test('should render one expanded RecordListItem Debt', () => 
 {
-	const record = records[0];
-	const member = members.find( (member) => record.playerUuid === member.playerUuid );
-	
-	const wrapper = shallow(
-		<RecordListItem
-			key={record.id}
-			name={`${member.firstName} ${member.surname}`}
-			seasonName={ seasons[0].seasonName }
-			{...record} 
-		/>
-	);
-	wrapper.find('.list-item').simulate('click');
+	wrapper2.find('.list-item').simulate('click');
 
-	expect( wrapper ).toMatchSnapshot();
+	expect( wrapper2 ).toMatchSnapshot();
 });
