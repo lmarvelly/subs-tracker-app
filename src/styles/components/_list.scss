@@ -32,14 +32,6 @@
 	{
 		background: darken($pale-yellow, 10%);
 	}
-
-	@media (min-width: $desktop-breakpoint)
-	{
-		// align-items: center;
-		// flex-direction: row;
-		// justify-content: space-between;
-		// padding: $m-size;
-	}
 }
 
 .list-item__row
@@ -108,11 +100,6 @@
 	font-weight: 300;
 	font-size: $font-size-small;
 	margin: 0;
-	@media (min-width: $desktop-breakpoint)
-	{
-		// margin: 0;
-		// padding-left: $s-size; // Maybe add a indent for other data
-	}
 }
 
 .list-item__expanded-data

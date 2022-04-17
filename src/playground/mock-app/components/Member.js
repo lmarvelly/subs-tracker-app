@@ -20,7 +20,6 @@ class Member extends Component
 	handleEdit( event )
 	{
 		this.setState({ isEditing: true });
-		// this.props.handleEdit( this.props.id, this.props.membersList )
 	}
 
 	handleRemove( event )
