@@ -8,24 +8,23 @@ let wrapper1, wrapper2;
 beforeEach( () => 
 {
 	const record1 = records[1];
-	const member1 = members.find( (member1) => record1.playerUuid === member1.playerUuid );
+	const { firstName, surname } = members[1];
 	
 	wrapper1 = shallow(
 		<RecordListItem
 			key={record1.id}
-			name={`${member1.firstName} ${member1.surname}`}
+			name={`${firstName} ${surname}`}
 			seasonName={ seasons[0].seasonName }
 			{...record1} 
 		/>
 	);
 
 	const record2 = records[0];
-	const member2 = members.find( (member2) => record2.playerUuid === member2.playerUuid );
 
 	wrapper2 = shallow(
 		<RecordListItem 
 			key={record2.id}
-			name={`${member2.firstName} ${member2.surname}`}
+			name={`${firstName} ${surname}`}
 			seasonName={ seasons[0].seasonName }
 			{...record2} 
 		/>
