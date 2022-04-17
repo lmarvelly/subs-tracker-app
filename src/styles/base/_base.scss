@@ -62,6 +62,21 @@ select, input, textarea
 	width: 100%;
 }
 
+.header-desktop-padding
+{
+	@media (min-width: $desktop-breakpoint)
+	{
+		margin-left: $xl-size;
+		margin-right: $xl-size;
+	}
+}
+
+.content-desktop-padding
+{
+	@extend .header-desktop-padding;
+	margin-bottom: $m-size;
+}
+
 .is-active
 {
 	font-weight: bold;

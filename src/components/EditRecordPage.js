@@ -59,18 +59,27 @@ export class EditRecordPage extends Component
 			<div>
 				<div className='page-header'>
 					<div className='content-container'>
-						<h1 className='page-header__title'>Edit Record Page</h1>
+						<div className='header-desktop-padding'>
+							<h1 className='page-header__title'>Edit Record Page</h1>
+						</div>
 					</div>
 				</div>
 
 				<div className='content-container'>
-					<RecordForm
-						record={ this.props.record }
-						members={ this.props.members } // TODO change to member rather than all the members
-						seasons={ this.props.seasons }
-						onSubmit={ this.onSubmit }
-					/>
-					<button className='button--secondary margin-bottom-large' onClick={ this.onRemove }>Remove Record</button>
+					<div className='content-desktop-padding'>
+						<RecordForm
+							record={ this.props.record }
+							members={ this.props.members } // TODO change to member rather than all the members
+							seasons={ this.props.seasons }
+							onSubmit={ this.onSubmit }
+						/>
+						<button 
+							className='button--secondary margin-bottom-large' 
+							onClick={ this.onRemove }
+						>
+							Remove Record
+						</button>
+					</div>
 				</div>
 			</div>
 		)
