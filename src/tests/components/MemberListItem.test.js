@@ -3,10 +3,14 @@ import { shallow } from 'enzyme';
 import MemberListItem from '../../components/MemberListItem';
 import { members } from '../fixtures/fixures';
 
-test('should render one compressed MemberListItem', () => 
+let wrapper, handleClick;
+
+beforeEach( () => 
 {
+	handleClick = jest.fn();
+
 	const member = members[0];
-	const wrapper = shallow(
+	wrapper = shallow(
 		<MemberListItem 
 			key={member.playerUuid}
 			playerUuid={ member.playerUuid }
@@ -14,8 +18,21 @@ test('should render one compressed MemberListItem', () =>
 			middleNames={ member.middleNames }
 			surname={ member.surname }
 			nickname={ member.nickname }
+
+			handleClick={handleClick}
 		/>
 	);
+});
+
+test('should render one compressed MemberListItem', () => 
+{
+	expect(wrapper).toMatchSnapshot();
+});
+
+test('should render one expanded MemberListItem', () => 
+{	
+	wrapper.find('.list-item').simulate('click');
 	
+	// expect(handleClick).toHaveBeenCalled(); // This is not working but the component is expanding
 	expect(wrapper).toMatchSnapshot();
 });

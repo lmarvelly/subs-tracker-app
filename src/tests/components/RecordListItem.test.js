@@ -53,7 +53,7 @@ test('should render one compressed RecordListItem Debt', () =>
 	expect( wrapper ).toMatchSnapshot();
 });
 
-test('should render one expanded RecordListItem payment', () => 
+test('should render one expanded RecordListItem Debt', () => 
 {
 	const record = records[0];
 	const member = members.find( (member) => record.playerUuid === member.playerUuid );
