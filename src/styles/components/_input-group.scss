@@ -19,11 +19,18 @@
 
 	@media (min-width: $desktop-breakpoint) 
 	{
-		width: 47%;
+		width: 49%;
 	}
 }
 
-.DateRangePicker, .DateRangePickerInput, .SingleDatePicker
+.DateRangePicker, .DateRangePicker > div, .DateRangePickerInput, 
+.SingleDatePicker, .DateRangePickerInput
 {
 	width: 100%;
+	@media (min-width: $desktop-breakpoint) 
+	{
+		display: flex !important;
+		justify-content: space-between;
+		align-items: center;
+	}
 }
