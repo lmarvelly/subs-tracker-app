@@ -1,5 +1,7 @@
 import moment from "moment";
 
+import { textSearch } from "../functions/generalFilterFunctions";
+
 /**
  * Destruct Filters
  * {
@@ -16,49 +18,19 @@ import moment from "moment";
  */
 export default ( records = {}, members = {}, { descriptionTextFilter, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
 {
-	// memberName.toLowerCase().includes(memberTextFilter.toLowerCase());
-	
-
 	return records.filter( (record) =>
 	{
 		const member = members.find( ( member ) => 
 			record.playerUuid === member.playerUuid
 		);
 
-		// MemberSearch
-		const search = ( filterTextArray = [], searchTextArray = [] ) =>
-		{
-			let result = 0;
-			filterTextArray.forEach(filterText => 
-			{
-				searchTextArray.forEach(searchText => 
-				{
-					if(searchText.toLowerCase().includes(filterText.toLowerCase()))
-					{
-						result += 1;
-					}
-				});
-			});
-
-			return result >= filterTextArray.length;
-		}
-
-		const isNotBlank = ( text ) => 
-		{
-			return (text !== '')
-		}
-
-		const memberTextFilterArray = memberTextFilter.split(' ').filter(isNotBlank);
+		const memberTextFilterArray = memberTextFilter.split(' ');
 
 		const middleNames = member.middleNames.split(' ');
 		const nickname = member.nickname.split(' ');
-		let searchTextArray = [ member.firstName, member.surname ];
-		searchTextArray = searchTextArray.concat(middleNames, nickname);
-		
-		// Filter out blank text of search text and member text
-		searchTextArray = searchTextArray.filter(isNotBlank);
+		const searchTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
 	
-		const isMatch = search( memberTextFilterArray, searchTextArray );
+		const isMatch = textSearch( memberTextFilterArray, searchTextArray );
 
 		const createdAtMoment = moment( record.createdAt );
 		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
