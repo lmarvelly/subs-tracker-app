@@ -37,7 +37,8 @@ export const members =
 		playerUuid: 'player2',
 		firstName: 'Harri', 
 		middleNames: '', 
-		surname: 'Messenger' 
+		surname: 'Messenger',
+		nickname: ''
 	},
 	{
 		playerUuid: 'player3',
