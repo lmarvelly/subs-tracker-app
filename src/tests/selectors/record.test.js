@@ -2,7 +2,7 @@ import moment from 'moment';
 import selectRecord from '../../selectors/records';
 import { records, members, seasons, } from '../fixtures/fixures';
 
-test('Should filter by text value', () =>
+test('Should filter desciptions by text value', () =>
 {
 	const filters = {
 		descriptionTextFilter: 'train',
@@ -80,7 +80,7 @@ test('Should sort by dateDescending', () =>
 	expect(result).toEqual([ records[1], records[3], records[0], records[4], records[2] ]);
 });
 
-test('Should filter by member text filter 1', () =>
+test('Should filter by member simple text filter 1', () =>
 {
 	const filters = 
 	{
@@ -95,7 +95,7 @@ test('Should filter by member text filter 1', () =>
 	expect(result).toEqual([ records[1], records[4] ]);
 });
 
-test('Should filter by member text filter 2', () =>
+test('Should filter by member simple text filter 2', () =>
 {
 	const filters = 
 	{
@@ -108,4 +108,34 @@ test('Should filter by member text filter 2', () =>
 	const result = selectRecord(records, members, filters);
 
 	expect(result).toEqual([ records[0] ]);
+});
+
+test('Should filter by member advanced text filter 1', () =>
+{
+	const filters = 
+	{
+		descriptionTextFilter: '',
+		memberTextFilter: 'Luk Mar',
+		sortBy: 'dateDescending',
+		startDate: undefined,
+		endDate: undefined
+	};
+	const result = selectRecord(records, members, filters);
+
+	expect(result).toEqual([ records[0] ]);
+});
+
+test('Should filter by member advanced text filter 2', () =>
+{
+	const filters = 
+	{
+		descriptionTextFilter: '',
+		memberTextFilter: 'usi son',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+	const result = selectRecord(records, members, filters);
+
+	expect(result).toEqual([ records[2], records[3] ]);
 });
