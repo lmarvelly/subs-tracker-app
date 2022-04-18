@@ -20,20 +20,24 @@ export default ( records = {}, members = {}, { descriptionTextFilter, memberText
 {
 	return records.filter( (record) =>
 	{
+		// Filter by Member
 		const member = members.find( ( member ) => 
 			record.playerUuid === member.playerUuid
 		);
 		const memberTextFilterArray = memberTextFilter.split(' ');
 		const middleNames = member.middleNames.split(' ');
 		const nickname = member.nickname.split(' ');
-		const searchTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
-	
-		const isMemberMatch = textSearch( memberTextFilterArray, searchTextArray );
+		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
+		const isMemberMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
+
+		// Filter by Description
+		const descTextFilterArray = descriptionTextFilter.split(' ');
+		const searchDescTextArray = record.description.split(' ');
+		const isDescMatch = textSearch( descTextFilterArray, searchDescTextArray );
 
 		const createdAtMoment = moment( record.createdAt );
 		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
 		const endDateMatch  = endDate ? endDate.isSameOrAfter( createdAtMoment, 'day' ) : true ; // if the record is created the same day or after the endDate then it's filtered out
-		const isDescMatch = record.description.toLowerCase().includes(descriptionTextFilter.toLowerCase());
 		
 		const seasonMatch = seasonFilter ? seasonFilter === record.seasonUuid : true;
 		
