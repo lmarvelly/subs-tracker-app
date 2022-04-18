@@ -17,6 +17,21 @@ test('Should filter desciptions by text value', () =>
 	expect(result).toEqual([ records[0], records[1] ]);
 });
 
+test('Should filter desciptions by advanced text value', () =>
+{
+	const filters = {
+		descriptionTextFilter: 'ub rain',
+		memberTextFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+
+	const result = selectRecord(records, members, filters);
+
+	expect(result).toEqual([ records[0], records[1] ]);
+});
+
 test('Should filter by startDate', () =>
 {
 	const filters = 
