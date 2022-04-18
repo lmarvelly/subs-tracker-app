@@ -23,23 +23,21 @@ export default ( records = {}, members = {}, { descriptionTextFilter, memberText
 		const member = members.find( ( member ) => 
 			record.playerUuid === member.playerUuid
 		);
-
 		const memberTextFilterArray = memberTextFilter.split(' ');
-
 		const middleNames = member.middleNames.split(' ');
 		const nickname = member.nickname.split(' ');
 		const searchTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
 	
-		const isMatch = textSearch( memberTextFilterArray, searchTextArray );
+		const isMemberMatch = textSearch( memberTextFilterArray, searchTextArray );
 
 		const createdAtMoment = moment( record.createdAt );
 		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
 		const endDateMatch  = endDate ? endDate.isSameOrAfter( createdAtMoment, 'day' ) : true ; // if the record is created the same day or after the endDate then it's filtered out
-		const textMatch = record.description.toLowerCase().includes(descriptionTextFilter.toLowerCase());
+		const isDescMatch = record.description.toLowerCase().includes(descriptionTextFilter.toLowerCase());
 		
 		const seasonMatch = seasonFilter ? seasonFilter === record.seasonUuid : true;
 		
-		return isMatch && startDateMatch && endDateMatch && textMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
+		return isMemberMatch && startDateMatch && endDateMatch && isDescMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
 	}).sort( (a, b) => 
 	{
 		if( sortBy === 'dateAscending' ) 
