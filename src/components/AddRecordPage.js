@@ -36,11 +36,9 @@ export class AddRecordPage extends Component
 		this.props.history.push('/'); // return to dashboard
 	}
 
-	componentDidMount() {
-		const members = this.props.members;
-		const seasons = this.props.seasons;
-		const doMembersExist = members.length > 0;
-		const doSeasonsExist = seasons.length > 0;
+	componentWillReceiveProps() {
+		const doMembersExist = this.props.members.length > 0;
+		const doSeasonsExist = this.props.seasons.length > 0;
 
 		if (!doMembersExist || !doSeasonsExist) {
 			const message = () => {

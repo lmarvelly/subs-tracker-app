@@ -30,9 +30,8 @@ export class EditRecordPage extends Component
 	}
 
 	// Adding alert() CAUSES ERRORS
-	componentDidMount()
+	componentWillReceiveProps()
 	{
-		console.log(this.props.record);
 		if(this.state.error)
 		{
 			// alert('Whoops something went wrong');
