@@ -29,3 +29,16 @@ test('should setup Season Filter Reducer to filter Seasons by text', () =>
 
 	expect( state.text ).toBe( text );
 });
+
+test('should reset filters', () => 
+{
+	const text = 'Some Text';
+	const action = { type: 'SET_SEASON_TEXT_FILTER', text };
+	let state = filtersReducer( undefined, action );
+	state = filtersReducer( state, { type: 'SORT_ASC' } );
+
+	// Reset filters
+	state = filtersReducer( state, { type: 'RESET_SEASON_FILTERS' } );
+
+	expect(state).toEqual({ text: '', sortBy: 'descending' });
+});
