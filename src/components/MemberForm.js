@@ -41,7 +41,7 @@ export default class MemberForm extends Component
 
 	onMiddleNameChange = ( e ) => {
 		const middleNames = e.target.value;
-		if (middleNames.length <= 15) 
+		if (middleNames.length <= 20) 
 		{
 			this.setState( () => ({ middleNames }) );
 		}

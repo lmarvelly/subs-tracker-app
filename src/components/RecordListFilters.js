@@ -41,7 +41,10 @@ export class RecordListFilters extends Component {
 	}
 
 	onDecriptionChange = (e) => {
-		this.props.setDescriptionTextFilter(e.target.value);
+		if ( e.target.value.length <= 30 )
+		{
+			this.props.setDescriptionTextFilter(e.target.value);
+		}
 	}
 
 	onSeasonChange = (e) => {

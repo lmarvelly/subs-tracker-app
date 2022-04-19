@@ -23,7 +23,7 @@ class MemberListFilters extends Component
 
 	onTextChange = (e) =>
 	{
-		if( e.target.value.length <= 100 )
+		if( e.target.value.length <= 70 )
 		{
 			this.props.dispatch( setMemberTextFilter( e.target.value ) );
 		}
