@@ -60,9 +60,9 @@ firebase.auth().onAuthStateChanged((user) =>
 	{
 		store.dispatch(login(user.uid));
 		// App renders after Promises are complete
-		store.dispatch(startSetSeasons())
-			.then(store.dispatch(startSetMembers()))
-			.then(store.dispatch(startSetRecords()))
+		store.dispatch(startSetMembers());
+		store.dispatch(startSetSeasons());
+		store.dispatch(startSetRecords())
 			.then(() =>
 			{
 				store.dispatch( sortAlphabetAsc() ); // Should sort Member alphabetically
