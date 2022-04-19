@@ -1,10 +1,13 @@
+import { textSearch } from "../functions/generalFilterFunctions";
+
 export default ( seasons, { text = '', sortBy } ) =>
 {
 	return seasons.filter( ( season ) => 
 	{
-		const seasonNameMatch = season.seasonName.toLowerCase().includes( text.toLowerCase() );
+		const searchFilterTextArray = text.split(' ');
+		const seasonNameArray = season.seasonName.split(' ');
 
-		return seasonNameMatch;
+		return textSearch( searchFilterTextArray, seasonNameArray );
 	}).sort( (a, b) =>
 	{
 		if( sortBy === 'ascending' )
