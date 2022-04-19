@@ -121,3 +121,8 @@ export const startSetSeasons = () =>
 			});
 	}
 };
+
+export const resetSeasonFilters = () => (
+{
+	type: 'RESET_SEASON_FILTERS'
+});
