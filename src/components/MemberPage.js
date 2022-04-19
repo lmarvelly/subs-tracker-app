@@ -11,7 +11,10 @@ const MemberPage = ( props ) =>
 {
 	useEffect(() =>
 	{
-		props.resetMemberFilters();
+		return () =>
+		{
+			props.resetMemberFilters();
+		};
 	}, []);
 
 	return (
