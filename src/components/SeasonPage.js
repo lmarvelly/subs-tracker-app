@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { resetSeasonFilters } from '../actions/seasonFilters';
 import SeasonFormFilters from './SeasonListFilters';
 import SeasonListItem from './SeasonListItem';
 import getVisibleSeasons from '../selectors/seasons';
 
 const SeasonPage = ( props ) =>
 {
+	// Will reset when unmounted
+	useEffect(() =>
+	{
+		return () =>
+		{
+			props.resetSeasonFilters()
+		};
+	}, []);
+
 	return (
 		<div>
 			<div className='page-header'>
@@ -39,6 +49,11 @@ const SeasonPage = ( props ) =>
 	);
 };
 
+const mapDispatchToProps = ( dispatch, props ) => (
+{
+	resetSeasonFilters: () => dispatch( resetSeasonFilters() )
+});
+
 // Add visible Season Filters
 const mapStateToProps = ( state ) =>
 {
@@ -47,4 +62,4 @@ const mapStateToProps = ( state ) =>
 	}
 };
 
-export default connect( mapStateToProps )(SeasonPage);
+export default connect( mapStateToProps, mapDispatchToProps )(SeasonPage);
