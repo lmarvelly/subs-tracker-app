@@ -129,8 +129,3 @@ export const startSetMembers = () =>
 			});
 	};
 };
-
-export const resetMemberFilters = () =>(
-{
-	type: 'RESET_MEMBER_FILTERS'
-})

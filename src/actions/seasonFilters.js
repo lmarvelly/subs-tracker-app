@@ -13,3 +13,8 @@ export const setSeasonTextFilter = ( text = '' ) =>
 	type: 'SET_SEASON_TEXT_FILTER',
 	text
 });
+
+export const resetSeasonFilters = () => (
+{
+	type: 'RESET_SEASON_FILTERS'
+});

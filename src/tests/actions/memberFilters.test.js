@@ -1,4 +1,10 @@
-import { sortAlphabetAsc, sortAlphabetDesc, setMemberTextFilter } from '../../actions/memberFilters';
+import { 
+	sortAlphabetAsc, 
+	sortAlphabetDesc, 
+	setMemberTextFilter,
+	resetMemberFilters
+} 
+from '../../actions/memberFilters';
 
 test('should generate a Sort Alphabetically Ascending action generator', () => 
 {
@@ -24,4 +30,11 @@ test('should generate a Set Member Text Filter action generator', () =>
 		type: 'SET_MEMBER_TEXT_FILTER',
 		text
 	});
+});
+
+test('should generate a clear filters action object', () =>
+{
+	const action = resetMemberFilters();
+
+	expect(action).toEqual({type: 'RESET_MEMBER_FILTERS'});
 });
