@@ -1,4 +1,10 @@
-import { sortAsc, sortDesc, setSeasonTextFilter } from "../../actions/seasonFilters";
+import { 
+	sortAsc, 
+	sortDesc, 
+	setSeasonTextFilter,
+	resetSeasonFilters
+}
+from "../../actions/seasonFilters";
 
 test('should generate a Sort Ascending action generator', () => {
 	const action = sortAsc();
@@ -18,4 +24,11 @@ test('should generate a Text Filter action generator', () =>
 	const action = setSeasonTextFilter( text );
 
 	expect(action).toEqual({ type: 'SET_SEASON_TEXT_FILTER', text });
+});
+
+test('should generate a clear filters action object', () =>
+{
+	const action = resetSeasonFilters();
+
+	expect(action).toEqual({type: 'RESET_SEASON_FILTERS'});
 });
