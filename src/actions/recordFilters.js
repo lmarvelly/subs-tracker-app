@@ -35,6 +35,10 @@ export const setDescriptionTextFilter = ( text = '' ) =>
 });
 
 // RESET
+export const resetRecordFilters = () =>
+({
+	type: 'RESET_RECORD_FILTERS'
+});
 
 // FILTER BY MEMBER
 export const setMemberFilterText = ( text = '' ) =>
