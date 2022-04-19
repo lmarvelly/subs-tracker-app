@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { startEditRecord } from '../actions/records';
+import { resetRecordFilters } from '../actions/recordFilters';
 import selectRecords from '../selectors/records';
 import RecordListItem from './RecordListItem';
 
 export const PaymentRecord = (props) => 
 {
+	useEffect(() =>
+	{
+		props.resetRecordFilters();
+	}, []);
+
 	const onSubmit = ( record ) =>
 	{
 		props.startEditRecord( record );
@@ -69,6 +75,7 @@ const mapStateToProps = (state) =>
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
+	resetRecordFilters: () => dispatch( resetRecordFilters() ),
 	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record.recordType, record ) )
 });
 
