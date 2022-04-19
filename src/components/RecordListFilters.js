@@ -3,8 +3,13 @@ import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates';
 
 import {
-	setDescriptionTextFilter, setMemberFilterText, sortByDateAscending,
-	sortByDateDescending, setStartDate, setEndDate, setSeasonFilter
+	setDescriptionTextFilter, 
+	setMemberFilterText, 
+	sortByDateAscending,
+	sortByDateDescending, 
+	setStartDate, 
+	setEndDate, 
+	setSeasonFilter
 } from '../actions/recordFilters';
 
 /**
@@ -37,7 +42,11 @@ export class RecordListFilters extends Component {
 	}
 
 	onMemberTextChange = (e) => {
-		this.props.setMemberFilterText(e.target.value);
+		if ( e.target.value.length <= 70 )
+		{
+			console.log(e.target.value.length);
+			this.props.setMemberFilterText(e.target.value);
+		}
 	}
 
 	onDecriptionChange = (e) => {
@@ -77,6 +86,7 @@ export class RecordListFilters extends Component {
 							type="text"
 							placeholder='Filter by member'
 							onChange={this.onMemberTextChange}
+							value={this.props.recordFilters.memberTextFilter}
 						/>
 						<datalist id='memberFilter'>
 							{
