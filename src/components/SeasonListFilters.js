@@ -5,6 +5,30 @@ import { sortAsc, sortDesc, setSeasonTextFilter } from '../actions/seasonFilters
 
 class SeasonListFilters extends Component
 {
+	onTextChange = (e) =>
+	{
+		if( e.target.value.length <= 30 )
+		{
+			this.props.dispatch( setSeasonTextFilter( e.target.value ) );
+		}
+	}
+
+	onSelectChange = (e) =>
+	{
+		switch (e.target.value) 
+		{
+			case 'ascending':
+				this.props.dispatch( sortAsc() );
+				break;
+			case 'descending':
+				this.props.dispatch( sortDesc() );
+				break;
+		
+			default:
+				break;
+		}
+	}
+
 	render()
 	{
 		return(
@@ -14,24 +38,7 @@ class SeasonListFilters extends Component
 						<select
 							className='select'
 							value={ this.props.seasonFilters.sortBy }
-							onChange=
-							{
-								(e) =>
-								{
-									switch (e.target.value) 
-									{
-										case 'ascending':
-											this.props.dispatch( sortAsc() );
-											break;
-										case 'descending':
-											this.props.dispatch( sortDesc() );
-											break;
-									
-										default:
-											break;
-									}
-								}
-							}
+							onChange={this.onSelectChange}
 						>
 							<option value="descending">Descending</option>
 							<option value="ascending">Ascending</option>
@@ -44,15 +51,7 @@ class SeasonListFilters extends Component
 							value={this.props.seasonFilters.text}
 							placeholder='Search Seasons'
 							onChange=
-							{
-								( e ) =>
-								{
-									if( e.target.value.length <= 30 )
-									{
-										this.props.dispatch( setSeasonTextFilter( e.target.value ) );
-									}
-								}
-							}
+							{this.onTextChange}
 						/>
 					</div>
 				</div>
