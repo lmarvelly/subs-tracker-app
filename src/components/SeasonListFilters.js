@@ -42,11 +42,15 @@ class SeasonListFilters extends Component
 							className='text-input'
 							type="text"
 							value={this.props.seasonFilters.text}
+							placeholder='Search Seasons'
 							onChange=
 							{
 								( e ) =>
 								{
-									this.props.dispatch( setSeasonTextFilter( e.target.value ) )
+									if( e.target.value.length <= 30 )
+									{
+										this.props.dispatch( setSeasonTextFilter( e.target.value ) );
+									}
 								}
 							}
 						/>
