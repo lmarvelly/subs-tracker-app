@@ -37,3 +37,16 @@ test('should filter by text value and be in alphabetical order', () =>
 
 	expect( result ).toEqual([members[1], members[0]]);
 });
+
+test('should filter by more advanced text value and be in alphabetical order', () => 
+{
+	const filters = 
+	{
+		sortBy: 'alphabetAsc',
+		text: 'j d'
+	}
+
+	const result = selectMembers( members, filters );
+
+	expect( result ).toEqual([members[2], members[3]]);
+});
