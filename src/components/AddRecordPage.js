@@ -83,6 +83,7 @@ export class AddRecordPage extends Component
 
 const mapStateToProps = (state, props) => 
 {
+	// Use default filters to make sure no Members or Seasons are filtered out
 	const defaultMemberFilterState = { text: '', sortBy: 'alphabetAsc' };
 	const defaultSeasonFilterState = { text: '', sortBy: 'descending' };
 	return {
