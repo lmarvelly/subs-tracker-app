@@ -110,17 +110,6 @@ test('should reset filters', () =>
 	const action2 = { type: 'SET_MEMBER_FILTER_TEXT', text };
 	state = filtersReducer( state, action2 );
 
-	// expect(state).toEqual(
-	// {
-	// 	descriptionTextFilter: '',
-	// 	seasonFilter: 'abcd1234',
-	// 	memberTextFilter: 'Player Name',
-	// 	playerUuid: '',
-	// 	startDate: expect.any(String),
-	// 	endDate: expect.any(String),
-	// 	sortBy: 'dateAscending' // set to be amount so we can see the change
-	// });
-
 	const action3 = { type: 'RESET_RECORD_FILTERS' };
 	state = filtersReducer( state, action3 );
 
