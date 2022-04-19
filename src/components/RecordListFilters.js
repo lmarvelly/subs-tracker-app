@@ -44,7 +44,6 @@ export class RecordListFilters extends Component {
 	onMemberTextChange = (e) => {
 		if ( e.target.value.length <= 70 )
 		{
-			console.log(e.target.value.length);
 			this.props.setMemberFilterText(e.target.value);
 		}
 	}
