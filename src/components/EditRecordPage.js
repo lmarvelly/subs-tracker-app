@@ -32,6 +32,7 @@ export class EditRecordPage extends Component
 	// Adding alert() CAUSES ERRORS
 	componentDidMount()
 	{
+		console.log(this.props.record);
 		if(this.state.error)
 		{
 			// alert('Whoops something went wrong');
@@ -87,13 +88,16 @@ export class EditRecordPage extends Component
 }
 
 // Give the component the current record object. We can take the props from the HOC and add to them
-// This goes out of sync atm if you refresh the page because a new id gets generated for the record
+// This goes out of sync atm if you refresh the page. Not sure why yet
 const mapStateToProps = ( state, props ) =>
-{ 
+{
+	// Use default filters to make sure no Members or Seasons are filtered out
+	const defaultMemberFilterState = { text: '', sortBy: 'alphabetAsc' };
+	const defaultSeasonFilterState = { text: '', sortBy: 'descending' };
 	return {
-		members: getVisibleMembers(state.members, state.memberFilters),
+		members: getVisibleMembers(state.members, defaultMemberFilterState),
 		record: state.paymentRecord.find( ( record ) => record.id === props.match.params.id),
-		seasons: getVisibleSeasons(state.seasons, state.seasonFilters)
+		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState)
 	}
 };
 

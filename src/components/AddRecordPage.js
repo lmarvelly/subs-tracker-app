@@ -37,8 +37,10 @@ export class AddRecordPage extends Component
 	}
 
 	componentDidMount() {
-		const doMembersExist = this.state.members.length > 0;
-		const doSeasonsExist = this.state.seasons.length > 0;
+		const members = this.props.members;
+		const seasons = this.props.seasons;
+		const doMembersExist = members.length > 0;
+		const doSeasonsExist = seasons.length > 0;
 
 		if (!doMembersExist || !doSeasonsExist) {
 			const message = () => {
@@ -81,9 +83,11 @@ export class AddRecordPage extends Component
 
 const mapStateToProps = (state, props) => 
 {
+	const defaultMemberFilterState = { text: '', sortBy: 'alphabetAsc' };
+	const defaultSeasonFilterState = { text: '', sortBy: 'descending' };
 	return {
-		members: getVisibleMembers(state.members, state.memberFilters),
-		seasons: getVisibleSeasons(state.seasons, state.seasonFilters) 
+		members: getVisibleMembers(state.members, defaultMemberFilterState),
+		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState) 
 	}
 }
 
