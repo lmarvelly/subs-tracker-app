@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { resetMemberFilters } from '../actions/memberFilters';
 import MemberListFilters from './MemberListFilters';
 import MemberListItem from './MemberListItem';
 import getVisibleMembers from '../selectors/members';
 
 const MemberPage = ( props ) =>
 {
+	useEffect(() =>
+	{
+		props.resetMemberFilters();
+	}, []);
+
 	return (
 		<div>
 			<div className='page-header'>
@@ -51,6 +57,11 @@ const MemberPage = ( props ) =>
 	);
 }
 
+const mapDispatchToProps = ( dispatch, props ) => (
+{
+	resetMemberFilters: () => dispatch( resetMemberFilters() )
+});
+
 const mapStateToProps = ( state ) =>
 {
 	return {
@@ -58,4 +69,4 @@ const mapStateToProps = ( state ) =>
 	}
 }
 
-export default connect( mapStateToProps )( MemberPage );
+export default connect( mapStateToProps, mapDispatchToProps )( MemberPage );
