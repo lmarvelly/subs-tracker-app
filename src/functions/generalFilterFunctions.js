@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {*} filterTextArray Query text array
+ * @param {*} searchTextArray Text array to be searched through
+ * @returns 
+ */
 export const textSearch = ( filterTextArray = [], searchTextArray = [] ) =>
 {
 	const isNotBlank = ( text ) => 
