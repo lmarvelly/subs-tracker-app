@@ -9,7 +9,6 @@ export default ( members, { text = '', sortBy } ) =>
 		const { firstName, middleNames, surname, nickname } = member;
 		let memberNameArray = [ firstName, surname ];
 		memberNameArray = memberNameArray.concat(middleNames.split(' '), nickname.split(' '));
-		console.log("searchFilterTextArray: ", searchFilterTextArray, 'memberNameArray:', memberNameArray);
 		
 		return textSearch(searchFilterTextArray, memberNameArray)
 	}).sort( (a, b) =>
