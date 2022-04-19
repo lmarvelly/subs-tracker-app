@@ -5,6 +5,30 @@ import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from '../actio
 
 class MemberListFilters extends Component
 {
+	onSelectChange = (e) =>
+	{
+		switch (e.target.value) 
+		{
+			case 'alphabetAsc':
+				this.props.dispatch( sortAlphabetAsc() );
+				break;
+			case 'alphabetDesc':
+				this.props.dispatch( sortAlphabetDesc() );
+				break;
+		
+			default:
+				break;
+		}
+	}
+
+	onTextChange = (e) =>
+	{
+		if( e.target.value.length <= 100 )
+		{
+			this.props.dispatch( setMemberTextFilter( e.target.value ) );
+		}
+	}
+
 	render()
 	{
 		return(
@@ -14,23 +38,7 @@ class MemberListFilters extends Component
 						<select
 							className='select'
 							value={ this.props.memberFilters.sortBy }
-							onChange=
-							{
-								(e) =>
-								{
-									switch (e.target.value) {
-										case 'alphabetAsc':
-											this.props.dispatch( sortAlphabetAsc() );
-											break;
-										case 'alphabetDesc':
-											this.props.dispatch( sortAlphabetDesc() );
-											break;
-									
-										default:
-											break;
-									}
-								}
-							}
+							onChange={this.onSelectChange}
 						>
 							<option value="alphabetAsc">Ascending Alphabetically</option>
 							<option value="alphabetDesc">Descending Alphabetically</option>
@@ -42,13 +50,7 @@ class MemberListFilters extends Component
 							type="text"
 							placeholder='Search Members'
 							value={ this.props.memberFilters.text }
-							onChange=
-							{
-								(e) =>
-								{
-									this.props.dispatch( setMemberTextFilter( e.target.value ) )
-								}
-							}
+							onChange={this.onTextChange}
 						/>
 					</div>
 				</div>
