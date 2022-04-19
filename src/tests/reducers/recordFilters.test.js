@@ -1,6 +1,17 @@
 import moment from 'moment';
 import filtersReducer from '../../reducers/recordFilters';
 
+const defaultState =
+{
+	descriptionTextFilter: '',
+	memberTextFilter: '',
+	playerUuid: '',
+	seasonFilter: "",
+	sortBy: 'dateAscending',
+	startDate: moment().subtract(1, 'month'),
+	endDate: moment()
+}
+
 /**
  * '@@INIT' is the type of action when App is initialised
  */
@@ -8,16 +19,7 @@ test('should setup default filter values', () =>
 {
 	const state = filtersReducer( undefined, { type: '@@INIT' } );
 
-	expect( state ).toEqual(
-	{
-		descriptionTextFilter: '',
-		memberTextFilter: '',
-		playerUuid: '',
-		seasonFilter: "",
-		sortBy: 'dateAscending',
-		startDate: moment().subtract(1, 'month'),
-		endDate: moment()
-	});
+	expect( state ).toEqual(defaultState);
 });
 
 test('should set startDate to the First of March of current year', () => 
@@ -96,4 +98,31 @@ test('should set Season Filter to be a seasonUuid', () =>
 	const state = filtersReducer( undefined, action );
 
 	expect( state.seasonFilter ).toBe( seasonUuid );
+});
+
+test('should reset filters', () =>
+{
+	const seasonUuid = 'abcd1234';
+	const action1 = { type: 'SET_SEASON_FILTER', seasonUuid };
+	let state = filtersReducer( undefined, action1 );
+
+	const text = 'Player Name';
+	const action2 = { type: 'SET_MEMBER_FILTER_TEXT', text };
+	state = filtersReducer( state, action2 );
+
+	// expect(state).toEqual(
+	// {
+	// 	descriptionTextFilter: '',
+	// 	seasonFilter: 'abcd1234',
+	// 	memberTextFilter: 'Player Name',
+	// 	playerUuid: '',
+	// 	startDate: expect.any(String),
+	// 	endDate: expect.any(String),
+	// 	sortBy: 'dateAscending' // set to be amount so we can see the change
+	// });
+
+	const action3 = { type: 'RESET_RECORD_FILTERS' };
+	state = filtersReducer( state, action3 );
+
+	expect(state).toEqual(defaultState);
 });
