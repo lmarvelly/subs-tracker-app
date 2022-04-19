@@ -1,12 +1,12 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { 
-	addRecord, 
-	startAddRecord, 
-	editRecord, 
-	removeRecord, 
+import {
+	addRecord,
+	startAddRecord,
+	editRecord,
+	removeRecord,
 	startRemoveRecord,
-	setRecords, 
+	setRecords,
 	startSetRecords,
 	startEditRecord
 } from '../../actions/records';
