@@ -34,3 +34,15 @@ test('should filter by text value and be in descending order', () =>
 
 	expect( result ).toEqual([ seasons[2], seasons[1], seasons[3], seasons[4] ]);
 });
+
+test('should filter by advanced text value and be in descending order', () =>
+{
+	const filters =
+	{
+		sortBy: 'ascending',
+		text: '20 21'
+	}
+	const result = selectSeasons( seasons, filters );
+
+	expect( result ).toEqual([ seasons[1], seasons[2] ]);
+});
