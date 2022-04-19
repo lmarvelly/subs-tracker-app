@@ -8,6 +8,7 @@ import RecordListItem from './RecordListItem';
 
 export const PaymentRecord = (props) => 
 {
+	// Reset filters when component in Rendered
 	useEffect(() =>
 	{
 		props.resetRecordFilters();
