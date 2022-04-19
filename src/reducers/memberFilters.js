@@ -27,6 +27,9 @@ export default ( state = membersReducerFilterDefaultState, action ) =>
 				...state,
 				text: action.text
 			}
+
+		case 'RESET_MEMBER_FILTERS':
+			return membersReducerFilterDefaultState
 	
 		default:
 			return state

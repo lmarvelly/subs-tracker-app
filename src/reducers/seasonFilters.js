@@ -25,6 +25,10 @@ export default ( state = seasonReducerDefaultState, action ) =>
 				...state,
 				text: action.text
 			}
+		
+		case 'RESET_SEASON_FILTERS':
+			return seasonReducerDefaultState
+	
 	
 		default:
 			return state;
