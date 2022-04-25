@@ -42,7 +42,6 @@ class MemberListFilters extends Component
 
 	handleClick = (e) =>
 	{
-		console.log('Reset filters');
 		this.props.resetMemberFilters();
 	}
 
