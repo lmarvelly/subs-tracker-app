@@ -197,7 +197,7 @@ test('should set up on focus change', () =>
 
 test('should check if Season Dropdown was changed', () => 
 {
-	const value = "season2";
+	const value = seasons[1].seasonUuid;
 	const input = altWrapper.find('#seasonName');
 	input.simulate('change',
 	{
