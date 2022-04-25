@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; // To connect to the store
 
-import { setMemberTextFilter, sortAlphabetAsc, sortAlphabetDesc } from '../actions/memberFilters';
+import { 
+	resetMemberFilters,
+	setMemberTextFilter,
+	sortAlphabetAsc,
+	sortAlphabetDesc
+} 
+from '../actions/memberFilters';
 
 class MemberListFilters extends Component
 {
+	constructor(props)
+	{
+		super(props);
+	}
+
 	onSelectChange = (e) =>
 	{
 		switch (e.target.value) 
 		{
 			case 'alphabetAsc':
-				this.props.dispatch( sortAlphabetAsc() );
+				this.props.sortAlphabetAsc();
 				break;
 			case 'alphabetDesc':
-				this.props.dispatch( sortAlphabetDesc() );
+				this.props.sortAlphabetDesc();
 				break;
 		
 			default:
@@ -25,8 +36,14 @@ class MemberListFilters extends Component
 	{
 		if( e.target.value.length <= 70 )
 		{
-			this.props.dispatch( setMemberTextFilter( e.target.value ) );
+			this.props.setMemberTextFilter( e.target.value );
 		}
+	}
+
+	handleClick = (e) =>
+	{
+		console.log('Reset filters');
+		this.props.resetMemberFilters();
 	}
 
 	render()
@@ -53,11 +70,25 @@ class MemberListFilters extends Component
 							onChange={this.onTextChange}
 						/>
 					</div>
+					<button 
+						className='button'
+						onClick={ this.handleClick }
+					>
+						Reset Filters
+					</button>
 				</div>
 			</div>
 		);
-	}
-} 
+	};
+};
+
+const mapDispatchToProps = ( dispatch, props ) =>
+({
+	resetMemberFilters: () => dispatch( resetMemberFilters() ),
+	setMemberTextFilter: ( text ) => dispatch( setMemberTextFilter( text ) ),
+	sortAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
+	sortAlphabetDesc: () => dispatch( sortAlphabetDesc() )
+})
 
 const mapStateToProps = ( state ) =>
 {
@@ -66,4 +97,4 @@ const mapStateToProps = ( state ) =>
 	};
 };
 
-export default connect( mapStateToProps )( MemberListFilters );
+export default connect( mapStateToProps, mapDispatchToProps )( MemberListFilters );
