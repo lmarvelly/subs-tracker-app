@@ -197,20 +197,20 @@ test('should set up on focus change', () =>
 
 test('should check if Season Dropdown was changed', () => 
 {
-	const value = "season1";
+	const value = "season2";
 	const input = altWrapper.find('#seasonName');
 	input.simulate('change',
 	{
 		target: { value }
 	});
 
-	expect(onSeasonNameChange).toHaveBeenCalled();
-
 	expect(altWrapper.state('seasons')).toEqual(
 	{
-		seasonName: value,
-		seasonUuid: expect.any(String)
+		seasonName: '2021/2022',
+		seasonUuid: value
 	});
+
+	expect(onSeasonNameChange).toHaveBeenCalled();
 });
 // Add tests for all the rest of the inputs/dropdowns
 
