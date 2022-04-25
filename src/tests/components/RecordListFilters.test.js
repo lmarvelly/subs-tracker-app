@@ -5,9 +5,15 @@ import { RecordListFilters } from '../../components/RecordListFilters';
 import { members, seasons } from '../fixtures/fixures';
 import { defaultFilters, altFilters1, altFilters2, altFilters3 } from '../fixtures/filters';
 
-let setDescriptionTextFilter, setMemberFilterText, 
-sortByDateAscending, sortByDateDescending, setStartDate, setEndDate,
-setSeasonFilter, emptyWrapper, wrapper;
+let setDescriptionTextFilter, 
+	setMemberFilterText, 
+	sortByDateAscending, 
+	sortByDateDescending, 
+	setStartDate, 
+	setEndDate, 
+	setSeasonFilter, 
+	emptyWrapper, 
+	wrapper;
 
 beforeEach( () =>
 {
