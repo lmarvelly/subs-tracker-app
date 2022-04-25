@@ -28,7 +28,6 @@ beforeEach( () =>
 			sortAlphabetDesc={sortAlphabetDesc}
 
 			memberFilters={defaultMemberFilters}
-
 		/>
 	);
 });
@@ -36,4 +35,15 @@ beforeEach( () =>
 test('should render filters', () =>
 {
 	expect(wrapper).toMatchSnapshot();
+});
+
+test('should handle change in text filter', () =>
+{
+	const value = 'Harri'
+	wrapper.find('input').at(0).simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(setMemberTextFilter).toHaveBeenLastCalledWith(value);
 });
