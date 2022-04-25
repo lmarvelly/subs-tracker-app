@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { MemberListFilters } from '../../components/MemberListFilters';
-import { members } from '../fixtures/fixures';
 
 let defaultMemberFilters,
 	resetMemberFilters,
