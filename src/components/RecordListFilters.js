@@ -76,7 +76,6 @@ export class RecordListFilters extends Component {
 	}
 
 	onResetClick = () => {
-		console.log('Reset');
 		this.props.resetRecordFilters();
 	}
 
