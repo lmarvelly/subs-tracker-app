@@ -3,6 +3,7 @@ import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates';
 
 import {
+	resetRecordFilters,
 	setDescriptionTextFilter, 
 	setMemberFilterText, 
 	sortByDateAscending,
@@ -72,6 +73,11 @@ export class RecordListFilters extends Component {
 			default:
 				break;
 		}
+	}
+
+	onResetClick = () => {
+		console.log('Reset');
+		this.props.resetRecordFilters();
 	}
 
 	render() {
@@ -152,6 +158,14 @@ export class RecordListFilters extends Component {
 							isOutsideRange={() => false}
 						/>
 					</div>
+					<div className='input-group__item'>
+						<button 
+							className='button'
+							onClick={this.onResetClick}
+						>
+							Reset Filters
+						</button>
+					</div>
 				</div>
 			</div>
 		);
@@ -177,10 +191,11 @@ const mapStateToProps = (state) => {
  * implicitly return each object. Each object has a dispatch call
  * with an action object passed into it.
  * 
- * @returns 
+ * @returns dispatch functions
  */
 const mapDispatchToProps = (dispatch) =>
 ({
+	resetRecordFilters: () => dispatch(resetRecordFilters()),
 	setStartDate: (startDate) => dispatch(setStartDate(startDate)),
 	setEndDate: (endDate) => dispatch(setEndDate(endDate)),
 	setMemberFilterText: (text) => dispatch(setMemberFilterText(text)),

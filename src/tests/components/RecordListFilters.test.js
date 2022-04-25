@@ -5,7 +5,8 @@ import { RecordListFilters } from '../../components/RecordListFilters';
 import { members, seasons } from '../fixtures/fixures';
 import { defaultFilters, altFilters1, altFilters2, altFilters3 } from '../fixtures/filters';
 
-let setDescriptionTextFilter, 
+let resetRecordFilters, 
+	setDescriptionTextFilter, 
 	setMemberFilterText, 
 	sortByDateAscending, 
 	sortByDateDescending, 
@@ -17,6 +18,7 @@ let setDescriptionTextFilter,
 
 beforeEach( () =>
 {
+	resetRecordFilters = jest.fn();
 	setDescriptionTextFilter = jest.fn();
 	setMemberFilterText = jest.fn();
 	sortByDateAscending = jest.fn();
@@ -26,7 +28,7 @@ beforeEach( () =>
 	setSeasonFilter = jest.fn();
 	
 	emptyWrapper = shallow( 
-		<RecordListFilters 
+		<RecordListFilters
 			setDescriptionTextFilter={setDescriptionTextFilter}
 			setMemberFilterText={setMemberFilterText}
 			sortByDateAscending={sortByDateAscending}
@@ -43,7 +45,8 @@ beforeEach( () =>
 	);
 
 	wrapper = shallow( 
-		<RecordListFilters 
+		<RecordListFilters
+			resetRecordFilters={resetRecordFilters}
 			setDescriptionTextFilter={setDescriptionTextFilter}
 			setMemberFilterText={setMemberFilterText}
 			sortByDateAscending={sortByDateAscending}
@@ -182,4 +185,10 @@ test('should handle date focus changes', () =>
 	picker.prop('onFocusChange')(calenderFocused);
 
 	expect(wrapper.state('calenderFocused')).toBe(calenderFocused);
+});
+
+test('should handle reset button click', () =>
+{
+	wrapper.find('button').at(0).simulate('click');
+	expect(resetRecordFilters).toHaveBeenCalled();
 });
