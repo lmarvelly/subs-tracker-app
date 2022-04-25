@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { sortAsc, sortDesc, setSeasonTextFilter } from '../actions/seasonFilters';
+import { 
+	resetSeasonFilters,
+	sortAsc, 
+	sortDesc, 
+	setSeasonTextFilter 
+} 
+from '../actions/seasonFilters';
 
 class SeasonListFilters extends Component
 {
@@ -9,7 +15,7 @@ class SeasonListFilters extends Component
 	{
 		if( e.target.value.length <= 30 )
 		{
-			this.props.dispatch( setSeasonTextFilter( e.target.value ) );
+			this.props.setSeasonTextFilter( e.target.value );
 		}
 	}
 
@@ -18,15 +24,20 @@ class SeasonListFilters extends Component
 		switch (e.target.value) 
 		{
 			case 'ascending':
-				this.props.dispatch( sortAsc() );
+				this.props.sortAsc();
 				break;
 			case 'descending':
-				this.props.dispatch( sortDesc() );
+				this.props.sortDesc();
 				break;
 		
 			default:
 				break;
 		}
+	}
+
+	handleClick = () =>
+	{
+		this.props.resetSeasonFilters();
 	}
 
 	render()
@@ -54,17 +65,31 @@ class SeasonListFilters extends Component
 							{this.onTextChange}
 						/>
 					</div>
+					<button 
+						className='button'
+						onClick={ this.handleClick }
+					>
+						Reset Filters
+					</button>
 				</div>
 			</div>
 		);
 	};
 };
 
+const mapDispatchToProps = ( dispatch, props ) =>
+({
+	resetSeasonFilters: () => dispatch( resetSeasonFilters() ),
+	setSeasonTextFilter: (text) => dispatch( setSeasonTextFilter( text ) ),
+	sortAsc: () => dispatch( sortAsc() ),
+	sortDesc: () => dispatch( sortDesc() )
+});
+
 const mapStateToProps = ( state ) =>
 {
 	return {
 		seasonFilters: state.seasonFilters
 	}
-}
+};
 
-export default connect( mapStateToProps )( SeasonListFilters );
+export default connect( mapStateToProps, mapDispatchToProps )( SeasonListFilters );
