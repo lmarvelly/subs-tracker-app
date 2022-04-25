@@ -47,3 +47,34 @@ test('should handle change in text filter', () =>
 
 	expect(setMemberTextFilter).toHaveBeenLastCalledWith(value);
 });
+
+test('should handle change to ascending order', () => 
+{
+	const value = 'alphabetAsc';
+	const select = wrapper.find('select').at(0);
+	select.simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(sortAlphabetAsc).toHaveBeenCalled();
+});
+
+test('should handle change to descending order', () => 
+{
+	const value = 'alphabetDesc';
+	const select = wrapper.find('select').at(0);
+	select.simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(sortAlphabetDesc).toHaveBeenCalled();
+});
+
+test('button should reset filters', () =>
+{
+	wrapper.find('button').at(0).simulate('click');
+	
+	expect(resetMemberFilters).toHaveBeenCalled();
+});
