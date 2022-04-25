@@ -9,7 +9,8 @@ import {
 } 
 from '../actions/seasonFilters';
 
-class SeasonListFilters extends Component
+// Exporting as named export for testing. To dynamically pass in props and make sure it's rendering correctly.
+export class SeasonListFilters extends Component
 {
 	onTextChange = (e) =>
 	{
