@@ -8,7 +8,7 @@ let wrapper,
 	altWrapper, 
 	paymentWrapper, 
 	debtWrapper,
-	onNameChange,
+	onAmountChange,
 	onSeasonNameChange,
 	onTypeChange;
 
@@ -17,7 +17,7 @@ beforeEach( () =>
 	// Functions
 	onSeasonNameChange = jest.fn();
 	onTypeChange = jest.fn();
-	onNameChange = jest.fn();
+	onAmountChange = jest.fn();
 
 	// Wrappers
 	wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
@@ -27,7 +27,7 @@ beforeEach( () =>
 			seasons={ seasons } 
 
 			onTypeChange={onTypeChange}
-			onNameChange={onNameChange}
+			onAmountChange={onAmountChange}
 			onSeasonNameChange={ onSeasonNameChange }
 		/>
 	);
@@ -96,7 +96,7 @@ test('Should set amount if input data is valid', () =>
 
 	// console.log('State: ', altWrapper.state());
 
-	expect(onNameChange).toHaveBeenCalled();
+	expect(onAmountChange).toHaveBeenCalled();
 	expect(altWrapper.state('amount')).toEqual(value);
 	expect(input.value).toBe(value);
 });
