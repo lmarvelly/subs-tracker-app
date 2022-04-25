@@ -81,28 +81,30 @@ test('should set note on textarea change', () =>
 test('Should set amount if input data is valid', () =>
 {
 	const value = '1';
-	const input = paymentWrapper.find('#amountToPay');
+	const input = altWrapper.find('#amountToPay');
 	
 	input.simulate('change',
 	{
 		target: { value }
 	});
 
+	console.log('State: ', altWrapper.state());
+
+	expect(altWrapper.state('amount')).toBe(value);
 	expect(input.value).toBe(value);
-	expect(wrapper.state('amount')).toBe(value);
 });
 
 test('shouldnt let user pay more than 1,000,000', () => 
 {
-	const value = '1000000';
-	const input = paymentWrapper.find('#amountToPay');
+	const value = '2000000';
+	const input = altWrapper.find('#amountToPay');
 	input.simulate('change',
 	{
 		target: { value }
 	});
 
 	expect(input.value).toEqual(undefined);
-	expect(wrapper.state('amount')).toBe('');
+	expect(altWrapper.state('amount')).toBe('');
 });
 
 test('Should not set amount because input has too many decimal places', () =>
@@ -204,12 +206,22 @@ test('should check if Season Dropdown was changed', () =>
 		target: { value }
 	});
 
-	console.log('State: ', altWrapper.state.seasonUuid);
-
 	expect(altWrapper.state('seasonUuid')).toEqual(value);
 
 	// The function below should be called but isn't for some reason
 	// expect(onSeasonNameChange).toHaveBeenCalled();
 });
-// Add tests for all the rest of the inputs/dropdowns
 
+// Add tests for all the rest of the inputs/dropdowns
+test('should check if Player Dropdown was changed', () => 
+{
+	const player = members[0]
+	const value = player.playerUuid;
+	const input = altWrapper.find('#playerName');
+	input.simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(altWrapper.state().playerUuid).toEqual(value);
+});
