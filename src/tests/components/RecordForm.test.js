@@ -8,12 +8,16 @@ let wrapper,
 	altWrapper, 
 	paymentWrapper, 
 	debtWrapper,
-	onSeasonNameChange;
+	onNameChange,
+	onSeasonNameChange,
+	onTypeChange;
 
 beforeEach( () =>
 {
 	// Functions
 	onSeasonNameChange = jest.fn();
+	onTypeChange = jest.fn();
+	onNameChange = jest.fn();
 
 	// Wrappers
 	wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
@@ -22,6 +26,8 @@ beforeEach( () =>
 			members={ members } 
 			seasons={ seasons } 
 
+			onTypeChange={onTypeChange}
+			onNameChange={onNameChange}
 			onSeasonNameChange={ onSeasonNameChange }
 		/>
 	);
@@ -88,9 +94,10 @@ test('Should set amount if input data is valid', () =>
 		target: { value }
 	});
 
-	console.log('State: ', altWrapper.state());
+	// console.log('State: ', altWrapper.state());
 
-	expect(altWrapper.state('amount')).toBe(value);
+	expect(onNameChange).toHaveBeenCalled();
+	expect(altWrapper.state('amount')).toEqual(value);
 	expect(input.value).toBe(value);
 });
 
@@ -104,7 +111,7 @@ test('shouldnt let user pay more than 1,000,000', () =>
 	});
 
 	expect(input.value).toEqual(undefined);
-	expect(altWrapper.state('amount')).toBe('');
+	expect(altWrapper.state('amount')).toEqual('');
 });
 
 test('Should not set amount because input has too many decimal places', () =>
@@ -224,4 +231,16 @@ test('should check if Player Dropdown was changed', () =>
 	});
 
 	expect(altWrapper.state().playerUuid).toEqual(value);
+});
+
+test('should change Payment inputs to Debt inputs when type is changed', () =>
+{
+	const value = 'DEBT'
+	const input = altWrapper.find('select').at(2);
+	input.simulate('change',
+	{
+		target:{ value }
+	});
+
+	expect(altWrapper.state().recordType).toEqual(value);
 });
