@@ -17,6 +17,7 @@ export default class RecordForm extends Component
 			note: props.record ? props.record.note : '',
 			createdAt: props.record ? moment( props.record.createdAt ) : moment(),
 			calenderFocused: false,
+			
 			error: '',
 
 			amount: props.record ? props.record.amount / 100 : '',
@@ -134,7 +135,7 @@ export default class RecordForm extends Component
 
 		if ( !this.state.description || !(this.state.amount || this.state.amountOwed) || !this.state.playerUuid )
 		{
-			this.setState( () => ({ error: 'Please provide name, description and amount' }) );
+			this.setState( () => ({ error: 'Please provide name, season, description and amount' }) );
 		}
 		else if ( this.state.amountPaid > this.state.amountOwed) 
 		{
@@ -149,7 +150,7 @@ export default class RecordForm extends Component
 	};
 
 	render(){
-		const moneyInput = () =>
+		const moneyInput = (amountErrorClassName) =>
 		{
 			if (this.state.recordType === 'PAYMENT') 
 			{
@@ -157,7 +158,7 @@ export default class RecordForm extends Component
 					<div>
 						<input
 							id='amountToPay'
-							className='text-input'
+							className={`text-input${amountErrorClassName}`}
 							type="text"
 							placeholder="Amount Paid"
 							value={ this.state.amount }
@@ -195,6 +196,11 @@ export default class RecordForm extends Component
 				)
 			}
 		}
+		const error = '--error';
+		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
+		const memberErrorClassName = this.state.playerUuid ? '' : error;
+		const descriptionErrorClassName = this.state.description ? '' : error;
+		const amountErrorClassName = this.state.playerUuid ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		return(
 			<div>
@@ -202,7 +208,7 @@ export default class RecordForm extends Component
 					{this.state.error && <p className='form__error'>{this.state.error}</p>}
 					<select
 						id='seasonName'
-						className='select'
+						className={`select${seasonErrorClassName}`}
 						onChange={ this.onSeasonNameChange }
 						value={ this.state.seasonUuid }
 					>
@@ -223,7 +229,7 @@ export default class RecordForm extends Component
 					</select>
 					<select 
 						id='playerName'
-						className='select'
+						className={`select${memberErrorClassName}`}
 						onChange={ this.onNameChange }
 						value={ this.state.playerUuid }
 					>
@@ -259,7 +265,7 @@ export default class RecordForm extends Component
 						</option>
 					</select>
 					<input 
-						className='text-input'
+						className={`text-input${descriptionErrorClassName}`}
 						type="text"
 						placeholder="Description"
 						value={ this.state.description }
@@ -267,7 +273,7 @@ export default class RecordForm extends Component
 					/>
 					
 					{
-						moneyInput()
+						moneyInput(amountErrorClassName)
 					}
 					
 					<SingleDatePicker
@@ -285,6 +291,7 @@ export default class RecordForm extends Component
 						value={this.state.note}
 					>
 					</textarea>
+					{this.state.error && <p className='form__error'>{this.state.error}</p>}
 					<div>
 						<button className='button'>
 							{this.props.record ? 'Save Changes' : 'Add Payment Record'}

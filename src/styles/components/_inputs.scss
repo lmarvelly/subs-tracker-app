@@ -1,3 +1,9 @@
+.error
+{
+	color: $red;
+	border-color: $red !important;
+}
+
 .text-input
 {
 	border: 1px solid $light-blue;
@@ -5,6 +11,18 @@
 	font-weight: 300;
 	height: 50px;
 	padding: $s-size;
+}
+
+.text-input--error
+{
+	@extend .text-input;
+	@extend .error;
+}
+
+.text-input--error::placeholder
+{
+	color: $red;
+	opacity: 1;
 }
 
 .select
@@ -15,6 +33,13 @@
 	{
 		padding: $xs-size;
 	}
+}
+
+.select--error
+{
+	@extend .select;
+	@extend .error;
+	background-color: lighten($light-red, 40%);
 }
 
 .textarea
