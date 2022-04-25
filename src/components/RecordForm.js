@@ -133,9 +133,9 @@ export default class RecordForm extends Component
 			}
 		}
 
-		if ( !this.state.description || !(this.state.amount || this.state.amountOwed) || !this.state.playerUuid )
+		if ( !this.state.description || !(this.state.amount || this.state.amountOwed) || !this.state.playerUuid || !this.state.seasonUuid )
 		{
-			this.setState( () => ({ error: 'Please provide name, season, description and amount' }) );
+			this.setState( () => ({ error: 'Please check details' }) );
 		}
 		else if ( this.state.amountPaid > this.state.amountOwed) 
 		{
@@ -173,7 +173,7 @@ export default class RecordForm extends Component
 					<div>
 						<input
 							id='amountInDebt'
-							className='text-input'
+							className={`text-input${amountErrorClassName}`}
 							type="text"
 							placeholder="Debt Amount"
 							value={ this.state.amountOwed }
@@ -200,12 +200,12 @@ export default class RecordForm extends Component
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const memberErrorClassName = this.state.playerUuid ? '' : error;
 		const descriptionErrorClassName = this.state.description ? '' : error;
-		const amountErrorClassName = this.state.playerUuid ? '' : error;
+		const amountErrorClassName = this.state.amount || this.state.amountOwed ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		return(
 			<div>
 				<form className='form' onSubmit={ this.onSubmit }>
-					{this.state.error && <p className='form__error'>{this.state.error}</p>}
+					{this.state.error && seasonErrorClassName && <p className='form__error'>Please select a Season</p>}
 					<select
 						id='seasonName'
 						className={`select${seasonErrorClassName}`}
@@ -227,6 +227,7 @@ export default class RecordForm extends Component
 							})
 						}
 					</select>
+					{this.state.error && memberErrorClassName && <p className='form__error'>Please select a Member</p>}
 					<select 
 						id='playerName'
 						className={`select${memberErrorClassName}`}
@@ -264,6 +265,7 @@ export default class RecordForm extends Component
 							Add Debt
 						</option>
 					</select>
+					{this.state.error && descriptionErrorClassName && <p className='form__error'>Please provide a description</p>}
 					<input 
 						className={`text-input${descriptionErrorClassName}`}
 						type="text"
@@ -272,6 +274,7 @@ export default class RecordForm extends Component
 						onChange={ this.onDescriptionChange }
 					/>
 					
+					{this.state.error && amountErrorClassName && <p className='form__error'>Please select an amount</p>}
 					{
 						moneyInput(amountErrorClassName)
 					}
