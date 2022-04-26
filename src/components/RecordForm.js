@@ -19,6 +19,7 @@ export default class RecordForm extends Component
 			calenderFocused: false,
 			
 			error: '',
+			amountError: '',
 
 			amount: props.record ? props.record.amount / 100 : '',
 			amountOwed: props.record ? props.record.amountOwed / 100 : '',
@@ -67,8 +68,20 @@ export default class RecordForm extends Component
 		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
 		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
-			if(amount < 1000000)
+			// const amount = parseFloat(amount, 10);
+			if (amount == 0) 
 			{
+				console.log('Amount cannot be 0');
+				this.setState(() => ({amountError: 'Amount cannot be zero'}));
+			}
+			if (amount > 1000000)
+			{
+				console.log('Amount cannot be above 1000000');
+				this.setState(() => ({amountError: 'Amount cannot be more the 1 million'}));
+			}
+			if( !amount || (amount != 0 && amount <= 1000000))
+			{
+				this.setState({amountError: ''});
 				switch (e.target.id) 
 				{
 					case 'amountToPay':
@@ -191,7 +204,6 @@ export default class RecordForm extends Component
 								/>
 							)
 						}
-						
 					</div>
 				)
 			}
@@ -276,6 +288,7 @@ export default class RecordForm extends Component
 						onChange={ this.onDescriptionChange }
 					/>
 					
+					{this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
 					{this.state.error && amountErrorClassName && <p className='form__error'>Please enter an Amount</p>}
 					{
 						moneyInput(amountErrorClassName)
