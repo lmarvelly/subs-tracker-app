@@ -62,44 +62,48 @@ export default class RecordForm extends Component
 			this.setState( () => ({ note }) );
 		}
 	};
-	onAmountChange = ( e ) => {
+
+	setAmount = ( amount, id ) => {
+		if( !amount || ((amount != 0 || id === 'amountPayed') && amount <= 1000000))
+		{
+			this.setState({amountError: ''});
+			switch (id) 
+			{
+				case 'amountToPay':
+					this.setState( () => ({ amount }) );
+					break;
+				
+				case 'amountInDebt':
+					this.setState( () => ({ amountOwed: amount }) );
+					break;
+				
+				case 'amountPayed':
+					this.setState( () => ({ amountPaid: amount }) );
+					break;
+				
+				default:
+					break;
+			}
+		}
+	}
+
+	onAmountChange = ( e ) => 
+	{
+		const id = e.target.id;
 		const amount = e.target.value;
 
 		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
 		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
-			// const amount = parseFloat(amount, 10);
-			if (amount == 0) 
+			if ( amount == 0 && id !== 'amountPayed' ) 
 			{
-				console.log('Amount cannot be 0');
 				this.setState(() => ({amountError: 'Amount cannot be zero'}));
 			}
 			if (amount > 1000000)
 			{
-				console.log('Amount cannot be above 1000000');
 				this.setState(() => ({amountError: 'Amount cannot be more than 1 million'}));
 			}
-			if( !amount || (amount != 0 && amount <= 1000000))
-			{
-				this.setState({amountError: ''});
-				switch (e.target.id) 
-				{
-					case 'amountToPay':
-						this.setState( () => ({ amount }) );
-						break;
-					
-					case 'amountInDebt':
-						this.setState( () => ({ amountOwed: amount }) );
-						break;
-					
-					case 'amountPayed':
-						this.setState( () => ({ amountPaid: amount }) );
-						break;
-					
-					default:
-						break;
-				}
-			}
+			this.setAmount(amount, id);
 		}
 	};
 	onDateChange = ( createdAt ) => {
