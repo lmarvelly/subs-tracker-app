@@ -60,19 +60,14 @@ test('should render error for not inputing any values form submission', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should render season and amount error message', () => 
+test('should only render season and amount error message', () => 
 {
-	let value;
 	// Player input
-	const player = members[0]
-	value = player.playerUuid;
+	const uuid = members[0].playerUuid
 	const input = wrapper.find('#playerName');
-	input.simulate('change',
-	{
-		target: { value }
-	});
+	input.simulate('change', { target: { value: uuid }});
 	// description input
-	wrapper.find('#description').at(0).simulate('change',
+	wrapper.find('#description').simulate('change',
 	{
 		target: { value: 'New description' } // Setting the value of e.target.value
 	});
@@ -83,6 +78,59 @@ test('should render season and amount error message', () =>
 	});
 	
 	expect(wrapper).toMatchSnapshot();
+});
+
+test('should only render error messages for member and description', () => 
+{
+	// Season
+	const uuid = seasons[0].seasonUuid;
+	const input = wrapper.find('#seasonName');
+	input.simulate('change', { target: { value: uuid } });
+	// Amount TODO: NOT WORKING PROPERLY
+	let input2 = wrapper.find('#amountToPay');
+	input2.simulate('change', { target: {value: '4'} });
+	// input2 = wrapper.find('#amountToPay');
+
+	// submit
+	wrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(wrapper).toMatchSnapshot();
+});
+
+test('should render Debt Amount error message', () => 
+{
+	// Season
+	const seasonUuid = seasons[0].seasonUuid;
+	const input = altWrapper.find('#seasonName');
+	input.simulate('change', { target: { value: seasonUuid } });
+	// Player input
+	const uuid = members[0].playerUuid
+	const input2 = altWrapper.find('#playerName');
+	input2.simulate('change', { target: { value: uuid }});
+	// description input
+	altWrapper.find('#description').simulate('change',
+	{
+		target: { value: 'New description' }
+	});
+	altWrapper.find('#paymentType').simulate('change',
+	{
+		target: { value: 'DEBT' }
+	});
+	
+	// // Debt Amount
+	// const input3 = altWrapper.find('#amountInDebt');
+	// input3.simulate('change', { target: {value: '4'} });
+
+	// submit
+	altWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(altWrapper).toMatchSnapshot();
 });
 
 test('should test description on input change', () => 
@@ -118,10 +166,8 @@ test('Should set amount if input data is valid', () =>
 		target: { value }
 	});
 
-	// console.log('State: ', altWrapper.state());
-
-	expect(onAmountChange).toHaveBeenCalled();
 	expect(altWrapper.state('amount')).toEqual(value);
+	expect(onAmountChange).toHaveBeenCalled();
 	expect(input.value).toBe(value);
 });
 
