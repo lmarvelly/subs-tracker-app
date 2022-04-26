@@ -160,7 +160,7 @@ export default class RecordForm extends Component
 							id='amountToPay'
 							className={`text-input${amountErrorClassName}`}
 							type="text"
-							placeholder="Amount Paid"
+							placeholder="How much was Paid?"
 							value={ this.state.amount }
 							onChange={ this.onAmountChange }
 						/>
@@ -175,7 +175,7 @@ export default class RecordForm extends Component
 							id='amountInDebt'
 							className={`text-input${amountErrorClassName}`}
 							type="text"
-							placeholder="Debt Amount"
+							placeholder="Total Debt Amount"
 							value={ this.state.amountOwed }
 							onChange={ this.onAmountChange }
 						/>
@@ -185,7 +185,7 @@ export default class RecordForm extends Component
 									id='amountPayed'
 									className='text-input'
 									type="text"
-									placeholder="Amount Paid"
+									placeholder="Amount of Debt Paid"
 									value={ this.state.amountPaid }
 									onChange={ this.onAmountChange }
 								/>
@@ -212,7 +212,7 @@ export default class RecordForm extends Component
 						onChange={ this.onSeasonNameChange }
 						value={ this.state.seasonUuid }
 					>
-						<option hidden>Please Select Season</option>
+						<option hidden>Select a Season</option>
 						{
 							this.props.seasons.map( (season) =>
 							{
@@ -234,7 +234,7 @@ export default class RecordForm extends Component
 						onChange={ this.onNameChange }
 						value={ this.state.playerUuid }
 					>
-						<option hidden >Please Select Member</option>
+						<option hidden >Select a Member</option>
 						{
 							this.props.members.map( ( member ) => 
 							{
@@ -269,7 +269,7 @@ export default class RecordForm extends Component
 					<input 
 						className={`text-input${descriptionErrorClassName}`}
 						type="text"
-						placeholder="Description"
+						placeholder="Provide a Description"
 						value={ this.state.description }
 						onChange={ this.onDescriptionChange }
 					/>
