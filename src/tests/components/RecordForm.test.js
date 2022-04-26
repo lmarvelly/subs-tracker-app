@@ -50,14 +50,38 @@ test('should render Record Form with Record, member and season data', () =>
 	expect(debtWrapper).toMatchSnapshot();
 });
 
-test('should render error for invalid form submission', () => 
+test('should render error for not inputing any values form submission', () => 
 {
-	expect(wrapper).toMatchSnapshot();
 	wrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
 	expect( wrapper.state('error').length ).toBeGreaterThan(0);
+	expect(wrapper).toMatchSnapshot();
+});
+
+test('should render season and amount error message', () => 
+{
+	let value;
+	// Player input
+	const player = members[0]
+	value = player.playerUuid;
+	const input = wrapper.find('#playerName');
+	input.simulate('change',
+	{
+		target: { value }
+	});
+	// description input
+	wrapper.find('#description').at(0).simulate('change',
+	{
+		target: { value: 'New description' } // Setting the value of e.target.value
+	});
+
+	wrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+	
 	expect(wrapper).toMatchSnapshot();
 });
 
