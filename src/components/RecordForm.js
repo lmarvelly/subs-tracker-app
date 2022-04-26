@@ -250,6 +250,7 @@ export default class RecordForm extends Component
 						}
 					</select>
 					<select
+						id='paymentType'
 						className='select'
 						onChange={ this.onTypeChange }
 						value={ this.state.recordType }
@@ -275,7 +276,7 @@ export default class RecordForm extends Component
 						onChange={ this.onDescriptionChange }
 					/>
 					
-					{this.state.error && amountErrorClassName && <p className='form__error'>Please select an amount</p>}
+					{this.state.error && amountErrorClassName && <p className='form__error'>Please enter an Amount</p>}
 					{
 						moneyInput(amountErrorClassName)
 					}
