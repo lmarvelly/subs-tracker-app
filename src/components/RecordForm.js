@@ -267,6 +267,7 @@ export default class RecordForm extends Component
 					</select>
 					{this.state.error && descriptionErrorClassName && <p className='form__error'>Please provide a description</p>}
 					<input 
+						id='description'
 						className={`text-input${descriptionErrorClassName}`}
 						type="text"
 						placeholder="Provide a Description"
