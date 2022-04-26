@@ -32,9 +32,6 @@ export default class RecordForm extends Component
 	{
 		const amountPaid = parseFloat(this.state.amountPaid, 10);
 		const amountOwed = parseFloat(this.state.amountOwed, 10);
-		console.log('amountPaid', amountPaid);
-		console.log('amountOwed', amountOwed);
-		console.log('amountOwed > amountPaid', amountOwed > amountPaid);
 		const isDebtAmountsRight = amountOwed > amountPaid;
 		const isAmountOrAmountOwed = (this.state.amount || this.state.amountOwed);
 		const isFalsy = !isDebtAmountsRight || !this.state.description || !isAmountOrAmountOwed || !this.state.playerUuid || !this.state.seasonUuid;
