@@ -202,7 +202,7 @@ export default class RecordForm extends Component
 						{ errorDebtClass && <p className='form__error'>Amount cannot be less than Amount Owed</p>}
 						<input
 							id='amountInDebt'
-							className={`text-input${amountErrorClassName}`}
+							className={`text-input${amountErrorClassName} margin-bottom-medium`}
 							type="text"
 							placeholder="Total Debt Amount"
 							value={ this.state.amountOwed }
