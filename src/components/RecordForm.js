@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
@@ -27,11 +27,6 @@ export default class RecordForm extends Component
 		};
 	}
 
-	// onBlur = () =>
-	// {
-	// 	this.isFormFalsy();
-	// }
-
 	// Clears error, if everything is fine, and returns true or false
 	isFormFalsy = () =>
 	{
@@ -50,12 +45,10 @@ export default class RecordForm extends Component
 		const seasonUuid = e.target.value;
 
 		this.setState( () => ({ seasonUuid }) );
-		// this.isFormFalsy();
 	}
 	onNameChange = ( e ) => {
 		const playerUuid = e.target.value;
 		this.setState( () => ({ playerUuid }) );
-		// this.isFormFalsy();
 	};
 	onTypeChange = ( e ) => {
 		const recordType = e.target.value;
@@ -68,7 +61,6 @@ export default class RecordForm extends Component
 		{
 			this.setState( { amountOwed: this.state.amount} );
 		}
-		// this.isFormFalsy();
 	};
 	onDescriptionChange = ( e ) => {
 		const description = e.target.value;
@@ -76,7 +68,6 @@ export default class RecordForm extends Component
 		{
 			this.setState( () => ({ description }) );
 		}
-		// this.isFormFalsy();
 	};
 	onNoteChange = ( e ) => {
 		const note = e.target.value;
@@ -93,17 +84,14 @@ export default class RecordForm extends Component
 			{
 				case 'amountToPay':
 					this.setState( { amount } );
-					// this.isFormFalsy();
 					break;
 				
 				case 'amountInDebt':
 					this.setState( { amountOwed: amount } );
-					// this.isFormFalsy();
 					break;
 				
 				case 'amountPayed':
 					this.setState( { amountPaid: amount } );
-					// this.isFormFalsy();
 					break;
 				
 				default:
@@ -130,7 +118,6 @@ export default class RecordForm extends Component
 			}
 			this.setAmount(amount, id);
 		}
-		// this.isFormFalsy();
 	};
 	onDateChange = ( createdAt ) => {
 		if(createdAt) // prevents the user from deleting the date.
@@ -207,7 +194,6 @@ export default class RecordForm extends Component
 							placeholder="How much was Paid?"
 							value={ this.state.amount }
 							onChange={ this.onAmountChange }
-							// onBlur={this.onBlur}
 						/>
 					</div>
 				)
@@ -224,7 +210,6 @@ export default class RecordForm extends Component
 							placeholder="Total Debt Amount"
 							value={ this.state.amountOwed }
 							onChange={ this.onAmountChange }
-							// onBlur={this.onBlur}
 						/>
 						{ errorDebtClass && <p className='form__error'>Amount Paid cannot be more than Amount Owed</p>}
 						{
@@ -236,7 +221,6 @@ export default class RecordForm extends Component
 									placeholder="Amount of Debt Paid"
 									value={ this.state.amountPaid }
 									onChange={ this.onAmountChange }
-									// onBlur={this.onBlur}
 								/>
 							)
 						}
@@ -260,7 +244,6 @@ export default class RecordForm extends Component
 						className={`select${seasonErrorClassName}`}
 						onChange={ this.onSeasonNameChange }
 						value={ this.state.seasonUuid }
-						// onBlur={this.onBlur}
 					>
 						<option hidden>Select a Season</option>
 						{
@@ -283,7 +266,6 @@ export default class RecordForm extends Component
 						className={`select${memberErrorClassName}`}
 						onChange={ this.onNameChange }
 						value={ this.state.playerUuid }
-						// onBlur={this.onBlur}
 					>
 						<option hidden >Select a Member</option>
 						{
@@ -305,7 +287,6 @@ export default class RecordForm extends Component
 						className='select'
 						onChange={ this.onTypeChange }
 						value={ this.state.recordType }
-						// onBlur={this.onBlur}
 					>
 						<option 
 							value="PAYMENT"
@@ -326,7 +307,6 @@ export default class RecordForm extends Component
 						placeholder="Provide a Description"
 						value={ this.state.description }
 						onChange={ this.onDescriptionChange }
-						// onBlur={this.onBlur}
 					/>
 					
 					{this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
