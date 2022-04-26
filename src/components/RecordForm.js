@@ -77,7 +77,7 @@ export default class RecordForm extends Component
 			if (amount > 1000000)
 			{
 				console.log('Amount cannot be above 1000000');
-				this.setState(() => ({amountError: 'Amount cannot be more the 1 million'}));
+				this.setState(() => ({amountError: 'Amount cannot be more than 1 million'}));
 			}
 			if( !amount || (amount != 0 && amount <= 1000000))
 			{
