@@ -30,10 +30,11 @@ export default class RecordForm extends Component
 	// Clears error, if everything is fine, and returns true or false
 	isFormFalsy = () =>
 	{
-		const amountPaid = parseFloat(this.state.amountPaid, 10);
+		const amountPaid = this.state.amountPaid ? parseFloat(this.state.amountPaid, 10) : 0;
+
 		const amountOwed = parseFloat(this.state.amountOwed, 10);
 		const isDebtAmountsRight = amountOwed > amountPaid;
-		const isAmountOrAmountOwed = (this.state.amount || this.state.amountOwed);
+		const isAmountOrAmountOwed = (this.state.amount || amountOwed);
 		const isFalsy = !isDebtAmountsRight || !this.state.description || !isAmountOrAmountOwed || !this.state.playerUuid || !this.state.seasonUuid;
 
 		return isFalsy;
@@ -147,7 +148,7 @@ export default class RecordForm extends Component
 					...recordProperties,
 					recordType: 'DEBT',
 					amountOwed: parseFloat(this.state.amountOwed, 10) * 100, // Converting amount into a non decimal number
-					amountPaid: parseFloat(this.state.amountPaid, 10) * 100
+					amountPaid: this.state.amountPaid ? (parseFloat(this.state.amountPaid, 10) * 100) : 0
 				});
 			}
 			else if( this.state.recordType === 'PAYMENT' )
