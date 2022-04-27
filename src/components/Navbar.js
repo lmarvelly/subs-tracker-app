@@ -12,43 +12,102 @@ export class Navbar extends Component
 		{
 			this.state =
 			{
-				hidden: true
+				navHidden: true,
+				recordNavHidden: true,
+				memberNavHidden: true,
+				seasonNavHidden: true,
+				helpNavHidden: true
 			}
 		}
 	}
 
-	navButtons = () =>
+	onClick = (e) =>
 	{
-		return (
-			<div>
-				<Link className='button button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
-				<Link className='button button--nav' to='/seasons' activeClassName='is-active'>Seasons Page </Link>
-				<Link className='button button--nav' to='/help' activeClassName='is-active'>Help Page </Link>
-			</div>
-		)
+		switch (e.target.id) 
+		{
+			case 'navButton': 
+				this.setState({navHidden: !this.state.navHidden});
+				break;
+			case 'recordButton':
+				this.setState({ recordNavHidden: !this.state.recordNavHidden });
+				break;
+			case 'memberButton':
+				this.setState({ memberNavHidden: !this.state.memberNavHidden });
+				break;
+			case 'seasonButton':
+				this.setState({ seasonNavHidden: !this.state.seasonNavHidden });
+				break;
+			default:
+				break;
+		}
 	}
 
-	isShowing = () =>
+	isNavShowing = () =>
 	{
-		this.setState({hidden: !this.state.hidden});
+		this.setState({navHidden: !this.state.navHidden});
 	}
 
 	render()
 	{
-		const navButtons = (
-			<div className='header__content header__nav'>
+		const recordButtons = (
+			<div>
+				<button id='recordButton' className='button' onClick={this.onClick}>
+					Records
+				</button>
+				{
+					!this.state.recordNavHidden && (
+						<div>
+							<Link className='button button--nav' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
+							<Link className='button' to='/add-record'>Add Record</Link>
+						</div>
+					)
+				}
+				
+			</div>
+		);
+
+		// TODO: Add dropdown and New Member button
+		const memberButtons = (
+			<div>
+				<button className='button'>Members</button>
 				<Link className='button button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
+			</div>
+		);
+
+		// TODO: Add dropdown and New Season button
+		const seasonButtons = (
+			<div>
+				<button className='button'>Seasons</button>
 				<Link className='button button--nav' to='/seasons' activeClassName='is-active'>Seasons Page </Link>
+			</div>
+		);
+
+		// Add dropdown and Help pages button
+		const helpButtons = (
+			<div>
+				<button className='button'>Help</button>
 				<Link className='button button--nav' to='/help' activeClassName='is-active'>Help Page </Link>
 			</div>
 		);
 
-		return(
+		const navButtons = (
 			<div className='header__content header__nav'>
-				<button onClick={this.isShowing} className='hamburger'>☰</button>
-				{
-					!this.state.hidden && navButtons
-				}
+				{ recordButtons }
+				{ memberButtons }
+				{ seasonButtons }
+			</div>
+		);
+
+		return(
+			<div>
+				<div className='header__content header__nav'>
+					<button id='navButton' onClick={this.onClick} className='hamburger'>☰</button>
+				</div>
+				<div className='header__content header__nav'>
+					{
+						!this.state.navHidden && navButtons
+					}
+				</div>
 			</div>
 		)
 	}
