@@ -188,7 +188,6 @@ export default class RecordForm extends Component
 		const amountOwed = parseFloat(this.state.amountOwed, 10);
 		const amountError1 = amountPaid > amountOwed;
 		const amountError2 = !amountOwed;
-		console.log(!amountError2);
 		const errorDebtClass = ( amountError1 || amountError2 ) ? '__error' : '';
 		const moneyInput = (amountErrorClassName) =>
 		{
@@ -246,9 +245,6 @@ export default class RecordForm extends Component
 		// div around Submit button stops it from being directly styled by the form
 		const isFalsy = this.isFormFalsy();
 
-		console.log('this.state.error', this.state.error)
-		console.log('amountErrorClassName', amountErrorClassName)
-		console.log('!amountError2', !amountError2);
 		return(
 			<div>
 				<form className='form' onSubmit={ this.onSubmit }>
