@@ -1,5 +1,14 @@
 .hamburger
 {
-	border: none;
+	background: none;
+	border: white 1px solid;
+	color: white;
+	font-size: $font-size-xlarge;
 	padding: $s-size $m-size;
+
+	&:hover
+	{
+		background-color: white;
+		color: $dark-blue;
+	}
 }
