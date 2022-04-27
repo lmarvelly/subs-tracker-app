@@ -100,9 +100,9 @@ test('should only render error messages for member and description', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should render Debt Amount error message', () => 
+test('should render "Please enter an Amount" error message for no amount entered', () => 
 {
-	// Season
+	// Season input
 	const seasonUuid = seasons[0].seasonUuid;
 	const input = altWrapper.find('#seasonName');
 	input.simulate('change', { target: { value: seasonUuid } });
@@ -119,10 +119,6 @@ test('should render Debt Amount error message', () =>
 	{
 		target: { value: 'DEBT' }
 	});
-	
-	// // Debt Amount
-	// const input3 = altWrapper.find('#amountInDebt');
-	// input3.simulate('change', { target: {value: '4'} });
 
 	// submit
 	altWrapper.find('form').simulate('submit', 
