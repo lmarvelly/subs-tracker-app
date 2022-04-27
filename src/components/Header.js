@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 
+import Navbar from './Navbar';
+
 /**
  * @class Link make use of client side routing so we don't have
  * fully page reloads.
@@ -22,11 +24,8 @@ import { startLogout } from '../actions/auth';
 				</Link>
 				<button className='button button--link' onClick={startLogout}>Logout</button>
 			</div>
-			<div className='header__content header__nav'>
-				<Link className='button button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
-				<Link className='button button--nav' to='/seasons' activeClassName='is-active'>Seasons Page </Link>
-				<Link className='button button--nav' to='/help' activeClassName='is-active'>Help Page </Link>
-			</div>
+
+			<Navbar />
 		</div>
 	</header>
 );
