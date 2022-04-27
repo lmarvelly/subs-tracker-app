@@ -33,7 +33,7 @@ export default class RecordForm extends Component
 		const amountPaid = this.state.amountPaid ? parseFloat(this.state.amountPaid, 10) : 0;
 
 		const amountOwed = parseFloat(this.state.amountOwed, 10);
-		const isDebtAmountsRight = amountOwed > amountPaid;
+		const isDebtAmountsRight = amountPaid <= amountOwed;
 		const isAmountOrAmountOwed = (this.state.amount || amountOwed);
 		const isFalsy = !isDebtAmountsRight || !this.state.description || !isAmountOrAmountOwed || !this.state.playerUuid || !this.state.seasonUuid;
 
@@ -75,7 +75,7 @@ export default class RecordForm extends Component
 		}
 	};
 	setAmount = ( amount, id ) => {
-		if( !amount || ((amount != 0 || id === 'amountPayed') && amount <= 1000000))
+		if( !amount || ((amount != 0 || id === 'amountPaid') && amount <= 1000000))
 		{
 			this.setState({amountError: ''});
 			switch (id) 
@@ -88,7 +88,7 @@ export default class RecordForm extends Component
 					this.setState( { amountOwed: amount } );
 					break;
 				
-				case 'amountPayed':
+				case 'amountPaid':
 					this.setState( { amountPaid: amount } );
 					break;
 				
@@ -106,7 +106,7 @@ export default class RecordForm extends Component
 		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
 			// Don't want message showing for 'Amount paid'
-			if ( amount == 0 && id !== 'amountPayed' ) 
+			if ( amount == 0 && id !== 'amountPaid' ) 
 			{
 				this.setState(() => ({amountError: 'Amount cannot be zero'}));
 			}
@@ -223,7 +223,7 @@ export default class RecordForm extends Component
 						{
 							this.props.record && (
 								<input
-									id='amountPayed'
+									id='amountPaid'
 									className={`text-input${errorDebtClass}`}
 									type="text"
 									placeholder="Amount of Debt Paid"
@@ -244,6 +244,7 @@ export default class RecordForm extends Component
 		const amountErrorClassName = this.state.amount || this.state.amountOwed ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		const isFalsy = this.isFormFalsy();
+		const showErrorMessage = this.state.record ? ((this.state.error && amountErrorClassName) || amountError2) : this.state.error && amountErrorClassName;
 
 		return(
 			<div>
@@ -320,7 +321,7 @@ export default class RecordForm extends Component
 					/>
 					
 					{this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
-					{ (this.state.error && amountErrorClassName) || amountError2 && <p className='form__error'>Please enter an Amount</p>}
+					{ showErrorMessage && <p className='form__error'>Please enter an Amount</p>}
 					{
 						moneyInput(amountErrorClassName)
 					}
