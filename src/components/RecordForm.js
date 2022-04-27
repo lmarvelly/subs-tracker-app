@@ -127,6 +127,14 @@ export default class RecordForm extends Component
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
 
+	onBlueAmountPaid = (e) => {
+		const value = e.target.value;
+		if( !value )
+		{
+			this.setState( { amountPaid: 0 } );
+		}
+	};
+
 	onSubmit = ( e ) => {
 		e.preventDefault();
 
@@ -178,7 +186,10 @@ export default class RecordForm extends Component
 	{
 		const amountPaid = parseFloat(this.state.amountPaid, 10);
 		const amountOwed = parseFloat(this.state.amountOwed, 10);
-		const errorDebtClass = amountPaid > amountOwed ? '__error' : '';
+		const amountError1 = amountPaid > amountOwed;
+		const amountError2 = !amountOwed;
+		console.log(!amountError2);
+		const errorDebtClass = ( amountError1 || amountError2 ) ? '__error' : '';
 		const moneyInput = (amountErrorClassName) =>
 		{
 			if (this.state.recordType === 'PAYMENT') 
@@ -200,7 +211,7 @@ export default class RecordForm extends Component
 			{
 				return(
 					<div>
-						{ errorDebtClass && <p className='form__error'>Amount cannot be less than Amount Owed</p>}
+						{ amountError1 && <p className='form__error'>Amount cannot be less than Amount Owed</p>}
 						<input
 							id='amountInDebt'
 							className={`text-input${amountErrorClassName} margin-bottom-medium`}
@@ -219,6 +230,7 @@ export default class RecordForm extends Component
 									placeholder="Amount of Debt Paid"
 									value={ this.state.amountPaid }
 									onChange={ this.onAmountChange }
+									onBlur={ this.onBlueAmountPaid }
 								/>
 							)
 						}
@@ -233,6 +245,10 @@ export default class RecordForm extends Component
 		const amountErrorClassName = this.state.amount || this.state.amountOwed ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		const isFalsy = this.isFormFalsy();
+
+		console.log('this.state.error', this.state.error)
+		console.log('amountErrorClassName', amountErrorClassName)
+		console.log('!amountError2', !amountError2);
 		return(
 			<div>
 				<form className='form' onSubmit={ this.onSubmit }>
@@ -308,7 +324,7 @@ export default class RecordForm extends Component
 					/>
 					
 					{this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
-					{this.state.error && amountErrorClassName && <p className='form__error'>Please enter an Amount</p>}
+					{ (this.state.error && amountErrorClassName) || amountError2 && <p className='form__error'>Please enter an Amount</p>}
 					{
 						moneyInput(amountErrorClassName)
 					}
