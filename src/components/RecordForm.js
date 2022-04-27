@@ -177,7 +177,7 @@ export default class RecordForm extends Component
 	{
 		const amountPaid = parseFloat(this.state.amountPaid, 10);
 		const amountOwed = parseFloat(this.state.amountOwed, 10);
-		const errorDebtClass = amountPaid > amountOwed ? '--error' : '';
+		const errorDebtClass = amountPaid > amountOwed ? '__error' : '';
 		const moneyInput = (amountErrorClassName) =>
 		{
 			if (this.state.recordType === 'PAYMENT') 
@@ -225,7 +225,7 @@ export default class RecordForm extends Component
 				)
 			}
 		}
-		const error = '--error';
+		const error = '__error';
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const memberErrorClassName = this.state.playerUuid ? '' : error;
 		const descriptionErrorClassName = this.state.description ? '' : error;

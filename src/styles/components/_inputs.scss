@@ -13,13 +13,13 @@
 	padding: $s-size;
 }
 
-.text-input--error
+.text-input__error
 {
 	@extend .text-input;
 	@extend .error;
 }
 
-.text-input--error::placeholder
+.text-input__error::placeholder
 {
 	color: $red;
 	opacity: 1;
@@ -35,7 +35,7 @@
 	}
 }
 
-.select--error
+.select__error
 {
 	@extend .select;
 	@extend .error;
