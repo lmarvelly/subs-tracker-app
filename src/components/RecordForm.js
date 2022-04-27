@@ -244,7 +244,11 @@ export default class RecordForm extends Component
 		const amountErrorClassName = this.state.amount || this.state.amountOwed ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		const isFalsy = this.isFormFalsy();
-		const showErrorMessage = this.state.record ? ((this.state.error && amountErrorClassName) || amountError2) : this.state.error && amountErrorClassName;
+
+		const ifRecord = ((!!(this.state.error && amountErrorClassName) || !this.state.amountOwed) || amountError2);
+		const ifNoRecord = (this.state.error && amountErrorClassName);
+
+		const showErrorMessage = this.props.record ? ifRecord : ifNoRecord;
 
 		return(
 			<div>
