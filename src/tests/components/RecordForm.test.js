@@ -129,6 +129,14 @@ test('should render "Please enter an Amount" error message for no amount entered
 	expect(altWrapper).toMatchSnapshot();
 });
 
+test('should render "Amount Paid cannot be more than Amount Owed" and "Amount cannot be less than Amount Owed" error messages', () =>
+{
+	const value = '500';
+	debtWrapper.setState({ amountPaid: 500 });
+
+	expect(debtWrapper).toMatchSnapshot();
+});
+
 test('should test description on input change', () => 
 {
 	const value = 'New description';
