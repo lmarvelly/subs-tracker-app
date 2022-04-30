@@ -32,5 +32,12 @@
 
 .button--nav
 {
+	@extend .button;
 	margin-bottom: $s-size;
+}
+
+.button--nav-secondary
+{
+	@extend .button--nav;
+	background-color: darken($dark-red, 1%);
 }
