@@ -23,22 +23,38 @@ export class Navbar extends Component
 
 	onClick = (e) =>
 	{
-		switch (e.target.id) 
+		console.log(e.target.className);
+		const classNames = e.target.className;
+		if (classNames.includes('hamburger')) 
 		{
-			case 'navButton': 
-				this.setState({navHidden: !this.state.navHidden});
-				break;
-			case 'recordButton':
-				this.setState({ recordNavHidden: !this.state.recordNavHidden });
-				break;
-			case 'memberButton':
-				this.setState({ memberNavHidden: !this.state.memberNavHidden });
-				break;
-			case 'seasonButton':
-				this.setState({ seasonNavHidden: !this.state.seasonNavHidden });
-				break;
-			default:
-				break;
+			this.setState({navHidden: !this.state.navHidden});
+		}
+		else if (classNames.includes('recordButton'))
+		{
+			this.setState(
+			{ 
+				recordNavHidden: !this.state.recordNavHidden,
+				memberNavHidden: true,
+				seasonNavHidden: true
+			});
+		}
+		else if (classNames.includes('memberButton'))
+		{
+			this.setState(
+			{
+				memberNavHidden: !this.state.memberNavHidden,
+				recordNavHidden: true,
+				seasonNavHidden: true
+			});
+		}
+		else if (classNames.includes('seasonButton'))
+		{
+			this.setState(
+			{ 
+				seasonNavHidden: !this.state.seasonNavHidden,
+				memberNavHidden: true,
+				recordNavHidden: true
+			});
 		}
 	}
 
@@ -51,8 +67,14 @@ export class Navbar extends Component
 	{
 		const recordButtons = (
 			<div>
-				<button id='recordButton' className='button' onClick={this.onClick}>
-					Records
+				<button className='button--dropdown recordButton' onClick={this.onClick}>
+					<span className='button-spacing recordButton'></span>
+					<span className='recordButton align-vertical-center'>
+						Records
+					</span>
+					<span className='button-spacing recordButton button-symbol'>
+						&#8595;
+					</span>
 				</button>
 				{
 					!this.state.recordNavHidden && (
@@ -62,19 +84,20 @@ export class Navbar extends Component
 						</div>
 					)
 				}
-				
 			</div>
 		);
 
 		// TODO: Add dropdown and New Member button
 		const memberButtons = (
 			<div>
-				<button
-					id='memberButton'
-					onClick={this.onClick} 
-					className='button'
-				>
-					Members
+				<button className='button--dropdown memberButton' onClick={this.onClick}>
+					<span className='button-spacing memberButton'></span>
+					<span className='memberButton align-vertical-center'>
+						Members
+					</span>
+					<span className='button-spacing memberButton button-symbol'>
+						&#8595;
+					</span>
 				</button>
 				{
 					!this.state.memberNavHidden && (
@@ -91,12 +114,14 @@ export class Navbar extends Component
 		// TODO: Add dropdown and New Season button
 		const seasonButtons = (
 			<div>
-				<button
-					id='seasonButton'
-					className='button'
-					onClick={this.onClick}
-				>
-					Seasons
+				<button className='button--dropdown seasonButton' onClick={this.onClick}>
+					<span className='button-spacing seasonButton'></span>
+					<span className='seasonButton align-vertical-center'>
+						Seasons
+					</span>
+					<span className='button-spacing seasonButton button-symbol'>
+						&#8595;
+					</span>
 				</button>
 				{
 					!this.state.seasonNavHidden && (

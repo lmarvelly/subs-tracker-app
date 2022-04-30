@@ -30,6 +30,22 @@
 	background: none;
 }
 
+.button--dropdown
+{
+	@extend .button;
+	display: flex;
+	justify-content: space-between;
+	span
+	{
+		font-size: $font-size-xlarge;
+	}
+	>
+	{
+		display: flex;
+		align-items: center;
+	}
+}
+
 .button--nav
 {
 	@extend .button;
@@ -40,4 +56,14 @@
 {
 	@extend .button--nav;
 	background-color: darken($dark-red, 1%);
+}
+
+.button-spacing
+{
+	width:20%;
+}
+
+.button-symbol
+{
+	font-size: $font-size-xxlarge;
 }
