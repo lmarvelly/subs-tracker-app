@@ -12,3 +12,24 @@
 		color: $dark-blue;
 	}
 }
+
+.header__nav
+{
+	justify-content: flex-start;
+	flex-direction: column;
+	.button
+	{
+		margin-right: $s-size;
+	}
+
+	@media (min-width: $desktop-breakpoint) 
+	{
+		flex-direction: row;
+	}
+}
+
+.dropdown-buttons
+{
+	display: flex;
+	flex-direction: column;
+}

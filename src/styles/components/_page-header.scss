@@ -7,9 +7,16 @@
 
 .page-header__content
 {
+	align-items: center;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
-	flex-direction: row;
+	
+	flex-direction: column;
+	@media (min-width: $small-screen-breakpoint) 
+	{
+		flex-direction: row;
+	}
 }
 
 .page-header__actions
@@ -39,6 +46,13 @@
 
 .page-header__title
 {
+	align-items: center;
 	font-weight: 300;
-	margin: 0;
+	margin-bottom: $l-size;
+	@media (min-width: $small-screen-breakpoint) 
+	{
+		margin-bottom: $m-size;
+	}
+
+	text-align: center;
 }
