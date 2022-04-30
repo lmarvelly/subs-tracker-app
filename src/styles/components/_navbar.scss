@@ -11,10 +11,13 @@
 		background-color: white;
 		color: $dark-blue;
 	}
+	// width: 10rem;
 }
 
 .header__nav
 {
+	display: flex;
+	align-items: center;
 	justify-content: flex-start;
 	flex-direction: column;
 	.button
@@ -24,6 +27,7 @@
 
 	@media (min-width: $desktop-breakpoint) 
 	{
+		align-items: stretch;
 		flex-direction: row;
 		justify-content: space-between;
 	}

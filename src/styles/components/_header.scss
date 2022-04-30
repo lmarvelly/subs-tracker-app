@@ -12,6 +12,12 @@
 	width: 100%;
 }
 
+.header__content-center
+{
+	@extend .header__content;
+	justify-content: center!important;
+}
+
 .header__title
 {
 	color: white;
