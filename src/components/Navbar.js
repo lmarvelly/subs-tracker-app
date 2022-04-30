@@ -56,7 +56,7 @@ export class Navbar extends Component
 				</button>
 				{
 					!this.state.recordNavHidden && (
-						<div>
+						<div className='dropdown-buttons'>
 							<Link className='button button--nav' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
 							<Link className='button' to='/add-record'>Add Record</Link>
 						</div>
@@ -78,7 +78,7 @@ export class Navbar extends Component
 				</button>
 				{
 					!this.state.memberNavHidden && (
-						<div>
+						<div className='dropdown-buttons'>
 							<Link className='button button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
 							<Link className='button' to='/add-member'>Add Member</Link>
 						</div>
@@ -100,7 +100,7 @@ export class Navbar extends Component
 				</button>
 				{
 					!this.state.seasonNavHidden && (
-						<div>
+						<div className='dropdown-buttons'>
 							<Link className='button button--nav' to='/seasons' activeClassName='is-active'>Seasons Page</Link>
 							<Link className='button' to='/add-season'>Add Season</Link>
 						</div>
