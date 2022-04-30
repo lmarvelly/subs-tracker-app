@@ -69,16 +69,43 @@ export class Navbar extends Component
 		// TODO: Add dropdown and New Member button
 		const memberButtons = (
 			<div>
-				<button className='button'>Members</button>
-				<Link className='button button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
+				<button
+					id='memberButton'
+					onClick={this.onClick} 
+					className='button'
+				>
+					Members
+				</button>
+				{
+					!this.state.memberNavHidden && (
+						<div>
+							<Link className='button button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
+							<Link className='button' to='/add-member'>Add Member</Link>
+						</div>
+					)
+				}
+				
 			</div>
 		);
 
 		// TODO: Add dropdown and New Season button
 		const seasonButtons = (
 			<div>
-				<button className='button'>Seasons</button>
-				<Link className='button button--nav' to='/seasons' activeClassName='is-active'>Seasons Page </Link>
+				<button
+					id='seasonButton'
+					className='button'
+					onClick={this.onClick}
+				>
+					Seasons
+				</button>
+				{
+					!this.state.seasonNavHidden && (
+						<div>
+							<Link className='button button--nav' to='/seasons' activeClassName='is-active'>Seasons Page</Link>
+							<Link className='button' to='/add-season'>Add Season</Link>
+						</div>
+					)
+				}
 			</div>
 		);
 
