@@ -22,7 +22,7 @@ const MemberPage = ( props ) =>
 			<div className='page-header'>
 				<div className='content-container'>
 					<div className='page-header__content'>
-						<h1 className='page-header__title'>Members</h1>
+						<h1 className='page-header__title'>Members Page</h1>
 						<Link className='button' to='/add-member'>Add Member</Link>
 					</div>
 				</div>

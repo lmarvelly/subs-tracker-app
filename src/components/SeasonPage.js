@@ -23,7 +23,7 @@ const SeasonPage = ( props ) =>
 			<div className='page-header'>
 				<div className='content-container'>
 					<div className='page-header__content'>
-						<h1 className='page-header__title'>Season List</h1>
+						<h1 className='page-header__title'>Seasons Page</h1>
 						<Link className='button' to='/add-season'>Add Season</Link>
 					</div>
 				</div>
