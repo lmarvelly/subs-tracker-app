@@ -153,7 +153,7 @@ export class Navbar extends Component
 
 		// TODO: Create columns for each button group
 		const navButtons = (
-			<div className='header__content header__nav'>
+			<div className='header__content nav'>
 				<div>{ recordButtons }</div>
 				<div>{ memberButtons }</div>
 				<div>{ seasonButtons }</div>
@@ -162,10 +162,10 @@ export class Navbar extends Component
 
 		return(
 			<div>
-				<div className='header__nav header__content-center'>
+				<div className='nav header__content-center'>
 					<button id='navButton' onClick={this.onClick} className='hamburger'>☰</button>
 				</div>
-				<div className='header__content header__nav'>
+				<div className='header__content nav'>
 					{
 						!this.state.navHidden && navButtons
 					}
