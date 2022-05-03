@@ -55,7 +55,8 @@
 .button--nav-secondary
 {
 	@extend .button--nav;
-	background-color: darken($dark-red, 1%);
+	background-color: #270602;
+	// background-color: $dark-red;
 }
 
 .button-spacing
