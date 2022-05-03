@@ -65,6 +65,9 @@ export class Navbar extends Component
 
 	render()
 	{
+		const upSymbol = String.fromCharCode(8593);
+		const downSymbol = String.fromCharCode(8595);
+
 		const recordButtons = (
 			<div>
 				<button className='button--dropdown recordButton' onClick={this.onClick}>
@@ -73,7 +76,9 @@ export class Navbar extends Component
 						Records
 					</span>
 					<span className='button-spacing recordButton button-symbol'>
-						&#8595;
+					{
+						this.state.recordNavHidden ? downSymbol : upSymbol
+					}
 					</span>
 				</button>
 				{
@@ -96,7 +101,9 @@ export class Navbar extends Component
 						Members
 					</span>
 					<span className='button-spacing memberButton button-symbol'>
-						&#8595;
+					{
+						this.state.memberNavHidden ? downSymbol : upSymbol
+					}
 					</span>
 				</button>
 				{
@@ -120,7 +127,9 @@ export class Navbar extends Component
 						Seasons
 					</span>
 					<span className='button-spacing seasonButton button-symbol'>
-						&#8595;
+					{
+						this.state.seasonNavHidden ? downSymbol : upSymbol
+					}
 					</span>
 				</button>
 				{
