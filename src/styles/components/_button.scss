@@ -16,7 +16,7 @@
 .button--secondary
 {
 	@extend .button;
-	background: $dark-red;
+	background: $darker-red;
 	margin-right: $s-size;
 	margin-bottom: $s-size;
 	@media (min-width: $desktop-breakpoint) 
@@ -55,8 +55,7 @@
 .button--nav-secondary
 {
 	@extend .button--nav;
-	background-color: #270602;
-	// background-color: $dark-red;
+	background-color: $dark-red;
 }
 
 .button-spacing
