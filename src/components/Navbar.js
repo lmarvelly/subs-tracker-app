@@ -23,7 +23,6 @@ export class Navbar extends Component
 
 	onClick = (e) =>
 	{
-		console.log(e.target.className);
 		const classNames = e.target.className;
 		if (classNames.includes('hamburger')) 
 		{
@@ -67,10 +66,11 @@ export class Navbar extends Component
 	{
 		const upSymbol = String.fromCharCode(8593);
 		const downSymbol = String.fromCharCode(8595);
+		const spacing = this.state.recordNavHidden && this.state.memberNavHidden && this.state.seasonNavHidden ? '' : 'margin-bottom-none';
 
 		const recordButtons = (
 			<div>
-				<button className='button--dropdown recordButton' onClick={this.onClick}>
+				<button className={`button--dropdown recordButton ${spacing}`} onClick={this.onClick}>
 					<span className='button-spacing recordButton'></span>
 					<span className='recordButton align-vertical-center'>
 						Records

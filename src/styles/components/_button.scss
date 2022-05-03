@@ -44,6 +44,12 @@
 		display: flex;
 		align-items: center;
 	}
+
+	
+	// @media (min-width: $desktop-breakpoint)
+	// {
+	// 	margin-bottom: 0!important;
+	// }
 }
 
 .button--nav
@@ -56,6 +62,13 @@
 {
 	@extend .button--nav;
 	background-color: $dark-red;
+	border: #c11e0a solid 5px;
+
+	margin-bottom: 0!important;
+	// @media (min-width: $desktop-breakpoint)
+	// {
+	// 	margin-bottom: 0 !important;
+	// }
 }
 
 .button-spacing
