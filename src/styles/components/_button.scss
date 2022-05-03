@@ -35,6 +35,8 @@
 	@extend .button;
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 0!important;
+	margin-top: $s-size;
 	span
 	{
 		font-size: $font-size-xlarge;
@@ -44,12 +46,6 @@
 		display: flex;
 		align-items: center;
 	}
-
-	
-	// @media (min-width: $desktop-breakpoint)
-	// {
-	// 	margin-bottom: 0!important;
-	// }
 }
 
 .button--nav
@@ -65,10 +61,6 @@
 	border: #c11e0a solid 5px;
 
 	margin-bottom: 0!important;
-	// @media (min-width: $desktop-breakpoint)
-	// {
-	// 	margin-bottom: 0 !important;
-	// }
 }
 
 .button-spacing
