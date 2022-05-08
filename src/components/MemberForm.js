@@ -94,7 +94,7 @@ export default class MemberForm extends Component
 	// div around Submit button stops it from being directly styled by the form
 	render()
 	{
-		const error = '__error'
+		const error = '__error';
 		const firstNameErrorName = this.state.firstName ? '' : error;
 		const surnameErrorName = this.state.surname ? '' : error;
 		const isFalsy = this.isFormFalsy();
