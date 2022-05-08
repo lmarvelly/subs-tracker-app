@@ -82,7 +82,7 @@ export default class MemberForm extends Component
 
 		if( !firstName || !surname )
 		{
-			this.setState(() => ({ error: 'Please enter a First Name and a Surname' }));
+			this.setState(() => ({ error: 'Please check details' }));
 		}
 		else
 		{
@@ -132,7 +132,7 @@ export default class MemberForm extends Component
 					value={ this.state.nickname }
 					onChange={ this.onNickNameChange }
 				/>
-				{( this.state.error && isFalsy ) && <p className='form__error'>Please check details</p>}
+				{( this.state.error && isFalsy ) && <p className='form__error'>{ this.state.error }</p>}
 				<div>
 					<button className='button'>
 						{this.props.member ? 'Save Changes' : 'Add Member'}
