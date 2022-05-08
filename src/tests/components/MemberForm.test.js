@@ -27,6 +27,16 @@ test('should render Member form with Member Data', () =>
 	expect(completedWrapper).toMatchSnapshot();
 });
 
+test('shouldn\'t show error on submition of completed Member form ', () => 
+{
+	completedWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(completedWrapper.state.error).toEqual('');
+});
+
 test('should render error for not inputing any values form submission', () => 
 {
 	blankWrapper.find('form').simulate('submit', 
