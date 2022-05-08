@@ -34,6 +34,12 @@ export default class SeasonForm extends Component
 		}
 	}
 
+	isFormFalsy = () =>
+	{
+		const isFalsy = !this.state.seasonName;
+		return isFalsy;
+	}
+
 	onSubmit = ( e ) =>
 	{
 		e.preventDefault();
@@ -43,7 +49,7 @@ export default class SeasonForm extends Component
 
 		if( !seasonName )
 		{
-			this.setState(() => ({ error: 'Please enter a season name' }));
+			this.setState(() => ({ error: 'Please check details' }));
 		}
 		else
 		{
@@ -54,18 +60,22 @@ export default class SeasonForm extends Component
 
 	render()
 	{
+		const error = '__error';
+		const isFalsy = this.isFormFalsy();
+		const seasonNameErrorName = this.state.seasonName ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		return(
 			<div>
 				<form className='form' onSubmit={ this.onSubmit }>
-					{this.state.error && <p className='form__error'>{ this.state.error }</p>}
+				{ this.state.error && seasonNameErrorName && <p className='form__error'>Please the season name</p> }
 					<input 
-						className='text-input'
+						className={`text-input${seasonNameErrorName}`}
 						type='text'
 						placeholder='Season Name'
 						value={ this.state.seasonName }
 						onChange={ this.onSeasonNameChange }
 					/>
+					{ (this.state.error && isFalsy) && <p className='form__error'>{ this.state.error }</p>}
 					<div>
 						<button className='button'>
 							{this.props.season ? 'Save Changes' : 'Add Season'}
