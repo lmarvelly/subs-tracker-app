@@ -10,6 +10,12 @@
 	justify-content: space-between;
 	padding: $s-size 0;
 	width: 100%;
+	
+	flex-direction: column;
+	@media (min-width: $small-screen-breakpoint)
+	{
+		flex-direction: row;
+	}
 }
 
 .header__content-center

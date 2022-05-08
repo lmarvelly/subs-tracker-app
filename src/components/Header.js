@@ -22,7 +22,7 @@ import Navbar from './Navbar';
 				>
 					<h1>Subs Tracker</h1>
 				</Link>
-				<button className='button button--link' onClick={startLogout}>Logout</button>
+				<button className='button button--logout' onClick={startLogout}>Logout</button>
 			</div>
 
 			<Navbar />
