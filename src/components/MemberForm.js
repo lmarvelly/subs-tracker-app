@@ -104,6 +104,7 @@ export default class MemberForm extends Component
 			<form className='form' onSubmit={ this.onSubmit }>
 				{ this.state.error && firstNameErrorName && <p className='form__error'>Please enter a first name</p> }
 				<input
+					id='firstName'
 					className={`text-input${firstNameErrorName}`}
 					type="text" 
 					placeholder="First Name"
@@ -119,6 +120,7 @@ export default class MemberForm extends Component
 				/>
 				{ this.state.error && surnameErrorName && <p className='form__error'>Please enter a surname</p> }
 				<input
+					id='surname'
 					className={`text-input${surnameErrorName}`}
 					type="text" 
 					placeholder="Surname"
