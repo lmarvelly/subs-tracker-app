@@ -5,10 +5,15 @@ import { members } from '../fixtures/fixures';
 
 let blankWrapper;
 let completedWrapper;
+let onFirstNameChange;
+let onSurnameChange;
 
 beforeEach( () =>
 {
-	blankWrapper = shallow(<MemberForm />);
+	onFirstNameChange = jest.fn();
+	onSurnameChange = jest.fn();
+
+	blankWrapper = shallow(<MemberForm onFirstNameChange={onFirstNameChange} onSurnameChange={onSurnameChange} />);
 	completedWrapper = shallow(<MemberForm member={members[0]} />);
 });
 
@@ -62,4 +67,64 @@ test('should only render surname error message', () =>
 	});
 	expect( blankWrapper.state('error').length ).toBeGreaterThan(0);
 	expect(blankWrapper).toMatchSnapshot();
+});
+
+test('should change first name', () => 
+{
+	const name = 'Joey';
+	const input = blankWrapper.find('#firstName');
+	input.simulate('change', 
+	{
+		target: { value: name }
+	});
+
+	expect( onFirstNameChange ).toHaveBeenCalled();
+	expect( blankWrapper ).toMatchSnapshot();
+
+	expect( blankWrapper.state.firstName ).toEqual(name);
+});
+
+test('should not change first name if name is too long', () => 
+{
+	const name = 'JoeyJoeJoeShabab';
+	const input = blankWrapper.find('#firstName');
+	input.simulate('change', 
+	{ 
+		target: { value: name }
+	});
+
+	expect( blankWrapper ).toMatchSnapshot();
+	expect( onFirstNameChange ).toHaveBeenCalledTimes(0);
+	expect( blankWrapper.state.firstName ).toEqual('');
+});
+
+
+test('should change surname', () => 
+{
+	const surname = 'Davies';
+	const input = blankWrapper.find('#surname');
+	input.simulate('change', 
+	{
+		target: { value: surname }
+	});
+
+	expect( blankWrapper ).toMatchSnapshot();
+	expect( onSurnameChange ).toHaveBeenCalled();
+
+	expect( blankWrapper.state.surname ).toEqual(surname);
+});
+
+// State not updating on render
+test('should not change surname if name is too long', () => 
+{
+	const surname = 'JoeyJoeJoeShabab';
+	const input = blankWrapper.find('#surname');
+	input.simulate('change', 
+	{ 
+		target: { value: surname }
+	});
+
+	expect( blankWrapper ).toMatchSnapshot();
+	expect( onSurnameChange ).toHaveBeenCalledTimes(0);
+	expect( blankWrapper.state.surname ).toEqual('');
 });
