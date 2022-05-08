@@ -63,6 +63,13 @@ export default class MemberForm extends Component
 		}
 	}
 
+	// Clears error if everything is fine, and returns true or false
+	isFormFalsy = () => {
+		const isFalsy = !this.state.firstName || !this.state.surname;
+
+		return isFalsy;
+	}
+
 	onSubmit = ( e ) => {
 		e.preventDefault();
 		const playerUuid = this.state.playerUuid;
@@ -85,14 +92,19 @@ export default class MemberForm extends Component
 	};
 
 	// div around Submit button stops it from being directly styled by the form
-	render(){
+	render()
+	{
+		const error = '__error'
+		const firstNameErrorName = this.state.firstName ? '' : error;
+		const surnameErrorName = this.state.surname ? '' : error;
+		const isFalsy = this.isFormFalsy();
+
 		return(
 		<div>
 			<form className='form' onSubmit={ this.onSubmit }>
-				{this.state.error && <p className='form__error'>{ this.state.error }</p>}
-
+				{ this.state.error && firstNameErrorName && <p className='form__error'>Please enter a first name</p> }
 				<input
-					className='text-input'
+					className={`text-input${firstNameErrorName}`}
 					type="text" 
 					placeholder="First Name"
 					value={ this.state.firstName }
@@ -105,8 +117,9 @@ export default class MemberForm extends Component
 					value={ this.state.middleNames }
 					onChange={ this.onMiddleNameChange }
 				/>
+				{ this.state.error && surnameErrorName && <p className='form__error'>Please enter a surname</p> }
 				<input
-					className='text-input'
+					className={`text-input${surnameErrorName}`}
 					type="text" 
 					placeholder="Surname"
 					value={ this.state.surname }
@@ -115,10 +128,11 @@ export default class MemberForm extends Component
 				<input
 					className='text-input'
 					type="text" 
-					placeholder="Nickname"
+					placeholder="Nickname (Optional)"
 					value={ this.state.nickname }
 					onChange={ this.onNickNameChange }
 				/>
+				{( this.state.error && isFalsy ) && <p className='form__error'>Please check details</p>}
 				<div>
 					<button className='button'>
 						{this.props.member ? 'Save Changes' : 'Add Member'}
