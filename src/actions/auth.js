@@ -1,4 +1,9 @@
-import { firebase, googleAuthProvider } from '../firebase/firebase';
+import { 
+	auth,
+	firebase,
+	googleAuthProvider 
+} from '../firebase/firebase';
+
 
 export const login = (uid) => (
 {
@@ -7,12 +12,25 @@ export const login = (uid) => (
 });
 
 // Returns a Promise from firebase
-export const startLogin = () =>
+export const startGoogleLogin = () =>
 {
 	return () => {
 		return firebase.auth().signInWithPopup(googleAuthProvider);
 	};
 };
+
+// Login via Email
+export const startCreateUserWithEmail = ( email, password ) =>
+{
+	auth.createUserWithEmailAndPassword( email, password )
+	.then( ( userCredential ) =>
+	{
+		userCredential.user.sendEmailVerification();
+		auth.signOut();
+		alert(`Email sent to ${email}`);
+	})
+	.catch('error');
+}
 
 export const logout = () => (
 {

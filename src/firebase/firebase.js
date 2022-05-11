@@ -19,6 +19,8 @@ const firebaseConfig =
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
+
+const auth = firebase.auth();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 // Force Firebase to select a Google account everytime user logs in
@@ -27,4 +29,4 @@ googleAuthProvider.setCustomParameters(
 	'prompt': 'select_account'
 });
 
-export { firebase, googleAuthProvider, database as default };
+export { auth, firebase, googleAuthProvider, database as default };
