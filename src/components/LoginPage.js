@@ -9,9 +9,14 @@ export const LoginPage = ({ startLogin }) => (
 			<p>It's time to get your teams subs under control.</p>
 			<button 
 				onClick={startLogin}
-				className='button'
+				className='button--google'
 			>
 				Login with Google
+			</button>
+			<button
+				className='button'
+			>
+				Login with Email
 			</button>
 		</div>
 	</div>

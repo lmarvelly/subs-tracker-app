@@ -26,6 +26,11 @@
 	padding: $l-size $m-size;
 	text-align: center;
 	width: 25rem;
+
+	button
+	{
+		margin-bottom: $s-size;
+	}
 }
 
 .box-layout__title
