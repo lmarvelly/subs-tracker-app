@@ -32,9 +32,16 @@
 	padding: $xs-size;
 }
 
-.button--email
+.button--back
+{
+	@extend .button-small;
+	background-color: $dark-red;
+}
+
+.button--email-signup
 {
 	@extend .button;
+	background-color: $blue;
 }
 
 .button--google
