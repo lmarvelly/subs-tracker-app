@@ -11,13 +11,35 @@ export default class EmailLoginForm extends Component
 			email: undefined,
 			password: undefined,
 
-			displayEmailLogin: false,
-			displayEmailSignUp: false
+			displayChoice: true,
+			displayInputs: false,
+			// displayEmailLogin: false,
+			// displayEmailSignUp: false
 		}
 	}
 
 	render()
 	{
+		const loginButtons = (
+			<div>
+				<button
+					className='button'
+				>
+					Login with email
+				</button>
+				<button
+					className='button--email-signup'
+				>
+					Sign up with email
+				</button>
+				<button
+					className='button--back'
+				>
+					back
+				</button>
+			</div>
+		);
+
 		const inputs = (
 			<div>
 				<input 
@@ -34,23 +56,9 @@ export default class EmailLoginForm extends Component
 		);
 
 		return (
-			<form className='form'>
-				<button
-					className='button'
-				>
-					Login with email
-				</button>
-				<button
-					className='button--email-signup'
-				>
-					Sign up with email
-				</button>
-				<button
-					className='button--back'
-				>
-					back
-				</button>
-			</form>
+			<div>
+				{ this.state.displayChoice && loginButtons }
+			</div>
 		);
 	}
 }
