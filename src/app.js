@@ -5,9 +5,6 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 
 import configureStore from './store/configureStore';
-import getVisibleMembers from './selectors/members';
-import getVisibleSeasons from './selectors/seasons';
-import getVisibleRecords from './selectors/records';
 
 import { startSetRecords } from './actions/records';
 import { sortAlphabetAsc } from './actions/memberFilters';
