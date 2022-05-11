@@ -25,8 +25,9 @@
 	}
 }
 
-.button--logout
+.button-small
 {
+	@extend .button;
 	width: 10rem;
 	padding: $xs-size;
 }
