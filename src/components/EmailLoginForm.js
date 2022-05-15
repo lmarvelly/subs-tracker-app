@@ -8,14 +8,42 @@ export default class EmailLoginForm extends Component
 
 		this.state =
 		{
-			email: undefined,
-			password: undefined,
+			email: '',
+			password: '',
 
 			displayChoice: true,
 			displayInputs: false,
-			// displayEmailLogin: false,
-			// displayEmailSignUp: false
+
+			displayEmailLogin: false,
+			displayEmailSignUp: false
 		}
+	}
+
+	displayEmailLogin = () =>
+	{
+		this.setState({ displayEmailLogin: true, displayChoice: false });
+	}
+
+	onEmailChange = ( e ) =>
+	{
+		this.setState({ email: e.target.value });
+	}
+
+	onPasswordChange = ( e ) =>
+	{
+		this.setState({ password: e.target.value });
+	}
+
+	// TODO
+	emailLoginForm = () =>
+	{
+		<form></form>
+	}
+
+	// TODO
+	emailSignUpForm = () =>
+	{
+		<form></form>
 	}
 
 	render()
@@ -24,6 +52,7 @@ export default class EmailLoginForm extends Component
 			<div>
 				<button
 					className='button'
+					onClick={this.displayEmailLogin}
 				>
 					Login with email
 				</button>
@@ -40,24 +69,32 @@ export default class EmailLoginForm extends Component
 			</div>
 		);
 
-		const inputs = (
-			<div>
+		const loginInputs = (
+			<form className='form'>
+				<p className='form__error'>Please enter an email</p>
 				<input 
 					className={`text-input`}
 					placeholder='email@example.com'
-					type="text" 
+					type="text"
+					value={this.state.email}
+					onChange={this.onEmailChange}
 				/>
+				<p className='form__error'>Please enter a password</p>
 				<input
 					className={`text-input`}
 					placeholder='Password'
 					type="password"
+					value={this.state.password}
+					onChange={this.onPasswordChange}
 				/>
-			</div>
+				<button className='button'>Login</button>
+			</form>
 		);
 
 		return (
 			<div>
 				{ this.state.displayChoice && loginButtons }
+				{ this.state.displayEmailLogin && loginInputs }
 			</div>
 		);
 	}
