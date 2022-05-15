@@ -23,20 +23,20 @@ export const LoginPage = ({ startGoogleLogin }) =>
 
 	const signInButtons = (
 		<div>
-					<p>It's time to get your teams subs under control.</p>
-					<button 
-						onClick={startGoogleLogin}
-						className='button--google'
-					>
-						Login with Google
-					</button>
-					<button
-						onClick={ showEmailForm }
-						className='button'
-					>
-						Login with Email
-					</button>
-				</div>
+			<p>It's time to get your teams subs under control.</p>
+			<button 
+				onClick={startGoogleLogin}
+				className='button--google'
+			>
+				Login with Google
+			</button>
+			<button
+				onClick={ showEmailForm }
+				className='button'
+			>
+				Login with Email
+			</button>
+		</div>
 	);
 
 	return (
