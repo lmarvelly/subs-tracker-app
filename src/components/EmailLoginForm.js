@@ -41,7 +41,15 @@ export default class EmailLoginForm extends Component
 		const email = this.state.email;
 		const password = this.state.password;
 
-		this.props.onSubmit( email, password );
+		if ( this.state.displayType === 'EMAIL_LOGIN' ) 
+		{
+			console.log('Email Login');
+		}
+		if (this.state.displayType === 'EMAIL_SIGN_UP' ) 
+		{
+			console.log('Email Sign Up');
+			this.props.createUserWithEmail( email, password );
+		}
 	}
 
 	render()
