@@ -21,13 +21,11 @@ export const startGoogleLogin = () =>
 
 export const startEmailLogin = ( email, password ) =>
 {
-	console.log('startEmailLogin()');
-	console.log(email, password);
 	return () => {
 		return firebase.auth().signInWithEmailAndPassword( email, password )
 			.catch( error =>
 			{
-				alert('Error signing in with email: ', error);
+				alert('Error signing in with email: ', error.message);
 				console.log(error.code);
 				console.log(error.message);
 			});

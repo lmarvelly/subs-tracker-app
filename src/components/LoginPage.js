@@ -35,17 +35,11 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 
 	const createUserWithEmail = ( email, password ) =>
 	{
-		console.log(email);
-		console.log('Password:', password);
-
 		startCreateUserWithEmail( email, password );
 	}
 
 	const emailLogin = ( email, password ) =>
 	{
-		console.log(email);
-		console.log('Password:', password);
-
 		startEmailLogin( email, password );
 	}
 

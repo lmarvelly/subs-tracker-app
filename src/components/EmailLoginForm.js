@@ -43,12 +43,10 @@ export default class EmailLoginForm extends Component
 
 		if ( this.state.displayType === 'EMAIL_LOGIN' ) 
 		{
-			console.log('Email Login');
 			this.props.emailLogin( email, password );
 		}
 		if (this.state.displayType === 'EMAIL_SIGN_UP' ) 
 		{
-			console.log('Email Sign Up');
 			this.props.createUserWithEmail( email, password );
 			this.setState({displayType: 'EMAIL_LOGIN'});
 		}
