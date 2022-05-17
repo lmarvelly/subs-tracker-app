@@ -10,18 +10,18 @@ export default class EmailLoginForm extends Component
 		{
 			email: '',
 			password: '',
-
-			displayChoice: true,
-			displayInputs: false,
-
-			displayEmailLogin: false,
-			displayEmailSignUp: false
+			displayType: 'CHOICE_BUTTONS',
 		}
 	}
 
 	displayEmailLogin = () =>
 	{
-		this.setState({ displayEmailLogin: true, displayChoice: false });
+		this.setState({ displayType: 'EMAIL_LOGIN' })
+	}
+
+	displayEmailSignUp = () =>
+	{
+		this.setState({ displayType: 'EMAIL_SIGN_UP' });
 	}
 
 	onEmailChange = ( e ) =>
@@ -34,21 +34,9 @@ export default class EmailLoginForm extends Component
 		this.setState({ password: e.target.value });
 	}
 
-	// TODO
-	emailLoginForm = () =>
-	{
-		<form></form>
-	}
-
-	// TODO
-	emailSignUpForm = () =>
-	{
-		<form></form>
-	}
-
 	render()
 	{
-		const loginButtons = (
+		const choiceButtons = (
 			<div>
 				<button
 					className='button'
@@ -58,6 +46,7 @@ export default class EmailLoginForm extends Component
 				</button>
 				<button
 					className='button--email-signup'
+					onClick={this.displayEmailSignUp}
 				>
 					Sign up with email
 				</button>
@@ -69,7 +58,7 @@ export default class EmailLoginForm extends Component
 			</div>
 		);
 
-		const loginInputs = (
+		const loginSignUpForm = (
 			<form className='form'>
 				<p className='form__error'>Please enter an email</p>
 				<input 
@@ -87,14 +76,14 @@ export default class EmailLoginForm extends Component
 					value={this.state.password}
 					onChange={this.onPasswordChange}
 				/>
-				<button className='button'>Login</button>
+				<button className='button'>{ (this.state.displayType === 'EMAIL_SIGN_UP') ? 'Sign Up' : 'Login'}</button>
 			</form>
 		);
 
 		return (
 			<div>
-				{ this.state.displayChoice && loginButtons }
-				{ this.state.displayEmailLogin && loginInputs }
+				{ (this.state.displayType === 'CHOICE_BUTTONS') && choiceButtons }
+				{ (this.state.displayType === 'EMAIL_SIGN_UP' || this.state.displayType === 'EMAIL_LOGIN') && loginSignUpForm }
 			</div>
 		);
 	}
