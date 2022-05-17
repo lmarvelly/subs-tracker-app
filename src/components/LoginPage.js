@@ -13,19 +13,13 @@ export const LoginPage = ({ startGoogleLogin }) =>
 	{
 		setDisplayEmailLogin(true);
 		setDisplayLoginButtons(false);
-
-		// const email = prompt( 'Please Enter your email' );
-		// const password = prompt( 'Please Enter a password' );
-		// console.log(email);
-		// console.log(password);
-		// startCreateUserWithEmail( email, password );
 	}
 
 	const signInButtons = (
 		<div>
 			<p>It's time to get your teams subs under control.</p>
 			<button 
-				onClick={startGoogleLogin}
+				onClick={ startGoogleLogin }
 				className='button--google'
 			>
 				Login with Google
@@ -39,12 +33,20 @@ export const LoginPage = ({ startGoogleLogin }) =>
 		</div>
 	);
 
+	const createUserWithEmail = ( email, password ) =>
+	{
+		console.log(email);
+		console.log('Password:', password);
+
+		startCreateUserWithEmail( email, password );
+	}
+
 	return (
 		<div className='box-layout'>
 			<div className='box-layout__box'>
 				<h1 className='box-layout__title'>Subs Tracker App</h1>
 				{ displayLoginButtons && signInButtons }
-				{ displayEmailLogin && <EmailLoginForm /> }
+				{ displayEmailLogin && <EmailLoginForm createUserWithEmail={createUserWithEmail} /> }
 			</div>
 		</div>
 	);
