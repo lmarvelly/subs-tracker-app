@@ -34,6 +34,16 @@ export default class EmailLoginForm extends Component
 		this.setState({ password: e.target.value });
 	}
 
+	// TODO: Form Validation
+	onSubmit = ( e ) =>
+	{
+		e.preventDefault();
+		const email = this.state.email;
+		const password = this.state.password;
+
+		this.props.onSubmit( email, password );
+	}
+
 	render()
 	{
 		const choiceButtons = (
@@ -59,7 +69,7 @@ export default class EmailLoginForm extends Component
 		);
 
 		const loginSignUpForm = (
-			<form className='form'>
+			<form className='form' onSubmit={ this.onSubmit }>
 				<p className='form__error'>Please enter an email</p>
 				<input 
 					className={`text-input`}
