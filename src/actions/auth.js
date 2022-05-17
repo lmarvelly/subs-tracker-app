@@ -19,6 +19,21 @@ export const startGoogleLogin = () =>
 	};
 };
 
+export const startEmailLogin = ( email, password ) =>
+{
+	console.log('startEmailLogin()');
+	console.log(email, password);
+	return () => {
+		return firebase.auth().signInWithEmailAndPassword( email, password )
+			.catch( error =>
+			{
+				alert('Error signing in with email: ', error);
+				console.log(error.code);
+				console.log(error.message);
+			});
+	};
+};
+
 // Login via Email
 export const startCreateUserWithEmail = ( email, password ) =>
 {
@@ -27,7 +42,8 @@ export const startCreateUserWithEmail = ( email, password ) =>
 	{
 		userCredential.user.sendEmailVerification();
 		auth.signOut();
-		alert(`Email sent to ${email}`);
+		console.log('Signing out');
+		alert(`Confirmation email has been sent to ${email}`);
 	})
 	.catch(error =>
 	{
