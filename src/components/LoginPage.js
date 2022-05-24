@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { startGoogleLogin, startCreateUserWithEmail, startEmailLogin } from '../actions/auth';
+import { 
+	startGoogleLogin, 
+	startCreateUserWithEmail, 
+	startEmailLogin,
+	startResetPassword
+} 
+from '../actions/auth';
+
 import EmailLoginForm from './EmailLoginForm';
 
 export const LoginPage = ({ startGoogleLogin, startEmailLogin }) => 
@@ -58,6 +65,16 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 		});
 	}
 
+	const resetPassword = ( email ) =>
+	{
+		console.log(email);
+		startResetPassword( email )
+		.then(process =>
+		{
+			alert('Reset password email sent')
+		});
+	}
+
 	const clearError = () =>
 	{
 		setError('');
@@ -81,6 +98,7 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 						createUserWithEmail={createUserWithEmail} 
 						error={error}
 						emailLogin={emailLogin}
+						resetPassword={resetPassword}
 						showSignInButtons={showSignInButtons}
 					/> 
 				}

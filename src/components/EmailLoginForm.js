@@ -15,12 +15,7 @@ export default class EmailLoginForm extends Component
 		}
 	}
 
-	handleBackToSignInButtons = () =>
-	{
-		this.props.showSignInButtons();
-	}
-
-	handleBackToEmailChoiceButtons = () =>
+	resetState = () =>
 	{
 		this.setState(
 		{
@@ -29,6 +24,16 @@ export default class EmailLoginForm extends Component
 			formError: '',
 			password: ''
 		});
+	}
+
+	handleBackToSignInButtons = () =>
+	{
+		this.props.showSignInButtons();
+	}
+
+	handleBackToEmailChoiceButtons = () =>
+	{
+		this.resetState();
 		this.props.clearError();
 	}
 
@@ -105,6 +110,7 @@ export default class EmailLoginForm extends Component
 		e.preventDefault();
 		const email = this.state.email;
 
+		// TODO: error message not showing
 		if ( !email ) 
 		{
 			this.setState(() => ({ formError: 'Please check details' }));
@@ -116,6 +122,8 @@ export default class EmailLoginForm extends Component
 		else
 		{
 			console.log('Reset Password');
+			this.props.resetPassword( this.state.email );
+			this.resetState();
 		}
 	}
 
