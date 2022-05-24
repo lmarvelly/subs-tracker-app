@@ -30,6 +30,9 @@ export const startEmailLogin = ( email, password ) =>
 
 				switch (error.code)
 				{
+					case 'auth/wrong-password':
+						alert('Password is invalid ');
+						return 'Password is invalid ';
 					case 'auth/invalid-email':
 						alert('Invalid Email Address')
 						return 'Invalid Email Address';
