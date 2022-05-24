@@ -1,7 +1,8 @@
 import { 
 	auth,
 	firebase,
-	googleAuthProvider 
+	googleAuthProvider,
+	sendPasswordResetEmail
 } from '../firebase/firebase';
 
 
@@ -80,6 +81,20 @@ export const startCreateUserWithEmail = ( email, password ) =>
 				return message5;
 		}
 	});
+}
+
+export const startResetPassword = ( email ) =>
+{
+	sendPasswordResetEmail( auth, email )
+	.then( () =>
+	{
+		return 'Reset email sent. Please check your email';
+	})
+	.catch( error =>
+	{
+		console.log(error.code);
+		console.log(error.message);
+	})
 }
 
 export const logout = () => (
