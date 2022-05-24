@@ -25,9 +25,18 @@ export const startEmailLogin = ( email, password ) =>
 		return firebase.auth().signInWithEmailAndPassword( email, password )
 			.catch( error =>
 			{
-				alert('Error signing in with email: ', error.message);
 				console.log(error.code);
 				console.log(error.message);
+
+				switch (error.code)
+				{
+					case 'auth/invalid-email':
+						alert('Invalid Email Address')
+						return 'Invalid Email Address';
+					default:
+						alert('Error signing in with email: ', error.message);
+						return 'Error signing in with email: ', error.message;
+				}
 			});
 	};
 };
@@ -35,12 +44,11 @@ export const startEmailLogin = ( email, password ) =>
 // Login via Email
 export const startCreateUserWithEmail = ( email, password ) =>
 {
-	auth.createUserWithEmailAndPassword( email, password )
+	return auth.createUserWithEmailAndPassword( email, password )
 	.then( ( userCredential ) =>
 	{
 		userCredential.user.sendEmailVerification();
 		auth.signOut();
-		console.log('Signing out');
 		alert(`Confirmation email has been sent to ${email}`);
 	})
 	.catch(error =>
@@ -48,20 +56,25 @@ export const startCreateUserWithEmail = ( email, password ) =>
 		switch (error.code)
 		{	
 			case 'auth/email-already-in-use':
-				alert(`Email address ${email} already in use.`);
-				break;
+				const message1 = `Email address ${email} already in use.`;
+				alert(message1);
+				return message1;
 			case 'auth/invalid-email':
-				alert(`Email address ${email} is invalid.`);
-				break;
+				const message2 = `Email address ${email} is invalid.`;
+				alert(message2);
+				return message2;
 			case 'auth/operation-not-allowed':
-				alert(`Apologies, an error occured during sign up.`);
-				break;
+				const message3 = `Apologies, an error occured during sign up.`;
+				alert(message3);
+				return message3;
 			case 'auth/weak-password':
-				alert('Password is not strong enough. Add additional characters including special characters and numbers.');
-				break;
+				const message4 = 'Password is not strong enough. Add additional characters including special characters and numbers.';
+				alert(message4);
+				return message4;
 			default:
-				console.log(error.message);
-				break;
+				message5 = 'Whoops something went wrong. Please try again';
+				alert(message5);
+				return message5;
 		}
 	});
 }

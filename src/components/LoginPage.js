@@ -8,6 +8,7 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 {
 	const [ displayLoginButtons, setDisplayLoginButtons ] = useState(true);
 	const [ displayEmailLogin, setDisplayEmailLogin ] = useState(false);
+	const [ error, setError ] = useState('');
 
 	const showEmailForm = () =>
 	{
@@ -35,7 +36,11 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 
 	const createUserWithEmail = ( email, password ) =>
 	{
-		startCreateUserWithEmail( email, password );
+		startCreateUserWithEmail( email, password )
+		.then(process =>
+		{
+			setError( process );
+		});
 	}
 
 	const emailLogin = ( email, password ) =>
@@ -49,7 +54,8 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 				<h1 className='box-layout__title'>Subs Tracker App</h1>
 				{ displayLoginButtons && signInButtons }
 				{ displayEmailLogin && 
-					<EmailLoginForm 
+					<EmailLoginForm
+						error={error}
 						createUserWithEmail={createUserWithEmail} 
 						emailLogin={emailLogin} 
 					/> 

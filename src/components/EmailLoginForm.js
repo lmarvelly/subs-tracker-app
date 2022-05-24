@@ -11,6 +11,7 @@ export default class EmailLoginForm extends Component
 			email: '',
 			password: '',
 			displayType: 'CHOICE_BUTTONS',
+			error: props.error ? props.error : ''
 		}
 	}
 
@@ -76,9 +77,14 @@ export default class EmailLoginForm extends Component
 			</div>
 		);
 
+		const error = '__error';
+		const emailErrorName = this.state.email ? '' : error;
+		const passwordErrorName = this.state.password ? '' : error;
+
 		const loginSignUpForm = (
 			<form className='form' onSubmit={ this.onSubmit }>
-				<p className='form__error'>Please enter an email</p>
+				{ this.props.error && <p className='form__error'>{this.props.error}</p> }
+				{ this.state.error && emailErrorName && <p className='form__error'>Please enter an email</p> }
 				<input 
 					className={`text-input`}
 					placeholder='email@example.com'
@@ -86,7 +92,7 @@ export default class EmailLoginForm extends Component
 					value={this.state.email}
 					onChange={this.onEmailChange}
 				/>
-				<p className='form__error'>Please enter a password</p>
+				{ this.state.error && passwordErrorName && <p className='form__error'>Please enter a password</p> }
 				<input
 					className={`text-input`}
 					placeholder='Password'
