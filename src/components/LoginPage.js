@@ -39,14 +39,23 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 		startCreateUserWithEmail( email, password )
 		.then(process =>
 		{
-			setError( process );
+			if ( typeof process === 'string' ) // needed to avoid passing down an object to EmailLoginForm
+			{
+				setError( process );
+			}
 		});
 	}
 
-	// TODO: add error messaging
 	const emailLogin = ( email, password ) =>
 	{
-		startEmailLogin( email, password );
+		startEmailLogin( email, password )
+		.then(process =>
+		{
+			if ( typeof process === 'string' ) // needed to avoid passing down an object to EmailLoginForm
+			{
+				setError( process );
+			}
+		});
 	}
 
 	const clearError = () =>
