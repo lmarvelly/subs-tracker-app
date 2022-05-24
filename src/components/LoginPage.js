@@ -43,9 +43,15 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 		});
 	}
 
+	// TODO: add error messaging
 	const emailLogin = ( email, password ) =>
 	{
 		startEmailLogin( email, password );
+	}
+
+	const clearError = () =>
+	{
+		setError('');
 	}
 
 	const showSignInButtons = () =>
@@ -62,8 +68,9 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 				{ displayLoginButtons && signInButtons }
 				{ displayEmailLogin && 
 					<EmailLoginForm
-						error={error}
+						clearError={clearError}
 						createUserWithEmail={createUserWithEmail} 
+						error={error}
 						emailLogin={emailLogin}
 						showSignInButtons={showSignInButtons}
 					/> 

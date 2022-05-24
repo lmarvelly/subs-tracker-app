@@ -15,9 +15,21 @@ export default class EmailLoginForm extends Component
 		}
 	}
 
-	handleBack = () =>
+	handleBackToSignInButtons = () =>
 	{
 		this.props.showSignInButtons();
+	}
+
+	handleBackToEmailChoiceButtons = () =>
+	{
+		this.setState(
+		{
+			displayType: 'CHOICE_BUTTONS',
+			email: '',
+			error: '',
+			password: ''
+		});
+		this.props.clearError();
 	}
 
 	displayEmailLogin = () =>
@@ -76,7 +88,7 @@ export default class EmailLoginForm extends Component
 				</button>
 				<button
 					className='button--back'
-					onClick={this.handleBack}
+					onClick={this.handleBackToSignInButtons}
 				>
 					back
 				</button>
@@ -88,6 +100,7 @@ export default class EmailLoginForm extends Component
 		const passwordErrorName = this.state.password ? '' : error;
 
 		const loginSignUpForm = (
+			<div>
 			<form className='form' onSubmit={ this.onSubmit }>
 				{ this.props.error && <p className='form__error'>{this.props.error}</p> }
 				{ this.state.error && emailErrorName && <p className='form__error'>Please enter an email</p> }
@@ -108,6 +121,13 @@ export default class EmailLoginForm extends Component
 				/>
 				<button className='button'>{ (this.state.displayType === 'EMAIL_SIGN_UP') ? 'Sign Up' : 'Login'}</button>
 			</form>
+			<button
+				className='button--back'
+				onClick={this.handleBackToEmailChoiceButtons}
+			>
+				back
+			</button>
+			</div>
 		);
 
 		return (
