@@ -20,3 +20,5 @@ test('should test Login button', () => {
 
 	expect(startGoogleLogin).toHaveBeenCalled();
 });
+
+// TODO: Write more tests
