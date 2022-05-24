@@ -188,7 +188,7 @@ export default class EmailLoginForm extends Component
 				<form className='form' onSubmit={ this.onLoginSignUpSubmit }>
 					{ formErrorMessage }
 					{ emailInput }
-					{ this.state.formError && passwordErrorName && <p className='form__error'>Please enter a password</p> }
+					{ passwordErrorName && <p className='form__error'>Please enter a password</p> }
 					<input
 						className={`text-input`}
 						placeholder='Password'
