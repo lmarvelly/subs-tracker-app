@@ -15,6 +15,11 @@ export default class EmailLoginForm extends Component
 		}
 	}
 
+	handleBack = () =>
+	{
+		this.props.showSignInButtons();
+	}
+
 	displayEmailLogin = () =>
 	{
 		this.setState({ displayType: 'EMAIL_LOGIN' })
@@ -71,6 +76,7 @@ export default class EmailLoginForm extends Component
 				</button>
 				<button
 					className='button--back'
+					onClick={this.handleBack}
 				>
 					back
 				</button>

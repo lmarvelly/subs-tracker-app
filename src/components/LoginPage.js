@@ -48,6 +48,13 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 		startEmailLogin( email, password );
 	}
 
+	const showSignInButtons = () =>
+	{
+		setError('');
+		setDisplayEmailLogin(false);
+		setDisplayLoginButtons(true);
+	}
+
 	return (
 		<div className='box-layout'>
 			<div className='box-layout__box'>
@@ -57,7 +64,8 @@ export const LoginPage = ({ startGoogleLogin, startEmailLogin }) =>
 					<EmailLoginForm
 						error={error}
 						createUserWithEmail={createUserWithEmail} 
-						emailLogin={emailLogin} 
+						emailLogin={emailLogin}
+						showSignInButtons={showSignInButtons}
 					/> 
 				}
 			</div>
