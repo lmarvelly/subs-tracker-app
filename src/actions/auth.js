@@ -1,9 +1,10 @@
 import { 
 	auth,
 	firebase,
-	googleAuthProvider,
-	sendPasswordResetEmail
+	googleAuthProvider
 } from '../firebase/firebase';
+
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 
 export const login = (uid) => (
@@ -85,9 +86,10 @@ export const startCreateUserWithEmail = ( email, password ) =>
 
 export const startResetPassword = ( email ) =>
 {
-	sendPasswordResetEmail( auth, email )
+	return firebase.auth().sendPasswordResetEmail( email  )
 	.then( () =>
 	{
+		console.log('Reset Email Sent');
 		return 'Reset email sent. Please check your email';
 	})
 	.catch( error =>
