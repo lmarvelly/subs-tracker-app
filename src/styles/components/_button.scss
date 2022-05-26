@@ -40,11 +40,16 @@
 .button-small
 {
 	@extend .button;
-	width: 10rem;
+	background: white;
+	color: $dark-blue;
 	padding: $xs-size;
+	width: 10rem;
+
 	&:hover
 	{
-		
+		background: none;
+		border: 1px solid white;
+		color: white;
 	}
 }
 
@@ -52,9 +57,12 @@
 {
 	@extend .button-small;
 	background-color: $dark-red;
+	color: white;
+	
 	&:hover
 	{
-		
+		border: 1px solid $dark-red;
+		color: $dark-red;
 	}
 }
 
