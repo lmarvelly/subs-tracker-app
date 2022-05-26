@@ -3,10 +3,8 @@ import { shallow } from 'enzyme';
 import MemberForm from '../../components/MemberForm';
 import { members } from '../fixtures/fixures';
 
-let blankWrapper;
-let completedWrapper;
-let onFirstNameChange;
-let onSurnameChange;
+let blankWrapper, completedWrapper, onFirstNameChange, 
+	onSurnameChange;
 
 beforeEach( () =>
 {
