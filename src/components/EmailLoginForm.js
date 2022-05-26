@@ -89,7 +89,7 @@ export default class EmailLoginForm extends Component
 		}
 		else if ( !this.isEmailValid() ) 
 		{
-			this.setState(() => ({ formError: 'Please check email' }));
+			this.setState(() => ({ formError: 'Please check your email' }));
 		}
 		else
 		{
