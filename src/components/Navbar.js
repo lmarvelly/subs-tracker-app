@@ -83,8 +83,8 @@ export class Navbar extends Component
 				{
 					!this.state.recordNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav-secondary' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
-							<Link className='button--nav-secondary' to='/add-record'>Add Record</Link>
+							<Link className='button--nav' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
+							<Link className='button--nav' to='/add-record'>Add Record</Link>
 						</div>
 					)
 				}
@@ -108,8 +108,8 @@ export class Navbar extends Component
 				{
 					!this.state.memberNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav-secondary' to='/members' activeClassName='is-active'>Members Page </Link>
-							<Link className='button--nav-secondary' to='/add-member'>Add Member</Link>
+							<Link className='button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
+							<Link className='button--nav' to='/add-member'>Add Member</Link>
 						</div>
 					)
 				}
@@ -134,8 +134,8 @@ export class Navbar extends Component
 				{
 					!this.state.seasonNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav-secondary' to='/seasons' activeClassName='is-active'>Seasons Page</Link>
-							<Link className='button--nav-secondary' to='/add-season'>Add Season</Link>
+							<Link className='button--nav' to='/seasons' activeClassName='is-active'>Seasons Page</Link>
+							<Link className='button--nav' to='/add-season'>Add Season</Link>
 						</div>
 					)
 				}
@@ -143,10 +143,11 @@ export class Navbar extends Component
 		);
 
 		// Add dropdown and Help pages button
+		// TODO: Create help page?
 		const helpButtons = (
 			<div>
 				<button className='button'>Help</button>
-				<Link className='button button--nav' to='/help' activeClassName='is-active'>Help Page </Link>
+				<Link className='button--nav' to='/help' activeClassName='is-active'>Help Page </Link>
 			</div>
 		);
 

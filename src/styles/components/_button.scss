@@ -128,16 +128,6 @@
 .button--nav
 {
 	@extend .button;
-	margin-bottom: $s-size;
-	&:hover, &:focus
-	{
-		
-	}
-}
-
-.button--nav-secondary
-{
-	@extend .button--nav;
 	background-color: $dark-blue;
 	border: white solid 1px;
 	border-top: none;
