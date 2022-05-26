@@ -172,7 +172,7 @@ export default class EmailLoginForm extends Component
 			</button>
 		);
 
-		const formErrorMessage = (emailErrorName && <p className='form__error'>Please enter your email</p>)
+		const formErrorMessage = (emailErrorName && <p className='form__error'>Please enter a valid email</p>)
 		const emailInput = (
 			<input 
 				className={`text-input`}
