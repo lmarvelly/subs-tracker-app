@@ -26,11 +26,7 @@
 	@extend .button;
 	background: $darker-red;
 	margin-right: $s-size;
-	margin-bottom: $s-size;
-	@media (min-width: $desktop-breakpoint) 
-	{
-		margin-bottom: 0;
-	}
+	
 	&:hover, &:focus
 	{
 		background: none;
