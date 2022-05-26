@@ -10,11 +10,13 @@ let wrapper,
 	debtWrapper,
 	onAmountChange,
 	onSeasonNameChange,
+	onSubmit,
 	onTypeChange;
 
 beforeEach( () =>
 {
 	// Functions
+	onSubmit = jest.fn();
 	onSeasonNameChange = jest.fn();
 	onTypeChange = jest.fn();
 	onAmountChange = jest.fn();
@@ -57,7 +59,7 @@ test('should render error for not inputing any values form submission', () =>
 		preventDefault: () => {}
 	});
 	expect( wrapper.state('error').length ).toBeGreaterThan(0);
-	expect(wrapper).toMatchSnapshot();
+	expect( wrapper ).toMatchSnapshot();
 });
 
 test('should only render season and amount error message', () => 
@@ -203,11 +205,10 @@ test('Should not set amount because input has too many decimal places', () =>
 
 test('should call onSubmit prop for valid form submission for a Debt', () => 
 {
-	const onSubmitSpy = jest.fn();
 	const wrapper = shallow(
 		<RecordForm 
 			record={records[0]} 
-			onSubmit={onSubmitSpy}
+			onSubmit={onSubmit}
 			members={[]} 
 			seasons={[]} 
 		/>);
@@ -218,7 +219,7 @@ test('should call onSubmit prop for valid form submission for a Debt', () =>
 	});
 
 	expect(wrapper.state('error')).toBe('');
-	expect(onSubmitSpy).toHaveBeenLastCalledWith(
+	expect(onSubmit).toHaveBeenLastCalledWith(
 	{
 		id: records[0].id,
 		playerUuid: records[0].playerUuid,
@@ -234,11 +235,10 @@ test('should call onSubmit prop for valid form submission for a Debt', () =>
 
 test('should call onSubmit prop for valid form submission for a Payment', () => 
 {
-	const onSubmitSpy = jest.fn();
 	const wrapper = shallow(
 		<RecordForm 
 			record={records[1]} 
-			onSubmit={onSubmitSpy}
+			onSubmit={onSubmit}
 			members={[]} 
 			seasons={[]} 
 		/>);
@@ -249,7 +249,7 @@ test('should call onSubmit prop for valid form submission for a Payment', () =>
 	});
 
 	expect(wrapper.state('error')).toBe('');
-	expect(onSubmitSpy).toHaveBeenLastCalledWith(
+	expect(onSubmit).toHaveBeenLastCalledWith(
 	{
 		id: records[1].id,
 		playerUuid: records[1].playerUuid,
