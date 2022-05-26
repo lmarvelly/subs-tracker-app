@@ -11,6 +11,12 @@
 	padding: $s-size;
 	text-decoration: none;
 	width: 22rem;
+	&:hover
+	{
+		background: none;
+		color: $red;
+		border: 1px solid red;
+	}
 }
 
 .button--secondary
@@ -23,6 +29,12 @@
 	{
 		margin-bottom: 0;
 	}
+	&:hover
+	{
+		background: none;
+		border: 1px solid $darker-red;
+		color: $darker-red;
+	}
 }
 
 .button-small
@@ -30,24 +42,40 @@
 	@extend .button;
 	width: 10rem;
 	padding: $xs-size;
+	&:hover
+	{
+		
+	}
 }
 
 .button--back
 {
 	@extend .button-small;
 	background-color: $dark-red;
+	&:hover
+	{
+		
+	}
 }
 
 .button--email-signup
 {
 	@extend .button;
 	background-color: $blue;
+	&:hover
+	{
+		
+	}
 }
 
 .button--google
 {
 	@extend .button;
 	background: $blue;
+	&:hover
+	{
+		
+	}
 }
 
 .button--reset
@@ -80,12 +108,20 @@
 		display: flex;
 		align-items: center;
 	}
+	&:hover
+	{
+		
+	}
 }
 
 .button--nav
 {
 	@extend .button;
 	margin-bottom: $s-size;
+	&:hover
+	{
+		
+	}
 }
 
 .button--nav-secondary
@@ -95,6 +131,10 @@
 	border: #c11e0a solid 5px;
 
 	margin-bottom: 0!important;
+	&:hover
+	{
+		
+	}
 }
 
 .button-spacing
