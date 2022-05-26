@@ -22,20 +22,30 @@ test('should render Email Sign Up form', () =>
 	expect(signInWrapper).toMatchSnapshot();
 });
 
-// Doesn't work. Might be because of match validation
+// Should have 'Please check details' above Sign Up button
 test('should show error message for invalid email', () =>
-{
-	const input = signInWrapper.find('input').at(0);
-	const text = 'example';
-	input.simulate('change', 
+{	
+	const email = signInWrapper.find('input').at(0);
+	email.simulate('change', 
 	{ 
-		target: { value: text }
+		target: { value: 'example' }
 	});
-	// signInWrapper.setState({email: text});
 
-	expect(signInWrapper.state('formError')).toBe('Please Enter a vaild email');
+	const password = signInWrapper.find('input').at(1);
+	password.simulate('change',
+	{
+		target: { value: 'password' }
+	});
+
+	signInWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});;
+	expect(signInWrapper).toMatchSnapshot();
+	expect(signInWrapper.state('formError')).toBe('Please check details');
 });
 
 // write test for missing email
+test('should show missing email', () => {  })
 
 // Write test for missing passowrd
