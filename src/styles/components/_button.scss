@@ -103,6 +103,10 @@
 .button--dropdown
 {
 	@extend .button;
+
+	background-color: white;
+	color: $dark-blue;
+
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 0!important;
@@ -118,8 +122,8 @@
 	}
 	&:hover, &:focus
 	{
-		background-color: $dark-red;
-		border-color: $dark-red;
+		background-color: $dark-blue;
+		border-color: white;
 		color: white;
 	}
 }
@@ -137,21 +141,24 @@
 .button--nav-secondary
 {
 	@extend .button--nav;
-	background-color: $dark-red;
-	border: #c11e0a solid 5px;
+	background-color: white;
+	border: white solid 1px;
+	border-top: none;
+	color: $dark-blue;
 
 	margin-bottom: 0!important;
 	&:hover, &:focus
 	{
-		border: 5px solid $dark-red;
-		background-color: $dark-red;
+		border: 1px solid white;
+		border-top: none;
+		background-color: $dark-blue;
 		color: white;
 	}
 }
 
 .button-spacing
 {
-	width:20%;
+	width: 20%;
 }
 
 .button-symbol
