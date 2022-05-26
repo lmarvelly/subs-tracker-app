@@ -65,3 +65,16 @@ test('should change Season Name', () =>
 
 	expect( blankWrapper.state('seasonName') ).toEqual(name);
 });
+
+test('shouldn\'t change season name if too long', () => 
+{
+	const season = 'SeasonSeasonSeasonSeasonSeasonSeasonSeasonSeasonSeason';
+	const input = blankWrapper.find('input');
+	input.simulate('change', 
+	{ 
+		target: { value: season }
+	});
+
+	expect( blankWrapper ).toMatchSnapshot();
+	expect( blankWrapper.state('seasonName') ).toEqual('');
+});
