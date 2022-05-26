@@ -4,15 +4,16 @@ import MemberForm from '../../components/MemberForm';
 import { members } from '../fixtures/fixures';
 
 let blankWrapper, completedWrapper, onFirstNameChange, 
-	onSurnameChange;
+	onSurnameChange, onSubmit;
 
 beforeEach( () =>
 {
 	onFirstNameChange = jest.fn();
 	onSurnameChange = jest.fn();
+	onSubmit = jest.fn();
 
 	blankWrapper = shallow(<MemberForm onFirstNameChange={onFirstNameChange} onSurnameChange={onSurnameChange} />);
-	completedWrapper = shallow(<MemberForm member={members[0]} />);
+	completedWrapper = shallow(<MemberForm member={members[0]} onSubmit={onSubmit} />);
 });
 
 test('should render Member Form correctly', () => 
@@ -32,7 +33,7 @@ test('shouldn\'t show error on submition of completed Member form ', () =>
 		preventDefault: () => {}
 	});
 
-	expect(completedWrapper.state.error).toEqual('');
+	expect(completedWrapper.state('error')).toEqual('');
 });
 
 test('should render error for not inputing any values form submission', () => 
