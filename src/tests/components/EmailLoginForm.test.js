@@ -40,12 +40,40 @@ test('should show error message for invalid email', () =>
 	signInWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
-	});;
+	});
 	expect(signInWrapper).toMatchSnapshot();
 	expect(signInWrapper.state('formError')).toBe('Please check details');
 });
 
 // write test for missing email
-test('should show missing email', () => {  })
+test('should show error message for missing details', () =>
+{
+	const password = signInWrapper.find('input').at(1);
+	password.simulate('change',
+	{
+		target: { value: 'password' }
+	});
 
-// Write test for missing passowrd
+	signInWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+	expect(signInWrapper).toMatchSnapshot();
+	expect(signInWrapper.state('formError')).toBe('Please check details');
+});
+
+test('should show error message for missing details', () =>
+{
+	const email = signInWrapper.find('input').at(0);
+	email.simulate('change', 
+	{ 
+		target: { value: 'example' }
+	});
+
+	signInWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+	expect(signInWrapper).toMatchSnapshot();
+	expect(signInWrapper.state('formError')).toBe('Please check details');
+});
