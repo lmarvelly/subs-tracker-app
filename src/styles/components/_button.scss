@@ -50,6 +50,20 @@
 	background: $blue;
 }
 
+.button--reset
+{
+	background: none;
+	border: 1px solid black;
+	font-size: $font-size-small;
+	padding: $s-size;
+	width: 75%;
+	&:hover
+	{
+		color: white;
+		background: black;
+	}
+}
+
 .button--dropdown
 {
 	@extend .button;
