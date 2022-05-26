@@ -87,10 +87,8 @@ test('should change first name', () =>
 		target: { value: name }
 	});
 
-	expect( onFirstNameChange ).toHaveBeenCalled();
+	expect( blankWrapper.state('firstName') ).toEqual(name);
 	expect( blankWrapper ).toMatchSnapshot();
-
-	expect( blankWrapper.state.firstName ).toEqual(name);
 });
 
 test('should not change first name if name is too long', () => 
@@ -103,8 +101,7 @@ test('should not change first name if name is too long', () =>
 	});
 
 	expect( blankWrapper ).toMatchSnapshot();
-	expect( onFirstNameChange ).toHaveBeenCalledTimes(0);
-	expect( blankWrapper.state.firstName ).toEqual('');
+	expect( blankWrapper.state('firstName') ).toEqual('');
 });
 
 
@@ -118,9 +115,8 @@ test('should change surname', () =>
 	});
 
 	expect( blankWrapper ).toMatchSnapshot();
-	expect( onSurnameChange ).toHaveBeenCalled();
 
-	expect( blankWrapper.state.surname ).toEqual(surname);
+	expect( blankWrapper.state('surname') ).toEqual(surname);
 });
 
 // State not updating on render
@@ -134,6 +130,6 @@ test('should not change surname if name is too long', () =>
 	});
 
 	expect( blankWrapper ).toMatchSnapshot();
-	expect( onSurnameChange ).toHaveBeenCalledTimes(0);
-	expect( blankWrapper.state.surname ).toEqual('');
+	// expect( onSurnameChange ).toHaveBeenCalledTimes(0);
+	expect( blankWrapper.state('surname') ).toEqual('');
 });
