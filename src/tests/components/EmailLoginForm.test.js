@@ -2,13 +2,16 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import EmailLoginForm from '../../components/EmailLoginForm';
 
-let optionsWrapper, signInWrapper;
+let createUserWithEmail, optionsWrapper, signInWrapper;
 
 beforeEach(() =>
 {
+	createUserWithEmail = jest.fn();
+
 	optionsWrapper = shallow(<EmailLoginForm />);
 
-	signInWrapper = shallow(<EmailLoginForm />);
+	signInWrapper = shallow(
+		<EmailLoginForm createUserWithEmail={createUserWithEmail} />);
 	signInWrapper.setState({ displayType: 'EMAIL_SIGN_UP' });
 });
 
@@ -42,7 +45,7 @@ test('should show error message for invalid email', () =>
 		preventDefault: () => {}
 	});
 	expect(signInWrapper).toMatchSnapshot();
-	expect(signInWrapper.state('formError')).toBe('Please check details');
+	expect(signInWrapper.state('formError')).toBe('Please check your email');
 });
 
 // write test for missing email
@@ -76,4 +79,27 @@ test('should show error message for missing details', () =>
 	});
 	expect(signInWrapper).toMatchSnapshot();
 	expect(signInWrapper.state('formError')).toBe('Please check details');
+});
+
+// Check if this.props.createUserWithEmail gets called
+test('should call createUserWithEmail() from props', () =>
+{
+	const email = signInWrapper.find('input').at(0);
+	email.simulate('change', 
+	{ 
+		target: { value: 'example@email.com' }
+	});
+
+	const password = signInWrapper.find('input').at(1);
+	password.simulate('change',
+	{
+		target: { value: 'password' }
+	});
+
+	signInWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+	// expect(signInWrapper).toMatchSnapshot();
+	expect(createUserWithEmail).toHaveBeenCalled();
 });
