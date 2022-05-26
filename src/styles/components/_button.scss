@@ -2,6 +2,7 @@
 {
 	background: $red;
 	border: none;
+	box-sizing: border-box;
 	color: white;
 	display: inline-block;
 	text-align: center;
@@ -10,8 +11,9 @@
 	line-height: 1.3; // Text with this is not center!?!? Should always have one line
 	padding: $s-size;
 	text-decoration: none;
+	height: 5rem;
 	width: 22rem;
-	&:hover
+	&:hover, &:focus
 	{
 		background: none;
 		color: $red;
@@ -29,7 +31,7 @@
 	{
 		margin-bottom: 0;
 	}
-	&:hover
+	&:hover, &:focus
 	{
 		background: none;
 		border: 1px solid $darker-red;
@@ -44,9 +46,10 @@
 	color: $dark-blue;
 	font-size: $font-size-small;
 	padding: $xs-size;
+	height: 4rem;
 	width: 10rem;
 
-	&:hover
+	&:hover, &:focus
 	{
 		background: none;
 		border: 1px solid white;
@@ -60,7 +63,7 @@
 	background: $dark-blue;
 	color: white;
 	width: 75%;
-	&:hover
+	&:hover, &:focus
 	{
 		color: $dark-blue;
 		background: none;
@@ -74,7 +77,7 @@
 	background-color: $dark-red;
 	color: white;
 	
-	&:hover
+	&:hover, &:focus
 	{
 		border: 1px solid $dark-red;
 		color: $dark-red;
@@ -85,20 +88,16 @@
 {
 	@extend .button;
 	background-color: $blue;
-	&:hover
+	&:hover, &:focus
 	{
-		
+		color: $blue;
+		border: 1px solid $blue;
 	}
 }
 
 .button--google
 {
-	@extend .button;
-	background: $blue;
-	&:hover
-	{
-		
-	}
+	@extend .button--email-signup;
 }
 
 .button--dropdown
@@ -117,9 +116,11 @@
 		display: flex;
 		align-items: center;
 	}
-	&:hover
+	&:hover, &:focus
 	{
-		
+		background-color: $dark-red;
+		border-color: $dark-red;
+		color: white;
 	}
 }
 
@@ -127,7 +128,7 @@
 {
 	@extend .button;
 	margin-bottom: $s-size;
-	&:hover
+	&:hover, &:focus
 	{
 		
 	}
@@ -140,9 +141,11 @@
 	border: #c11e0a solid 5px;
 
 	margin-bottom: 0!important;
-	&:hover
+	&:hover, &:focus
 	{
-		
+		border: 5px solid $dark-red;
+		background-color: $dark-red;
+		color: white;
 	}
 }
 
