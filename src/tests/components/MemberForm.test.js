@@ -130,6 +130,5 @@ test('should not change surname if name is too long', () =>
 	});
 
 	expect( blankWrapper ).toMatchSnapshot();
-	// expect( onSurnameChange ).toHaveBeenCalledTimes(0);
 	expect( blankWrapper.state('surname') ).toEqual('');
 });
