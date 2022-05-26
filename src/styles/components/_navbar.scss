@@ -6,12 +6,11 @@
 	font-size: $font-size-xxlarge;
 	padding: $s-size $m-size;
 
-	&:hover
+	&:hover, &:focus
 	{
 		background-color: white;
 		color: $dark-blue;
 	}
-	// width: 10rem;
 }
 
 .nav

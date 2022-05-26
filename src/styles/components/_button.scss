@@ -38,8 +38,11 @@
 .button-small
 {
 	@extend .button;
-	background: white;
-	color: $dark-blue;
+
+	background: none;
+	border: 1px solid white;
+	color: white;
+	
 	font-size: $font-size-small;
 	padding: $xs-size;
 	height: 4rem;
@@ -47,9 +50,9 @@
 
 	&:hover, &:focus
 	{
-		background: none;
-		border: 1px solid white;
-		color: white;
+		background: white;
+		color: $dark-blue;
+		border-color: white;
 	}
 }
 
