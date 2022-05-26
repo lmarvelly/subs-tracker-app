@@ -42,6 +42,7 @@
 	@extend .button;
 	background: white;
 	color: $dark-blue;
+	font-size: $font-size-small;
 	padding: $xs-size;
 	width: 10rem;
 
@@ -50,6 +51,20 @@
 		background: none;
 		border: 1px solid white;
 		color: white;
+	}
+}
+
+.button--reset
+{
+	@extend .button-small;
+	background: $dark-blue;
+	color: white;
+	width: 75%;
+	&:hover
+	{
+		color: $dark-blue;
+		background: none;
+		border: 1px solid $dark-blue;
 	}
 }
 
@@ -83,20 +98,6 @@
 	&:hover
 	{
 		
-	}
-}
-
-.button--reset
-{
-	background: none;
-	border: 1px solid black;
-	font-size: $font-size-small;
-	padding: $s-size;
-	width: 75%;
-	&:hover
-	{
-		color: white;
-		background: black;
 	}
 }
 
