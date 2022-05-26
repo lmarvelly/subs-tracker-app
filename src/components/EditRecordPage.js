@@ -74,7 +74,7 @@ export class EditRecordPage extends Component
 							onSubmit={ this.onSubmit }
 						/>
 						<button 
-							className='button--secondary margin-bottom-large' 
+							className='button--secondary' 
 							onClick={ this.onRemove }
 						>
 							Remove Record

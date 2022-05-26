@@ -32,7 +32,7 @@ export class EditMemberPage extends Component
 
 	deleteButton = 
 		<button
-			className='button--secondary margin-bottom-large'
+			className='button--secondary'
 			onClick=
 			{
 				(e) =>
@@ -57,11 +57,13 @@ export class EditMemberPage extends Component
 				</div>
 
 				<div className='content-container'>
-					<MemberForm
-						member={this.props.member}
-						onSubmit={this.onSubmit}
-					/>
-					{ this.deleteButton }
+					<div className='content-desktop-padding'>
+						<MemberForm
+							member={this.props.member}
+							onSubmit={this.onSubmit}
+						/>
+						{ this.deleteButton }
+					</div>
 				</div>
 			</div>
 		);
