@@ -14,6 +14,7 @@ let record, startEditRecord, startRemoveRecord,
 beforeEach( () => 
 {
 	record = records[1];
+
 	startEditRecord = jest.fn();
 	startRemoveRecord = jest.fn();
 	sortMembersAlphabetAsc = jest.fn();
@@ -21,7 +22,7 @@ beforeEach( () =>
 	history = { push: jest.fn() };
 
 	wrapper = shallow(
-		<EditRecordPage 
+		<EditRecordPage
 			history={history}
 			sortMembersAlphabetAsc={sortMembersAlphabetAsc}
 			sortSeasonsAlphabetDesc={sortSeasonsAlphabetDesc}
@@ -49,9 +50,11 @@ test('Expected sorting functions to have been called', () =>
 	expect(sortSeasonsAlphabetDesc).toHaveBeenCalledTimes(2);
 });
 
-test('should render edit page without data then redirect to dashboard', () => 
+test('should render edit page, state should change, without data then redirect to dashboard', () => 
 {
 	expect(wrapper).toMatchSnapshot();
+
+	expect(wrapper.state('error')).toBe(true);
 	expect(history.push).toHaveBeenLastCalledWith('/');
 });
 
