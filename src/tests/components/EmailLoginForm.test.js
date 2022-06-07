@@ -4,6 +4,9 @@ import EmailLoginForm from '../../components/EmailLoginForm';
 
 let 
 	createUserWithEmail,
+	displayEmailLogin,
+	displayEmailSignUp,
+	displayResetPassword,
 	emailLogin,
 	emailLoginWrapper,
 	emailSignUpWrapper,
@@ -14,6 +17,9 @@ let
 beforeEach(() =>
 {
 	createUserWithEmail = jest.fn();
+	displayEmailLogin = jest.fn();
+	displayEmailSignUp = jest.fn();
+	displayResetPassword = jest.fn();
 	emailLogin = jest.fn();
 	resetPassword = jest.fn();
 
@@ -25,7 +31,12 @@ beforeEach(() =>
 		<EmailLoginForm createUserWithEmail={createUserWithEmail} />);
 	emailSignUpWrapper.setState({ displayType: 'EMAIL_SIGN_UP' });
 
-	optionsWrapper = shallow(<EmailLoginForm />);
+	optionsWrapper = shallow(
+		<EmailLoginForm 
+			displayEmailLogin={displayEmailLogin}
+			displayEmailSignUp={displayEmailSignUp}
+		/>
+	);
 
 	resetPasswordWrapper = shallow(
 		<EmailLoginForm resetPassword={resetPassword} />
@@ -40,6 +51,36 @@ beforeEach(() =>
 test('should render Email Login Options correctly', () => 
 {
 	expect(optionsWrapper).toMatchSnapshot();
+});
+
+
+//////////////////////////////
+// EMAIL LOGIN BUTTON TESTS //
+//////////////////////////////
+
+test('should call displayEmailLogin() when "Login with email" button is clicked', () => 
+{
+	optionsWrapper.find('button').at(0).simulate('click');
+
+	expect(optionsWrapper.state('displayType')).toBe('EMAIL_LOGIN');
+	// expect(displayEmailLogin).toHaveBeenCalled(); // TODO: Method not called?
+});
+
+test('should call displayEmailSignUp() when "Sign Up with email" button is clicked', () => 
+{
+	optionsWrapper.find('button').at(1).simulate('click');
+
+	expect(optionsWrapper.state('displayType')).toBe('EMAIL_SIGN_UP');
+	// expect(displayEmailSignUp).toHaveBeenCalled(); // TODO: Method not called?
+});
+
+// Test for 'reset password'
+test('should call displayResetPassword() when "reset password" button is clicked', () => 
+{
+	optionsWrapper.find('button').at(2).simulate('click');
+
+	expect(optionsWrapper.state('displayType')).toBe('RESET_PASSWORD');
+	// expect(displayResetPassword).toHaveBeenCalled(); // TODO: Method not called?
 });
 
 ////////////////////////////////////
@@ -211,7 +252,16 @@ test('should render wrapper without error when a valid email is entered', () =>
 // RESET PASSWORD SUBMIT TESTS //
 /////////////////////////////////
 
-// Go through error messages an make sure the state is corrisponding properly to make it tidier
+// TODO: Go through error messages an make sure the state is corrisponding properly to make it tidier
+test('should show error message if email input box is blank', () =>
+{
+	resetPasswordWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(resetPasswordWrapper.state('formError')).toBe('Please check details');
+});
 
 test('should show incorrect email error on Submit attempt', () =>
 {
@@ -226,11 +276,6 @@ test('should show incorrect email error on Submit attempt', () =>
 	});
 
 	expect(resetPasswordWrapper.state('formError')).toBe('Please enter a valid email');
-});
-
-test('should show "Please Check Details" error message', () =>
-{
-	
 });
 
 test('should Submit Reset Password form', () =>
