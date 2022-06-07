@@ -83,7 +83,7 @@ test('should show error message for invalid email', () =>
 });
 
 // write test for missing email
-test('should show error message for missing details', () =>
+test('should show error message for missing email', () =>
 {
 	const password = emailSignUpWrapper.find('input').at(1);
 	password.simulate('change',
@@ -99,7 +99,7 @@ test('should show error message for missing details', () =>
 	expect(emailSignUpWrapper.state('formError')).toBe('Please check details');
 });
 
-test('should show error message for missing details', () =>
+test('should show error message for incorrect email and missing password', () =>
 {
 	const email = emailSignUpWrapper.find('input').at(0);
 	email.simulate('change', 
@@ -144,7 +144,7 @@ test('should call createUserWithEmail() from props on Submit', () =>
 
 
 //////////////////////////////
-// EMAIL LOGIN SUBMIT TESTS //
+// EMAIL LOGIN SUBMIT TEST //
 //////////////////////////////
 
 test('should call emailLogin() when submitted', () => 
@@ -169,8 +169,9 @@ test('should call emailLogin() when submitted', () =>
 	expect(emailLogin).toHaveBeenCalled();
 });
 
+
 ////////////////////////
-// RENDER EMAIL TESTS //
+// RENDER EMAIL TEST //
 ////////////////////////
 
 test('should render Reset email wrapper with error that no email has been entered', () =>
@@ -180,9 +181,11 @@ test('should render Reset email wrapper with error that no email has been entere
 	expect(resetPasswordWrapper).toMatchSnapshot();
 });
 
+
 ////////////////////////////
 // RESET EMAIL FORM TESTS //
 ////////////////////////////
+
 test('should show error for entering incorrect email', () =>
 {
 	resetPasswordWrapper.find('form').simulate('change',
@@ -203,6 +206,7 @@ test('should render wrapper without error when a valid email is entered', () =>
 	expect(resetPasswordWrapper.state('formError')).toBe('');
 	expect(resetPasswordWrapper).toMatchSnapshot();
 });
+
 
 /////////////////////////////////
 // RESET PASSWORD SUBMIT TESTS //
