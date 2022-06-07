@@ -288,7 +288,7 @@ test('should check if Season Dropdown was changed', () =>
 
 	expect(altWrapper.state('seasonUuid')).toEqual(value);
 
-	// The function below should be called but isn't for some reason
+	// TODO: The function below should be called but isn't for some reason
 	// expect(onSeasonNameChange).toHaveBeenCalled();
 });
 
