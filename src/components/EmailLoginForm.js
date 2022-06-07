@@ -94,7 +94,7 @@ export default class EmailLoginForm extends Component
 		}
 		else if ( !this.isEmailValid() ) 
 		{
-			this.setState(() => ({ formError: 'Please check your email' }));
+			this.setState(() => ({ formError: 'Please enter a valid email' }));
 		}
 		else
 		{
@@ -122,7 +122,7 @@ export default class EmailLoginForm extends Component
 		}
 		else if ( !this.isEmailValid() ) 
 		{
-			this.setState(() => ({ formError: 'Please check email' }));
+			this.setState(() => ({ formError: 'Please enter a valid email' }));
 		}
 		else
 		{
@@ -176,7 +176,7 @@ export default class EmailLoginForm extends Component
 			</button>
 		);
 
-		const formErrorMessage = (emailErrorName && <p className='form__error'>Please enter a valid email</p>)
+		const emailErrorMessage = (emailErrorName && <p className='form__error'>Please enter a valid email</p>)
 		const emailInput = (
 			<input 
 				className={`text-input`}
@@ -189,7 +189,7 @@ export default class EmailLoginForm extends Component
 		const loginSignUpForm = (
 			<div>
 				<form className='form' onSubmit={ this.onLoginSignUpSubmit }>
-					{ formErrorMessage }
+					{ emailErrorMessage }
 					{ emailInput }
 					{ passwordErrorName && <p className='form__error'>Please enter a password</p> }
 					<input
@@ -209,7 +209,7 @@ export default class EmailLoginForm extends Component
 		const resetPasswordForm = (
 			<div>
 				<form className='form' onSubmit={this.onResetEmailSubmit}>
-					{ formErrorMessage }
+					{ emailErrorMessage }
 					{ emailInput }
 					{ this.state.formError && <p className='form__error'>Please Check Details</p> }
 					<button className='button'>Reset Password</button>
