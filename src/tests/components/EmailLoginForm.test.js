@@ -2,17 +2,23 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import EmailLoginForm from '../../components/EmailLoginForm';
 
-let createUserWithEmail, optionsWrapper, signInWrapper;
+let 
+	createUserWithEmail, 
+	emailSignUpWrapper,
+	optionsWrapper, 
+	emailSignInWrapper;
 
 beforeEach(() =>
 {
 	createUserWithEmail = jest.fn();
 
+	emailSignUpWrapper = shallow(<EmailLoginForm />);
+
 	optionsWrapper = shallow(<EmailLoginForm />);
 
-	signInWrapper = shallow(
+	emailSignInWrapper = shallow(
 		<EmailLoginForm createUserWithEmail={createUserWithEmail} />);
-	signInWrapper.setState({ displayType: 'EMAIL_SIGN_UP' });
+	emailSignInWrapper.setState({ displayType: 'EMAIL_SIGN_UP' });
 });
 
 test('should render Email Login Options correctly', () => 
@@ -22,84 +28,89 @@ test('should render Email Login Options correctly', () =>
 
 test('should render Email Sign Up form', () => 
 {
-	expect(signInWrapper).toMatchSnapshot();
+	expect(emailSignInWrapper).toMatchSnapshot();
 });
 
 // Should have 'Please check details' above Sign Up button
 test('should show error message for invalid email', () =>
 {	
-	const email = signInWrapper.find('input').at(0);
+	const email = emailSignInWrapper.find('input').at(0);
 	email.simulate('change', 
 	{ 
 		target: { value: 'example' }
 	});
 
-	const password = signInWrapper.find('input').at(1);
+	const password = emailSignInWrapper.find('input').at(1);
 	password.simulate('change',
 	{
 		target: { value: 'password' }
 	});
 
-	signInWrapper.find('form').simulate('submit', 
+	emailSignInWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	expect(signInWrapper).toMatchSnapshot();
-	expect(signInWrapper.state('formError')).toBe('Please check your email');
+	expect(emailSignInWrapper).toMatchSnapshot();
+	expect(emailSignInWrapper.state('formError')).toBe('Please check your email');
 });
 
 // write test for missing email
 test('should show error message for missing details', () =>
 {
-	const password = signInWrapper.find('input').at(1);
+	const password = emailSignInWrapper.find('input').at(1);
 	password.simulate('change',
 	{
 		target: { value: 'password' }
 	});
 
-	signInWrapper.find('form').simulate('submit', 
+	emailSignInWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	expect(signInWrapper).toMatchSnapshot();
-	expect(signInWrapper.state('formError')).toBe('Please check details');
+	expect(emailSignInWrapper).toMatchSnapshot();
+	expect(emailSignInWrapper.state('formError')).toBe('Please check details');
 });
 
 test('should show error message for missing details', () =>
 {
-	const email = signInWrapper.find('input').at(0);
+	const email = emailSignInWrapper.find('input').at(0);
 	email.simulate('change', 
 	{ 
 		target: { value: 'example' }
 	});
 
-	signInWrapper.find('form').simulate('submit', 
+	emailSignInWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	expect(signInWrapper).toMatchSnapshot();
-	expect(signInWrapper.state('formError')).toBe('Please check details');
+	expect(emailSignInWrapper).toMatchSnapshot();
+	expect(emailSignInWrapper.state('formError')).toBe('Please check details');
 });
 
 // Check if this.props.createUserWithEmail gets called
 test('should call createUserWithEmail() from props', () =>
 {
-	const email = signInWrapper.find('input').at(0);
+	const email = emailSignInWrapper.find('input').at(0);
 	email.simulate('change', 
 	{ 
 		target: { value: 'example@email.com' }
 	});
 
-	const password = signInWrapper.find('input').at(1);
+	const password = emailSignInWrapper.find('input').at(1);
 	password.simulate('change',
 	{
 		target: { value: 'password' }
 	});
 
-	signInWrapper.find('form').simulate('submit', 
+	emailSignInWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	// expect(signInWrapper).toMatchSnapshot();
+	// expect(emailSignInWrapper).toMatchSnapshot();
 	expect(createUserWithEmail).toHaveBeenCalled();
 });
+
+// Test for rendering Email Sign Up
+
+
+// Tests for Submitting Email Sign Up details
