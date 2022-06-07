@@ -55,6 +55,11 @@ export default class EmailLoginForm extends Component
 	onEmailChange = ( e ) =>
 	{
 		this.setState({ email: e.target.value });
+
+		if((this.state.displayType === 'RESET_PASSWORD') && this.isEmailValid())
+		{
+			this.setState({ formError: '' });
+		}
 	}
 
 	onPasswordChange = ( e ) =>
@@ -121,7 +126,6 @@ export default class EmailLoginForm extends Component
 		}
 		else
 		{
-			console.log('Reset Password');
 			this.props.resetPassword( this.state.email );
 			this.resetState();
 		}
@@ -182,7 +186,6 @@ export default class EmailLoginForm extends Component
 				onChange={this.onEmailChange}
 			/>);
 
-		// TODO: Add validation if password is blank
 		const loginSignUpForm = (
 			<div>
 				<form className='form' onSubmit={ this.onLoginSignUpSubmit }>
@@ -208,6 +211,7 @@ export default class EmailLoginForm extends Component
 				<form className='form' onSubmit={this.onResetEmailSubmit}>
 					{ formErrorMessage }
 					{ emailInput }
+					{ this.state.formError && <p className='form__error'>Please Check Details</p> }
 					<button className='button'>Reset Password</button>
 				</form>
 				{ backButton }
