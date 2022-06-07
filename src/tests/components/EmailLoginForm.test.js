@@ -79,10 +79,9 @@ test('should show error message for invalid email', () =>
 		preventDefault: () => {}
 	});
 	expect(emailSignUpWrapper).toMatchSnapshot();
-	expect(emailSignUpWrapper.state('formError')).toBe('Please check your email');
+	expect(emailSignUpWrapper.state('formError')).toBe('Please enter a valid email');
 });
 
-// write test for missing email
 test('should show error message for missing email', () =>
 {
 	const password = emailSignUpWrapper.find('input').at(1);
@@ -212,6 +211,8 @@ test('should render wrapper without error when a valid email is entered', () =>
 // RESET PASSWORD SUBMIT TESTS //
 /////////////////////////////////
 
+// Go through error messages an make sure the state is corrisponding properly to make it tidier
+
 test('should show incorrect email error on Submit attempt', () =>
 {
 	resetPasswordWrapper.find('input').at(0).simulate('change',
@@ -224,7 +225,12 @@ test('should show incorrect email error on Submit attempt', () =>
 		preventDefault: () => {}
 	});
 
-	expect(resetPasswordWrapper.state('formError')).toBe('Please check email');
+	expect(resetPasswordWrapper.state('formError')).toBe('Please enter a valid email');
+});
+
+test('should show "Please Check Details" error message', () =>
+{
+	
 });
 
 test('should Submit Reset Password form', () =>
