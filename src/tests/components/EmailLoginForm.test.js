@@ -4,21 +4,22 @@ import EmailLoginForm from '../../components/EmailLoginForm';
 
 let 
 	createUserWithEmail, 
-	emailSignUpWrapper,
 	optionsWrapper, 
-	emailSignInWrapper;
+	emailSignInWrapper,
+	emailSignUpWrapper;
 
 beforeEach(() =>
 {
 	createUserWithEmail = jest.fn();
 
-	emailSignUpWrapper = shallow(<EmailLoginForm />);
+	emailSignInWrapper = shallow(<EmailLoginForm />);
+	emailSignInWrapper.setState({ displayType: 'EMAIL_LOGIN' });
 
 	optionsWrapper = shallow(<EmailLoginForm />);
 
-	emailSignInWrapper = shallow(
+	emailSignUpWrapper = shallow(
 		<EmailLoginForm createUserWithEmail={createUserWithEmail} />);
-	emailSignInWrapper.setState({ displayType: 'EMAIL_SIGN_UP' });
+	emailSignUpWrapper.setState({ displayType: 'EMAIL_SIGN_UP' });
 });
 
 test('should render Email Login Options correctly', () => 
@@ -28,85 +29,85 @@ test('should render Email Login Options correctly', () =>
 
 test('should render Email Sign Up form', () => 
 {
-	expect(emailSignInWrapper).toMatchSnapshot();
+	expect(emailSignUpWrapper).toMatchSnapshot();
 });
 
 // Should have 'Please check details' above Sign Up button
 test('should show error message for invalid email', () =>
 {	
-	const email = emailSignInWrapper.find('input').at(0);
+	const email = emailSignUpWrapper.find('input').at(0);
 	email.simulate('change', 
 	{ 
 		target: { value: 'example' }
 	});
 
-	const password = emailSignInWrapper.find('input').at(1);
+	const password = emailSignUpWrapper.find('input').at(1);
 	password.simulate('change',
 	{
 		target: { value: 'password' }
 	});
 
-	emailSignInWrapper.find('form').simulate('submit', 
+	emailSignUpWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	expect(emailSignInWrapper).toMatchSnapshot();
-	expect(emailSignInWrapper.state('formError')).toBe('Please check your email');
+	expect(emailSignUpWrapper).toMatchSnapshot();
+	expect(emailSignUpWrapper.state('formError')).toBe('Please check your email');
 });
 
 // write test for missing email
 test('should show error message for missing details', () =>
 {
-	const password = emailSignInWrapper.find('input').at(1);
+	const password = emailSignUpWrapper.find('input').at(1);
 	password.simulate('change',
 	{
 		target: { value: 'password' }
 	});
 
-	emailSignInWrapper.find('form').simulate('submit', 
+	emailSignUpWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	expect(emailSignInWrapper).toMatchSnapshot();
-	expect(emailSignInWrapper.state('formError')).toBe('Please check details');
+	expect(emailSignUpWrapper).toMatchSnapshot();
+	expect(emailSignUpWrapper.state('formError')).toBe('Please check details');
 });
 
 test('should show error message for missing details', () =>
 {
-	const email = emailSignInWrapper.find('input').at(0);
+	const email = emailSignUpWrapper.find('input').at(0);
 	email.simulate('change', 
 	{ 
 		target: { value: 'example' }
 	});
 
-	emailSignInWrapper.find('form').simulate('submit', 
+	emailSignUpWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	expect(emailSignInWrapper).toMatchSnapshot();
-	expect(emailSignInWrapper.state('formError')).toBe('Please check details');
+	expect(emailSignUpWrapper).toMatchSnapshot();
+	expect(emailSignUpWrapper.state('formError')).toBe('Please check details');
 });
 
 // Check if this.props.createUserWithEmail gets called
 test('should call createUserWithEmail() from props', () =>
 {
-	const email = emailSignInWrapper.find('input').at(0);
+	const email = emailSignUpWrapper.find('input').at(0);
 	email.simulate('change', 
 	{ 
 		target: { value: 'example@email.com' }
 	});
 
-	const password = emailSignInWrapper.find('input').at(1);
+	const password = emailSignUpWrapper.find('input').at(1);
 	password.simulate('change',
 	{
 		target: { value: 'password' }
 	});
 
-	emailSignInWrapper.find('form').simulate('submit', 
+	emailSignUpWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
-	// expect(emailSignInWrapper).toMatchSnapshot();
+	// expect(emailSignUpWrapper).toMatchSnapshot();
 	expect(createUserWithEmail).toHaveBeenCalled();
 });
 
