@@ -208,7 +208,7 @@ export default class EmailLoginForm extends Component
 				<form className='form' onSubmit={this.onResetEmailSubmit}>
 					{ formErrorMessage }
 					{ emailInput }
-					<button className='button'>Send Email</button>
+					<button className='button'>Reset Password</button>
 				</form>
 				{ backButton }
 			</div>
