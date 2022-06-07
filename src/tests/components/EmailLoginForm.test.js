@@ -35,6 +35,7 @@ beforeEach(() =>
 		<EmailLoginForm 
 			displayEmailLogin={displayEmailLogin}
 			displayEmailSignUp={displayEmailSignUp}
+			displayResetPassword={displayResetPassword}
 		/>
 	);
 
