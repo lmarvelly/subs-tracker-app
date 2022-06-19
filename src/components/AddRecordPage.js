@@ -102,10 +102,10 @@ const mapStateToProps = (state, props) =>
  * implicitly return an object
  */
 const mapDispatchToProps = (dispatch) => (
-	{
-		startAddRecord: (record) => dispatch(startAddRecord(record)),
-		sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
-		sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
-	});
+{
+	startAddRecord: (record) => dispatch(startAddRecord(record)),
+	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
+	sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRecordPage);
