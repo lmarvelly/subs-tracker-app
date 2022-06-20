@@ -8,13 +8,25 @@
 	}
 }
 
+.form__session
+{
+	@extend .form;
+	> * // for all direct decendants and amountInDebt id
+	{
+		margin-bottom: 0;
+	}
+}
+
 .form__session-header
 {
 	font-weight: 900;
 	display: flex;
-	flex-direction: row;
-	margin-bottom: $s-size;
+	flex-direction: column;
 	word-break: normal;
+	> * // for all direct decendants and amountInDebt id
+	{
+		margin-bottom: $m-size;
+	}
 }
 
 .form__session-item
@@ -27,13 +39,14 @@
 
 .form__session-col-name
 {
-	width: 80%;
+	width: 60%;
 }
 .form__session-col-checkbox
 {
-	width: 10%;
+	width: 20%;
 	text-align: center;
 	align-items: center;
+	margin-bottom: 0;
 }
 
 .form__error
