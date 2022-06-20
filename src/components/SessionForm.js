@@ -19,9 +19,6 @@ export class SessionForm extends Component
 
 	onAddItem = ( item ) =>
 	{
-		console.log(item); // TODO: remove after testing
-
-		// let exists = false;
 		if (this.state.session.length === 0) 
 		{
 			this.setState({ session: [item] });
@@ -32,8 +29,6 @@ export class SessionForm extends Component
 			{
 				return item.playerUuid === currentItem.playerUuid;
 			})
-
-			console.log('INDEX: ', index);
 			if(index >= 0)
 			{
 				const session = this.state.session;
