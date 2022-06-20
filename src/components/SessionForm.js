@@ -17,7 +17,7 @@ export class SessionForm extends Component
 		}
 	};
 
-	onAddItem = ( item ) =>
+	addItem = ( item ) =>
 	{
 		if (this.state.session.length === 0) 
 		{
@@ -78,7 +78,7 @@ export class SessionForm extends Component
 									firstName={member.firstName}
 									surname={member.surname}
 									playerUuid={member.playerUuid}
-									onAddItem={this.onAddItem}
+									addItem={this.addItem}
 								/>
 							);
 						})
