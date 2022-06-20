@@ -28,7 +28,7 @@ export class SessionForm extends Component
 			const index = this.state.session.findIndex( (currentItem) =>
 			{
 				return item.playerUuid === currentItem.playerUuid;
-			})
+			});
 			if(index >= 0)
 			{
 				const session = this.state.session;
@@ -42,6 +42,17 @@ export class SessionForm extends Component
 		}
 	}
 
+	removeItem = ( playerUuid ) =>
+	{
+		const sessionList = this.state.session;
+		const index = this.state.session.findIndex( (currentItem) =>
+		{
+			return playerUuid === currentItem.playerUuid;
+		});
+		sessionList.splice( index, 1 );
+		this.setState({ session: [...sessionList] });
+	}
+
 	render()
 	{
 		if( this.state.members && this.state.seasons )
@@ -49,6 +60,7 @@ export class SessionForm extends Component
 			return (
 				<form className='form__session'>
 					<div className='form__session-header'>
+						<input placeholder='DATE ITEM' type='text' />
 						<select name="" id="">
 							<option value="">Select a Season</option>
 						</select>
@@ -79,6 +91,7 @@ export class SessionForm extends Component
 									surname={member.surname}
 									playerUuid={member.playerUuid}
 									addItem={this.addItem}
+									removeItem={this.removeItem}
 								/>
 							);
 						})

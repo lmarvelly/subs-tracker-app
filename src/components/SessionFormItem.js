@@ -15,12 +15,22 @@ export class SessionFormItem extends Component
 
 	onAttend = (e) =>
 	{
-		this.setState({ attending: !this.state.attending })
-		this.props.addItem({ type: 'DEBT', playerUuid: this.props.playerUuid })
+		this.setState({ attending: !this.state.attending });
+		this.setState({ paid: false });
+
+		if(e.target.checked)
+		{
+			this.props.addItem({ type: 'DEBT', playerUuid: this.props.playerUuid });
+		}
+		else
+		{
+			this.props.removeItem( this.props.playerUuid );
+		}
 	}
 
 	onPaid = (e) =>
 	{
+		this.setState({ paid: !this.state.paid });
 		if(e.target.checked)
 		{
 			this.props.addItem({ type: 'PAYMENT', playerUuid: this.props.playerUuid });
@@ -42,7 +52,6 @@ export class SessionFormItem extends Component
 					<div className='form__session-col-checkbox'>
 						<input 
 							value={this.props.playerUuid} 
-							name='attended'
 							type="checkbox"
 							onChange={this.onAttend}
 						/>
@@ -51,7 +60,8 @@ export class SessionFormItem extends Component
 						<input
 							disabled={!this.state.attending}
 							value={this.props.playerUuid} 
-							type="checkbox" 
+							type="checkbox"
+							checked={this.state.paid}
 							onChange={this.onPaid}
 						/>
 					</div>
