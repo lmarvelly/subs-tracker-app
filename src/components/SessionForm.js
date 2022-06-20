@@ -17,21 +17,36 @@ export class SessionForm extends Component
 		}
 	};
 
-	onAttend = ( e ) =>
+	onAddItem = ( item ) =>
 	{
-		if (e.target.checked) 
+		console.log(item); // TODO: remove after testing
+
+		// let exists = false;
+		if (this.state.session.length === 0) 
 		{
-			console.log(e.target.value);
+			this.setState({ session: [item] });
 		}
-		if (!e.target.checked) 
+		else
 		{
-			console.log('false');
+			const index = this.state.session.findIndex( (currentItem) =>
+			{
+				return item.playerUuid === currentItem.playerUuid;
+			})
+
+			console.log('INDEX: ', index);
+			if(index >= 0)
+			{
+				const session = this.state.session;
+				session[index] = item;
+				this.setState({ session })
+			}
+			else
+			{
+				this.setState({ session: [ ...this.state.session, item ] })
+			}
 		}
 	}
 
-	// TODO: Need to return playerUuid when checkbox is clicked
-	// REMOVE: HR and replace it with line on bottom of div
-	// Have paid box disabled unless attended box is checked
 	render()
 	{
 		if( this.state.members && this.state.seasons )
@@ -39,6 +54,9 @@ export class SessionForm extends Component
 			return (
 				<form className='form__session'>
 					<div className='form__session-header'>
+						<select name="" id="">
+							<option value="">Select a Season</option>
+						</select>
 						<input 
 							placeholder='Session name. i.e. training' 
 							className='text-input' 
@@ -54,7 +72,6 @@ export class SessionForm extends Component
 							<div className='form__session-col-checkbox'>Attended</div>
 							<div className='form__session-col-checkbox'>Paid</div>
 						</div>
-						<hr className='margin-bottom-medium' />
 					</div>
 
 					{
@@ -66,7 +83,7 @@ export class SessionForm extends Component
 									firstName={member.firstName}
 									surname={member.surname}
 									playerUuid={member.playerUuid}
-									onAttend={this.onAttend}
+									onAddItem={this.onAddItem}
 								/>
 							);
 						})

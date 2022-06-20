@@ -9,23 +9,30 @@ export class SessionFormItem extends Component
 		this.state =
 		{
 			attending: false,
-			paid: false
+			paid: false,
 		}
 	}
 
-	onAttend = () =>
+	onAttend = (e) =>
 	{
 		this.setState({ attending: !this.state.attending })
+		this.props.onAddItem({ type: 'DEBT', playerUuid: this.props.playerUuid })
 	}
 
-	onPaid = () =>
+	onPaid = (e) =>
 	{
-		
+		if(e.target.checked)
+		{
+			this.props.onAddItem({ type: 'PAYMENT', playerUuid: this.props.playerUuid });
+		}
+		else
+		{
+			this.props.onAddItem({ type: 'DEBT', playerUuid: this.props.playerUuid })
+		}
 	}
 
 	render()
 	{
-		console.log();
 		return(
 			<div>
 				<div className='form__session-item'>
