@@ -9,31 +9,44 @@ export class SessionForm extends Component
 		super(props);
 		this.state = 
 		{
+			session: [],
 			members: this.props.members ? this.props.members : '',
 			seasons: this.props.seasons ? this.props.seasons : ''
 		}
 	};
 
 	// TODO: Need to return playerUuid when checkbox is clicked
-
+	// Have paid box disabled unless attended box is checked
 	render()
 	{
 		if( this.state.members && this.state.seasons )
 		{
 			return (
-				<form>
+				<form className='form__session'>
 					<div className='form__session-header'>
-						<div className='form__session-col-name'>Name</div>
-						<div className='form__session-col-checkbox'>Attended</div>
-						<div className='form__session-col-checkbox'>Paid</div>
+						<input 
+							placeholder='Session name. i.e. training' 
+							className='text-input' 
+							type="text" 
+						/>
+						<input 
+							placeholder='Amount each'
+							className='text-input'
+							type="text"
+						/>
+						<div className='row'>
+							<div className='form__session-col-name'>Name</div>
+							<div className='form__session-col-checkbox'>Attended</div>
+							<div className='form__session-col-checkbox'>Paid</div>
+						</div>
+						<hr className='margin-bottom-medium' />
 					</div>
-					<hr />
 
 					{
 						this.state.members.map(( member ) =>
 						{
 							return (
-								<div>
+								<div key={member.playerUuid}>
 									<div className='form__session-item'>
 										<div className='form__session-col-name'>
 											<span>{`${member.firstName} ${member.surname}`}</span>
@@ -50,6 +63,7 @@ export class SessionForm extends Component
 							);
 						})
 					}
+					<button className='button'>Add Session</button>
 				</form>
 			);
 		}
