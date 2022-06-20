@@ -62,6 +62,12 @@ select, input, textarea
 	width: 100%;
 }
 
+.row
+{
+	display: flex;
+	flex-direction: row;
+}
+
 .header-desktop-padding
 {
 	@media (min-width: $desktop-breakpoint)
@@ -94,7 +100,7 @@ select, input, textarea
 
 .margin-bottom-medium
 {
-	margin-bottom: $m-size;
+	margin-bottom: $m-size !important;
 }
 
 .margin-top-medium--mobile
