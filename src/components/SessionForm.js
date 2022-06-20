@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
+import SessionFormItem from './SessionFormItem';
+
 export class SessionForm extends Component
 {
 	constructor( props )
@@ -15,7 +17,20 @@ export class SessionForm extends Component
 		}
 	};
 
+	onAttend = ( e ) =>
+	{
+		if (e.target.checked) 
+		{
+			console.log(e.target.value);
+		}
+		if (!e.target.checked) 
+		{
+			console.log('false');
+		}
+	}
+
 	// TODO: Need to return playerUuid when checkbox is clicked
+	// REMOVE: HR and replace it with line on bottom of div
 	// Have paid box disabled unless attended box is checked
 	render()
 	{
@@ -46,20 +61,13 @@ export class SessionForm extends Component
 						this.state.members.map(( member ) =>
 						{
 							return (
-								<div key={member.playerUuid}>
-									<div className='form__session-item'>
-										<div className='form__session-col-name'>
-											<span>{`${member.firstName} ${member.surname}`}</span>
-										</div>
-										<div className='form__session-col-checkbox'>
-											<input name='attended' type="checkbox" />
-										</div>
-										<div className='form__session-col-checkbox'>
-											<input type="checkbox" />
-										</div>
-									</div>
-									<hr />
-								</div>
+								<SessionFormItem 
+									key={member.playerUuid}
+									firstName={member.firstName}
+									surname={member.surname}
+									playerUuid={member.playerUuid}
+									onAttend={this.onAttend}
+								/>
 							);
 						})
 					}

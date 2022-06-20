@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+
+export class SessionFormItem extends Component
+{
+	constructor( props )
+	{
+		super( props );
+
+		this.state =
+		{
+			attending: false,
+			paid: false
+		}
+	}
+
+	onAttend = () =>
+	{
+		this.setState({ attending: !this.state.attending })
+	}
+
+	onPaid = () =>
+	{
+		
+	}
+
+	render()
+	{
+		console.log();
+		return(
+			<div>
+				<div className='form__session-item'>
+					<div className='form__session-col-name'>
+						<span>{`${this.props.firstName} ${this.props.surname}`}</span>
+					</div>
+					<div className='form__session-col-checkbox'>
+						<input 
+							value={this.props.playerUuid} 
+							name='attended'
+							type="checkbox"
+							onChange={this.onAttend}
+						/>
+					</div>
+					<div className='form__session-col-checkbox'>
+						<input
+							disabled={!this.state.attending}
+							value={this.props.playerUuid} 
+							type="checkbox" 
+							onChange={this.onPaid}
+						/>
+					</div>
+				</div>
+			</div>
+		);
+	}
+}
+
+export default SessionFormItem;
