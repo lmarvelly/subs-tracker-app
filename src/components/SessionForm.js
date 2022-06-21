@@ -13,9 +13,7 @@ export class SessionForm extends Component
 		{
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			calenderFocused: false,
-			session: [],
-			members: this.props.members ? this.props.members : '',
-			seasons: this.props.seasons ? this.props.seasons : ''
+			session: []
 		}
 	};
 
@@ -69,7 +67,7 @@ export class SessionForm extends Component
 
 	render()
 	{
-		if( this.state.members && this.state.seasons )
+		if( this.props.members && this.props.seasons )
 		{
 			return (
 				<form className='form__session'>
@@ -84,7 +82,10 @@ export class SessionForm extends Component
 							displayFormat="DD/MM/YYYY"
 						/>
 						<select className='select'>
-							<option value="">Select a Season</option>
+							<option hidden>Select a Season</option>
+							{
+
+							}
 						</select>
 						<input 
 							placeholder='Session name. i.e. training' 
@@ -104,7 +105,7 @@ export class SessionForm extends Component
 					</div>
 
 					{
-						this.state.members.map(( member ) =>
+						this.props.members.map(( member ) =>
 						{
 							return (
 								<SessionFormItem 
@@ -122,19 +123,19 @@ export class SessionForm extends Component
 				</form>
 			);
 		}
-		else if ( !this.state.members && !this.state.seasons ) 
+		else if ( !this.props.members && !this.props.seasons ) 
 		{
 			// TODO
 			console.log('Whoops there are no members or seasons');
 			return(<div></div>);
 		}
-		else if ( !this.state.members ) 
+		else if ( !this.props.members ) 
 		{
 			// TODO
 			console.log('Whoops there are no members');
 			return(<div></div>);
 		}
-		else if ( !this.state.seasons ) 
+		else if ( !this.props.seasons ) 
 		{
 			// TODO
 			console.log('Whoops there are no seasons');
