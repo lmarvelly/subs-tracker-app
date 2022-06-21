@@ -337,6 +337,7 @@ export default class RecordForm extends Component
 						onFocusChange={ this.onFocusChange }
 						numberOfMonths={1}
 						isOutsideRange={ () => false }
+						displayFormat="DD/MM/YYYY"
 					/>
 					<textarea
 						className='textarea'
