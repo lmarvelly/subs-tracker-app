@@ -9,8 +9,35 @@ export class AddSessionPage extends Component
 {
 	constructor( props )
 	{
-		super( props )
-	}
+		super( props );
+
+		this.state =
+		{
+			members: this.props.members ? this.props.members : [],
+			seasons: this.props.seasons ? this.props.seasons : []
+		}
+	};
+
+	componentWillReceiveProps() {
+		const doMembersExist = this.props.members.length > 0;
+		const doSeasonsExist = this.props.seasons.length > 0;
+
+		if (!doMembersExist || !doSeasonsExist) {
+			const message = () => {
+				if (!doMembersExist && !doSeasonsExist) {
+					return 'There are no existing Seasons or Members. Please create both before creating any records.';
+				}
+				else if (!doMembersExist) {
+					return 'There are no existing Members. Please create a member before creating any records.';
+				}
+				else if (!doSeasonsExist) {
+					return 'There are no existing Seasons/categories. Please create one before creating any records.';
+				}
+			}
+			alert(message());
+			this.props.history.push('/'); // return to dashboard
+		}
+	};
 
 	render()
 	{
