@@ -15,11 +15,18 @@ export class AddSessionPage extends Component
 	render()
 	{
 		return (
-			<div className='content-container'>
-				<SessionForm
-					members={ this.props.members }
-					seasons={ this.props.seasons }
-				/>
+			<div>
+				<div className='page-header'>
+					<div className='content-container'>
+						<h1 className='page-header__title'>Add Session Page</h1>
+					</div>
+				</div>
+				<div className='content-container'>
+					<SessionForm
+						members={ this.props.members }
+						seasons={ this.props.seasons }
+					/>
+				</div>
 			</div>
 		);
 	}
