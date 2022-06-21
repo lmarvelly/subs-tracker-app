@@ -84,7 +84,17 @@ export class SessionForm extends Component
 						<select className='select'>
 							<option hidden>Select a Season</option>
 							{
-
+								this.props.seasons.map( (season) =>
+								{
+									return(
+										<option
+											key={season.seasonUuid}
+											value={season.seasonUuid}
+										>
+											{`${season.seasonName}`}
+										</option>
+									)
+								})
 							}
 						</select>
 						<input 
