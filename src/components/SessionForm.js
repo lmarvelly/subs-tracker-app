@@ -83,7 +83,7 @@ export class SessionForm extends Component
 							isOutsideRange={ () => false }
 							displayFormat="DD/MM/YYYY"
 						/>
-						<select name="" id="">
+						<select className='select'>
 							<option value="">Select a Season</option>
 						</select>
 						<input 
