@@ -11,6 +11,8 @@ export class SessionForm extends Component
 		super(props);
 		this.state = 
 		{
+			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
+			calenderFocused: false,
 			session: [],
 			members: this.props.members ? this.props.members : '',
 			seasons: this.props.seasons ? this.props.seasons : ''
@@ -53,6 +55,18 @@ export class SessionForm extends Component
 		this.setState({ session: [...sessionList] });
 	}
 
+	onDateChange = ( createdAt ) => 
+	{
+		if(createdAt) // prevents the user from deleting the date.
+		{
+			this.setState( () => ({ createdAt }) );
+		}
+	};
+	onFocusChange = ( { focused } ) => 
+	{
+		this.setState( () => ({ calenderFocused: focused }) );
+	};
+
 	render()
 	{
 		if( this.state.members && this.state.seasons )
@@ -60,7 +74,15 @@ export class SessionForm extends Component
 			return (
 				<form className='form__session'>
 					<div className='form__session-header'>
-						<input placeholder='DATE ITEM' type='text' />
+						<SingleDatePicker
+							date={ this.state.createdAt }
+							onDateChange={ this.onDateChange }
+							focused={ this.state.calenderFocused }
+							onFocusChange={ this.onFocusChange }
+							numberOfMonths={ 1 }
+							isOutsideRange={ () => false }
+							displayFormat="DD/MM/YYYY"
+						/>
 						<select name="" id="">
 							<option value="">Select a Season</option>
 						</select>
