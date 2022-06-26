@@ -14,7 +14,7 @@ import database from '../firebase/firebase';
  * 
  * @param {string} playerUuid
  * @param {string} id: firebase should return a unique key
- * @param {string} recordType 'SUB_PAYMENT'
+ * @param {string} recordType 'DEBT' or 'PAYMENT'
  * @param {string} description
  * @param {number} amount
  * @param {number} createdAt
