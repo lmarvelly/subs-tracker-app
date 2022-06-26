@@ -3,6 +3,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
 import SessionFormItem from './SessionFormItem';
+import { addSession } from '../actions/records';
 
 export class SessionForm extends Component
 {
@@ -11,46 +12,50 @@ export class SessionForm extends Component
 		super(props);
 		this.state = 
 		{
+			amount: '', // TODO: wire this up
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			calenderFocused: false,
-			session: []
+			description: '', // TODO: wire this up
+			note: '', // TODO: wire this up
+			seasonUuid: '', // TODO: wire this up
+			sessionArray: []
 		}
 	};
 
 	addItem = ( item ) =>
 	{
-		if (this.state.session.length === 0) 
+		if (this.state.sessionArray.length === 0) 
 		{
-			this.setState({ session: [item] });
+			this.setState({ sessionArray: [item] });
 		}
 		else
 		{
-			const index = this.state.session.findIndex( (currentItem) =>
+			const index = this.state.sessionArray.findIndex( (currentItem) =>
 			{
 				return item.playerUuid === currentItem.playerUuid;
 			});
 			if(index >= 0)
 			{
-				const session = this.state.session;
-				session[index] = item;
-				this.setState({ session })
+				const sessionArray = this.state.sessionArray;
+				sessionArray[index] = item;
+				this.setState({ sessionArray })
 			}
 			else
 			{
-				this.setState({ session: [ ...this.state.session, item ] })
+				this.setState({ sessionArray: [ ...this.state.sessionArray, item ] })
 			}
 		}
 	}
 
 	removeItem = ( playerUuid ) =>
 	{
-		const sessionList = this.state.session;
-		const index = this.state.session.findIndex( (currentItem) =>
+		const sessionList = this.state.sessionArray;
+		const index = this.state.sessionArray.findIndex( (currentItem) =>
 		{
 			return playerUuid === currentItem.playerUuid;
 		});
 		sessionList.splice( index, 1 );
-		this.setState({ session: [...sessionList] });
+		this.setState({ sessionArray: [...sessionList] });
 	}
 
 	onDateChange = ( createdAt ) => 
@@ -65,12 +70,29 @@ export class SessionForm extends Component
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
 
+	onSubmit = (e) =>
+	{
+		e.preventDefault();
+
+		const session =
+		{
+			amount: this.state.amount,
+			createdAt: this.state.createdAt,
+			description: this.state.description,
+			note: this.state.note,
+			seasonUuid: this.state.seasonUuid,
+			sessionArray: this.state.sessionArray
+		};
+
+		addSession(session);
+	}
+
 	render()
 	{
 		if( this.props.members && this.props.seasons )
 		{
 			return (
-				<form className='form__session'>
+				<form className='form__session' onSubmit={ this.onSubmit }>
 					<div className='form__session-header'>
 						<SingleDatePicker
 							date={ this.state.createdAt }
