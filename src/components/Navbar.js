@@ -85,6 +85,7 @@ export class Navbar extends Component
 						<div className='dropdown-group'>
 							<Link className='button--nav' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
 							<Link className='button--nav' to='/add-record'>Add Record</Link>
+							<Link className='button--nav' to='/add-session'>Add Session</Link>
 						</div>
 					)
 				}
