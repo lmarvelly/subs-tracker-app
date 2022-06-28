@@ -5,7 +5,7 @@ import { SingleDatePicker } from 'react-dates';
 import SessionFormItem from './SessionFormItem';
 import { addSession } from '../actions/records';
 
-export class SessionForm extends Component
+export default class SessionForm extends Component
 {
 	constructor( props )
 	{
@@ -13,12 +13,12 @@ export class SessionForm extends Component
 		this.state = 
 		{
 			// Session properties
-			amount: '', // TODO: wire this up
+			amount: '',
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			calenderFocused: false,
-			description: '', // TODO: wire this up
-			note: '', // TODO: wire this up
-			seasonUuid: '', // TODO: wire this up
+			description: '',
+			note: '',
+			seasonUuid: '',
 			sessionArray: [],
 
 			// error messages
@@ -173,13 +173,14 @@ export class SessionForm extends Component
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const descriptionErrorClassName = this.state.description ? '' : error;
 		const amountErrorClassName = this.state.amount ? '' : error;
+		const sessionArrayErrorClassName = (this.state.sessionArray.length > 0) ? '' : error;
 		const isFalsy = this.isFormFalsy();
 
 		if( this.props.members && this.props.seasons )
 		{
 			return (
 				<form className='form__session' onSubmit={ this.onSubmit }>
-					<div className='form__session-header'>
+					<div className='form__session-content'>
 						{this.state.error && seasonErrorClassName && <p className='form__error'>Please select a Season</p>}
 						<select
 							id='seasonName'
@@ -216,7 +217,7 @@ export class SessionForm extends Component
 						<input
 							id='amountToPay'
 							className={`text-input${amountErrorClassName}`}
-							placeholder='Amount each'
+							placeholder='Amount for each player'
 							type="text"
 							value={ this.state.amount }
 							onChange={ this.onAmountChange }
@@ -237,14 +238,14 @@ export class SessionForm extends Component
 							value={this.state.note}
 						>
 						</textarea>
-						
-						<div className='row'>
-							<div className='form__session-col-name'>Name</div>
-							<div className='form__session-col-checkbox'>Attended</div>
-							<div className='form__session-col-checkbox'>Paid</div>
-						</div>
 					</div>
 
+					{ this.state.error && sessionArrayErrorClassName && <p className='form__error'>Please add members</p>}
+					<div className='form__session-header row'>
+						<div className='form__session-col-name'>Name</div>
+						<div className='form__session-col-checkbox'>Attended</div>
+						<div className='form__session-col-checkbox'>Paid</div>
+					</div>
 					{
 						this.props.members.map(( member ) =>
 						{
@@ -291,5 +292,3 @@ export class SessionForm extends Component
 		}
 	}
 }
-
-export default SessionForm;
