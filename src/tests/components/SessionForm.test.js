@@ -27,7 +27,28 @@ test('should render SessionForm component with seasons and members', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should render SessionForm with Session', () =>
+test('should render error for not inputing any values form submission', () => 
 {
-	// TODO: Render with Session to Edit
+	wrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+	expect( wrapper.state('error').length ).toBeGreaterThan(0);
+	expect( wrapper ).toMatchSnapshot();
+});
+
+test('should only render season and amount error messages', () => 
+{
+	// description input
+	wrapper.find('#description').simulate('change',
+	{
+		target: { value: 'New description' } // Setting the value of e.target.value
+	});
+
+	wrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+	
+	expect(wrapper).toMatchSnapshot();
 });
