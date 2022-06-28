@@ -120,9 +120,9 @@ export const records =
 }
 ];
 
-export const session1 =
+export const sessionArray =
 [
-	{ playerUuid: members[0], type: "DEBT" },
+	{ playerUuid: members[0], type: "PAYMENT" },
 	{ playerUuid: members[1], type: "DEBT" },
 	{ playerUuid: members[2], type: "DEBT" }
 ]
