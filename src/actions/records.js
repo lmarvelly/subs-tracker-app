@@ -193,30 +193,3 @@ export const startSetRecords = () =>
 			});
 	};
 };
-
-/**
- * #### Add a Session ####
- * A session will create multiple records that are all the same
- * exept for the member
- * 
- * This is to make multiple attendence for example a game or a
- * training session. This is to make session input easier where 
- * multiple records would be created with simular data.
- * 
- * @param {string} sessionUuid
- * @param {string} id: firebase should return a unique key
- * @param {array} membersArray an array of records to add to records
- * @param {string} membersArray.[x].recordType 'DEBT' or 'Payment'
- * @param {string} membersArray.[x].playerUuid Players uuid
- * @param {string} description 
- * @param {number} amount amount for each 
- * @param {number} createdAt
- */
-export const addSession = ( session ) =>
-{
-	console.log(session);
-	session.sessionArray.forEach((member) =>
-	{
-		// TODO: Finish this
-	});
-};

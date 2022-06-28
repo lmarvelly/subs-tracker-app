@@ -3,7 +3,6 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 
 import SessionFormItem from './SessionFormItem';
-import { addSession } from '../actions/records';
 
 export default class SessionForm extends Component
 {
@@ -140,8 +139,8 @@ export default class SessionForm extends Component
 
 		const session =
 		{
-			amount: this.state.amount,
-			createdAt: this.state.createdAt,
+			amount: parseFloat(this.state.amount, 10) * 100,
+			createdAt: this.state.createdAt.valueOf(),
 			description: this.state.description,
 			note: this.state.note,
 			seasonUuid: this.state.seasonUuid,
@@ -160,7 +159,10 @@ export default class SessionForm extends Component
 		{
 			this.setState( () => ({ error: '' }) );
 
-			addSession(session); // TODO: Add submit form to props from AddSessionPage
+			// addSession(session); // TODO: Add submit form to props from AddSessionPage
+			console.log(session);
+			// TODO: This not submitting properly
+			this.props.onSubmit( session );
 		}
 	}
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import SessionForm from './SessionForm';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
+import { startAddRecord } from '../actions/records';
 
 export class AddSessionPage extends Component
 {
@@ -11,6 +12,7 @@ export class AddSessionPage extends Component
 	{
 		super( props );
 
+		// TODO: Sort Season Ascending order
 		this.state =
 		{
 			members: this.props.members ? this.props.members : [],
@@ -39,6 +41,72 @@ export class AddSessionPage extends Component
 		}
 	};
 
+	onSubmit = ( session ) => 
+	{
+		console.log('SESSION:', session);
+		// const record =
+		// {
+		// 	recordType: session.sessionArray[0].type,
+		// 	playerUuid: session.sessionArray[0].playerUuid,
+		// 	seasonUuid: session.seasonUuid,
+		// 	description: session.description,
+		// 	note: session.note,  
+		// 	createdAt: session.createdAt,
+		// 	amountOwed: "",
+		// 	amountPaid: "",
+		// 	amount: ""
+		// };
+		// if (record.recordType === 'PAYMENT')
+		// {
+		// 	record.amount = session.amount;
+		// }
+		// if(record.recordType === 'DEBT')
+		// {
+
+		// 	record.amountOwed = session.amount;
+		// 	record.amountPaid = 0;
+		// }
+	
+		// console.log(record);
+
+		// TODO: Figure out why these aren't working
+		// this.props.startAddRecord(record);
+		// this.props.history.push('/'); // return to dashboard
+
+		session.sessionArray.forEach((sessionItem) =>
+		{
+			// TODO: Finish this
+			const record =
+			{
+				recordType: sessionItem.type,
+				playerUuid: sessionItem.playerUuid,
+				seasonUuid: session.seasonUuid,
+				description: session.description,
+				note: session.note,  
+				createdAt: session.createdAt,
+				amountOwed: "",
+				amountPaid: "",
+				amount: ""
+			};
+			if (record.recordType === 'PAYMENT')
+			{
+				record.amount = session.amount;
+			}
+			if(record.recordType === 'DEBT')
+			{
+
+				record.amountOwed = session.amount;
+				record.amountPaid = 0;
+			}
+
+			console.log(record);
+
+			// TODO: Figure out why these aren't working
+			this.props.startAddRecord(record);
+			this.props.history.push('/'); // return to dashboard
+		});
+	};
+
 	render()
 	{
 		return (
@@ -57,6 +125,7 @@ export class AddSessionPage extends Component
 					<SessionForm
 						members={ this.props.members }
 						seasons={ this.props.seasons }
+						onSubmit={ this.onSubmit }
 					/>
 				</div>
 			</div>
@@ -75,4 +144,22 @@ const mapStateToProps = ( state, props ) =>
 	}
 }
 
-export default connect(mapStateToProps)( AddSessionPage ) ;
+/**
+ * Simular to mapStateToProps except it gives us access to 
+ * dispatch. Needs to be passed into connect()
+ * 
+ * This is a lot easier to test dispatch than testing dispatch 
+ * inside of onSubmit prop which used to be inside the RecordForm 
+ * component.
+ * 
+ * We use the shorthand here which used the curly braces to 
+ * implicitly return an object
+ */
+ const mapDispatchToProps = (dispatch) => (
+	{
+		startAddRecord: (record) => dispatch(startAddRecord(record)),
+		sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
+		sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
+	});
+
+export default connect(mapStateToProps, mapDispatchToProps)( AddSessionPage ) ;
