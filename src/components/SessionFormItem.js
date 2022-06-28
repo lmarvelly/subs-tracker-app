@@ -49,14 +49,14 @@ export class SessionFormItem extends Component
 					<div className='form__session-col-name'>
 						<span>{`${this.props.firstName} ${this.props.surname}`}</span>
 					</div>
-					<div className='form__session-col-checkbox'>
+					<div className='form__session-col-checkbox-1'>
 						<input 
 							value={this.props.playerUuid} 
 							type="checkbox"
 							onChange={this.onAttend}
 						/>
 					</div>
-					<div className='form__session-col-checkbox'>
+					<div className='form__session-col-checkbox-2'>
 						<input
 							disabled={!this.state.attending}
 							value={this.props.playerUuid} 
