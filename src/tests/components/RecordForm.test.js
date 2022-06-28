@@ -186,7 +186,7 @@ test('shouldnt let user pay more than 1,000,000', () =>
 	});
 
 	expect(input.value).toEqual(undefined);
-	expect(altWrapper.state('amount')).toEqual('');
+	expect(altWrapper.state('amount')).toEqual(0);
 });
 
 test('Should not set amount because input has too many decimal places', () =>
@@ -200,7 +200,7 @@ test('Should not set amount because input has too many decimal places', () =>
 	});
 
 	expect(input.value).toEqual(undefined);
-	expect(wrapper.state('amount')).toBe('');
+	expect(wrapper.state('amount')).toBe(0);
 });
 
 test('should call onSubmit prop for valid form submission for a Debt', () => 
