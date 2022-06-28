@@ -12,14 +12,18 @@ export class SessionForm extends Component
 		super(props);
 		this.state = 
 		{
+			// Session properties
 			amount: '', // TODO: wire this up
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			calenderFocused: false,
 			description: '', // TODO: wire this up
-			error: '',
 			note: '', // TODO: wire this up
 			seasonUuid: '', // TODO: wire this up
-			sessionArray: []
+			sessionArray: [],
+
+			// error messages
+			error: '',
+			amountError: ''
 		}
 	};
 
@@ -75,22 +79,26 @@ export class SessionForm extends Component
 	onAmountChange = ( e ) => 
 	{
 		const amount = e.target.value;
+		if (amount)
+		{
+			this.setState({showAmountErrorMessage: false})
+		}
 
+		// TODO: Figure out how to delete everything?
 		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
 		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
-			// Don't want message showing for 'Amount paid'
 			if ( amount == 0 ) 
 			{
-				this.setState(() => ({amountError: 'Amount cannot be zero'}));
+				this.setState(() => ({amount, amountError: 'Amount cannot be zero'}));
 			}
 			if (amount > 10000)
 			{
 				this.setState(() => ({amountError: 'Amount cannot be more than 10 thousand'}));
 			}
-			if ( (amount > 0) && (amount <= 10000) )
+			if ( !amount || ((amount > 0) && (amount <= 10000)) )
 			{
-				this.setState({amount})
+				this.setState({amount, amountError: '' });
 			}
 		}
 	};
@@ -113,7 +121,19 @@ export class SessionForm extends Component
 	{
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
+	isFormFalsy = () =>
+	{
+		const isFalsy = (
+			!this.state.description || 
+			!this.state.amount || 
+			!this.state.seasonUuid ||
+			!(this.state.sessionArray.length > 0)
+		);
 
+		return isFalsy;
+	}
+
+	// TODO: Add conditions to submit
 	onSubmit = (e) =>
 	{
 		e.preventDefault();
@@ -128,22 +148,41 @@ export class SessionForm extends Component
 			sessionArray: this.state.sessionArray
 		};
 
+		if ( this.isFormFalsy() )
+		{
+			this.setState( () => ({ error: 'Please check details' }) );
+			if(!this.state.amount)
+			{
+				this.setState({showAmountErrorMessage: true});
+			}
+		}
+		else
+		{
+			this.setState( () => ({ error: '' }) );
+
+			this.props.onSubmit( record() );
+		}
+
 		addSession(session);
 	}
 
 	// TODO: Add error messages
 	render()
 	{
+		const amountError = !this.state.amount;
+
 		const error = '__error';
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const descriptionErrorClassName = this.state.description ? '' : error;
 		const amountErrorClassName = this.state.amount ? '' : error;
+		const isFalsy = this.isFormFalsy();
 
 		if( this.props.members && this.props.seasons )
 		{
 			return (
 				<form className='form__session' onSubmit={ this.onSubmit }>
 					<div className='form__session-header'>
+						{this.state.error && seasonErrorClassName && <p className='form__error'>Please select a Season</p>}
 						<select
 							id='seasonName'
 							className={`select${seasonErrorClassName}`}
@@ -165,6 +204,7 @@ export class SessionForm extends Component
 								})
 							}
 						</select>
+						{this.state.error && descriptionErrorClassName && <p className='form__error'>Please provide a description</p>}
 						<input 
 							id='description'
 							className={`text-input${descriptionErrorClassName}`}
@@ -173,6 +213,8 @@ export class SessionForm extends Component
 							value={ this.state.description }
 							onChange={ this.onDescriptionChange }
 						/>
+						{ this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
+						{ this.state.showAmountErrorMessage && <p className='form__error'>Please enter an Amount</p>}
 						<input
 							id='amountToPay'
 							className={`text-input${amountErrorClassName}`}
@@ -220,6 +262,7 @@ export class SessionForm extends Component
 							);
 						})
 					}
+					{(this.state.error && isFalsy ) && <p className='form__error'>{this.state.error}</p>}
 					<button className='button'>Add Session</button>
 				</form>
 			);
