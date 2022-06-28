@@ -47,6 +47,7 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 				</h1>
 				<div className='page-header__actions'>
 					<Link className='button' to='/add-record'>Add Record</Link>
+					<Link className='button' to='/add-session'>Add Session</Link>
 				</div>
 			</div>
 		</div>
