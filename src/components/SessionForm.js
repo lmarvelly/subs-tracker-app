@@ -16,6 +16,7 @@ export class SessionForm extends Component
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			calenderFocused: false,
 			description: '', // TODO: wire this up
+			error: '',
 			note: '', // TODO: wire this up
 			seasonUuid: '', // TODO: wire this up
 			sessionArray: []
@@ -58,11 +59,54 @@ export class SessionForm extends Component
 		this.setState({ sessionArray: [...sessionList] });
 	}
 
+	onSeasonNameChange = ( e ) =>
+	{
+		const seasonUuid = e.target.value;
+		this.setState( () => ({ seasonUuid }) );
+	}
+	onDescriptionChange = ( e ) => 
+	{
+		const description = e.target.value;
+		if ( description.length <= 30 ) 
+		{
+			this.setState( () => ({ description }) );
+		}
+	};
+	onAmountChange = ( e ) => 
+	{
+		const amount = e.target.value;
+
+		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
+		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
+		{
+			// Don't want message showing for 'Amount paid'
+			if ( amount == 0 ) 
+			{
+				this.setState(() => ({amountError: 'Amount cannot be zero'}));
+			}
+			if (amount > 10000)
+			{
+				this.setState(() => ({amountError: 'Amount cannot be more than 10 thousand'}));
+			}
+			if ( (amount > 0) && (amount <= 10000) )
+			{
+				this.setState({amount})
+			}
+		}
+	};
 	onDateChange = ( createdAt ) => 
 	{
 		if(createdAt) // prevents the user from deleting the date.
 		{
 			this.setState( () => ({ createdAt }) );
+		}
+	};
+	onNoteChange = ( e ) =>
+	{
+		const note = e.target.value;
+		if ( note.length <= 50 ) 
+		{
+			this.setState( () => ({ note }) );
 		}
 	};
 	onFocusChange = ( { focused } ) => 
@@ -87,23 +131,25 @@ export class SessionForm extends Component
 		addSession(session);
 	}
 
+	// TODO: Add error messages
 	render()
 	{
+		const error = '__error';
+		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
+		const descriptionErrorClassName = this.state.description ? '' : error;
+		const amountErrorClassName = this.state.amount ? '' : error;
+
 		if( this.props.members && this.props.seasons )
 		{
 			return (
 				<form className='form__session' onSubmit={ this.onSubmit }>
 					<div className='form__session-header'>
-						<SingleDatePicker
-							date={ this.state.createdAt }
-							onDateChange={ this.onDateChange }
-							focused={ this.state.calenderFocused }
-							onFocusChange={ this.onFocusChange }
-							numberOfMonths={ 1 }
-							isOutsideRange={ () => false }
-							displayFormat="DD/MM/YYYY"
-						/>
-						<select className='select'>
+						<select
+							id='seasonName'
+							className={`select${seasonErrorClassName}`}
+							onChange={ this.onSeasonNameChange }
+							value={ this.state.seasonUuid }
+						>
 							<option hidden>Select a Season</option>
 							{
 								this.props.seasons.map( (season) =>
@@ -120,15 +166,38 @@ export class SessionForm extends Component
 							}
 						</select>
 						<input 
-							placeholder='Session name. i.e. training' 
-							className='text-input' 
-							type="text" 
-						/>
-						<input 
-							placeholder='Amount each'
-							className='text-input'
+							id='description'
+							className={`text-input${descriptionErrorClassName}`}
 							type="text"
+							placeholder="Session description i.e. training"
+							value={ this.state.description }
+							onChange={ this.onDescriptionChange }
 						/>
+						<input
+							id='amountToPay'
+							className={`text-input${amountErrorClassName}`}
+							placeholder='Amount each'
+							type="text"
+							value={ this.state.amount }
+							onChange={ this.onAmountChange }
+						/>
+						<SingleDatePicker
+							date={ this.state.createdAt }
+							onDateChange={ this.onDateChange }
+							focused={ this.state.calenderFocused }
+							onFocusChange={ this.onFocusChange }
+							numberOfMonths={ 1 }
+							isOutsideRange={ () => false }
+							displayFormat="DD/MM/YYYY"
+						/>
+						<textarea
+							className='textarea'
+							placeholder="Add a note (optional)"
+							onChange={ this.onNoteChange }
+							value={this.state.note}
+						>
+						</textarea>
+						
 						<div className='row'>
 							<div className='form__session-col-name'>Name</div>
 							<div className='form__session-col-checkbox'>Attended</div>
