@@ -88,10 +88,9 @@ test('should only render error messages for member and description', () =>
 	const uuid = seasons[0].seasonUuid;
 	const input = wrapper.find('#seasonName');
 	input.simulate('change', { target: { value: uuid } });
-	// Amount TODO: NOT WORKING PROPERLY
-	let input2 = wrapper.find('#amountToPay');
+	// TODO: AMOUNT NOT WORKING PROPERLY
+	const input2 = wrapper.find('#amountToPay');
 	input2.simulate('change', { target: {value: '4'} });
-	// input2 = wrapper.find('#amountToPay');
 
 	// submit
 	wrapper.find('form').simulate('submit', 
