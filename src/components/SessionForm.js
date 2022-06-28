@@ -160,10 +160,8 @@ export class SessionForm extends Component
 		{
 			this.setState( () => ({ error: '' }) );
 
-			this.props.onSubmit( record() );
+			addSession(session); // TODO: Add submit form to props from AddSessionPage
 		}
-
-		addSession(session);
 	}
 
 	// TODO: Add error messages
