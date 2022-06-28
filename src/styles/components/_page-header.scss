@@ -19,6 +19,15 @@
 	}
 }
 
+.page-header__content-column
+{
+	@extend .page-header__content;
+	@media (min-width: $small-screen-breakpoint) 
+	{
+		flex-direction: column;
+	}
+}
+
 .page-header__actions
 {
 	display: flex;
