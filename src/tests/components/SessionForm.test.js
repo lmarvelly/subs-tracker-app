@@ -205,5 +205,3 @@ test('Should not set amount because input has too many decimal places', () =>
 	expect(input.value).toEqual(undefined);
 	expect(wrapper.state('amount')).toBe('');
 });
-
-// Add empty session array to tests 
