@@ -132,7 +132,6 @@ export default class SessionForm extends Component
 		return isFalsy;
 	}
 
-	// TODO: Add conditions to submit
 	onSubmit = (e) =>
 	{
 		e.preventDefault();
@@ -158,15 +157,10 @@ export default class SessionForm extends Component
 		else
 		{
 			this.setState( () => ({ error: '' }) );
-
-			// addSession(session); // TODO: Add submit form to props from AddSessionPage
-			console.log(session);
-			// TODO: This not submitting properly
 			this.props.onSubmit( session );
 		}
 	}
 
-	// TODO: Add error messages
 	render()
 	{
 		const amountError = !this.state.amount;

@@ -43,36 +43,6 @@ export class AddSessionPage extends Component
 
 	onSubmit = ( session ) => 
 	{
-		console.log('SESSION:', session);
-		// const record =
-		// {
-		// 	recordType: session.sessionArray[0].type,
-		// 	playerUuid: session.sessionArray[0].playerUuid,
-		// 	seasonUuid: session.seasonUuid,
-		// 	description: session.description,
-		// 	note: session.note,  
-		// 	createdAt: session.createdAt,
-		// 	amountOwed: "",
-		// 	amountPaid: "",
-		// 	amount: ""
-		// };
-		// if (record.recordType === 'PAYMENT')
-		// {
-		// 	record.amount = session.amount;
-		// }
-		// if(record.recordType === 'DEBT')
-		// {
-
-		// 	record.amountOwed = session.amount;
-		// 	record.amountPaid = 0;
-		// }
-	
-		// console.log(record);
-
-		// TODO: Figure out why these aren't working
-		// this.props.startAddRecord(record);
-		// this.props.history.push('/'); // return to dashboard
-
 		session.sessionArray.forEach((sessionItem) =>
 		{
 			// TODO: Finish this
@@ -98,8 +68,6 @@ export class AddSessionPage extends Component
 				record.amountOwed = session.amount;
 				record.amountPaid = 0;
 			}
-
-			console.log(record);
 
 			// TODO: Figure out why these aren't working
 			this.props.startAddRecord(record);
