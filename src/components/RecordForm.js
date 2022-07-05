@@ -21,9 +21,9 @@ export default class RecordForm extends Component
 			error: '',
 			amountError: '',
 
-			amount: props.record ? props.record.amount / 100 : 0,
-			amountOwed: props.record ? props.record.amountOwed / 100 : 0,
-			amountPaid: props.record ? props.record.amountPaid / 100 : 0
+			amount: props.record ? props.record.amount / 100 : '',
+			amountOwed: props.record ? props.record.amountOwed / 100 : '',
+			amountPaid: props.record ? props.record.amountPaid / 100 : ''
 		};
 	}
 
@@ -201,9 +201,9 @@ export default class RecordForm extends Component
 	{
 		const amountPaid = parseFloat(this.state.amountPaid, 10);
 		const amountOwed = parseFloat(this.state.amountOwed, 10);
-		const amountError1 = amountPaid > amountOwed;
+		const amountError1 = (amountPaid > amountOwed);
 		const amountError2 = !amountOwed;
-		const errorDebtClass = ( amountError1 || amountError2 ) ? '__error' : '';
+		const errorDebtClass = ( (amountError1 || amountError2) && amountOwed) ? '__error' : '';
 		const moneyInput = (amountErrorClassName) =>
 		{
 			if (this.state.recordType === 'PAYMENT') 
@@ -215,7 +215,7 @@ export default class RecordForm extends Component
 							id='amountToPay'
 							className={`text-input${amountErrorClassName}`}
 							type="text"
-							placeholder="How much was Paid?"
+							placeholder="How much is being Paid?"
 							value={ this.state.amount }
 							onChange={ this.onAmountChange }
 						/>
