@@ -33,7 +33,17 @@ test('should render AddSessionPage correctly with members or seasons', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should submit', () => 
+// TODO: REMOVE AFTER TESTING
+test('should handle onSubmit', () => 
+{
+	// wrapper2.find('RecordForm').prop('onSubmit')(records[3]);
+
+	// expect(history.push).toHaveBeenLastCalledWith('/');
+	// expect(startAddRecord).toHaveBeenLastCalledWith(records[3]);
+});
+
+test('should handle onSubmit', () => 
 {
 	// TODO: Write submit test/s
+	expect(true).toBe(false);
 })
