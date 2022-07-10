@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState  } from 'react';
 import { connect } from 'react-redux';
 
 import getVisibleMembers from '../selectors/members';
@@ -7,6 +7,8 @@ import getVisibleRecords from '../selectors/records';
 
 const MembersSummaryPage = ( props ) =>
 {
+	const [memberUuid, setMemberUuid] = useState(0);
+
 	useEffect(() =>
 	{
 		return () =>
@@ -14,6 +16,12 @@ const MembersSummaryPage = ( props ) =>
 			props.resetMemberFilters();
 		};
 	}, []);
+
+	const onMemberChange = (() =>
+	{
+
+		console.log(props.members);
+	});
 
 	return (
 		<div>
@@ -28,6 +36,50 @@ const MembersSummaryPage = ( props ) =>
 			<div className='content-container'>
 				<div className='input-group'>
 					<div className='input-group__item'>
+						<select
+							id='memberName'
+							className='select'
+							onChange={ onMemberChange }
+							value={ memberUuid }
+						>
+							<option hidden>Select a Member</option>
+							{
+								props.members.map((member) =>
+								{
+									if (member.nickname) 
+									{
+										return (
+											<option
+												key={member.playerUuid}
+												value={member.playerUuid}
+											>
+												{`${member.firstName} ${member.nickname} ${member.surname}`}
+											</option>
+										)
+									}
+									else if (member.middleNames) 
+									{
+										return (
+											<option
+												key={member.playerUuid}
+												value={member.playerUuid}
+											>
+												{`${member.firstName} ${member.nickname} ${member.surname}`}
+											</option>
+										)
+									}
+									return (
+										<option
+											key={member.playerUuid}
+											value={member.playerUuid}
+										>
+											{`${member.firstName} ${member.surname}`}
+										</option>
+									)
+								})
+							}
+						</select>
+
 						<select className='select'>
 							<option value="">Ryan Mc</option>
 						</select>
