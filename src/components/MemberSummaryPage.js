@@ -79,10 +79,6 @@ const MembersSummaryPage = ( props ) =>
 								})
 							}
 						</select>
-
-						<select className='select'>
-							<option value="">Ryan Mc</option>
-						</select>
 					</div>
 					<div className='input-group__item'>
 						<select className='select'>
