@@ -12,7 +12,9 @@ import EditMemberPage from '../components/EditMemberPage';
 import EditSeasonPage from '../components/EditSeasonPage';
 import HelpPage from '../components/HelpPage';
 import MemberPage from '../components/MemberPage';
+import MemberSummaryPage from '../components/MemberSummaryPage';
 import SeasonPage from '../components/SeasonPage';
+import SeasonSummeryPage from '../components/SeasonSummeryPage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
@@ -48,7 +50,9 @@ const AppRouter = () => (
 				<PrivateRoute path='/edit-member/:id' component={EditMemberPage} />
 				<PrivateRoute path='/edit-season/:id' component={EditSeasonPage} />
 				<PrivateRoute path='/members' component={MemberPage} />
+				<PrivateRoute path='/member-summary-page' component={MemberSummaryPage} />
 				<PrivateRoute path='/seasons' component={SeasonPage} />
+				<PrivateRoute path='/season-summary-page' component={SeasonSummeryPage} />
 				<PrivateRoute path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>
