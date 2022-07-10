@@ -7,7 +7,8 @@ import getVisibleRecords from '../selectors/records';
 
 const MembersSummaryPage = ( props ) =>
 {
-	const [memberUuid, setMemberUuid] = useState(0);
+	const [memberUuid, setMemberUuid] = useState('');
+	const [seasonUuid, setSeasonUuid] = useState('');
 
 	useEffect(() =>
 	{
@@ -17,10 +18,14 @@ const MembersSummaryPage = ( props ) =>
 		};
 	}, []);
 
-	const onMemberChange = (() =>
+	const onMemberChange = ((e) =>
 	{
+		setMemberUuid(e.target.value);
+	});
 
-		console.log(props.members);
+	const onSeasonChange = ((e) =>
+	{
+		setSeasonUuid(e.target.value);
 	});
 
 	return (
@@ -81,9 +86,28 @@ const MembersSummaryPage = ( props ) =>
 						</select>
 					</div>
 					<div className='input-group__item'>
-						<select className='select'>
-							<option value="">2021/2022</option>
+						<select
+							id='seasonName'
+							className={`select`}
+							onChange={ onSeasonChange }
+							value={ seasonUuid }
+						>
+							<option hidden>Select a Season</option>
+							{
+								props.seasons.map( (season) =>
+								{
+									return (
+										<option
+											key={season.seasonUuid}
+											value={season.seasonUuid}
+										>
+											{`${season.seasonName}`}
+										</option>
+									)
+								})
+							}
 						</select>
+						
 					</div>
 				</div>
 
