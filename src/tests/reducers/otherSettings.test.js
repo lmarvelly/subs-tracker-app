@@ -1,5 +1,5 @@
 import otherSettingsReducer from "../../reducers/otherSettings";
-import { sessionTypeList } from "../fixtures/fixures";
+import { sessionTypes } from "../fixtures/fixures";
 
 test('should set default state', () =>
 {
@@ -10,9 +10,9 @@ test('should set default state', () =>
 
 test('should add a new Session Type', () =>
 {
-	const sessionType = 'Kickabout';
+	const sessionType = { sessionName: 'Kickabout at gol' };
 	const action = { type: 'ADD_SESSION_TYPE', sessionType };
-	const state = otherSettingsReducer( sessionTypeList, action );
+	const state = otherSettingsReducer( sessionTypes, action );
 
-	expect( state ).toEqual([ ...sessionTypeList, sessionType ]);
+	expect( state ).toEqual([ ...sessionTypes, sessionType ]);
 });
