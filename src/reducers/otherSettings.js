@@ -7,7 +7,9 @@ export default ( state = otherSettingsDefaultState, action ) =>
 		case 'ADD_SESSION_TYPE':
 			return [
 				...state,
-				action.sessionType
+				{
+					...action.sessionType
+				}
 			]
 		default:
 			return state;
