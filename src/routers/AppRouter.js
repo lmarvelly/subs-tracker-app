@@ -19,6 +19,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import OtherSettingsPage from '../components/OtherSettingsPage';
 
 // Export History to be used in other files
 export const history = createHistory();
@@ -53,6 +54,7 @@ const AppRouter = () => (
 				<PrivateRoute path='/member-summary-page' component={MemberSummaryPage} />
 				<PrivateRoute path='/seasons' component={SeasonPage} />
 				<PrivateRoute path='/season-summary-page' component={SeasonSummeryPage} />
+				<PrivateRoute path='/other-settings-page' component={OtherSettingsPage} />
 				<PrivateRoute path='/help' component={HelpPage} />
 				<Route component={NotFoundPage} />
 			</Switch>
