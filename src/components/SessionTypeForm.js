@@ -10,6 +10,7 @@ const SessionTypeForm = ( props ) =>
 		const sessionName = sessionTypeName;
 
 		props.onSubmit({sessionName});
+		setSessionTypeName('');
 	}
 
 	const onSessionNameChange = (e) =>
