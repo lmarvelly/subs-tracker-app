@@ -1,9 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
+
+import SessionTypeForm from './SessionTypeForm';
+import { startAddSessionType } from '../actions/otherSettings';
 
 const OtherSettingsPage = ( props ) =>
 {
-	
+	const [sessionTypeList, setSessionTypeList] = useState([]);
+
+	const onSubmit = ( sessionType ) =>
+	{
+		props.startAddSessionType(sessionType);
+	}
 
 	return(
 		<div>
@@ -17,14 +25,15 @@ const OtherSettingsPage = ( props ) =>
 
 			<div className='content-container'>
 				<h2>Session Types</h2>
-				<div className='input-group'>
-					<div className='input-group__item'>
-						<input className="text-input" placeholder='Add new session type'/>
-					</div>
-				</div>
+				<SessionTypeForm onSubmit={onSubmit} />
 			</div>
 		</div>
 	);
 }
 
-export default OtherSettingsPage;
+const mapDispatchToProps = ( dispatch ) =>(
+{
+	startAddSessionType: ( sessionType ) => dispatch(startAddSessionType(sessionType) )
+});
+
+export default connect(undefined, mapDispatchToProps)(OtherSettingsPage);
