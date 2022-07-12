@@ -6,12 +6,14 @@ import { members, seasons, sessionArray } from '../fixtures/fixures';
 
 let emptyWrapper,
 	onAmountChange,
+	onSubmit,
 	sessionArrayWrapper,
 	wrapper;
 
 beforeEach( () =>
 {
 	onAmountChange = jest.fn();
+	onSubmit =jest.fn();
 
 	emptyWrapper = shallow(
 		<SessionForm members={[]} seasons={[]} />
@@ -31,7 +33,7 @@ beforeEach( () =>
 			seasons={seasons}
 			sessionArray={sessionArray}
 			onAmountChange={onAmountChange}
-			
+			onSubmit={onSubmit}
 		/>
 	);
 });
@@ -139,6 +141,7 @@ test('should not render "Please add members" error message', () =>
 
 	// console.log(sessionArrayWrapper.state('sessionArray'));
 
+	expect(onSubmit).toHaveBeenCalled();
 	expect(sessionArrayWrapper).toMatchSnapshot();
 });
 
