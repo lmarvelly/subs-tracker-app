@@ -127,4 +127,18 @@ export const sessionArray =
 	{ playerUuid: members[2], type: "DEBT" }
 ]
 
-export const sessionTypeList = [ 'Training', 'GFSN Game', 'Drocks Game' ];
+export const sessionTypes = 
+[ 
+	{
+		sessionName: 'Training', 
+		sessionUuid: '123'
+	},
+	{
+		sessionName: 'GFSN Game',  
+		sessionUuid: '234'
+	},
+	{
+		sessionName: 'Drocks Game',
+		sessionUuid: '345'
+	}
+];
