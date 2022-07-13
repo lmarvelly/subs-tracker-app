@@ -2,9 +2,9 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { 
-	addSessionType, editSessionType, removeSessionType, 
-	startAddSessionType, 
-	setSessionType, startSetSessionType, startRemoveSessionType
+	addSessionType, editSessionType, startEditSessionType,
+	removeSessionType, startAddSessionType, setSessionType, 
+	startSetSessionType, startRemoveSessionType
 } from '../../actions/otherSettings';
 import { sessionTypes } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -144,4 +144,29 @@ test('should create Edit Session action object', () =>
 		sessionUuid,
 		updates
 	});
+});
+
+test('should edit a Session Type from the database', (done) =>
+{
+	const store = createMockStore(defaultAuthState);
+	const sessionUuid = sessionTypes[1].sessionUuid;
+	const updates = { sessionName: 'Kickabout' };
+
+	store.dispatch(startEditSessionType(sessionUuid, updates))
+		.then( () =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+			{
+				type: 'EDIT_SESSION_TYPE',
+				sessionUuid,
+				updates
+			});
+			return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`).once('value');
+		})
+		.then( (snapshot) =>
+		{
+			expect(snapshot.val().sessionName).toBe(updates.sessionName);
+			done();
+		});
 });

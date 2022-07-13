@@ -84,3 +84,16 @@ export const editSessionType = ( sessionUuid, updates ) => (
 	sessionUuid,
 	updates
 });
+
+export const startEditSessionType = ( sessionUuid, updates ) =>
+{
+	const { sessionName } = updates;
+
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`)
+			.update({ sessionName })
+			.then( () => dispatch( editSessionType( sessionUuid, updates )));
+	}
+};
