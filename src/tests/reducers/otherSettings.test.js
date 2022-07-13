@@ -28,3 +28,19 @@ test('should set to be an array of Session Types provided', () =>
 
 	expect( state ).toEqual( sessionTypes );
 });
+
+test('should remove a Session Type', () =>
+{
+	const sessionUuid = sessionTypes[0].sessionUuid;
+	const action =
+	{
+		type: 'REMOVE_SESSION_TYPE',
+		sessionUuid
+	};
+	const state = otherSettingsReducer( sessionTypes, action );
+
+	const altererSessionList = sessionTypes.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
+
+	expect(state).toEqual(altererSessionList);
+});
+
