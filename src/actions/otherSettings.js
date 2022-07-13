@@ -57,8 +57,12 @@ export const startSetSessionType = () =>
 	}
 };
 
+export const removeSessionType = ( sessionUuid ) =>(
+{
+	type: 'REMOVE_SESSION_TYPE',
+	sessionUuid
+});
+
 // TODO:
 
 // Edit Session Types
-
-// Delete Session Types

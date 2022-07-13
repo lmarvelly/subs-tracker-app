@@ -2,8 +2,8 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { 
-	addSessionType, startAddSessionType, setSessionType, 
-	startSetSessionType
+	addSessionType, removeSessionType, startAddSessionType, 
+	setSessionType, startSetSessionType
 } from '../../actions/otherSettings';
 import { sessionTypes } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -95,8 +95,18 @@ test('should retreive Session Types from database', (done) =>
 	});
 });
 
+test('should create remove Session Type action object', () =>
+{
+	const sessionUuid = 'testUuid';
+	const action = removeSessionType(sessionUuid);
+
+	expect(action).toEqual(
+	{
+		type:'REMOVE_SESSION_TYPE',
+		sessionUuid
+	});
+});
+
 // TODO:
 
 // Test Edit Session Types
-
-// Test Delete Session Types
