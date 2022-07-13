@@ -5,11 +5,9 @@ import SessionTypeForm from './SessionTypeForm';
 import SessionTypeListItem from './SessionTypeListItem';
 import { startAddSessionType } from '../actions/otherSettings';
 
-const OtherSettingsPage = ( props ) =>
+export const OtherSettingsPage = ( props ) =>
 {
 	const [sessionTypeList, setSessionTypeList] = useState([]);
-
-	console.log(props.sessionTypes);
 
 	const onSubmit = ( sessionType ) =>
 	{
@@ -33,13 +31,23 @@ const OtherSettingsPage = ( props ) =>
 				<div className='list-header'>Session Types</div>
 				<div className='list-body'>
 				{
-					props.sessionTypes.map( ( sessionType ) =>
-					{
-						return <SessionTypeListItem
-									key={sessionType.sessionUuid} 
-									sessionName={sessionType.sessionName}
-									sessionUuid={sessionType.sessionUuid}/>
-					})
+					(props.sessionTypes.length === 0) 
+					?
+					(
+						<div className='list-item list-item--message'>
+							<span>No Session Types </span>
+						</div> 
+					)
+					:
+					(
+						props.sessionTypes.map( ( sessionType ) =>
+						{
+							return <SessionTypeListItem
+										key={sessionType.sessionUuid} 
+										sessionName={sessionType.sessionName}
+										sessionUuid={sessionType.sessionUuid}/>
+						})
+					)
 				}
 				</div>
 			</div>
@@ -54,7 +62,6 @@ const mapDispatchToProps = ( dispatch ) =>(
 
 const mapStateToProps = ( state ) =>
 {
-	console.log(state);
 	return {
 		sessionTypes: state.sessionTypes
 	}
