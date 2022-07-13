@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 
 import SessionTypeForm from './SessionTypeForm';
 import SessionTypeListItem from './SessionTypeListItem';
-import { startAddSessionType, startRemoveSessionType } from '../actions/otherSettings';
+import { 
+	startAddSessionType, startRemoveSessionType, 
+	startEditSessionType
+} from '../actions/otherSettings';
 
 export const OtherSettingsPage = ( props ) =>
 {
@@ -44,6 +47,7 @@ export const OtherSettingsPage = ( props ) =>
 										key={sessionType.sessionUuid} 
 										sessionName={sessionType.sessionName}
 										sessionUuid={sessionType.sessionUuid}
+										editSessionType={props.editSessionType}
 										removeSessionType={props.removeSessionType}/>
 						})
 					)
@@ -57,6 +61,7 @@ export const OtherSettingsPage = ( props ) =>
 const mapDispatchToProps = ( dispatch ) =>(
 {
 	addSessionType: ( sessionType ) => dispatch(startAddSessionType(sessionType) ),
+	editSessionType: ( sessionUuid, updates ) => dispatch(startEditSessionType(sessionUuid, updates)),
 	removeSessionType: ( sessionUuid ) => dispatch(startRemoveSessionType(sessionUuid))
 });
 
