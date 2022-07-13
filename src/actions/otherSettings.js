@@ -63,6 +63,21 @@ export const removeSessionType = ( sessionUuid ) =>(
 	sessionUuid
 });
 
+export const startRemoveSessionType = ( sessionUuid ) =>
+{
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+
+		return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`)
+			.remove()
+			.then( () =>
+			{
+				dispatch( removeSessionType( sessionUuid ) )
+			});
+	}
+}
+
 // TODO:
 
 // Edit Session Types

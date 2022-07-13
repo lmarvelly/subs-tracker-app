@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 import { 
 	addSessionType, removeSessionType, startAddSessionType, 
-	setSessionType, startSetSessionType
+	setSessionType, startSetSessionType, startRemoveSessionType
 } from '../../actions/otherSettings';
 import { sessionTypes } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -105,6 +105,30 @@ test('should create remove Session Type action object', () =>
 		type:'REMOVE_SESSION_TYPE',
 		sessionUuid
 	});
+});
+
+test('should remove a Session Type from the database', (done) =>
+{ 
+	const store = createMockStore(defaultAuthState);
+	const sessionUuid = sessionTypes[1].sessionUuid;
+	
+	store.dispatch(startRemoveSessionType(sessionUuid))
+		.then(() =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+			{
+				type: 'REMOVE_SESSION_TYPE',
+				sessionUuid
+			});
+
+			return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`).once('value');
+		})
+		.then((snapshot) =>
+		{
+			expect(snapshot.val()).toBeFalsy();
+			done();
+		});
 });
 
 // TODO:
