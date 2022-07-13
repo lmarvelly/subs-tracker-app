@@ -31,6 +31,32 @@ export const setSessionType = ( sessionTypes ) => (
 	sessionTypes
 });
 
+export const startSetSessionType = () =>
+{
+	return (dispatch, getState) =>
+	{
+		const uid = getState().auth.uid;
+
+		return database.ref(`subs-tracker/users/${uid}/session_types`)
+			.once('value')
+			.then((snapshot) =>
+			{
+				const sessionTypes = [];
+
+				snapshot.forEach( (childSnapshot) =>
+				{
+					sessionTypes.push(
+					{
+						sessionUuid: childSnapshot.key,
+						...childSnapshot.val()
+					});
+				});
+
+				dispatch( setSessionType( sessionTypes ) );
+			});
+	}
+};
+
 // TODO:
 
 // Edit Session Types
