@@ -24,3 +24,15 @@ export const startAddSessionType = ( sessionType = '' ) =>
 			});
 	}
 }
+
+export const setSessionType = ( sessionTypes ) => (
+{
+	type: 'SET_SESSION_TYPE',
+	sessionTypes
+});
+
+// TODO:
+
+// Edit Session Types
+
+// Delete Session Types

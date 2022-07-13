@@ -1,7 +1,9 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { addSessionType, startAddSessionType } from '../../actions/otherSettings';
+import { 
+	addSessionType, startAddSessionType, setSessionType 
+} from '../../actions/otherSettings';
 import { sessionTypes } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -11,7 +13,6 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
 {
-
 	const sessionTypeData = {};
 	sessionTypes.forEach(({ sessionUuid, sessionName }) =>
 	{
@@ -66,3 +67,19 @@ test('should add a new Session to the database', () =>
 		done();
 	});
 });
+
+test('Create Set Session Type action object', () =>
+{
+	const action = setSessionType( sessionTypes );
+	expect(action).toEqual(
+	{
+		type: 'SET_SESSION_TYPE',
+		sessionTypes
+	});
+});
+
+// TODO:
+
+// Test Edit Session Types
+
+// Test Delete Session Types
