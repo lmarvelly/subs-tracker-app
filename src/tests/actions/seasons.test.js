@@ -124,7 +124,7 @@ test('should retreive seasons from database', (done) =>
 });
 
 // Test is changing Season Name but snapshot is not being returned
-test('should edit a season from database', () =>
+test('should edit a season from database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 	const seasonUuid = seasons[1].seasonUuid;
