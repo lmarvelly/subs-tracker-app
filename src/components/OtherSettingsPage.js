@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 
 import SessionTypeForm from './SessionTypeForm';
 import SessionTypeListItem from './SessionTypeListItem';
-import { startAddSessionType } from '../actions/otherSettings';
+import { startAddSessionType, startRemoveSessionType } from '../actions/otherSettings';
 
 export const OtherSettingsPage = ( props ) =>
 {
-	const [sessionTypeList, setSessionTypeList] = useState([]);
-
 	const onSubmit = ( sessionType ) =>
 	{
-		props.startAddSessionType(sessionType);
+		props.addSessionType(sessionType);
 	}
 
 	return(
@@ -45,7 +43,8 @@ export const OtherSettingsPage = ( props ) =>
 							return <SessionTypeListItem
 										key={sessionType.sessionUuid} 
 										sessionName={sessionType.sessionName}
-										sessionUuid={sessionType.sessionUuid}/>
+										sessionUuid={sessionType.sessionUuid}
+										removeSessionType={props.removeSessionType}/>
 						})
 					)
 				}
@@ -57,7 +56,8 @@ export const OtherSettingsPage = ( props ) =>
 
 const mapDispatchToProps = ( dispatch ) =>(
 {
-	startAddSessionType: ( sessionType ) => dispatch(startAddSessionType(sessionType) )
+	addSessionType: ( sessionType ) => dispatch(startAddSessionType(sessionType) ),
+	removeSessionType: ( sessionUuid ) => dispatch(startRemoveSessionType(sessionUuid))
 });
 
 const mapStateToProps = ( state ) =>
