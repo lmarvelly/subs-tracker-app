@@ -11,6 +11,10 @@ export default ( state = otherSettingsDefaultState, action ) =>
 					...action.sessionType
 				}
 			]
+
+		case 'SET_SESSION_TYPE':
+			return action.sessionTypes
+		
 		default:
 			return state;
 	}

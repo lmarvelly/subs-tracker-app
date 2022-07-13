@@ -16,3 +16,15 @@ test('should add a new Session Type', () =>
 
 	expect( state ).toEqual([ ...sessionTypes, sessionType ]);
 });
+
+test('should set to be an array of Session Types provided', () =>
+{
+	const action =
+	{
+		type: 'SET_SESSION_TYPE',
+		sessionTypes
+	}
+	const state = otherSettingsReducer( undefined, action );
+
+	expect( state ).toEqual( sessionTypes );
+});
