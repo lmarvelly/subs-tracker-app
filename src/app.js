@@ -6,6 +6,7 @@ import AppRouter, { history } from './routers/AppRouter';
 
 import configureStore from './store/configureStore';
 
+import { startSetSessionType } from './actions/otherSettings';
 import { startSetRecords } from './actions/records';
 import { sortAlphabetAsc } from './actions/memberFilters';
 import { startSetMembers } from './actions/members';
@@ -57,6 +58,7 @@ firebase.auth().onAuthStateChanged((user) =>
 	{
 		store.dispatch(login(user.uid));
 		// App renders after Promises are complete
+		store.dispatch(startSetSessionType());
 		store.dispatch(startSetMembers());
 		store.dispatch(startSetSeasons());
 		store.dispatch(startSetRecords())
