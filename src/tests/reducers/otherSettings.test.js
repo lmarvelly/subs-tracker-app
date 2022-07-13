@@ -44,3 +44,22 @@ test('should remove a Session Type', () =>
 	expect(state).toEqual(altererSessionList);
 });
 
+test('should edit a Session Type', () =>
+{
+	const sessionName = 'Kickabout at Gol';
+	const sessionUuid = sessionTypes[0].sessionUuid;
+
+	const action =
+	{
+		type: 'EDIT_SESSION_TYPE',
+		sessionUuid,
+		updates:
+		{
+			sessionName
+		}
+	};
+
+	const state = otherSettingsReducer( sessionTypes, action );
+
+	expect(state[0].sessionName).toBe(sessionName);
+});

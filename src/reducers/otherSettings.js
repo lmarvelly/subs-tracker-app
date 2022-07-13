@@ -12,6 +12,19 @@ export default ( state = otherSettingsDefaultState, action ) =>
 				}
 			]
 
+		case 'EDIT_SESSION_TYPE':
+			return state.map( ( session ) =>
+				{
+					if( session.sessionUuid === action.sessionUuid )
+					{
+						return {
+							...session,
+							...action.updates
+						}
+					}
+					else { return session };
+				})
+
 		case 'REMOVE_SESSION_TYPE':
 			return state.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
 
