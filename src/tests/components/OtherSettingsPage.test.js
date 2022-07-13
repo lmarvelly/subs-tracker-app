@@ -1,16 +1,28 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { OtherSettingsPage } from '../../components/OtherSettingsPage';
 
-let wrapper;
+import { OtherSettingsPage } from '../../components/OtherSettingsPage';
+import { sessionTypes } from '../fixtures/fixures';
+
+let emptyWrapper, completeWrapper;
 
 beforeEach( () =>
 {
-	wrapper = shallow(<OtherSettingsPage sessionTypes={[]} />)
+	emptyWrapper = shallow(<OtherSettingsPage sessionTypes={[]} />);
+	completeWrapper = shallow(
+		<OtherSettingsPage 
+			sessionTypes={sessionTypes}
+		/>)
 });
 
 test('should render Other Settings Page Correctly', () =>
 { 
-	expect(wrapper).toMatchSnapshot();
-})
-// Created rendering and submit tests
+	expect(emptyWrapper).toMatchSnapshot();
+});
+
+test('should render Other Settings Page correctly with Session Types List', () => 
+{
+	expect(completeWrapper).toMatchSnapshot();
+});
+
+// TODO: Create submit tests
