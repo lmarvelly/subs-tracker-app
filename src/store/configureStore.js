@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
+import otherSettingsReducer from '../reducers/otherSettings';
 import paymentRecordReducer from '../reducers/records';
 import recordFilterReducer from '../reducers/recordFilters';
 import membersRecordReducer from '../reducers/members';
@@ -24,6 +25,7 @@ export default () => {
 	const store = createStore(
 		combineReducers(
 		{
+			sessionTypes: otherSettingsReducer,
 			paymentRecord: paymentRecordReducer,
 			recordFilters:  recordFilterReducer,
 			members: membersRecordReducer,
