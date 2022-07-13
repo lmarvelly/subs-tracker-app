@@ -2,7 +2,8 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { 
-	addSessionType, removeSessionType, startAddSessionType, 
+	addSessionType, editSessionType, removeSessionType, 
+	startAddSessionType, 
 	setSessionType, startSetSessionType, startRemoveSessionType
 } from '../../actions/otherSettings';
 import { sessionTypes } from '../fixtures/fixures';
@@ -131,6 +132,16 @@ test('should remove a Session Type from the database', (done) =>
 		});
 });
 
-// TODO:
+test('should create Edit Session action object', () =>
+{
+	const sessionUuid = 'testUuid';
+	const updates = {sessionName: 'Training'}
+	const action = editSessionType( sessionUuid, updates );
 
-// Test Edit Session Types
+	expect( action ).toEqual(
+	{
+		type: 'EDIT_SESSION_TYPE',
+		sessionUuid,
+		updates
+	});
+});
