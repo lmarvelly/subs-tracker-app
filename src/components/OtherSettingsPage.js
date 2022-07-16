@@ -12,7 +12,6 @@ export const OtherSettingsPage = ( props ) =>
 {
 	const onSubmit = ( sessionName ) =>
 	{
-		console.log(sessionName);
 		props.addSessionName({sessionName});
 	}
 
@@ -28,7 +27,10 @@ export const OtherSettingsPage = ( props ) =>
 
 			<div className='content-container'>
 				
-				<SessionNameForm onSubmit={onSubmit} />
+				<SessionNameForm 
+					sessionNames={props.sessionNames}
+					onSubmit={onSubmit} 
+				/>
 
 				<div className='list-header'>Session Types</div>
 				<div className='list-body'>
