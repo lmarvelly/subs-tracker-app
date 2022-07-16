@@ -1,18 +1,19 @@
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 
-import SessionTypeForm from './SessionTypeForm';
-import SessionTypeListItem from './SessionTypeListItem';
+import SessionNameForm from './SessionNameForm';
+import SessionNameListItem from './SessionNameListItem';
 import { 
-	startAddSessionType, startRemoveSessionType, 
-	startEditSessionType
+	startAddSessionName, startRemoveSessionName, 
+	startEditSessionName
 } from '../actions/otherSettings';
 
 export const OtherSettingsPage = ( props ) =>
 {
-	const onSubmit = ( sessionType ) =>
+	const onSubmit = ( sessionName ) =>
 	{
-		props.addSessionType(sessionType);
+		console.log(sessionName);
+		props.addSessionName({sessionName});
 	}
 
 	return(
@@ -27,12 +28,12 @@ export const OtherSettingsPage = ( props ) =>
 
 			<div className='content-container'>
 				
-				<SessionTypeForm onSubmit={onSubmit} />
+				<SessionNameForm onSubmit={onSubmit} />
 
 				<div className='list-header'>Session Types</div>
 				<div className='list-body'>
 				{
-					(props.sessionTypes.length === 0) 
+					(props.sessionNames.length === 0) 
 					?
 					(
 						<div className='list-item list-item--message'>
@@ -41,14 +42,14 @@ export const OtherSettingsPage = ( props ) =>
 					)
 					:
 					(
-						props.sessionTypes.map( ( sessionType ) =>
+						props.sessionNames.map( ( sessionName ) =>
 						{
-							return <SessionTypeListItem
-										key={sessionType.sessionUuid} 
-										sessionName={sessionType.sessionName}
-										sessionUuid={sessionType.sessionUuid}
-										editSessionType={props.editSessionType}
-										removeSessionType={props.removeSessionType}/>
+							return <SessionNameListItem
+										key={sessionName.sessionUuid} 
+										sessionName={sessionName.sessionName}
+										sessionUuid={sessionName.sessionUuid}
+										editSessionName={props.editSessionName}
+										removeSessionName={props.removeSessionName}/>
 						})
 					)
 				}
@@ -60,15 +61,15 @@ export const OtherSettingsPage = ( props ) =>
 
 const mapDispatchToProps = ( dispatch ) =>(
 {
-	addSessionType: ( sessionType ) => dispatch(startAddSessionType(sessionType) ),
-	editSessionType: ( sessionUuid, updates ) => dispatch(startEditSessionType(sessionUuid, updates)),
-	removeSessionType: ( sessionUuid ) => dispatch(startRemoveSessionType(sessionUuid))
+	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
+	editSessionName: ( sessionUuid, updates ) => dispatch(startEditSessionName(sessionUuid, updates)),
+	removeSessionName: ( sessionUuid ) => dispatch(startRemoveSessionName(sessionUuid))
 });
 
 const mapStateToProps = ( state ) =>
 {
 	return {
-		sessionTypes: state.sessionTypes
+		sessionNames: state.sessionNames
 	}
 }
 

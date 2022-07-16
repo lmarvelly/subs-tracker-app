@@ -2,16 +2,16 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { OtherSettingsPage } from '../../components/OtherSettingsPage';
-import { sessionTypes } from '../fixtures/fixures';
+import { sessionNames } from '../fixtures/fixures';
 
 let emptyWrapper, completeWrapper;
 
 beforeEach( () =>
 {
-	emptyWrapper = shallow(<OtherSettingsPage sessionTypes={[]} />);
+	emptyWrapper = shallow(<OtherSettingsPage sessionNames={[]} />);
 	completeWrapper = shallow(
 		<OtherSettingsPage 
-			sessionTypes={sessionTypes}
+			sessionNames={sessionNames}
 		/>)
 });
 

@@ -8,7 +8,7 @@ export default ( state = otherSettingsDefaultState, action ) =>
 			return [
 				...state,
 				{
-					...action.sessionType
+					...action.sessionName
 				}
 			]
 
@@ -29,7 +29,7 @@ export default ( state = otherSettingsDefaultState, action ) =>
 			return state.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
 
 		case 'SET_SESSION_TYPE':
-			return action.sessionTypes
+			return action.sessionNames
 		
 		default:
 			return state;

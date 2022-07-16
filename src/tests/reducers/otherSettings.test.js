@@ -1,5 +1,5 @@
 import otherSettingsReducer from "../../reducers/otherSettings";
-import { sessionTypes } from "../fixtures/fixures";
+import { sessionNames } from "../fixtures/fixures";
 
 test('should set default state', () =>
 {
@@ -10,11 +10,11 @@ test('should set default state', () =>
 
 test('should add a new Session Type', () =>
 {
-	const sessionType = { sessionName: 'Kickabout at gol' };
-	const action = { type: 'ADD_SESSION_TYPE', sessionType };
-	const state = otherSettingsReducer( sessionTypes, action );
+	const sessionName = { sessionName: 'Kickabout at gol' };
+	const action = { type: 'ADD_SESSION_TYPE', sessionName };
+	const state = otherSettingsReducer( sessionNames, action );
 
-	expect( state ).toEqual([ ...sessionTypes, sessionType ]);
+	expect( state ).toEqual([ ...sessionNames, sessionName ]);
 });
 
 test('should set to be an array of Session Types provided', () =>
@@ -22,24 +22,24 @@ test('should set to be an array of Session Types provided', () =>
 	const action =
 	{
 		type: 'SET_SESSION_TYPE',
-		sessionTypes
+		sessionNames
 	}
 	const state = otherSettingsReducer( undefined, action );
 
-	expect( state ).toEqual( sessionTypes );
+	expect( state ).toEqual( sessionNames );
 });
 
 test('should remove a Session Type', () =>
 {
-	const sessionUuid = sessionTypes[0].sessionUuid;
+	const sessionUuid = sessionNames[0].sessionUuid;
 	const action =
 	{
 		type: 'REMOVE_SESSION_TYPE',
 		sessionUuid
 	};
-	const state = otherSettingsReducer( sessionTypes, action );
+	const state = otherSettingsReducer( sessionNames, action );
 
-	const altererSessionList = sessionTypes.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
+	const altererSessionList = sessionNames.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
 
 	expect(state).toEqual(altererSessionList);
 });
@@ -47,7 +47,7 @@ test('should remove a Session Type', () =>
 test('should edit a Session Type', () =>
 {
 	const sessionName = 'Kickabout at Gol';
-	const sessionUuid = sessionTypes[0].sessionUuid;
+	const sessionUuid = sessionNames[0].sessionUuid;
 
 	const action =
 	{
@@ -59,7 +59,7 @@ test('should edit a Session Type', () =>
 		}
 	};
 
-	const state = otherSettingsReducer( sessionTypes, action );
+	const state = otherSettingsReducer( sessionNames, action );
 
 	expect(state[0].sessionName).toBe(sessionName);
 });

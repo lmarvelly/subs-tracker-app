@@ -127,7 +127,7 @@ export const sessionArray =
 	{ playerUuid: members[2], type: "DEBT" }
 ]
 
-export const sessionTypes = 
+export const sessionNames = 
 [ 
 	{
 		sessionName: 'Training', 

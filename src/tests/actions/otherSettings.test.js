@@ -2,11 +2,11 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { 
-	addSessionType, editSessionType, startEditSessionType,
-	removeSessionType, startAddSessionType, setSessionType, 
-	startSetSessionType, startRemoveSessionType
+	addSessionName, editSessionName, startEditSessionName,
+	removeSessionName, startAddSessionName, setSessionName, 
+	startSetSessionName, startRemoveSessionName
 } from '../../actions/otherSettings';
-import { sessionTypes } from '../fixtures/fixures';
+import { sessionNames } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
 const uid = 'testuid';
@@ -15,24 +15,24 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
 {
-	const sessionTypeData = {};
-	sessionTypes.forEach(({ sessionUuid, sessionName }) =>
+	const sessionNameData = {};
+	sessionNames.forEach(({ sessionUuid, sessionName }) =>
 	{
-		sessionTypeData[sessionUuid] = { sessionName };
+		sessionNameData[sessionUuid] = { sessionName };
 	});
 
-	database.ref(`subs-tracker/users/${uid}/session_types`)
-		.set(sessionTypeData)
+	database.ref(`subs-tracker/users/${uid}/session_names`)
+		.set(sessionNameData)
 		.then(() => done());
 });
 
 test('should create a Add Session Type Action Objest', () =>
 {
-	const action = addSessionType(sessionTypes[0]);
+	const action = addSessionName(sessionNames[0]);
 	expect(action).toEqual(
 	{
 		type: 'ADD_SESSION_TYPE',
-		sessionType: sessionTypes[0]
+		sessionName: sessionNames[0]
 	});
 });
 
@@ -40,31 +40,31 @@ test('should add a new Session to the database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 
-	const sessionType = 
+	const sessionName = 
 	{
 		sessionName: 'Kickabout'
 	};
 
-	const promise = store.dispatch(startAddSessionType(sessionType)).then(() =>
+	const promise = store.dispatch(startAddSessionName(sessionName)).then(() =>
 	{
 		const actions = store.getActions();
 		expect(actions[0]).toEqual(
 		{
 			type: 'ADD_SESSION_TYPE',
-			sessionType:
+			sessionName:
 			{
 				sessionUuid: expect.any(String),
-				...sessionType
+				...sessionName
 			}
 		});
 
-		return database.ref(`subs-tracker/users/${uid}/session_types/${actions[0].sessionType.sessionUuid}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/session_names/${actions[0].sessionName.sessionUuid}`).once('value');
 	});
 
 	promise.then((snapshot) =>
 	{
 		expect(snapshot.val()).toEqual(
-			sessionType
+			sessionName
 		);
 		done();
 	});
@@ -72,11 +72,11 @@ test('should add a new Session to the database', (done) =>
 
 test('Create Set Session Type action object', () =>
 {
-	const action = setSessionType( sessionTypes );
+	const action = setSessionName( sessionNames );
 	expect(action).toEqual(
 	{
 		type: 'SET_SESSION_TYPE',
-		sessionTypes
+		sessionNames
 	});
 });
 
@@ -84,13 +84,13 @@ test('should retreive Session Types from database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 
-	store.dispatch(startSetSessionType()).then(() =>
+	store.dispatch(startSetSessionName()).then(() =>
 	{
 		const actions = store.getActions();
 		expect(actions[0]).toEqual(
 		{
 			type: 'SET_SESSION_TYPE',
-			sessionTypes
+			sessionNames
 		});
 		done();
 	});
@@ -99,7 +99,7 @@ test('should retreive Session Types from database', (done) =>
 test('should create remove Session Type action object', () =>
 {
 	const sessionUuid = 'testUuid';
-	const action = removeSessionType(sessionUuid);
+	const action = removeSessionName(sessionUuid);
 
 	expect(action).toEqual(
 	{
@@ -111,9 +111,9 @@ test('should create remove Session Type action object', () =>
 test('should remove a Session Type from the database', (done) =>
 { 
 	const store = createMockStore(defaultAuthState);
-	const sessionUuid = sessionTypes[1].sessionUuid;
+	const sessionUuid = sessionNames[1].sessionUuid;
 	
-	store.dispatch(startRemoveSessionType(sessionUuid))
+	store.dispatch(startRemoveSessionName(sessionUuid))
 		.then(() =>
 		{
 			const actions = store.getActions();
@@ -123,7 +123,7 @@ test('should remove a Session Type from the database', (done) =>
 				sessionUuid
 			});
 
-			return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/session_names/${sessionUuid}`).once('value');
 		})
 		.then((snapshot) =>
 		{
@@ -136,7 +136,7 @@ test('should create Edit Session action object', () =>
 {
 	const sessionUuid = 'testUuid';
 	const updates = {sessionName: 'Training'}
-	const action = editSessionType( sessionUuid, updates );
+	const action = editSessionName( sessionUuid, updates );
 
 	expect( action ).toEqual(
 	{
@@ -149,10 +149,10 @@ test('should create Edit Session action object', () =>
 test('should edit a Session Type from the database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
-	const sessionUuid = sessionTypes[1].sessionUuid;
+	const sessionUuid = sessionNames[1].sessionUuid;
 	const updates = { sessionName: 'Kickabout' };
 
-	store.dispatch(startEditSessionType(sessionUuid, updates))
+	store.dispatch(startEditSessionName(sessionUuid, updates))
 		.then( () =>
 		{
 			const actions = store.getActions();
@@ -162,7 +162,7 @@ test('should edit a Session Type from the database', (done) =>
 				sessionUuid,
 				updates
 			});
-			return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/session_names/${sessionUuid}`).once('value');
 		})
 		.then( (snapshot) =>
 		{

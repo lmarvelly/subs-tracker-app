@@ -1,21 +1,23 @@
 import React, { useEffect, useState  } from 'react';
 
-const SessionTypeForm = ( props ) =>
+const SessionNameForm = ( props ) =>
 {
-	const [ sessionTypeName, setSessionTypeName ] = useState('');
+	const [ sessionName, setSessionName ] = useState('');
 
 	const onSubmit = (e) =>
 	{
 		e.preventDefault();
-		const sessionName = sessionTypeName;
+		console.log(sessionName); // working
 
-		props.onSubmit({sessionName});
-		setSessionTypeName('');
+		props.onSubmit(sessionName);
+		setSessionName('');
 	}
 
 	const onSessionNameChange = (e) =>
 	{
-		setSessionTypeName(e.target.value);
+		console.log(e.target.value); // working
+		setSessionName(e.target.value);
+		console.log(sessionName);
 	}
 
 	return (
@@ -25,7 +27,7 @@ const SessionTypeForm = ( props ) =>
 					className="text-input"
 					onChange={onSessionNameChange}
 					placeholder='Add new session type'
-					value={sessionTypeName}
+					value={sessionName}
 				/>
 				<button className='button'>Add Session Type</button>
 			</form>
@@ -33,4 +35,4 @@ const SessionTypeForm = ( props ) =>
 	)
 }
 
-export default SessionTypeForm;
+export default SessionNameForm;

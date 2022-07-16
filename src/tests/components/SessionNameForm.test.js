@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SessionTypeForm from '../../components/SessionTypeForm';
-import { sessionTypes } from '../fixtures/fixures';
+import SessionNameForm from '../../components/SessionNameForm';
+import { sessionNames } from '../fixtures/fixures';
 
 let onSessionNameChange,
 	onSubmit,
@@ -13,7 +13,7 @@ beforeEach( () =>
 	onSubmit = jest.fn();
 
 	wrapper = shallow(
-		<SessionTypeForm
+		<SessionNameForm
 			onSessionNameChange={onSessionNameChange}
 			onSubmit={onSubmit}
 		/>

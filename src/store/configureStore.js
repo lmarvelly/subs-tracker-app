@@ -25,7 +25,7 @@ export default () => {
 	const store = createStore(
 		combineReducers(
 		{
-			sessionTypes: otherSettingsReducer,
+			sessionNames: otherSettingsReducer,
 			paymentRecord: paymentRecordReducer,
 			recordFilters:  recordFilterReducer,
 			members: membersRecordReducer,

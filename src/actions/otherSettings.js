@@ -1,99 +1,100 @@
 import database from '../firebase/firebase';
 
-export const addSessionType = ( sessionType ) => (
+export const addSessionName = ( sessionName ) => (
 {
 	type: 'ADD_SESSION_TYPE',
-	sessionType
+	sessionName
 });
 
-export const startAddSessionType = ( sessionType = '' ) =>
+export const startAddSessionName = ( sessionName = '' ) =>
 {
+	console.log(sessionName);
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
 
-		return database.ref(`subs-tracker/users/${uid}/session_types`)
-			.push(sessionType)
+		return database.ref(`subs-tracker/users/${uid}/session_names`)
+			.push(sessionName)
 			.then((ref) => 
 			{
-				dispatch(addSessionType(
+				dispatch(addSessionName(
 				{
 					sessionUuid: ref.key,
-					...sessionType
+					...sessionName
 				}));
 			});
 	}
 }
 
-export const setSessionType = ( sessionTypes ) => (
+export const setSessionName = ( sessionNames ) => (
 {
 	type: 'SET_SESSION_TYPE',
-	sessionTypes
+	sessionNames
 });
 
-export const startSetSessionType = () =>
+export const startSetSessionName = () =>
 {
 	return (dispatch, getState) =>
 	{
 		const uid = getState().auth.uid;
 
-		return database.ref(`subs-tracker/users/${uid}/session_types`)
+		return database.ref(`subs-tracker/users/${uid}/session_names`)
 			.once('value')
 			.then((snapshot) =>
 			{
-				const sessionTypes = [];
+				const sessionNames = [];
 
 				snapshot.forEach( (childSnapshot) =>
 				{
-					sessionTypes.push(
+					sessionNames.push(
 					{
 						sessionUuid: childSnapshot.key,
 						...childSnapshot.val()
 					});
 				});
 
-				dispatch( setSessionType( sessionTypes ) );
+				dispatch( setSessionName( sessionNames ) );
 			});
 	}
 };
 
-export const removeSessionType = ( sessionUuid ) =>(
+export const removeSessionName = ( sessionUuid ) =>(
 {
 	type: 'REMOVE_SESSION_TYPE',
 	sessionUuid
 });
 
-export const startRemoveSessionType = ( sessionUuid ) =>
+export const startRemoveSessionName = ( sessionUuid ) =>
 {
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
 
-		return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`)
+		return database.ref(`subs-tracker/users/${uid}/session_names/${sessionUuid}`)
 			.remove()
 			.then( () =>
 			{
-				dispatch( removeSessionType( sessionUuid ) )
+				dispatch( removeSessionName( sessionUuid ) )
 			});
 	}
 }
 
-export const editSessionType = ( sessionUuid, updates ) => (
+export const editSessionName = ( sessionUuid, updates ) => (
 {
 	type: 'EDIT_SESSION_TYPE',
 	sessionUuid,
 	updates
 });
 
-export const startEditSessionType = ( sessionUuid, updates ) =>
+export const startEditSessionName = ( sessionUuid, updates ) =>
 {
 	const { sessionName } = updates;
 
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/session_types/${sessionUuid}`)
+		return database.ref(`subs-tracker/users/${uid}/session_names/${sessionUuid}`)
 			.update({ sessionName })
-			.then( () => dispatch( editSessionType( sessionUuid, updates )));
+			.then( () => dispatch( editSessionName( sessionUuid, updates )));
 	}
 };

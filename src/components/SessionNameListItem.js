@@ -1,12 +1,12 @@
 import React from 'react';
 
-const SessionTypeListItem = ( props ) =>
+const SessionNameListItem = ( props ) =>
 {
 	const handleRemove = () =>
 	{
 		if(confirm(`Are you sure you want to remove '${props.sessionName}'`))
 		{
-			props.removeSessionType( props.sessionUuid );
+			props.removeSessionName( props.sessionUuid );
 		}
 	}
 
@@ -18,7 +18,7 @@ const SessionTypeListItem = ( props ) =>
 
 		if (sessionName) 
 		{
-			props.editSessionType( props.sessionUuid, updates );
+			props.editSessionName( props.sessionUuid, updates );
 		}
 	}
 
@@ -35,4 +35,4 @@ const SessionTypeListItem = ( props ) =>
 	);
 }
 
-export default SessionTypeListItem;
+export default SessionNameListItem;
