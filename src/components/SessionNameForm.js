@@ -7,7 +7,6 @@ const SessionNameForm = ( props ) =>
 	const onSubmit = (e) =>
 	{
 		e.preventDefault();
-		console.log(sessionName); // working
 
 		props.onSubmit(sessionName);
 		setSessionName('');
@@ -15,9 +14,7 @@ const SessionNameForm = ( props ) =>
 
 	const onSessionNameChange = (e) =>
 	{
-		console.log(e.target.value); // working
 		setSessionName(e.target.value);
-		console.log(sessionName);
 	}
 
 	return (
