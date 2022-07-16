@@ -5,7 +5,7 @@ import { textSearch } from "../functions/generalFilterFunctions";
 /**
  * Destruct Filters
  * {
- * 	descriptionTextFilter
+ * 	sessionNameTextFilter
  * 	memberTextFilter
  * 	sortBy
  * 	startDate
@@ -16,7 +16,7 @@ import { textSearch } from "../functions/generalFilterFunctions";
  * @param {*} records 
  * @param {*} filters
  */
-export default ( records = {}, members = {}, { descriptionTextFilter, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
+export default ( records = {}, members = {}, { sessionNameTextFilter, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
 {
 	return records.filter( (record) =>
 	{
@@ -30,9 +30,9 @@ export default ( records = {}, members = {}, { descriptionTextFilter, memberText
 		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
 		const isMemberMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
 
-		// Filter by Description
-		const descTextFilterArray = descriptionTextFilter.split(' ');
-		const searchDescTextArray = record.description.split(' ');
+		// Filter by Session Name
+		const descTextFilterArray = sessionNameTextFilter.split(' ');
+		const searchDescTextArray = record.sessionName.split(' ');
 		const isDescMatch = textSearch( descTextFilterArray, searchDescTextArray );
 
 		const createdAtMoment = moment( record.createdAt );

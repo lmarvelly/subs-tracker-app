@@ -5,7 +5,7 @@ import { records, members, seasons, } from '../fixtures/fixures';
 test('Should filter desciptions by text value', () =>
 {
 	const filters = {
-		descriptionTextFilter: 'train',
+		sessionNameTextFilter: 'train',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: undefined,
@@ -20,7 +20,7 @@ test('Should filter desciptions by text value', () =>
 test('Should filter desciptions by advanced text value', () =>
 {
 	const filters = {
-		descriptionTextFilter: 'ub rain',
+		sessionNameTextFilter: 'ub rain',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: undefined,
@@ -36,7 +36,7 @@ test('Should filter by startDate', () =>
 {
 	const filters = 
 	{
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: moment(0),
@@ -53,7 +53,7 @@ test('Should filter by startDate', () =>
 {
 	const filters = 
 	{
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: undefined,
@@ -68,7 +68,7 @@ test('Should filter by startDate', () =>
 test('Should sort by dateAscending', () =>
 {
 	const filters = {
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
 		startDate: undefined,
@@ -83,7 +83,7 @@ test('Should sort by dateAscending', () =>
 test('Should sort by dateDescending', () =>
 {
 	const filters = {
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateDescending',
 		startDate: undefined,
@@ -99,7 +99,7 @@ test('Should filter by member simple text filter 1', () =>
 {
 	const filters = 
 	{
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: 'Har',
 		sortBy: 'dateDescending',
 		startDate: undefined,
@@ -114,7 +114,7 @@ test('Should filter by member simple text filter 2', () =>
 {
 	const filters = 
 	{
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: 'Mar',
 		sortBy: 'dateDescending',
 		startDate: undefined,
@@ -129,7 +129,7 @@ test('Should filter by member advanced text filter 1', () =>
 {
 	const filters = 
 	{
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: 'Luk Mar',
 		sortBy: 'dateDescending',
 		startDate: undefined,
@@ -144,7 +144,7 @@ test('Should filter by member advanced text filter 2', () =>
 {
 	const filters = 
 	{
-		descriptionTextFilter: '',
+		sessionNameTextFilter: '',
 		memberTextFilter: 'usi son',
 		sortBy: 'dateAscending',
 		startDate: undefined,

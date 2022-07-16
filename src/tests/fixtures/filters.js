@@ -4,7 +4,7 @@ import { seasons } from "./fixures";
 
 const defaultFilters =
 {
-	descriptionTextFilter: '',
+	sessionNameTextFilter: '',
 	memberTextFilter: '',
 	playerUuid: '',
 	sortBy: 'dateAscending',
@@ -15,7 +15,7 @@ const defaultFilters =
 
 const altFilters1 =
 {
-	descriptionTextFilter: '5s',
+	sessionNameTextFilter: '5s',
 	memberTextFilter: '',
 	sortBy: 'dateDescending',
 	startDate: moment(),
@@ -25,7 +25,7 @@ const altFilters1 =
 
 const altFilters2 =
 {
-	descriptionTextFilter: '',
+	sessionNameTextFilter: '',
 	memberTextFilter: 'Harri',
 	sortBy: 'dateDescending',
 	startDate: moment(),
@@ -35,7 +35,7 @@ const altFilters2 =
 
 const altFilters3 =
 {
-	descriptionTextFilter: '',
+	sessionNameTextFilter: '',
 	memberTextFilter: 'Harri',
 	sortBy: 'dateDescending',
 	startDate: moment(),

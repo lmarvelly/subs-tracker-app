@@ -19,14 +19,14 @@ import uuid from 'uuid';
 /**
  * ADD A SUB PAYMENT
  * 
- * Takes in 4 arguments: playerUuid, description, amount and 
+ * Takes in 4 arguments: playerUuid, sessionName, amount and 
  * createdAt 
  * 
  * 
  * @param {string} playerUuid
  * @param {string} id: uuid()
  * @param {string} recordType 'SUB_PAYMENT'
- * @param {string} description
+ * @param {string} sessionName
  * @param {number} amount
  * @param {number} createdAt
  * 
@@ -34,13 +34,13 @@ import uuid from 'uuid';
  * @returns A type and a object
  * 
  * @type 'ADD_PAYMENT'
- * @object playerUuid, id, recordType, description, amount, createdAt
+ * @object playerUuid, id, recordType, sessionName, amount, createdAt
  * 
  */
 const addPayment = (
 	{
 		playerUuid = '',
-		description = '', 
+		sessionName = '', 
 		amount = 0, 
 		createdAt = 0
 	}) => (
@@ -51,7 +51,7 @@ const addPayment = (
 		playerUuid,
 		id: uuid(),
 		recordType: 'PAYMENT',
-		description,
+		sessionName,
 		amount,
 		createdAt
 	}
@@ -242,7 +242,7 @@ const getVisibleRecords = ( records, { text, sortBy, startDate, endDate } ) =>
 	{
 		const startDateMatch = typeof startDate !== 'number' || record.createdAt >= startDate; // if the record is created before the startDate it gets filtered out
 		const endDateMatch  = typeof endDate !== 'number' || record.createdAt <= endDate; // if the record is created after the endDate then it's filtered out
-		const textMatch = record.description.toLowerCase().includes(text.toLowerCase());
+		const textMatch = record.sessionName.toLowerCase().includes(text.toLowerCase());
 		
 		return startDateMatch && endDateMatch && textMatch; // Return true only if all the above are true. Record is removed if false
 	}).sort( (a, b) => {
@@ -296,7 +296,7 @@ const demoState =
 			"playerUuid":"12345",
 			"createdAt":1622380833549,
 			"recordType": "newPayment",
-			"description": "New payment",
+			"sessionName": "New payment",
 			"amount": 400
 		},
 		{
@@ -304,7 +304,7 @@ const demoState =
 			"playerUuid":"23456",
 			"createdAt":1622379856853,
 			"recordType": "moneyOwing",
-			"description": "Money owed for 5s",
+			"sessionName": "Money owed for 5s",
 			"amount": 500
 		},
 		{
@@ -312,7 +312,7 @@ const demoState =
 			"playerUuid":"34567",
 			"createdAt":1622379856800,
 			"recordType": "debtPayment",
-			"description": "Late payment for training",
+			"sessionName": "Late payment for training",
 			"amount": 400
 		},
 		{
@@ -320,7 +320,7 @@ const demoState =
 			"playerUuid":"12345",
 			"createdAt":1622378144280,
 			"recordType": "newPayment",
-			"description": "Payment for training",
+			"sessionName": "Payment for training",
 			"amount": 400
 		},
 		{
@@ -328,7 +328,7 @@ const demoState =
 			"playerUuid":"12345",
 			"createdAt":1621352306611,
 			"recordType": "debtPayment",
-			"description": "Late payment for training",
+			"sessionName": "Late payment for training",
 			"amount": 400
 		},
 		{
@@ -336,7 +336,7 @@ const demoState =
 			"playerUuid":"34567",
 			"createdAt":1622296067850,
 			"recordType": "newPayment",
-			"description": "Payment for training",
+			"sessionName": "Payment for training",
 			"amount": 400
 		},
 		{
@@ -344,7 +344,7 @@ const demoState =
 			"playerUuid":"34567",
 			"createdAt":1621352367550,
 			"recordType": "newPayment",
-			"description": "Payment for 5s",
+			"sessionName": "Payment for 5s",
 			"amount": 500
 		},
 		{
@@ -352,7 +352,7 @@ const demoState =
 			"playerUuid":"23456",
 			"createdAt":1622295937190,
 			"recordType": "moneyOwing",
-			"description": "Payment for training",
+			"sessionName": "Payment for training",
 			"amount": 400
 		}
 	],
@@ -377,7 +377,7 @@ const demoState =
  * 			playerUuid,
  *				id: uuid(),
  * 			recordType: 'PAYMENT',
- * 			description,
+ * 			sessionName,
  * 			amount,
  * 			createdAt
  * 		}
@@ -392,7 +392,7 @@ const payment1 = store.dispatch(
 	addPayment( 
 		{ 
 			playerUuid: '123', 
-			description: 'Training subs', 
+			sessionName: 'Training subs', 
 			amount: 400, 
 			createdAt:-500 
 		} 
@@ -403,7 +403,7 @@ const payment2 = store.dispatch(
 	addPayment( 
 		{ 
 			playerUuid: '123', 
-			description: '5s subs', 
+			sessionName: '5s subs', 
 			amount: 500, 
 			createdAt: -1000 
 		} 
@@ -414,20 +414,20 @@ const payment3 = store.dispatch(
 	addPayment( 
 		{ 
 			playerUuid: '1234', 
-			description: 'donation', 
+			sessionName: 'donation', 
 			amount: 5000, 
 			createdAt: -2000 
 		} 
 	)
 );
 
-// store.dispatch( editRecord( payment3.payment.id, { description: 'A kind donation' } ));
+// store.dispatch( editRecord( payment3.payment.id, { sessionName: 'A kind donation' } ));
 
 // store.dispatch( 
 // 	editRecord( 
 // 		payment2.payment.id, 
 // 		{
-// 			description: '5s and training subs', 
+// 			sessionName: '5s and training subs', 
 // 			amount: 900
 // 		} 
 // 	)

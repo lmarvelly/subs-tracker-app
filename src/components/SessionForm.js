@@ -15,7 +15,7 @@ export default class SessionForm extends Component
 			amount: '',
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			calenderFocused: false,
-			description: '',
+			sessionName: '',
 			note: '',
 			seasonUuid: '',
 			sessionArray: [],
@@ -67,12 +67,12 @@ export default class SessionForm extends Component
 		const seasonUuid = e.target.value;
 		this.setState( () => ({ seasonUuid }) );
 	}
-	onDescriptionChange = ( e ) => 
+	onSessionNameChange = ( e ) => 
 	{
-		const description = e.target.value;
-		if ( description.length <= 30 ) 
+		const sessionName = e.target.value;
+		if ( sessionName.length <= 30 ) 
 		{
-			this.setState( () => ({ description }) );
+			this.setState( () => ({ sessionName }) );
 		}
 	};
 	onAmountChange = ( e ) => 
@@ -123,7 +123,7 @@ export default class SessionForm extends Component
 	isFormFalsy = () =>
 	{
 		const isFalsy = (
-			!this.state.description || 
+			!this.state.sessionName || 
 			!this.state.amount || 
 			!this.state.seasonUuid ||
 			!(this.state.sessionArray.length > 0)
@@ -140,7 +140,7 @@ export default class SessionForm extends Component
 		{
 			amount: parseFloat(this.state.amount, 10) * 100,
 			createdAt: this.state.createdAt.valueOf(),
-			description: this.state.description,
+			sessionName: this.state.sessionName,
 			note: this.state.note,
 			seasonUuid: this.state.seasonUuid,
 			sessionArray: this.state.sessionArray
@@ -167,7 +167,7 @@ export default class SessionForm extends Component
 
 		const error = '__error';
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
-		const descriptionErrorClassName = this.state.description ? '' : error;
+		const sessionNameErrorClassName = this.state.sessionName ? '' : error;
 		const amountErrorClassName = this.state.amount ? '' : error;
 		const sessionArrayErrorClassName = (this.state.sessionArray.length > 0) ? '' : error;
 		const isFalsy = this.isFormFalsy();
@@ -199,14 +199,14 @@ export default class SessionForm extends Component
 								})
 							}
 						</select>
-						{this.state.error && descriptionErrorClassName && <p className='form__error'>Please provide a description</p>}
+						{this.state.error && sessionNameErrorClassName && <p className='form__error'>Please provide a sessionName</p>}
 						<input 
-							id='description'
-							className={`text-input${descriptionErrorClassName}`}
+							id='sessionName'
+							className={`text-input${sessionNameErrorClassName}`}
 							type="text"
-							placeholder="Session description i.e. training"
-							value={ this.state.description }
-							onChange={ this.onDescriptionChange }
+							placeholder="Session name i.e. training"
+							value={ this.state.sessionName }
+							onChange={ this.onSessionNameChange }
 						/>
 						{ this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
 						{ this.state.showAmountErrorMessage && <p className='form__error'>Please enter an Amount</p>}

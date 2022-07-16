@@ -13,7 +13,7 @@ export default class RecordForm extends Component
 			playerUuid: props.record ? props.record.playerUuid : '',
 			seasonUuid: props.record ? props.record.seasonUuid : '',
 			recordType: props.record ? props.record.recordType : 'PAYMENT',
-			description: props.record ? props.record.description : '',
+			sessionName: props.record ? props.record.sessionName : '',
 			note: props.record ? props.record.note : '',
 			createdAt: props.record ? moment( props.record.createdAt ) : moment(),
 			calenderFocused: false,
@@ -37,7 +37,7 @@ export default class RecordForm extends Component
 		const isAmountOrAmountOwed = ( this.state.amount > 0 || amountOwed > 0 );
 		const isFalsy = (
 			!isDebtAmountsRight || 
-			!this.state.description || 
+			!this.state.sessionName || 
 			!isAmountOrAmountOwed || 
 			!this.state.playerUuid || 
 			!this.state.seasonUuid
@@ -66,11 +66,11 @@ export default class RecordForm extends Component
 			this.setState( { amountOwed: this.state.amount} );
 		}
 	};
-	onDescriptionChange = ( e ) => {
-		const description = e.target.value;
-		if ( description.length <= 30 ) 
+	onSessionNameChange = ( e ) => {
+		const sessionName = e.target.value;
+		if ( sessionName.length <= 30 ) 
 		{
-			this.setState( () => ({ description }) );
+			this.setState( () => ({ sessionName }) );
 		}
 	};
 	onNoteChange = ( e ) => {
@@ -158,7 +158,7 @@ export default class RecordForm extends Component
 			id: this.state.id,
 			playerUuid: this.state.playerUuid,
 			seasonUuid: this.state.seasonUuid,
-			description: this.state.description,
+			sessionName: this.state.sessionName,
 			createdAt: this.state.createdAt.valueOf(),
 			note: this.state.note
 		}
@@ -257,7 +257,7 @@ export default class RecordForm extends Component
 		const error = '__error';
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const memberErrorClassName = this.state.playerUuid ? '' : error;
-		const descriptionErrorClassName = this.state.description ? '' : error;
+		const sessionNameErrorClassName = this.state.sessionName ? '' : error;
 		const amountErrorClassName = this.state.amount || this.state.amountOwed ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		const isFalsy = this.isFormFalsy();
@@ -333,14 +333,14 @@ export default class RecordForm extends Component
 							Add Debt
 						</option>
 					</select>
-					{this.state.error && descriptionErrorClassName && <p className='form__error'>Please provide a description</p>}
+					{this.state.error && sessionNameErrorClassName && <p className='form__error'>Please provide a sessionName</p>}
 					<input 
-						id='description'
-						className={`text-input${descriptionErrorClassName}`}
+						id='sessionName'
+						className={`text-input${sessionNameErrorClassName}`}
 						type="text"
-						placeholder="Provide a Description"
-						value={ this.state.description }
-						onChange={ this.onDescriptionChange }
+						placeholder="Provide a Session Name"
+						value={ this.state.sessionName }
+						onChange={ this.onSessionNameChange }
 					/>
 					
 					{this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}

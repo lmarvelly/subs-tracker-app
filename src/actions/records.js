@@ -8,14 +8,14 @@ import database from '../firebase/firebase';
 /**
  * ADD A SUB PAYMENT
  * 
- * Takes in 4 arguments: playerUuid, description, amount and 
+ * Takes in 4 arguments: playerUuid, sessionName, amount and 
  * createdAt 
  * 
  * 
  * @param {string} playerUuid
  * @param {string} id: firebase should return a unique key
  * @param {string} recordType 'DEBT' or 'PAYMENT'
- * @param {string} description
+ * @param {string} sessionName
  * @param {number} amount
  * @param {number} createdAt
  * 
@@ -23,7 +23,7 @@ import database from '../firebase/firebase';
  * @returns A type and a object
  * 
  * @type 'ADD_RECORD'
- * @object playerUuid, id, recordType, description, amount, createdAt
+ * @object playerUuid, id, recordType, sessionName, amount, createdAt
  * 
  */
 export const addRecord = (record) => (
@@ -42,7 +42,7 @@ export const addRecord = (record) => (
  * 			recordType = 'PAYMENT',
  * 			playerUuid = '',
  * 			seasonUuid = '',
- * 			description = '',
+ * 			sessionName = '',
  * 			note = '',  
  * 			createdAt = 0,
  * 
@@ -61,7 +61,7 @@ export const startAddRecord = ( recordData = {} ) =>
 			recordType = 'PAYMENT',
 			playerUuid = '',
 			seasonUuid = '',
-			description = '',
+			sessionName = '',
 			note = '',  
 			createdAt = 0,
 		
@@ -72,7 +72,7 @@ export const startAddRecord = ( recordData = {} ) =>
 
 		const record = 
 		{
-			recordType, playerUuid, seasonUuid, description, note,
+			recordType, playerUuid, seasonUuid, sessionName, note,
 			createdAt, amountOwed, 
 			amountPaid: recordType === 'DEBT' ? 0 : "", 
 			amount

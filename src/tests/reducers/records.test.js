@@ -41,7 +41,7 @@ test('should add a New Payment Record', () =>
 		recordType: 'PAYMENT',
 		playerUuid: members[1].playerUuid,
 		seasonUuid: seasons[0],
-		description: 'Training subs', 
+		sessionName: 'Training subs', 
 		amount: 400,
 		amountPaid: '',
 		amountOwed: '',
@@ -65,7 +65,7 @@ test('should add a New Debt Record', () =>
 		recordType: 'DEBT',
 		playerUuid: members[1].playerUuid,
 		seasonUuid: seasons[1].seasonUuid,
-		description: '5\'s subs', 
+		sessionName: '5\'s subs', 
 		amount: '',
 		amountPaid: 0,
 		amountOwed: 500,
@@ -83,10 +83,10 @@ test('should add a New Debt Record', () =>
 
 test('should edit a Payment Record', () => 
 {
-	const description = 'Training subs';
+	const sessionName = 'Training subs';
 	const amount = 400;
 	const seasonUuid = seasons[0];
-	const updates = { description, amount, seasonUuid }
+	const updates = { sessionName, amount, seasonUuid }
 	const action =
 	{
 		type: 'EDIT_RECORD',
@@ -95,16 +95,16 @@ test('should edit a Payment Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state[2].description ).toBe(description);
+	expect( state[2].sessionName ).toBe(sessionName);
 	expect( state[2].amount ).toBe(amount);
 });
 
 test('should edit a Debt Record', () => 
 {
-	const description = '5s subs';
+	const sessionName = '5s subs';
 	const amountOwed = 500;
 	const note = 'Will pay on Monday';
-	const updates = { description, amountOwed, note };
+	const updates = { sessionName, amountOwed, note };
 	const action =
 	{
 		type: 'EDIT_RECORD',
@@ -113,14 +113,14 @@ test('should edit a Debt Record', () =>
 	};
 	const state = recordReducer( records, action );
 
-	expect( state[0].description ).toBe(description);
+	expect( state[0].sessionName ).toBe(sessionName);
 	expect( state[0].amountOwed ).toBe(amountOwed);
 	expect( state[0].note ).toBe(note);
 });
 
 test('should not edit a Payment Record if not found', () => 
 {
-	const updates = { description: 'Training subs', amount: 500 }
+	const updates = { sessionName: 'Training subs', amount: 500 }
 	const action =
 	{
 		type: 'EDIT_RECORD',

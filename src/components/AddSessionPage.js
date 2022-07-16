@@ -51,7 +51,7 @@ export class AddSessionPage extends Component
 				recordType: sessionItem.type,
 				playerUuid: sessionItem.playerUuid,
 				seasonUuid: session.seasonUuid,
-				description: session.description,
+				sessionName: session.sessionName,
 				note: session.note,  
 				createdAt: session.createdAt,
 				amountOwed: "",

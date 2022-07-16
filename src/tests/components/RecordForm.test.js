@@ -68,10 +68,10 @@ test('should only render season and amount error message', () =>
 	const uuid = members[0].playerUuid
 	const input = wrapper.find('#playerName');
 	input.simulate('change', { target: { value: uuid }});
-	// description input
-	wrapper.find('#description').simulate('change',
+	// sessionName input
+	wrapper.find('#sessionName').simulate('change',
 	{
-		target: { value: 'New description' } // Setting the value of e.target.value
+		target: { value: 'New sessionName' } // Setting the value of e.target.value
 	});
 
 	wrapper.find('form').simulate('submit', 
@@ -83,7 +83,7 @@ test('should only render season and amount error message', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should only render error messages for member and description', () => 
+test('should only render error messages for member and sessionName', () => 
 {
 	// Season
 	const uuid = seasons[0].seasonUuid;
@@ -113,10 +113,10 @@ test('should render "Please enter an Amount" error message for no amount entered
 	const uuid = members[0].playerUuid
 	const input2 = altWrapper.find('#playerName');
 	input2.simulate('change', { target: { value: uuid }});
-	// description input
-	altWrapper.find('#description').simulate('change',
+	// sessionName input
+	altWrapper.find('#sessionName').simulate('change',
 	{
-		target: { value: 'New description' }
+		target: { value: 'New sessionName' }
 	});
 	altWrapper.find('#paymentType').simulate('change',
 	{
@@ -139,15 +139,15 @@ test('should render "Amount Paid cannot be more than Amount Owed" and "Amount ca
 	expect(debtWrapper).toMatchSnapshot();
 });
 
-test('should test description on input change', () => 
+test('should test sessionName on input change', () => 
 {
-	const value = 'New description';
+	const value = 'New sessionName';
 	wrapper.find('input').at(0).simulate('change',
 	{
 		target: { value } // Setting the value of e.target.value
 	});
 
-	expect(wrapper.state('description')).toBe(value);
+	expect(wrapper.state('sessionName')).toBe(value);
 });
 
 test('should set note on textarea change', () =>
@@ -226,7 +226,7 @@ test('should call onSubmit prop for valid form submission for a Debt', () =>
 		playerUuid: records[0].playerUuid,
 		seasonUuid: records[0].seasonUuid,
 		recordType: records[0].recordType,
-		description: records[0].description,
+		sessionName: records[0].sessionName,
 		note: records[0].note,
 		createdAt: records[0].createdAt,
 		amountOwed: records[0].amountOwed,
@@ -256,7 +256,7 @@ test('should call onSubmit prop for valid form submission for a Payment', () =>
 		playerUuid: records[1].playerUuid,
 		seasonUuid: records[1].seasonUuid,
 		recordType: records[1].recordType,
-		description: records[1].description,
+		sessionName: records[1].sessionName,
 		note: records[1].note,
 		createdAt: records[1].createdAt,
 		amount: records[1].amount

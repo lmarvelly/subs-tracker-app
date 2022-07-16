@@ -9,7 +9,7 @@ import numeral from 'numeral';
  * 	id
  * 	playerUuid
  * 	amount
- * 	description
+ * 	sessionName
  * 	createdAt
  * 
  * No need to define mapStateToProps because everything we need,
@@ -100,7 +100,7 @@ class RecordListItem extends Component
 		const listItem = (
 			<div className='list-item' onClick={this.clickListItemHandler}>
 				<div className='list-item__row'>
-					<h3 className='list-item__title'>{ this.props.description }</h3>
+					<h3 className='list-item__title'>{ this.props.sessionName }</h3>
 				</div>
 				{
 					(this.state.expand || this.state.stayExpanded) && <hr />

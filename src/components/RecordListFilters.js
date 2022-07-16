@@ -106,8 +106,8 @@ export class RecordListFilters extends Component {
 						<input
 							className='text-input'
 							type="text"
-							placeholder='Search Descriptions'
-							value={this.props.recordFilters.descriptionTextFilter} // This is needed to make it a controlled component
+							placeholder='Search Session Names'
+							value={this.props.recordFilters.sessionNameTextFilter} // This is needed to make it a controlled component
 							onChange={this.onDecriptionChange}
 						/>
 					</div>

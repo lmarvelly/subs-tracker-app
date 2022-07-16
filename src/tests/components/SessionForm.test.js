@@ -60,10 +60,10 @@ test('should render error for not inputing any values form submission', () =>
 
 test('should only render season, amount and add member error messages', () => 
 {
-	// description input
-	wrapper.find('#description').simulate('change',
+	// sessionName input
+	wrapper.find('#sessionName').simulate('change',
 	{
-		target: { value: 'New description' } // Setting the value of e.target.value
+		target: { value: 'New sessionName' } // Setting the value of e.target.value
 	});
 
 	wrapper.find('form').simulate('submit', 
@@ -75,7 +75,7 @@ test('should only render season, amount and add member error messages', () =>
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should only render error message for description and add member', () => 
+test('should only render error message for sessionName and add member', () => 
 {
 	// Season
 	const uuid = seasons[0].seasonUuid;
@@ -101,10 +101,10 @@ test('should render "Please enter an Amount" error message for no amount entered
 	const seasonUuid = seasons[0].seasonUuid;
 	const input = wrapper.find('#seasonName');
 	input.simulate('change', { target: { value: seasonUuid } });
-	// description input
-	wrapper.find('#description').simulate('change',
+	// sessionName input
+	wrapper.find('#sessionName').simulate('change',
 	{
-		target: { value: 'New description' }
+		target: { value: 'New sessionName' }
 	});
 
 	// submit
@@ -122,10 +122,10 @@ test('should not render "Please add members" error message', () =>
 	const seasonUuid = seasons[0].seasonUuid;
 	const input = sessionArrayWrapper.find('#seasonName');
 	input.simulate('change', { target: { value: seasonUuid } });
-	// description input
-	sessionArrayWrapper.find('#description').simulate('change',
+	// sessionName input
+	sessionArrayWrapper.find('#sessionName').simulate('change',
 	{
-		target: { value: 'New description' }
+		target: { value: 'New sessionName' }
 	});
 	// Amount input
 	const input2 = sessionArrayWrapper.find('#amountToPay');
@@ -147,15 +147,15 @@ test('should not render "Please add members" error message', () =>
 
 
 
-test('should set description on input change', () => 
+test('should set sessionName on input change', () => 
 {
-	const value = 'New description';
+	const value = 'New sessionName';
 	wrapper.find('input').at(0).simulate('change',
 	{
 		target: { value } // Setting the value of e.target.value
 	});
 
-	expect(wrapper.state('description')).toBe(value);
+	expect(wrapper.state('sessionName')).toBe(value);
 });
 
 test('should set note on textarea change', () =>

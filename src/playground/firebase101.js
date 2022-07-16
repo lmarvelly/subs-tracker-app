@@ -132,7 +132,7 @@ database.ref('records').push(
 	recordType: 'PAYMENT',
 	playerUuid: 'bbc223',
 	seasonUuid: 'season2',
-	description: 'TRAINING',
+	sessionName: 'TRAINING',
 	note: '',  
 	createdAt: 500,
 

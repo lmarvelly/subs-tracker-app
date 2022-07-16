@@ -21,11 +21,11 @@ beforeEach((done) =>
 {
 	const recordsData = {};
 	records.forEach(({ id, recordType, playerUuid, seasonUuid, 
-		description, note, createdAt, amountOwed, amountPaid, amount 
+		sessionName, note, createdAt, amountOwed, amountPaid, amount 
 	}) =>
 	{
 		recordsData[id] = { recordType, playerUuid, seasonUuid, 
-			description, note, createdAt, amountOwed, amountPaid, amount }
+			sessionName, note, createdAt, amountOwed, amountPaid, amount }
 	});
 
 	database.ref(`subs-tracker/users/${uid}/main/records/`)
@@ -54,7 +54,7 @@ test( 'Should set up edit Record action object', () =>
 	const action = editRecord( 
 		'abc123', 
 		{ 
-			description: 'Two weeks of Subs',
+			sessionName: 'Two weeks of Subs',
 			amount: 800
 		});
 
@@ -62,7 +62,7 @@ test( 'Should set up edit Record action object', () =>
 		{
 			type: 'EDIT_RECORD',
 			id: 'abc123',
-			updates: { description: 'Two weeks of Subs', amount: 800 }
+			updates: { sessionName: 'Two weeks of Subs', amount: 800 }
 		});
 });
 
@@ -97,7 +97,7 @@ test('should add Debt Record to the Database using the Store', (done) =>
 		playerUuid: '123abc',
 		seasonUuid: 'abc123',
 		recordType: 'DEBT',
-		description: 'Training subs',
+		sessionName: 'Training subs',
 		note: 'To be paid next week',
 		createdAt: 1000,
 		amountOwed: 400,
@@ -137,7 +137,7 @@ test('should add a Payment Record to the Database using the Store', (done) =>
 		playerUuid: '123abc',
 		seasonUuid: 'abc123',
 		recordType: 'PAYMENT',
-		description: 'GFSN GAME',
+		sessionName: 'GFSN GAME',
 		createdAt: 1000,
 		amount: 250
 	}
@@ -185,7 +185,7 @@ test('should add Record with defaults to Database and Store', (done) =>
 		recordType: 'PAYMENT',
 		playerUuid: '',
 		seasonUuid: '',
-		description: '',
+		sessionName: '',
 		note: '',  
 		createdAt: 0,
 	

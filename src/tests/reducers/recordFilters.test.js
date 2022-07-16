@@ -3,7 +3,7 @@ import filtersReducer from '../../reducers/recordFilters';
 
 const defaultState =
 {
-	descriptionTextFilter: '',
+	sessionNameTextFilter: '',
 	memberTextFilter: '',
 	playerUuid: '',
 	seasonFilter: "",
@@ -73,13 +73,13 @@ test('should set sortBy to dateDescending', () =>
 	expect( state.sortBy ).toBe( 'dateDescending' );
 });
 
-test('should set Description Filter Text to be "testing"', () => 
+test('should set Session Name Filter Text to be "testing"', () => 
 {
 	const text =  'testing';
 	const action = { type:'SET_DESCRIPTION_FILTER_TEXT', text };
 	const state = filtersReducer( undefined, action );
 
-	expect( state.descriptionTextFilter ).toBe( text );
+	expect( state.sessionNameTextFilter ).toBe( text );
 });
 
 test('should set member text filter to "Player Name"', () => 

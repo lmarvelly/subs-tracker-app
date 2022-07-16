@@ -116,7 +116,7 @@ test('should handle text change on Member Filter', () =>
 	expect(setMemberFilterText).toHaveBeenLastCalledWith( value );
 });
 
-test('should handle text change on Description Filter', () =>
+test('should handle text change on Session Name Filter', () =>
 {
 	const value = 'Training';
 	wrapper.find('input').at(1).simulate('change', 
