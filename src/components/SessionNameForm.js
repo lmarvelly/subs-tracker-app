@@ -10,20 +10,27 @@ const SessionNameForm = ( props ) =>
 		e.preventDefault();
 
 		let exists = false;
+
+		const trimmedName = sessionName.trim()
 		
 		props.sessionNames.forEach((session) =>
 		{
-			if (session.sessionName === sessionName) 
+			if (session.sessionName === trimmedName) 
 			{
 				setFormError('Session Name Already exists');
 				exists = true;
 			}
 		});
 
-		// If the name doesn't already exist
-		if(!exists)
+		if( trimmedName === '' )
 		{
-			props.onSubmit(sessionName);
+			setFormError('Session Name Cannot be blank');
+		}
+
+		// If the name doesn't already exist and name isn't blank
+		if( !exists && trimmedName )
+		{
+			props.onSubmit(trimmedName);
 			setSessionName('');
 			setFormError(undefined);
 		}
@@ -31,6 +38,10 @@ const SessionNameForm = ( props ) =>
 
 	const onSessionNameChange = (e) =>
 	{
+		if(e.target.value.trim())
+		{
+			setFormError(undefined);
+		}
 		setSessionName(e.target.value);
 	}
 
