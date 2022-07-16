@@ -2,14 +2,31 @@ import React, { useEffect, useState  } from 'react';
 
 const SessionNameForm = ( props ) =>
 {
+	const [ formError, setFormError ] = useState(undefined);
 	const [ sessionName, setSessionName ] = useState('');
 
 	const onSubmit = (e) =>
 	{
 		e.preventDefault();
 
-		props.onSubmit(sessionName);
-		setSessionName('');
+		let exists = false;
+		
+		props.sessionNames.forEach((session) =>
+		{
+			if (session.sessionName === sessionName) 
+			{
+				setFormError('Session Name Already exists');
+				exists = true;
+			}
+		});
+
+		// If the name doesn't already exist
+		if(!exists)
+		{
+			props.onSubmit(sessionName);
+			setSessionName('');
+			setFormError(undefined);
+		}
 	}
 
 	const onSessionNameChange = (e) =>
@@ -20,6 +37,7 @@ const SessionNameForm = ( props ) =>
 	return (
 		<div>
 			<form className='form' onSubmit={ onSubmit }>
+				{ formError && <p className='form__error'>{formError}</p> }
 				<input 
 					className="text-input"
 					onChange={onSessionNameChange}
