@@ -11,7 +11,7 @@ test('should set default state', () =>
 test('should add a new Session Type', () =>
 {
 	const sessionName = { sessionName: 'Kickabout at gol' };
-	const action = { type: 'ADD_SESSION_TYPE', sessionName };
+	const action = { type: 'ADD_SESSION_NAME', sessionName };
 	const state = otherSettingsReducer( sessionNames, action );
 
 	expect( state ).toEqual([ ...sessionNames, sessionName ]);
@@ -21,7 +21,7 @@ test('should set to be an array of Session Types provided', () =>
 {
 	const action =
 	{
-		type: 'SET_SESSION_TYPE',
+		type: 'SET_SESSION_NAME',
 		sessionNames
 	}
 	const state = otherSettingsReducer( undefined, action );
@@ -34,7 +34,7 @@ test('should remove a Session Type', () =>
 	const sessionUuid = sessionNames[0].sessionUuid;
 	const action =
 	{
-		type: 'REMOVE_SESSION_TYPE',
+		type: 'REMOVE_SESSION_NAME',
 		sessionUuid
 	};
 	const state = otherSettingsReducer( sessionNames, action );
@@ -51,7 +51,7 @@ test('should edit a Session Type', () =>
 
 	const action =
 	{
-		type: 'EDIT_SESSION_TYPE',
+		type: 'EDIT_SESSION_NAME',
 		sessionUuid,
 		updates:
 		{

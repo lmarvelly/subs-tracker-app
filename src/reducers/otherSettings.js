@@ -4,7 +4,7 @@ export default ( state = otherSettingsDefaultState, action ) =>
 {
 	switch (action.type) 
 	{
-		case 'ADD_SESSION_TYPE':
+		case 'ADD_SESSION_NAME':
 			return [
 				...state,
 				{
@@ -12,7 +12,7 @@ export default ( state = otherSettingsDefaultState, action ) =>
 				}
 			]
 
-		case 'EDIT_SESSION_TYPE':
+		case 'EDIT_SESSION_NAME':
 			return state.map( ( session ) =>
 				{
 					if( session.sessionUuid === action.sessionUuid )
@@ -25,10 +25,10 @@ export default ( state = otherSettingsDefaultState, action ) =>
 					else { return session };
 				})
 
-		case 'REMOVE_SESSION_TYPE':
+		case 'REMOVE_SESSION_NAME':
 			return state.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
 
-		case 'SET_SESSION_TYPE':
+		case 'SET_SESSION_NAME':
 			return action.sessionNames
 		
 		default:

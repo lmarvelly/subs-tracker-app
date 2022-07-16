@@ -31,7 +31,7 @@ test('should create a Add Session Type Action Objest', () =>
 	const action = addSessionName(sessionNames[0]);
 	expect(action).toEqual(
 	{
-		type: 'ADD_SESSION_TYPE',
+		type: 'ADD_SESSION_NAME',
 		sessionName: sessionNames[0]
 	});
 });
@@ -50,7 +50,7 @@ test('should add a new Session to the database', (done) =>
 		const actions = store.getActions();
 		expect(actions[0]).toEqual(
 		{
-			type: 'ADD_SESSION_TYPE',
+			type: 'ADD_SESSION_NAME',
 			sessionName:
 			{
 				sessionUuid: expect.any(String),
@@ -75,7 +75,7 @@ test('Create Set Session Type action object', () =>
 	const action = setSessionName( sessionNames );
 	expect(action).toEqual(
 	{
-		type: 'SET_SESSION_TYPE',
+		type: 'SET_SESSION_NAME',
 		sessionNames
 	});
 });
@@ -89,7 +89,7 @@ test('should retreive Session Types from database', (done) =>
 		const actions = store.getActions();
 		expect(actions[0]).toEqual(
 		{
-			type: 'SET_SESSION_TYPE',
+			type: 'SET_SESSION_NAME',
 			sessionNames
 		});
 		done();
@@ -103,7 +103,7 @@ test('should create remove Session Type action object', () =>
 
 	expect(action).toEqual(
 	{
-		type:'REMOVE_SESSION_TYPE',
+		type:'REMOVE_SESSION_NAME',
 		sessionUuid
 	});
 });
@@ -119,7 +119,7 @@ test('should remove a Session Type from the database', (done) =>
 			const actions = store.getActions();
 			expect(actions[0]).toEqual(
 			{
-				type: 'REMOVE_SESSION_TYPE',
+				type: 'REMOVE_SESSION_NAME',
 				sessionUuid
 			});
 
@@ -140,7 +140,7 @@ test('should create Edit Session action object', () =>
 
 	expect( action ).toEqual(
 	{
-		type: 'EDIT_SESSION_TYPE',
+		type: 'EDIT_SESSION_NAME',
 		sessionUuid,
 		updates
 	});
@@ -158,7 +158,7 @@ test('should edit a Session Type from the database', (done) =>
 			const actions = store.getActions();
 			expect(actions[0]).toEqual(
 			{
-				type: 'EDIT_SESSION_TYPE',
+				type: 'EDIT_SESSION_NAME',
 				sessionUuid,
 				updates
 			});

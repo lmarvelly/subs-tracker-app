@@ -2,13 +2,12 @@ import database from '../firebase/firebase';
 
 export const addSessionName = ( sessionName ) => (
 {
-	type: 'ADD_SESSION_TYPE',
+	type: 'ADD_SESSION_NAME',
 	sessionName
 });
 
 export const startAddSessionName = ( sessionName = '' ) =>
 {
-	console.log(sessionName);
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
@@ -28,7 +27,7 @@ export const startAddSessionName = ( sessionName = '' ) =>
 
 export const setSessionName = ( sessionNames ) => (
 {
-	type: 'SET_SESSION_TYPE',
+	type: 'SET_SESSION_NAME',
 	sessionNames
 });
 
@@ -60,7 +59,7 @@ export const startSetSessionName = () =>
 
 export const removeSessionName = ( sessionUuid ) =>(
 {
-	type: 'REMOVE_SESSION_TYPE',
+	type: 'REMOVE_SESSION_NAME',
 	sessionUuid
 });
 
@@ -81,7 +80,7 @@ export const startRemoveSessionName = ( sessionUuid ) =>
 
 export const editSessionName = ( sessionUuid, updates ) => (
 {
-	type: 'EDIT_SESSION_TYPE',
+	type: 'EDIT_SESSION_NAME',
 	sessionUuid,
 	updates
 });
