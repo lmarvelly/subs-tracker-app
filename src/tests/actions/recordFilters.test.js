@@ -5,7 +5,7 @@ import {
 	sortByDateDescending, 
 	setStartDate, 
 	setEndDate, 
-	setDescriptionTextFilter, 
+	setSessionNameTextFilter, 
 	setMemberFilterText, 
 	setSeasonFilter
 } from '../../actions/recordFilters';
@@ -32,7 +32,7 @@ test('Should generate Sort By Date Descending action object', () =>
 test('Should generate Filter By Decription Text action object', () =>
 {
 	const text = 'Testing text';
-	const action = setDescriptionTextFilter(text);
+	const action = setSessionNameTextFilter(text);
 	expect(action).toEqual(
 	{
 		type: 'SET_DESCRIPTION_FILTER_TEXT',
@@ -42,7 +42,7 @@ test('Should generate Filter By Decription Text action object', () =>
 
 test('Should generate default Filter By Decription Text action object', () =>
 {
-	const action = setDescriptionTextFilter('');
+	const action = setSessionNameTextFilter('');
 	expect(action).toEqual(
 	{
 		type: 'SET_DESCRIPTION_FILTER_TEXT',

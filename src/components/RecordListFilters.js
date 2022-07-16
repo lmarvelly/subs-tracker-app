@@ -4,7 +4,7 @@ import { DateRangePicker } from 'react-dates';
 
 import {
 	resetRecordFilters,
-	setDescriptionTextFilter, 
+	setSessionNameTextFilter, 
 	setMemberFilterText, 
 	sortByDateAscending,
 	sortByDateDescending, 
@@ -52,7 +52,7 @@ export class RecordListFilters extends Component {
 	onDecriptionChange = (e) => {
 		if ( e.target.value.length <= 30 )
 		{
-			this.props.setDescriptionTextFilter(e.target.value);
+			this.props.setSessionNameTextFilter(e.target.value);
 		}
 	}
 
@@ -198,7 +198,7 @@ const mapDispatchToProps = (dispatch) =>
 	setStartDate: (startDate) => dispatch(setStartDate(startDate)),
 	setEndDate: (endDate) => dispatch(setEndDate(endDate)),
 	setMemberFilterText: (text) => dispatch(setMemberFilterText(text)),
-	setDescriptionTextFilter: (text) => dispatch(setDescriptionTextFilter(text)),
+	setSessionNameTextFilter: (text) => dispatch(setSessionNameTextFilter(text)),
 	setSeasonFilter: (seasonUuid) => dispatch(setSeasonFilter(seasonUuid)),
 	sortByDateAscending: () => dispatch(sortByDateAscending()),
 	sortByDateDescending: () => dispatch(sortByDateDescending()),

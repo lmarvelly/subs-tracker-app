@@ -28,7 +28,7 @@ export const setEndDate = ( endDate ) =>
  * @returns The type, so the reducer knows what to do with the 
  * object, and the text to filter the records by
  */
-export const setDescriptionTextFilter = ( text = '' ) =>
+export const setSessionNameTextFilter = ( text = '' ) =>
 ({
 	type: 'SET_DESCRIPTION_FILTER_TEXT',
 	text

@@ -6,7 +6,7 @@ import { members, seasons } from '../fixtures/fixures';
 import { defaultFilters, altFilters1, altFilters2, altFilters3 } from '../fixtures/filters';
 
 let resetRecordFilters, 
-	setDescriptionTextFilter, 
+	setSessionNameTextFilter, 
 	setMemberFilterText, 
 	sortByDateAscending, 
 	sortByDateDescending, 
@@ -19,7 +19,7 @@ let resetRecordFilters,
 beforeEach( () =>
 {
 	resetRecordFilters = jest.fn();
-	setDescriptionTextFilter = jest.fn();
+	setSessionNameTextFilter = jest.fn();
 	setMemberFilterText = jest.fn();
 	sortByDateAscending = jest.fn();
 	sortByDateDescending = jest.fn();
@@ -29,7 +29,7 @@ beforeEach( () =>
 	
 	emptyWrapper = shallow( 
 		<RecordListFilters
-			setDescriptionTextFilter={setDescriptionTextFilter}
+			setSessionNameTextFilter={setSessionNameTextFilter}
 			setMemberFilterText={setMemberFilterText}
 			sortByDateAscending={sortByDateAscending}
 			sortByDateDescending={sortByDateDescending}
@@ -47,7 +47,7 @@ beforeEach( () =>
 	wrapper = shallow( 
 		<RecordListFilters
 			resetRecordFilters={resetRecordFilters}
-			setDescriptionTextFilter={setDescriptionTextFilter}
+			setSessionNameTextFilter={setSessionNameTextFilter}
 			setMemberFilterText={setMemberFilterText}
 			sortByDateAscending={sortByDateAscending}
 			sortByDateDescending={sortByDateDescending}
@@ -124,7 +124,7 @@ test('should handle text change on Description Filter', () =>
 		target: { value }
 	});
 
-	expect(setDescriptionTextFilter).toHaveBeenLastCalledWith( value );
+	expect(setSessionNameTextFilter).toHaveBeenLastCalledWith( value );
 });
 
 test('should call when Season Filter select value is changed', () => 
