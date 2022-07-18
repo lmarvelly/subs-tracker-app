@@ -62,6 +62,16 @@
 	}
 }
 
+.button-small--form
+{
+	@extend .button;
+	
+	font-size: $font-size-small;
+	padding: $xs-size;
+	height: 4rem;
+	width: 10rem;
+}
+
 .button--reset
 {
 	@extend .button-small;

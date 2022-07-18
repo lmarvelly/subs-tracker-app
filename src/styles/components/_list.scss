@@ -136,3 +136,11 @@
 	@extend .list-item__data;
 	margin-top: $s-size;
 }
+
+.list-item__button-container
+{
+	button:first-of-type
+	{
+		margin-right: $xs-size;
+	}
+}

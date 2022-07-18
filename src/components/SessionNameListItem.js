@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const SessionNameListItem = ( props ) =>
 {
+	const [ expand, setExpand ] = useState(false);
+
+	const handleExpand = () =>
+	{
+		setExpand(!expand);
+		console.log(expand);
+	}
+
 	const handleRemove = () =>
 	{
 		if(confirm(`Are you sure you want to remove '${props.sessionName}'`))
@@ -23,13 +31,18 @@ const SessionNameListItem = ( props ) =>
 	}
 
 	return(
-		<div className='list-item'>
+		<div className='list-item' onClick={handleExpand}>
 			<div className='list-item__row'>
 				<h3 className={`list-item__title`}>
 					{props.sessionName}
 				</h3>
-				<button onClick={handleEdit} className='button'>Edit</button>
-				<button onClick={handleRemove} className='button'>Remove</button>
+				{
+					expand &&
+					<div className='list-item__button-container'>
+						<button onClick={handleEdit} className='button-small--form'>Edit</button>
+						<button onClick={handleRemove} className='button-small--form'>Remove</button>
+					</div>
+				}
 			</div>
 		</div>
 	);
