@@ -333,9 +333,4 @@ test('should change Payment inputs to Debt inputs when type is changed', () =>
 	expect(altWrapper.state().recordType).toEqual(value);
 });
 
-
-// Add test for Rendering without Session Names
-
-// Add test for Rendering Sessions to the Datalist
-
 // Submit and add new Session Name
