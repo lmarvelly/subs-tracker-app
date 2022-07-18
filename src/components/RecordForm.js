@@ -343,16 +343,19 @@ export default class RecordForm extends Component
 						onChange={ this.onSessionNameChange }
 						list='sessionList'
 					/>
-					<datalist id='sessionList'>
 					{
-						this.props.sessionNames.map((session) =>
+						this.props.sessionName &&
+						<datalist id='sessionList'>
 						{
-							return (
-								<option key={session.sessionUuid}>{session.sessionName}</option>
-							);
-						})
+							this.props.sessionNames.map((session) =>
+							{
+								return (
+									<option key={session.sessionUuid}>{session.sessionName}</option>
+								);
+							})
+						}
+						</datalist>
 					}
-					</datalist>
 					
 					{this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
 					{
