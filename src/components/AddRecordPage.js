@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
 import { startAddRecord } from '../actions/records';
+import { startAddSessionName } from '../actions/otherSettings';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import { sortAlphabetAsc } from '../actions/memberFilters';
@@ -69,6 +70,7 @@ export class AddRecordPage extends Component
 
 				<div className='content-container'>
 					<RecordForm
+						addSessionName={this.props.addSessionName}
 						members={this.props.members}
 						seasons={this.props.seasons}
 						sessionNames={this.props.sessionNames}
@@ -105,6 +107,7 @@ const mapStateToProps = (state, props) =>
  */
 const mapDispatchToProps = (dispatch) => (
 {
+	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
 	startAddRecord: (record) => dispatch(startAddRecord(record)),
 	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
 	sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )

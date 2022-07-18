@@ -163,6 +163,25 @@ export default class RecordForm extends Component
 			note: this.state.note
 		}
 
+		let sessionNameExists = false;
+
+		// If sessionNames doesn't exist forEach loop wont run to avoid errors
+		this.props.sessionNames && this.props.sessionNames.forEach((session) =>
+		{
+			if (session.sessionName === this.state.sessionName) 
+			{
+				sessionNameExists = true;
+			}
+		})
+
+		if (!sessionNameExists) 
+		{
+			confirm(`Do you want to add '${this.state.sessionName}' to your default session names?`)
+			{
+				this.props.addSessionName({sessionName: this.state.sessionName});
+			}
+		}
+
 		const record = () => {
 			if( this.state.recordType === 'DEBT' )
 			{
@@ -344,7 +363,7 @@ export default class RecordForm extends Component
 						list='sessionList'
 					/>
 					{
-						this.props.sessionName &&
+						this.props.sessionNames &&
 						<datalist id='sessionList'>
 						{
 							this.props.sessionNames.map((session) =>

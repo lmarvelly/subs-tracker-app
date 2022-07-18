@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
 import { startEditRecord, startRemoveRecord } from '../actions/records';
+import { startAddSessionName } from '../actions/otherSettings';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import { sortAlphabetAsc } from '../actions/memberFilters';
@@ -68,6 +69,7 @@ export class EditRecordPage extends Component
 				<div className='content-container'>
 					<div className='content-desktop-padding'>
 						<RecordForm
+							addSessionName={this.props.addSessionName}
 							record={ this.props.record }
 							members={ this.props.members } // TODO change to member rather than all the members
 							seasons={ this.props.seasons }
@@ -104,6 +106,7 @@ const mapStateToProps = ( state, props ) =>
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
+	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
 	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record.recordType, record ) ),
 	startRemoveRecord: ( data ) => dispatch( startRemoveRecord( data ) ),
 	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
