@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 import RecordForm from '../../components/RecordForm';
-import { records, members, seasons } from '../fixtures/fixures';
+import { records, members, seasons, sessionNames } from '../fixtures/fixures';
 
 let wrapper, 
 	altWrapper, 
@@ -29,13 +29,15 @@ beforeEach( () =>
 		<RecordForm
 			addSessionName={addSessionName}
 			members={[]}
-			seasons={[]} 
+			seasons={[]}
+			sessionNames={[]}
 	/>);
 
 	altWrapper = shallow(
 		<RecordForm 
 			members={ members } 
-			seasons={ seasons } 
+			seasons={ seasons }
+			sessionNames={ sessionNames }
 
 			addSessionName={addSessionName}
 			onTypeChange={onTypeChange}
@@ -249,6 +251,7 @@ test('should call onSubmit prop for valid form submission for a Payment', () =>
 {
 	const wrapper = shallow(
 		<RecordForm 
+			addSessionName={addSessionName}
 			record={records[1]} 
 			onSubmit={onSubmit}
 			members={[]} 
@@ -329,3 +332,10 @@ test('should change Payment inputs to Debt inputs when type is changed', () =>
 
 	expect(altWrapper.state().recordType).toEqual(value);
 });
+
+
+// Add test for Rendering without Session Names
+
+// Add test for Rendering Sessions to the Datalist
+
+// Submit and add new Session Name
