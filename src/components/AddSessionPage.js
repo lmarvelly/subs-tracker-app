@@ -5,6 +5,7 @@ import SessionForm from './SessionForm';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import { startAddRecord } from '../actions/records';
+import { startAddSessionName } from '../actions/otherSettings';
 
 export class AddSessionPage extends Component
 {
@@ -93,6 +94,7 @@ export class AddSessionPage extends Component
 					<SessionForm
 						members={ this.props.members }
 						seasons={ this.props.seasons }
+						sessionNames={ this.props.sessionNames }
 						onSubmit={ this.onSubmit }
 					/>
 				</div>
@@ -108,7 +110,8 @@ const mapStateToProps = ( state, props ) =>
 	const defaultSeasonFilterState = { text: '', sortBy: 'descending' };
 	return {
 		members: getVisibleMembers(state.members, defaultMemberFilterState),
-		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState) 
+		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState),
+		sessionNames: state.sessionNames
 	}
 }
 
@@ -125,6 +128,7 @@ const mapStateToProps = ( state, props ) =>
  */
  const mapDispatchToProps = (dispatch) => (
 	{
+		addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
 		startAddRecord: (record) => dispatch(startAddRecord(record)),
 		sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
 		sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )

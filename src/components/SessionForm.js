@@ -200,6 +200,7 @@ export default class SessionForm extends Component
 							}
 						</select>
 						{this.state.error && sessionNameErrorClassName && <p className='form__error'>Please provide a sessionName</p>}
+						
 						<input 
 							id='sessionName'
 							className={`text-input${sessionNameErrorClassName}`}
@@ -207,7 +208,21 @@ export default class SessionForm extends Component
 							placeholder="Session name i.e. training"
 							value={ this.state.sessionName }
 							onChange={ this.onSessionNameChange }
+							list='sessionNamesList'
 						/>
+						{	
+							this.props.sessionNames && <datalist id='sessionNamesList'>
+							{
+								this.props.sessionNames.map((session) =>
+								{
+									return (
+										<option key={session.sessionUuid}>{session.sessionName}</option>
+									);
+								})
+							}
+							</datalist>
+						}
+
 						{ this.state.amountError && <p className='form__error'>{this.state.amountError}</p>}
 						{ this.state.showAmountErrorMessage && <p className='form__error'>Please enter an Amount</p>}
 						<input
