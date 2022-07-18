@@ -96,6 +96,7 @@ export class AddSessionPage extends Component
 						seasons={ this.props.seasons }
 						sessionNames={ this.props.sessionNames }
 						onSubmit={ this.onSubmit }
+						addSessionName={ this.props.addSessionName }
 					/>
 				</div>
 			</div>

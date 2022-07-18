@@ -146,6 +146,25 @@ export default class SessionForm extends Component
 			sessionArray: this.state.sessionArray
 		};
 
+		let sessionNameExists = false;
+
+		// If sessionNames doesn't exist forEach loop wont run to avoid errors
+		this.props.sessionNames && this.props.sessionNames.forEach((session) =>
+		{
+			if (session.sessionName === this.state.sessionName) 
+			{
+				sessionNameExists = true;
+			}
+		})
+
+		if (!sessionNameExists) 
+		{
+			confirm(`Do you want to add '${this.state.sessionName}' to your default session names?`)
+			{
+				this.props.addSessionName({sessionName: this.state.sessionName});
+			}
+		}
+
 		if ( this.isFormFalsy() )
 		{
 			this.setState( () => ({ error: 'Please check details' }) );
