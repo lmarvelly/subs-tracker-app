@@ -71,6 +71,7 @@ export class AddRecordPage extends Component
 					<RecordForm
 						members={this.props.members}
 						seasons={this.props.seasons}
+						sessionNames={this.props.sessionNames}
 						onSubmit={this.onSubmit}
 					/>
 				</div>
@@ -86,7 +87,8 @@ const mapStateToProps = (state, props) =>
 	const defaultSeasonFilterState = { text: '', sortBy: 'descending' };
 	return {
 		members: getVisibleMembers(state.members, defaultMemberFilterState),
-		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState) 
+		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState),
+		sessionNames: state.sessionNames
 	}
 }
 

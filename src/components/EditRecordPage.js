@@ -71,6 +71,7 @@ export class EditRecordPage extends Component
 							record={ this.props.record }
 							members={ this.props.members } // TODO change to member rather than all the members
 							seasons={ this.props.seasons }
+							sessionNames={ this.props.sessionNames }
 							onSubmit={ this.onSubmit }
 						/>
 						<button 
@@ -96,7 +97,8 @@ const mapStateToProps = ( state, props ) =>
 	return {
 		members: getVisibleMembers(state.members, defaultMemberFilterState),
 		record: state.paymentRecord.find( ( record ) => record.id === props.match.params.id),
-		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState)
+		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState),
+		sessionNames: state.sessionNames
 	}
 };
 
