@@ -4,7 +4,8 @@ import moment from 'moment';
 import SessionForm from '../../components/SessionForm';
 import { members, seasons, sessionArray } from '../fixtures/fixures';
 
-let emptyWrapper,
+let addSessionName,
+	emptyWrapper,
 	onAmountChange,
 	onSubmit,
 	sessionArrayWrapper,
@@ -12,17 +13,23 @@ let emptyWrapper,
 
 beforeEach( () =>
 {
+	addSessionName = jest.fn();
 	onAmountChange = jest.fn();
 	onSubmit =jest.fn();
 
 	emptyWrapper = shallow(
-		<SessionForm members={[]} seasons={[]} />
+		<SessionForm
+			// addSessionName={addSessionName}
+			members={[]} 
+			seasons={[]}
+		/>
 	);
 
 	wrapper = shallow(
 		<SessionForm
 			members={members}
 			seasons={seasons}
+			addSessionName={addSessionName}
 			onAmountChange={onAmountChange}
 		/>
 	);
@@ -32,6 +39,7 @@ beforeEach( () =>
 			members={members}
 			seasons={seasons}
 			sessionArray={sessionArray}
+			addSessionName={addSessionName}
 			onAmountChange={onAmountChange}
 			onSubmit={onSubmit}
 		/>
@@ -208,3 +216,5 @@ test('Should not set amount because input has too many decimal places', () =>
 	expect(input.value).toEqual(undefined);
 	expect(wrapper.state('amount')).toBe('');
 });
+
+// TODO: Write test to add Session Name if Session Name doesn't exist
