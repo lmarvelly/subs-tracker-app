@@ -112,6 +112,7 @@
 	background-color: $dark-blue;
 	border: 1px solid white;
 	color: white;
+	width: 26rem;
 
 	display: flex;
 	justify-content: space-between;
@@ -136,11 +137,20 @@
 
 .button--nav
 {
+	@extend .button--dropdown;
+
+	font-size: 2.2rem;
+	justify-content: center;
+}
+
+.button--nav-dropdown
+{
 	@extend .button;
 	background-color: $dark-blue;
 	border: white solid 1px;
 	border-top: none;
 	color: white;
+	width: 26rem;
 
 	margin-bottom: 0!important;
 	&:hover, &:focus

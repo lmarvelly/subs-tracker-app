@@ -16,6 +16,7 @@ export class Navbar extends Component
 				recordNavHidden: true,
 				memberNavHidden: true,
 				seasonNavHidden: true,
+				otherSettingsNavHidden: true,
 				helpNavHidden: true
 			}
 		}
@@ -34,7 +35,8 @@ export class Navbar extends Component
 			{ 
 				recordNavHidden: !this.state.recordNavHidden,
 				memberNavHidden: true,
-				seasonNavHidden: true
+				seasonNavHidden: true,
+				otherSettingsNavHidden: true
 			});
 		}
 		else if (classNames.includes('memberButton'))
@@ -43,7 +45,8 @@ export class Navbar extends Component
 			{
 				memberNavHidden: !this.state.memberNavHidden,
 				recordNavHidden: true,
-				seasonNavHidden: true
+				seasonNavHidden: true,
+				otherSettingsNavHidden: true
 			});
 		}
 		else if (classNames.includes('seasonButton'))
@@ -52,7 +55,18 @@ export class Navbar extends Component
 			{ 
 				seasonNavHidden: !this.state.seasonNavHidden,
 				memberNavHidden: true,
-				recordNavHidden: true
+				recordNavHidden: true,
+				otherSettingsNavHidden: true
+			});
+		}
+		else if (classNames.includes('otherSettingsButton'))
+		{
+			this.setState(
+			{
+				otherSettingsNavHidden: !this.state.otherSettingsNavHidden,
+				recordNavHidden: true,
+				memberNavHidden: true,
+				seasonNavHidden: true
 			});
 		}
 	}
@@ -83,9 +97,9 @@ export class Navbar extends Component
 				{
 					!this.state.recordNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
-							<Link className='button--nav' to='/add-record'>Add Record</Link>
-							<Link className='button--nav' to='/add-session'>Add Session</Link>
+							<Link className='button--nav-dropdown' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
+							<Link className='button--nav-dropdown' to='/add-record'>Add Record</Link>
+							<Link className='button--nav-dropdown' to='/add-session'>Add Session</Link>
 						</div>
 					)
 				}
@@ -109,8 +123,8 @@ export class Navbar extends Component
 				{
 					!this.state.memberNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav' to='/members' activeClassName='is-active'>Members Page </Link>
-							<Link className='button--nav' to='/add-member'>Add Member</Link>
+							<Link className='button--nav-dropdown' to='/members' activeClassName='is-active'>Members Page </Link>
+							<Link className='button--nav-dropdown' to='/add-member'>Add Member</Link>
 						</div>
 					)
 				}
@@ -135,11 +149,20 @@ export class Navbar extends Component
 				{
 					!this.state.seasonNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav' to='/seasons' activeClassName='is-active'>Seasons Page</Link>
-							<Link className='button--nav' to='/add-season'>Add Season</Link>
+							<Link className='button--nav-dropdown' to='/seasons' activeClassName='is-active'>Seasons Page</Link>
+							<Link className='button--nav-dropdown' to='/add-season'>Add Season</Link>
 						</div>
 					)
 				}
+			</div>
+		);
+
+		// TODO: Add dropdown and New Season button
+		const otherSettingsButtons = (
+			<div>
+				<Link className='button--nav otherSettingsButton' activeClassName='is-active' to='/other-settings-page'>
+					Other Settings Page
+				</Link>
 			</div>
 		);
 
@@ -148,7 +171,7 @@ export class Navbar extends Component
 		const helpButtons = (
 			<div>
 				<button className='button'>Help</button>
-				<Link className='button--nav' to='/help' activeClassName='is-active'>Help Page </Link>
+				<Link className='button--nav-dropdown' to='/help' activeClassName='is-active'>Help Page </Link>
 			</div>
 		);
 
@@ -158,6 +181,7 @@ export class Navbar extends Component
 				<div>{ recordButtons }</div>
 				<div>{ memberButtons }</div>
 				<div>{ seasonButtons }</div>
+				<div>{ otherSettingsButtons }</div>
 			</div>
 		);
 
