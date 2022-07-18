@@ -52,6 +52,17 @@ export const startSetSessionName = () =>
 					});
 				});
 
+				// Sort alphabetically ascending
+				sessionNames.sort( (a, b) =>
+				{
+					const nameA = a.sessionName.toLowerCase();
+					const nameB = b.sessionName.toLowerCase();
+
+					if ( nameA < nameB ) return -1;
+					if ( nameA > nameB ) return 1;
+					return 0;
+				})
+
 				dispatch( setSessionName( sessionNames ) );
 			});
 	}
