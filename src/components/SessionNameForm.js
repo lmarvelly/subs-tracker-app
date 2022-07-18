@@ -24,7 +24,7 @@ const SessionNameForm = ( props ) =>
 
 		if( trimmedName === '' )
 		{
-			setFormError('Session Name Cannot be blank');
+			setFormError('Session name cannot be blank');
 		}
 
 		// If the name doesn't already exist and name isn't blank
