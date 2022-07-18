@@ -8,6 +8,8 @@ let wrapper,
 	altWrapper, 
 	paymentWrapper, 
 	debtWrapper,
+
+	addSessionName,
 	onAmountChange,
 	onSeasonNameChange,
 	onSubmit,
@@ -16,18 +18,26 @@ let wrapper,
 beforeEach( () =>
 {
 	// Functions
+	addSessionName = jest.fn();
 	onSubmit = jest.fn();
 	onSeasonNameChange = jest.fn();
 	onTypeChange = jest.fn();
 	onAmountChange = jest.fn();
 
 	// Wrappers
-	wrapper = shallow(<RecordForm members={[]} seasons={[]} />);
+	wrapper = shallow(
+		<RecordForm
+			addSessionName={addSessionName}
+			members={[]}
+			seasons={[]} 
+	/>);
+
 	altWrapper = shallow(
 		<RecordForm 
 			members={ members } 
 			seasons={ seasons } 
 
+			addSessionName={addSessionName}
 			onTypeChange={onTypeChange}
 			onAmountChange={onAmountChange}
 			onSeasonNameChange={ onSeasonNameChange }
@@ -207,7 +217,8 @@ test('Should not set amount because input has too many decimal places', () =>
 test('should call onSubmit prop for valid form submission for a Debt', () => 
 {
 	const wrapper = shallow(
-		<RecordForm 
+		<RecordForm
+			addSessionName={addSessionName}
 			record={records[0]} 
 			onSubmit={onSubmit}
 			members={[]} 
