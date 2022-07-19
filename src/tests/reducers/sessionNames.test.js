@@ -1,9 +1,9 @@
-import otherSettingsReducer from "../../reducers/otherSettings";
+import sessionNamesReducer from "../../reducers/otherSettings";
 import { sessionNames } from "../fixtures/fixures";
 
 test('should set default state', () =>
 {
-	const state = otherSettingsReducer( undefined, { type: '@@INIT' } );
+	const state = sessionNamesReducer( undefined, { type: '@@INIT' } );
 
 	expect( state ).toEqual([]);
 });
@@ -12,7 +12,7 @@ test('should add a new Session Type', () =>
 {
 	const sessionName = { sessionName: 'Kickabout at gol' };
 	const action = { type: 'ADD_SESSION_NAME', sessionName };
-	const state = otherSettingsReducer( sessionNames, action );
+	const state = sessionNamesReducer( sessionNames, action );
 
 	expect( state ).toEqual([ ...sessionNames, sessionName ]);
 });
@@ -24,7 +24,7 @@ test('should set to be an array of Session Types provided', () =>
 		type: 'SET_SESSION_NAME',
 		sessionNames
 	}
-	const state = otherSettingsReducer( undefined, action );
+	const state = sessionNamesReducer( undefined, action );
 
 	expect( state ).toEqual( sessionNames );
 });
@@ -37,7 +37,7 @@ test('should remove a Session Type', () =>
 		type: 'REMOVE_SESSION_NAME',
 		sessionUuid
 	};
-	const state = otherSettingsReducer( sessionNames, action );
+	const state = sessionNamesReducer( sessionNames, action );
 
 	const altererSessionList = sessionNames.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
 
@@ -59,7 +59,7 @@ test('should edit a Session Type', () =>
 		}
 	};
 
-	const state = otherSettingsReducer( sessionNames, action );
+	const state = sessionNamesReducer( sessionNames, action );
 
 	expect(state[0].sessionName).toBe(sessionName);
 });
