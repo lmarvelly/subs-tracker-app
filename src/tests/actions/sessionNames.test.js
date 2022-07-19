@@ -84,13 +84,23 @@ test('should retreive Session Types from database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 
+	const sortedSessionNames = sessionNames.sort((a, b) =>
+	{
+		const nameA = a.sessionName.toLowerCase();
+		const nameB = b.sessionName.toLowerCase();
+
+		if ( nameA < nameB ) return -1;
+		if ( nameA > nameB ) return 1;
+		return 0;
+	});
+
 	store.dispatch(startSetSessionName()).then(() =>
 	{
 		const actions = store.getActions();
 		expect(actions[0]).toEqual(
 		{
 			type: 'SET_SESSION_NAME',
-			sessionNames
+			sessionNames: sortedSessionNames
 		});
 		done();
 	});
