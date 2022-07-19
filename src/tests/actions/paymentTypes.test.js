@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { 
 	addPaymentType,
 	startAddPaymentType
-} from '../../actions/paymentType';
+} from '../../actions/paymentTypes';
 import { paymentTypes } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
@@ -33,7 +33,6 @@ test('should add a new Payment Type to the database', (done) =>
 	const promise = store.dispatch(startAddPaymentType(paymentType)).then(() =>
 	{
 		const actions = store.getActions();
-		console.log('ACTIONS: ', actions[0]);
 		expect(actions[0]).toEqual(
 		{
 			type: 'ADD_PAYMENT_TYPE',
