@@ -1,6 +1,6 @@
-const otherSettingsDefaultState = [];
+const sessionNamesDefaultState = [];
 
-export default ( state = otherSettingsDefaultState, action ) =>
+export default ( state = sessionNamesDefaultState, action ) =>
 {
 	switch (action.type) 
 	{
