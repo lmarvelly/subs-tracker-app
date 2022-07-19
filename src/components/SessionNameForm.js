@@ -51,6 +51,7 @@ const SessionNameForm = ( props ) =>
 				{ formError && <p className='form__error'>{formError}</p> }
 				<input 
 					className="text-input"
+					type='text'
 					onChange={onSessionNameChange}
 					placeholder='Add new session type'
 					value={sessionName}
