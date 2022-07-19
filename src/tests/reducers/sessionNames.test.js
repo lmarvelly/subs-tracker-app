@@ -1,4 +1,4 @@
-import sessionNamesReducer from "../../reducers/otherSettings";
+import sessionNamesReducer from "../../reducers/sessionNames";
 import { sessionNames } from "../fixtures/fixures";
 
 test('should set default state', () =>
