@@ -5,7 +5,7 @@ import {
 	addSessionName, editSessionName, startEditSessionName,
 	removeSessionName, startAddSessionName, setSessionName, 
 	startSetSessionName, startRemoveSessionName
-} from '../../actions/otherSettings';
+} from '../../actions/sessionNames';
 import { sessionNames } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 

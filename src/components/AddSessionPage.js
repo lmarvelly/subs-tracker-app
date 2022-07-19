@@ -5,7 +5,7 @@ import SessionForm from './SessionForm';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import { startAddRecord } from '../actions/records';
-import { startAddSessionName } from '../actions/otherSettings';
+import { startAddSessionName } from '../actions/sessionNames';
 
 export class AddSessionPage extends Component
 {

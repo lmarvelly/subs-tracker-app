@@ -6,7 +6,7 @@ import SessionNameListItem from './SessionNameListItem';
 import { 
 	startAddSessionName, startRemoveSessionName, 
 	startEditSessionName
-} from '../actions/otherSettings';
+} from '../actions/sessionNames';
 
 export const OtherSettingsPage = ( props ) =>
 {

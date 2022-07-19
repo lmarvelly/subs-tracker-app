@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
 import { startAddRecord } from '../actions/records';
-import { startAddSessionName } from '../actions/otherSettings';
+import { startAddSessionName } from '../actions/sessionNames';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import { sortAlphabetAsc } from '../actions/memberFilters';

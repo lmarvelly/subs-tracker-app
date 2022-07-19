@@ -6,7 +6,7 @@ import AppRouter, { history } from './routers/AppRouter';
 
 import configureStore from './store/configureStore';
 
-import { startSetSessionName } from './actions/otherSettings';
+import { startSetSessionName } from './actions/sessionNames';
 import { startSetRecords } from './actions/records';
 import { sortAlphabetAsc } from './actions/memberFilters';
 import { startSetMembers } from './actions/members';
