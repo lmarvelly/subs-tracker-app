@@ -1,8 +1,12 @@
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 
+import PaymentTypeForm from './PaymentTypeForm';
 import SessionNameForm from './SessionNameForm';
 import SessionNameListItem from './SessionNameListItem';
+import {
+	startAddPaymentType
+} from '../actions/paymentTypes';
 import { 
 	startAddSessionName, startRemoveSessionName, 
 	startEditSessionName
@@ -14,6 +18,11 @@ export const OtherSettingsPage = ( props ) =>
 	{
 		props.addSessionName({sessionName});
 	}
+
+	const onPaymentTypeSubmit = ( paymentTypeName ) =>
+	{
+		props.addPaymentType({paymentTypeName});
+	};
 
 	return(
 		<div>
@@ -56,6 +65,8 @@ export const OtherSettingsPage = ( props ) =>
 					)
 				}
 				</div>
+
+				<PaymentTypeForm onSubmit={onPaymentTypeSubmit} />
 			</div>
 		</div>
 	);
@@ -63,6 +74,7 @@ export const OtherSettingsPage = ( props ) =>
 
 const mapDispatchToProps = ( dispatch ) =>(
 {
+	addPaymentType: ( paymentType ) => dispatch(startAddPaymentType(paymentType)),
 	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
 	editSessionName: ( sessionUuid, updates ) => dispatch(startEditSessionName(sessionUuid, updates)),
 	removeSessionName: ( sessionUuid ) => dispatch(startRemoveSessionName(sessionUuid))
