@@ -147,10 +147,10 @@ export const paymentTypes =
 [
 	{
 		paymentTypeName: 'Bank Transfer',
-		sessionUuid: 'payType1'
+		paymentTypeUuid: 'payType1'
 	},
 	{
 		paymentTypeName: 'Cash',
-		sessionUuid: 'payType2'
+		paymentTypeUuid: 'payType2'
 	}
 ]
