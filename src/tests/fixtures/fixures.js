@@ -142,3 +142,15 @@ export const sessionNames =
 		sessionUuid: '345'
 	}
 ];
+
+export const paymentTypes =
+[
+	{
+		paymentTypeName: 'Bank Transfer',
+		sessionUuid: 'payType1'
+	},
+	{
+		paymentTypeName: 'Cash',
+		sessionUuid: 'payType2'
+	}
+]
