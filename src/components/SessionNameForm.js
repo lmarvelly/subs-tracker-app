@@ -56,7 +56,7 @@ const SessionNameForm = ( props ) =>
 					placeholder='Add new session type'
 					value={sessionName}
 				/>
-				<button className='button'>Add Session Type</button>
+				<button className='button'>Add Session Name</button>
 			</form>
 		</div>
 	)
