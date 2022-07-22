@@ -14,7 +14,7 @@ import {
 
 export const OtherSettingsPage = ( props ) =>
 {
-	const onSubmit = ( sessionName ) =>
+	const onSessionNameSubmit = ( sessionName ) =>
 	{
 		props.addSessionName({sessionName});
 	}
@@ -38,7 +38,7 @@ export const OtherSettingsPage = ( props ) =>
 				
 				<SessionNameForm 
 					sessionNames={props.sessionNames}
-					onSubmit={onSubmit} 
+					onSubmit={onSessionNameSubmit} 
 				/>
 
 				<div className='list-header'>Session Types</div>
