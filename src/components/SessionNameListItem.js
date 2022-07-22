@@ -7,7 +7,6 @@ const SessionNameListItem = ( props ) =>
 	const handleExpand = () =>
 	{
 		setExpand(!expand);
-		console.log(expand);
 	}
 
 	const handleRemove = () =>
