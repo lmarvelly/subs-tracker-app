@@ -58,7 +58,7 @@ export const OtherSettingsPage = ( props ) =>
 							return <OtherSettingsListItem
 										key={sessionName.sessionUuid} 
 										itemName={sessionName.sessionName}
-										sessionUuid={sessionName.sessionUuid}
+										itemUuid={sessionName.sessionUuid}
 										handleEdit={props.editSessionName}
 										handleRemove={props.removeSessionName}/>
 						})
@@ -85,7 +85,7 @@ export const OtherSettingsPage = ( props ) =>
 							return <OtherSettingsListItem
 										key={paymentType.paymentTypeUuid} 
 										itemName={paymentType.paymentTypeName}
-										paymentTypeUuid={paymentType.paymentTypeUuid}
+										itemUuid={paymentType.paymentTypeUuid}
 										handleEdit={props.editPaymentType}
 										handleRemove={props.removePaymentType}/>
 						})

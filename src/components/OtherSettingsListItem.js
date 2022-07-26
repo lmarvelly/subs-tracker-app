@@ -4,8 +4,6 @@ const OtherSettingsListItem = ( props ) =>
 {
 	const [ expand, setExpand ] = useState(false);
 
-	console.log(props);
-
 	const handleExpand = () =>
 	{
 		setExpand(!expand);
@@ -15,7 +13,7 @@ const OtherSettingsListItem = ( props ) =>
 	{
 		if(confirm(`Are you sure you want to remove '${props.itemName}'`))
 		{
-			props.handleRemove( props.sessionUuid );
+			props.handleRemove( props.itemUuid );
 		}
 	}
 
@@ -23,11 +21,9 @@ const OtherSettingsListItem = ( props ) =>
 	{
 		const itemName = prompt('Edit Session Name', props.itemName);
 
-		// const updates = {itemName};
-
 		if (itemName) 
 		{
-			props.handleEdit( props.sessionUuid, itemName );
+			props.handleEdit( props.itemUuid, itemName );
 		}
 	}
 
