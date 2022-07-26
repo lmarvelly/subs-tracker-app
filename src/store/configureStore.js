@@ -1,13 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import sessionNamesReducer from '../reducers/sessionNames';
-import paymentRecordReducer from '../reducers/records';
-import recordFilterReducer from '../reducers/recordFilters';
 import membersRecordReducer from '../reducers/members';
 import memberFilterReducer from '../reducers/memberFilters';
+import paymentRecordReducer from '../reducers/records';
+import paymentTypesReducer from '../reducers/paymentTypes';
+import recordFilterReducer from '../reducers/recordFilters';
 import seasonsRecordReducer from '../reducers/seasons';
 import seasonFilterReducer from '../reducers/seasonFilters';
+import sessionNamesReducer from '../reducers/sessionNames';
+
 import authReducer from '../reducers/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -25,14 +27,15 @@ export default () => {
 	const store = createStore(
 		combineReducers(
 		{
-			sessionNames: sessionNamesReducer,
-			paymentRecord: paymentRecordReducer,
-			recordFilters:  recordFilterReducer,
+			auth: authReducer,
 			members: membersRecordReducer,
 			memberFilters: memberFilterReducer,
+			paymentRecord: paymentRecordReducer,
+			paymentTypes: paymentTypesReducer,
+			recordFilters:  recordFilterReducer,
 			seasons: seasonsRecordReducer,
 			seasonFilters: seasonFilterReducer,
-			auth: authReducer
+			sessionNames: sessionNamesReducer
 		}),
 		composeEnhancers(applyMiddleware(thunk))
 	);
