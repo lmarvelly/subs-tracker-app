@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { 
 	addPaymentType,
+	setPaymentTypes,
 	startAddPaymentType
 } from '../../actions/paymentTypes';
 import { paymentTypes } from '../fixtures/fixures';
@@ -55,3 +56,12 @@ test('should add a new Payment Type to the database', (done) =>
 	});
 });
 
+test('should create Payment Type action object', () =>
+{
+	const action = setPaymentTypes( paymentTypes );
+	expect(action).toEqual(
+	{
+		type: 'SET_PAYMENT_NAMES',
+		paymentTypes
+	});
+});

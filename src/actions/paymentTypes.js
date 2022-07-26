@@ -24,3 +24,9 @@ export const startAddPaymentType = ( paymentTypeName = '' ) =>
 			});
 	}
 }
+
+export const setPaymentTypes = ( paymentTypes ) => (
+{
+	type: 'SET_PAYMENT_NAMES',
+	paymentTypes
+});
