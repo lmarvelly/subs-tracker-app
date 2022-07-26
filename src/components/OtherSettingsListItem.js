@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-const SessionNameListItem = ( props ) =>
+const OtherSettingsListItem = ( props ) =>
 {
 	const [ expand, setExpand ] = useState(false);
+
+	console.log(props);
 
 	const handleExpand = () =>
 	{
@@ -11,7 +13,7 @@ const SessionNameListItem = ( props ) =>
 
 	const handleRemove = () =>
 	{
-		if(confirm(`Are you sure you want to remove '${props.sessionName}'`))
+		if(confirm(`Are you sure you want to remove '${props.itemName}'`))
 		{
 			props.handleRemove( props.sessionUuid );
 		}
@@ -19,13 +21,13 @@ const SessionNameListItem = ( props ) =>
 
 	const handleEdit = () =>
 	{
-		const sessionName = prompt('Edit Session Name', props.sessionName);
+		const itemName = prompt('Edit Session Name', props.itemName);
 
-		const updates = {sessionName};
+		// const updates = {itemName};
 
-		if (sessionName) 
+		if (itemName) 
 		{
-			props.handleEdit( props.sessionUuid, updates );
+			props.handleEdit( props.sessionUuid, itemName );
 		}
 	}
 
@@ -33,7 +35,7 @@ const SessionNameListItem = ( props ) =>
 		<div className='list-item' onClick={handleExpand}>
 			<div className='list-item__row'>
 				<h3 className={`list-item__title`}>
-					{props.sessionName}
+					{props.itemName}
 				</h3>
 				{
 					expand &&
@@ -47,4 +49,4 @@ const SessionNameListItem = ( props ) =>
 	);
 }
 
-export default SessionNameListItem;
+export default OtherSettingsListItem;
