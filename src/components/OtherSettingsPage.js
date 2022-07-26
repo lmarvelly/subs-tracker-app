@@ -5,7 +5,7 @@ import PaymentTypeForm from './PaymentTypeForm';
 import SessionNameForm from './SessionNameForm';
 import OtherSettingsListItem from './OtherSettingsListItem';
 import {
-	startAddPaymentType
+	startAddPaymentType, startRemovePaymentType
 } from '../actions/paymentTypes';
 import { 
 	startAddSessionName, startRemoveSessionName, 
@@ -41,14 +41,14 @@ export const OtherSettingsPage = ( props ) =>
 					onSubmit={onSessionNameSubmit} 
 				/>
 
-				<div className='list-header'>Session Types</div>
+				<div className='list-header'>Session Names</div>
 				<div className='list-body'>
 				{
 					(props.sessionNames.length === 0) 
 					?
 					(
 						<div className='list-item list-item--message'>
-							<span>No Session Types </span>
+							<span>No Session Names</span>
 						</div> 
 					)
 					:
@@ -57,7 +57,7 @@ export const OtherSettingsPage = ( props ) =>
 						{
 							return <OtherSettingsListItem
 										key={sessionName.sessionUuid} 
-										sessionName={sessionName.sessionName}
+										itemName={sessionName.sessionName}
 										sessionUuid={sessionName.sessionUuid}
 										handleEdit={props.editSessionName}
 										handleRemove={props.removeSessionName}/>
@@ -82,9 +82,12 @@ export const OtherSettingsPage = ( props ) =>
 					(
 						props.paymentTypes.map( ( paymentType ) =>
 						{
-							
-							return <p>{paymentType.paymentTypeName}</p>
-							
+							return <OtherSettingsListItem
+										key={paymentType.paymentTypeUuid} 
+										itemName={paymentType.paymentTypeName}
+										paymentTypeUuid={paymentType.paymentTypeUuid}
+										handleEdit={props.editPaymentType}
+										handleRemove={props.removePaymentType}/>
 						})
 					)
 				}
@@ -98,7 +101,8 @@ const mapDispatchToProps = ( dispatch ) =>(
 {
 	addPaymentType: ( paymentType ) => dispatch(startAddPaymentType(paymentType)),
 	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
-	editSessionName: ( sessionUuid, updates ) => dispatch(startEditSessionName(sessionUuid, updates)),
+	editSessionName: ( sessionUuid, sessionName ) => dispatch(startEditSessionName(sessionUuid, {sessionName})),
+	removePaymentType: ( paymentTypeUuid ) => dispatch(startRemovePaymentType(paymentTypeUuid)),
 	removeSessionName: ( sessionUuid ) => dispatch(startRemoveSessionName(sessionUuid))
 });
 
