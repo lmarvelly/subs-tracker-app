@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import PaymentTypeForm from './PaymentTypeForm';
 import SessionNameForm from './SessionNameForm';
-import SessionNameListItem from './SessionNameListItem';
+import OtherSettingsListItem from './OtherSettingsListItem';
 import {
 	startAddPaymentType
 } from '../actions/paymentTypes';
@@ -55,7 +55,7 @@ export const OtherSettingsPage = ( props ) =>
 					(
 						props.sessionNames.map( ( sessionName ) =>
 						{
-							return <SessionNameListItem
+							return <OtherSettingsListItem
 										key={sessionName.sessionUuid} 
 										sessionName={sessionName.sessionName}
 										sessionUuid={sessionName.sessionUuid}

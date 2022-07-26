@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SessionNameListItem from '../../components/SessionNameListItem';
+import OtherSettingsListItem from '../../components/OtherSettingsListItem';
 import { sessionNames } from '../fixtures/fixures';
 
 let wrapper, handleClick, handleEdit, handleRemove;
@@ -13,7 +13,7 @@ beforeEach( () =>
 
 	const sessionName = sessionNames[0];
 	wrapper = shallow(
-		<SessionNameListItem 
+		<OtherSettingsListItem 
 			key={ sessionName.sessionUuid }
 			sessionUuid={ sessionName.sessionUuid }
 
@@ -24,12 +24,12 @@ beforeEach( () =>
 	);
 });
 
-test('should render one compressed SessionNameListItem', () => 
+test('should render one compressed OtherSettingsListItem', () => 
 {
 	expect(wrapper).toMatchSnapshot();
 });
 
-test('should render one expanded SessionNameListItem', () => 
+test('should render one expanded OtherSettingsListItem', () => 
 {	
 	wrapper.find('.list-item').simulate('click');
 	
