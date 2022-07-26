@@ -26,7 +26,8 @@ export default ( state = sessionNamesDefaultState, action ) =>
 				})
 
 		case 'REMOVE_SESSION_NAME':
-			return state.filter( ({ sessionUuid }) => sessionUuid !== action.sessionUuid );
+			return state.filter( ({ sessionUuid }) => 
+				sessionUuid !== action.sessionUuid );
 
 		case 'SET_SESSION_NAME':
 			return action.sessionNames
