@@ -61,7 +61,7 @@ test('should create Payment Type action object', () =>
 	const action = setPaymentTypes( paymentTypes );
 	expect(action).toEqual(
 	{
-		type: 'SET_PAYMENT_NAMES',
+		type: 'SET_PAYMENT_TYPES',
 		paymentTypes
 	});
 });
