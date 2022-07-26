@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { 
 	addPaymentType,
+	removePaymentType,
 	setPaymentTypes,
 	startAddPaymentType,
 	startSetPaymentTypes
@@ -13,6 +14,8 @@ const uid = 'testuid';
 const defaultAuthState = { auth: { uid }}
 const createMockStore = configureMockStore([thunk]);
 
+let store;
+
 beforeEach((done) =>
 {
 	const paymentTypeData = {};
@@ -23,6 +26,8 @@ beforeEach((done) =>
 	database.ref(`subs-tracker/users/${uid}/payment_types`)
 		.set( paymentTypeData )
 		.then(() => done());
+
+	store = createMockStore(defaultAuthState);
 });
 
 test('should create a Add Payment Type Action Objest', () =>
@@ -37,8 +42,6 @@ test('should create a Add Payment Type Action Objest', () =>
 
 test('should add a new Payment Type to the database', (done) =>
 {
-	const store = createMockStore(defaultAuthState);
-
 	const paymentType = 
 	{
 		paymentTypeName: 'Cryptocurrency'
@@ -81,8 +84,6 @@ test('should create Payment Type action object', () =>
 
 test('should Retrieve the Payment Types from the Database', (done) =>
 {
-	const store = createMockStore( defaultAuthState );
-
 	const sortedPaymentTypes = paymentTypes.sort( (a, b) =>
 	{
 		const nameA = a.paymentTypeName.toLowerCase();
@@ -102,5 +103,17 @@ test('should Retrieve the Payment Types from the Database', (done) =>
 			paymentTypes: sortedPaymentTypes
 		});
 		done();
+	});
+});
+
+test('should Remove a Payment Type from the Database', () =>
+{
+	const paymentTypeUuid = 'testUuid';
+	const action = removePaymentType( paymentTypeUuid );
+
+	expect(action).toEqual(
+	{
+		type: 'REMOVE_PAYMENT_TYPE',
+		paymentTypeUuid
 	});
 });

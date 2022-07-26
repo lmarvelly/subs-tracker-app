@@ -25,6 +25,12 @@ export const startAddPaymentType = ( paymentTypeName = '' ) =>
 	}
 }
 
+export const removePaymentType = ( paymentTypeUuid ) => (
+{
+	type: 'REMOVE_PAYMENT_TYPE',
+	paymentTypeUuid
+});
+
 export const setPaymentTypes = ( paymentTypes ) => (
 {
 	type: 'SET_PAYMENT_TYPES',
