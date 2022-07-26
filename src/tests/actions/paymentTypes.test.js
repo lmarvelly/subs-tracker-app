@@ -3,7 +3,8 @@ import thunk from 'redux-thunk';
 import { 
 	addPaymentType,
 	setPaymentTypes,
-	startAddPaymentType
+	startAddPaymentType,
+	startSetPaymentTypes
 } from '../../actions/paymentTypes';
 import { paymentTypes } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
@@ -11,6 +12,18 @@ import database from '../../firebase/firebase';
 const uid = 'testuid';
 const defaultAuthState = { auth: { uid }}
 const createMockStore = configureMockStore([thunk]);
+
+beforeEach((done) =>
+{
+	const paymentTypeData = {};
+	paymentTypes.forEach(({ paymentTypeName, paymentTypeUuid }) =>
+	{
+		paymentTypeData[paymentTypeUuid] = { paymentTypeName }
+	});
+	database.ref(`subs-tracker/users/${uid}/payment_types`)
+		.set( paymentTypeData )
+		.then(() => done());
+});
 
 test('should create a Add Payment Type Action Objest', () =>
 {
@@ -63,5 +76,31 @@ test('should create Payment Type action object', () =>
 	{
 		type: 'SET_PAYMENT_TYPES',
 		paymentTypes
+	});
+});
+
+test('should Retrieve the Payment Types from the Database', (done) =>
+{
+	const store = createMockStore( defaultAuthState );
+
+	const sortedPaymentTypes = paymentTypes.sort( (a, b) =>
+	{
+		const nameA = a.paymentTypeName.toLowerCase();
+		const nameB = b.paymentTypeName.toLowerCase();
+
+		if ( nameA < nameB ) return -1;
+		if ( nameA > nameB ) return 1;
+		return 0;
+	});
+
+	store.dispatch( startSetPaymentTypes() ).then( () => 
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'SET_PAYMENT_TYPES',
+			paymentTypes: sortedPaymentTypes
+		});
+		done();
 	});
 });

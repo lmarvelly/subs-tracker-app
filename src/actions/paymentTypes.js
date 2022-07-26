@@ -30,3 +30,40 @@ export const setPaymentTypes = ( paymentTypes ) => (
 	type: 'SET_PAYMENT_TYPES',
 	paymentTypes
 });
+
+export const startSetPaymentTypes = () => 
+{
+	return (dispatch, getState) =>
+	{
+		const uid = getState().auth.uid;
+
+		return database.ref(`subs-tracker/users/${uid}/payment_types`)
+			.once('value')
+			.then((snapshot) =>
+			{
+				const paymentTypes = [];
+
+				snapshot.forEach( ( childSnapshot ) =>
+				{
+					paymentTypes.push(
+					{
+						paymentTypeUuid: childSnapshot.key,
+						...childSnapshot.val()
+					});
+				});
+
+				// Sort alphabetically ascending
+				paymentTypes.sort( (a, b) =>
+				{
+					const nameA = a.paymentTypeName.toLowerCase();
+					const nameB = b.paymentTypeName.toLowerCase();
+
+					if ( nameA < nameB ) return -1;
+					if ( nameA > nameB ) return 1;
+					return 0;
+				});
+
+				dispatch( setPaymentTypes( paymentTypes ) );
+			});
+	};
+};
