@@ -11,7 +11,7 @@ const SessionNameForm = ( props ) =>
 
 		let exists = false;
 
-		const trimmedName = sessionName.trim()
+		const trimmedName = sessionName.trim();
 		
 		props.sessionNames.forEach((session) =>
 		{
