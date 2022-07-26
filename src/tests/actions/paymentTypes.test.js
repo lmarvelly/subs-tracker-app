@@ -5,6 +5,7 @@ import {
 	removePaymentType,
 	setPaymentTypes,
 	startAddPaymentType,
+	startRemovePaymentType,
 	startSetPaymentTypes
 } from '../../actions/paymentTypes';
 import { paymentTypes } from '../fixtures/fixures';
@@ -116,4 +117,29 @@ test('should Remove a Payment Type from the Database', () =>
 		type: 'REMOVE_PAYMENT_TYPE',
 		paymentTypeUuid
 	});
+});
+
+test('should Remove a Payment Type from the database', (done) =>
+{
+	const paymentTypeUuid = paymentTypes[0].paymentTypeUuid;
+
+	store.dispatch( startRemovePaymentType( paymentTypeUuid ) )
+		.then( () =>
+		{
+			const actions = store.getActions();
+			console.log(actions[0]);
+			expect(actions[0]).toEqual(
+			{
+				type: 'REMOVE_PAYMENT_TYPE',
+				paymentTypeUuid
+			});
+
+			console.log(`subs-tracker/users/${uid}/payment_types/${paymentTypeUuid}`);
+			return database.ref(`subs-tracker/users/${uid}/payment_types/${paymentTypeUuid}`).once('value');
+		})
+		.then((snapshot) =>
+		{
+			expect(snapshot.val()).toBeFalsy();
+			done();
+		});
 });

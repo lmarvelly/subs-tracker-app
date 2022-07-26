@@ -31,6 +31,21 @@ export const removePaymentType = ( paymentTypeUuid ) => (
 	paymentTypeUuid
 });
 
+export const startRemovePaymentType = ( paymentTypeUuid ) =>
+{
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+
+		return database.ref(`subs-tracker/users/${uid}/payment_types/${paymentTypeUuid}`)
+			.remove()
+			.then( () =>
+			{
+				dispatch( removePaymentType( paymentTypeUuid ) )
+			});
+	}
+};
+
 export const setPaymentTypes = ( paymentTypes ) => (
 {
 	type: 'SET_PAYMENT_TYPES',
