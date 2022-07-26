@@ -127,14 +127,12 @@ test('should Remove a Payment Type from the database', (done) =>
 		.then( () =>
 		{
 			const actions = store.getActions();
-			console.log(actions[0]);
 			expect(actions[0]).toEqual(
 			{
 				type: 'REMOVE_PAYMENT_TYPE',
 				paymentTypeUuid
 			});
 
-			console.log(`subs-tracker/users/${uid}/payment_types/${paymentTypeUuid}`);
 			return database.ref(`subs-tracker/users/${uid}/payment_types/${paymentTypeUuid}`).once('value');
 		})
 		.then((snapshot) =>
