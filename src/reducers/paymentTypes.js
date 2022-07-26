@@ -11,6 +11,9 @@ export default ( state = paymentTypeDefaultState, action ) =>
 					...action.paymentType
 				}
 			]
+
+		case 'SET_PAYMENT_TYPES':
+			return action.paymentTypes
 	
 		default:
 			return state;

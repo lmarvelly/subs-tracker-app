@@ -16,3 +16,15 @@ test('should add a new Payment Type', () =>
 
 	expect( state ).toEqual([ ...paymentTypes, paymentType ]);
 });
+
+test('should Set the Payment Types provided', () =>
+{
+	const action =
+	{
+		type: 'SET_PAYMENT_TYPES',
+		paymentTypes
+	}
+	const state = paymentTypesReducer( undefined, action );
+
+	expect( state ).toEqual( paymentTypes );
+});
