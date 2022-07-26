@@ -12,8 +12,12 @@ export default ( state = paymentTypeDefaultState, action ) =>
 				}
 			]
 
+		case 'REMOVE_PAYMENT_TYPE':
+			return state.filter( ({ paymentTypeUuid }) =>
+				paymentTypeUuid !== action.paymentTypeUuid );
+
 		case 'SET_PAYMENT_TYPES':
-			return action.paymentTypes
+			return action.paymentTypes;
 	
 		default:
 			return state;

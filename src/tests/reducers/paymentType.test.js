@@ -28,3 +28,19 @@ test('should Set the Payment Types provided', () =>
 
 	expect( state ).toEqual( paymentTypes );
 });
+
+test('should Remove a Payment Type', () => 
+{
+	const paymentTypeUuid = paymentTypes[0].paymentTypeUuid;
+	const action =
+	{
+		type: 'REMOVE_PAYMENT_TYPE',
+		paymentTypeUuid
+	}
+	const state = paymentTypesReducer( paymentTypes, action );
+
+	const alteredPaymentTypeList = paymentTypes.filter( 
+		({paymentTypeUuid}) => paymentTypeUuid !== action.paymentTypeUuid );
+
+	expect(state).toEqual(alteredPaymentTypeList);
+});
