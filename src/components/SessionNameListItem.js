@@ -13,7 +13,7 @@ const SessionNameListItem = ( props ) =>
 	{
 		if(confirm(`Are you sure you want to remove '${props.sessionName}'`))
 		{
-			props.removeSessionName( props.sessionUuid );
+			props.handleRemove( props.sessionUuid );
 		}
 	}
 
@@ -25,7 +25,7 @@ const SessionNameListItem = ( props ) =>
 
 		if (sessionName) 
 		{
-			props.editSessionName( props.sessionUuid, updates );
+			props.handleEdit( props.sessionUuid, updates );
 		}
 	}
 

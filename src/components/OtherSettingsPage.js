@@ -59,8 +59,8 @@ export const OtherSettingsPage = ( props ) =>
 										key={sessionName.sessionUuid} 
 										sessionName={sessionName.sessionName}
 										sessionUuid={sessionName.sessionUuid}
-										editSessionName={props.editSessionName}
-										removeSessionName={props.removeSessionName}/>
+										handleEdit={props.editSessionName}
+										handleRemove={props.removeSessionName}/>
 						})
 					)
 				}
