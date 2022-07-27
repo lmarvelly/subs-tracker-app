@@ -23,6 +23,7 @@ export default ( state = paymentTypeDefaultState, action ) =>
 						...action.updates
 					}
 				}
+				else { return paymentType };
 			})
 
 		case 'REMOVE_PAYMENT_TYPE':
