@@ -95,3 +95,16 @@ export const editPaymentType = ( paymentTypeUuid, updates ) => (
 	paymentTypeUuid,
 	updates
 });
+
+export const startEditPaymentType = ( paymentTypeUuid, updates ) =>
+{
+	const { paymentTypeName } = updates;
+
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/payment_types/${paymentTypeUuid}`)
+			.update({ paymentTypeName })
+			.then( () => dispatch( editPaymentType( paymentTypeUuid, updates )));
+	}
+};

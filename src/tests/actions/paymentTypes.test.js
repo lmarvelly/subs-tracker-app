@@ -6,6 +6,7 @@ import {
 	removePaymentType,
 	setPaymentTypes,
 	startAddPaymentType,
+	startEditPaymentType,
 	startRemovePaymentType,
 	startSetPaymentTypes
 } from '../../actions/paymentTypes';
@@ -155,4 +156,29 @@ test('should create an Edit Action Object', () =>
 		paymentTypeUuid,
 		updates
 	});
+});
+
+test('should edit a Session Type from the database', (done) =>
+{
+	const store = createMockStore(defaultAuthState);
+	const paymentTypeUuid = paymentTypes[1].paymentTypeUuid;
+	const updates = { paymentTypeName: 'Leaves' };
+
+	store.dispatch( startEditPaymentType( paymentTypeUuid, updates ))
+		.then( () =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+			{
+				type: 'EDIT_PAYMENT_TYPE',
+				paymentTypeUuid,
+				updates
+			});
+			return database.ref(`subs-tracker/users/${uid}/payment_types/${paymentTypeUuid}`).once('value');
+		})
+		.then((snapshot) =>
+		{
+			expect(snapshot.val().paymentTypeName).toBe( updates.paymentTypeName );
+			done();
+		});
 });
