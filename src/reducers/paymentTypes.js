@@ -12,11 +12,12 @@ export default ( state = paymentTypeDefaultState, action ) =>
 				}
 			]
 
-		case 'EDIT_SESSION_NAME':
+		case 'EDIT_PAYMENT_TYPE':
 			return state.map( ( paymentType ) =>
 			{
 				if ( paymentType.paymentTypeUuid === action.paymentTypeUuid ) 
 				{
+					console.log('Editing ', paymentType.paymentTypeName, 'to be', action.updates.paymentTypeName);
 					return {
 						...paymentType,
 						...action.updates

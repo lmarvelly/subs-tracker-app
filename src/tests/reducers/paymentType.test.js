@@ -52,7 +52,7 @@ test('Should Create a Edit Action Generator', () =>
 
 	const action =
 	{
-		type: 'EDIT_SESSION_NAME',
+		type: 'EDIT_PAYMENT_TYPE',
 		paymentTypeUuid,
 		updates:
 		{
