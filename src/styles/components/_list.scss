@@ -53,6 +53,13 @@
 	}
 }
 
+.list-item--session__row
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
 .list-item__column
 {
 	display: flex;
