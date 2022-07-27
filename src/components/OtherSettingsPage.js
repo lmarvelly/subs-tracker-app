@@ -5,11 +5,14 @@ import PaymentTypeForm from './PaymentTypeForm';
 import SessionNameForm from './SessionNameForm';
 import OtherSettingsListItem from './OtherSettingsListItem';
 import {
-	startAddPaymentType, startRemovePaymentType
+	startAddPaymentType,
+	startEditPaymentType,
+	startRemovePaymentType
 } from '../actions/paymentTypes';
 import { 
-	startAddSessionName, startRemoveSessionName, 
-	startEditSessionName
+	startAddSessionName,
+	startEditSessionName,
+	startRemoveSessionName
 } from '../actions/sessionNames';
 
 export const OtherSettingsPage = ( props ) =>
@@ -100,7 +103,8 @@ export const OtherSettingsPage = ( props ) =>
 const mapDispatchToProps = ( dispatch ) =>(
 {
 	addPaymentType: ( paymentType ) => dispatch(startAddPaymentType(paymentType)),
-	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
+	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName)),
+	editPaymentType: ( paymentTypeUuid, paymentTypeName ) => dispatch(startEditPaymentType( paymentTypeUuid, {paymentTypeName})),
 	editSessionName: ( sessionUuid, sessionName ) => dispatch(startEditSessionName(sessionUuid, {sessionName})),
 	removePaymentType: ( paymentTypeUuid ) => dispatch(startRemovePaymentType(paymentTypeUuid)),
 	removeSessionName: ( sessionUuid ) => dispatch(startRemoveSessionName(sessionUuid))
