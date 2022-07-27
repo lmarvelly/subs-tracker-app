@@ -44,3 +44,23 @@ test('should Remove a Payment Type', () =>
 
 	expect(state).toEqual(alteredPaymentTypeList);
 });
+
+test('Should Create a Edit Action Generator', () => 
+{
+	const paymentTypeName = 'Leaves';
+	const paymentTypeUuid = paymentTypes[0].paymentTypeUuid;
+
+	const action =
+	{
+		type: 'EDIT_SESSION_NAME',
+		paymentTypeUuid,
+		updates:
+		{
+			paymentTypeName
+		}
+	};
+
+	const state = paymentTypesReducer( paymentTypes, action );
+
+	expect( state[0].paymentTypeName ).toBe( paymentTypeName )
+});

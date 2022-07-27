@@ -12,6 +12,18 @@ export default ( state = paymentTypeDefaultState, action ) =>
 				}
 			]
 
+		case 'EDIT_SESSION_NAME':
+			return state.map( ( paymentType ) =>
+			{
+				if ( paymentType.paymentTypeUuid === action.paymentTypeUuid ) 
+				{
+					return {
+						...paymentType,
+						...action.updates
+					}
+				}
+			})
+
 		case 'REMOVE_PAYMENT_TYPE':
 			return state.filter( ({ paymentTypeUuid }) =>
 				paymentTypeUuid !== action.paymentTypeUuid );
