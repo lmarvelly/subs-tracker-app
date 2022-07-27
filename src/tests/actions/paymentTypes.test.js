@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { 
 	addPaymentType,
+	editPaymentType,
 	removePaymentType,
 	setPaymentTypes,
 	startAddPaymentType,
@@ -140,4 +141,18 @@ test('should Remove a Payment Type from the database', (done) =>
 			expect(snapshot.val()).toBeFalsy();
 			done();
 		});
+});
+
+test('should create an Edit Action Object', () =>
+{
+	const paymentTypeUuid = 'testUuid';
+	const updates = { paymentTypeName: 'Leaves' };
+	const action = editPaymentType( paymentTypeUuid, updates );
+
+	expect( action ).toEqual(
+	{
+		type: 'EDIT_PAYMENT_TYPE',
+		paymentTypeUuid,
+		updates
+	});
 });

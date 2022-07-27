@@ -88,3 +88,10 @@ export const startSetPaymentTypes = () =>
 			});
 	};
 };
+
+export const editPaymentType = ( paymentTypeUuid, updates ) => (
+{
+	type: 'EDIT_PAYMENT_TYPE',
+	paymentTypeUuid,
+	updates
+});
