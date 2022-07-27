@@ -271,10 +271,9 @@ export default class SessionForm extends Component
 					</div>
 
 					{ this.state.error && sessionArrayErrorClassName && <p className='form__error'>Please add members</p>}
-					<div className='form__session-header row'>
+					<div className='list-header row'>
 						<div className='form__session-col-name'>Name</div>
 						<div className='form__session-col-checkbox-1'>Attended</div>
-						<div className='form__session-col-checkbox-2'>Paid</div>
 					</div>
 					{
 						this.props.members.map(( member ) =>
