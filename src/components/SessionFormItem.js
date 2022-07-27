@@ -9,13 +9,15 @@ export class SessionFormItem extends Component
 		this.state =
 		{
 			attending: false,
-			paid: false,
+			expand: false,
+			discount: 0
 		}
 	}
 
 	onAttend = (e) =>
 	{
 		this.setState({ attending: !this.state.attending });
+		this.setState({expand: !this.state.expand});
 		this.setState({ paid: false });
 
 		if(e.target.checked)
@@ -28,43 +30,48 @@ export class SessionFormItem extends Component
 		}
 	}
 
-	onPaid = (e) =>
+	onDiscountChange = ( e ) =>
 	{
-		this.setState({ paid: !this.state.paid });
-		if(e.target.checked)
-		{
-			this.props.addItem({ type: 'PAYMENT', playerUuid: this.props.playerUuid });
-		}
-		else
-		{
-			this.props.addItem({ type: 'DEBT', playerUuid: this.props.playerUuid })
-		}
+		this.setState({ discount: e.target.value });
 	}
+
+	// handleExpand = ( e ) =>
+	// {
+	// 	this.setState({expand: !this.state.expand});
+	// }
 
 	render()
 	{
 		return(
 			<div>
-				<div className='form__session-item'>
-					<div className='form__session-col-name'>
-						<span>{`${this.props.firstName} ${this.props.surname}`}</span>
+				<div className='list-item'>
+					<div className='list-item--session__row'>
+						<div style={{width: '50%'}}>
+							<span>{`${this.props.firstName} ${this.props.surname}`}</span>
+						</div>
+						<div>
+							<input 
+								value={this.props.playerUuid} 
+								type="checkbox"
+								onChange={this.onAttend}
+							/>
+						</div>
 					</div>
-					<div className='form__session-col-checkbox-1'>
-						<input 
-							value={this.props.playerUuid} 
-							type="checkbox"
-							onChange={this.onAttend}
-						/>
-					</div>
-					<div className='form__session-col-checkbox-2'>
-						<input
-							disabled={!this.state.attending}
-							value={this.props.playerUuid} 
-							type="checkbox"
-							checked={this.state.paid}
-							onChange={this.onPaid}
-						/>
-					</div>
+					{
+						this.state.expand &&
+						(
+							<div className='list-item--session__row'>
+								<span>Discount (%)</span>
+								<input
+									disabled={!this.state.attending}
+									value={this.props.discount}
+									placeholder='0'
+									type="text"
+									onChange={this.onDiscountChange}
+								/>
+							</div>
+						)
+					}
 				</div>
 			</div>
 		);
