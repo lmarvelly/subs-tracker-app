@@ -85,7 +85,7 @@ export class AddSessionPage extends Component
 						<div className='page-header__content-column'>
 							<div>
 								<h1 className='page-header__title'>Add Session Page</h1>
-								<span>Create multiple records for a single session</span>
+								<span>Add a new Group Session</span>
 							</div>
 						</div>
 					</div>
