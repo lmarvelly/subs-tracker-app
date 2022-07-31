@@ -120,13 +120,6 @@ export const records =
 }
 ];
 
-export const sessionArray =
-[
-	{ playerUuid: members[0], type: "PAYMENT" },
-	{ playerUuid: members[1], type: "DEBT" },
-	{ playerUuid: members[2], type: "DEBT" }
-]
-
 export const sessionNames = 
 [ 
 	{
@@ -142,6 +135,39 @@ export const sessionNames =
 		sessionUuid: '345'
 	}
 ];
+
+export const sessions = 
+[{
+	amount: 400,
+	createdAt: 0,
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[0].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[2].playerUuid,
+		discount: 100
+	},
+	{
+		playerUuid: members[3].playerUuid,
+		discount: 50
+	}],
+	sessionName: sessionNames[0].sessionName,
+	sessionUuid: 'asdf'
+}]
+
+export const sessionArray =
+[
+	{ playerUuid: members[0], type: "PAYMENT" },
+	{ playerUuid: members[1], type: "DEBT" },
+	{ playerUuid: members[2], type: "DEBT" }
+]
 
 export const paymentTypes =
 [
