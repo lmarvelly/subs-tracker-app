@@ -17,14 +17,13 @@ export class SessionFormItem extends Component
 	onAttend = (e) =>
 	{
 		this.setState({ attending: !this.state.attending });
-		this.setState({ paid: false });
 
 		if(e.target.checked)
 		{
 			this.props.addPlayer(
 			{
 				playerUuid: this.props.playerUuid, 
-				discount: this.state.discount
+				discount: parseFloat(this.state.discount, 10) * 100
 			});
 		}
 		else
@@ -35,7 +34,9 @@ export class SessionFormItem extends Component
 
 	onDiscountChange = ( e ) =>
 	{
-		const discount = e.target.value
+		const discount = parseFloat(e.target.value, 10);
+		// console.log(discount);
+		
 		this.setState({ discount });
 
 		this.props.updatePlayer(
