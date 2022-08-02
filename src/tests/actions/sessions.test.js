@@ -6,7 +6,7 @@ import {
 	startAddSession
 } from '../../actions/session';
 
-import { members, sessionNames, sessions,  } from '../fixtures/fixures';
+import { members, seasons, sessionNames, sessions,  } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
 const uid = 'testuid';
@@ -17,10 +17,10 @@ beforeEach((done) =>
 {
 	const sessionsData = {};
 	sessions.forEach(({amount, createdAt, note, playerList, 
-		sessionName, sessionUuid}) =>
+		seasonUuid, sessionName, sessionUuid}) =>
 		{
 			sessionsData[sessionUuid] = { amount, createdAt, note, 
-				playerList, sessionName }
+				playerList, seasonUuid, sessionName }
 		});
 
 	database.ref(`subs-tracker/users/${uid}/sessions`)
@@ -64,6 +64,7 @@ test('Should Add a New Session to the Database', () =>
 			playerUuid: members[3].playerUuid,
 			discount: 50
 		}],
+		seasonUuid: seasons[0].seasonUuid,
 		sessionName: sessionNames[1].sessionName,
 		sessionUuid: 'asdf'
 	}

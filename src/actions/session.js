@@ -12,18 +12,19 @@ export const startAddSession = ( sessionData = {} ) =>
 	{
 		const uid = getState().auth.uid;
 		const {
-			amount = 0,
+			amount = '',
 			createdAt = 0,
 			note = '',
 			playerList = [],
+			seasonUuid = '',
 			sessionName = '',
 			sessionUuid = ''
 		} = sessionData; // deconstruct Session object
 
 		const session =
 		{
-			amount, createdAt, note, playerList, sessionName, 
-			sessionUuid
+			amount, createdAt, note, playerList, seasonUuid, 
+			sessionName, sessionUuid
 		}
 
 		return database.ref(`subs-tracker/users/${uid}/sessions`)
