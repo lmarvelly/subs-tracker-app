@@ -140,6 +140,7 @@ export const sessions =
 [{
 	amount: 400,
 	createdAt: 0,
+	id: 'sessionID_1',
 	note: '',
 	playerList:
 	[{
