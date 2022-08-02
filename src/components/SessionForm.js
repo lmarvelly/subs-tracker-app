@@ -53,6 +53,17 @@ export default class SessionForm extends Component
 		}
 	}
 
+	updateItem = ( item ) =>
+	{
+		const playerList = this.state.playerList;
+		const index = this.state.playerList.findIndex( (session) =>
+		{
+			return item.playerUuid === session.playerUuid;
+		});
+		playerList[index] = item;
+		this.setState({ playerList })
+	}
+
 	removeItem = ( playerUuid ) =>
 	{
 		const sessionList = this.state.playerList;
@@ -236,7 +247,6 @@ export default class SessionForm extends Component
 							{
 								this.props.sessionNames.map((sessionName) =>
 								{
-									console.log(sessionName);
 									return (
 										<option key={sessionName.sessionUuid}>{sessionName.sessionName}</option>
 									);
@@ -288,6 +298,7 @@ export default class SessionForm extends Component
 									surname={member.surname}
 									playerUuid={member.playerUuid}
 									addItem={this.addItem}
+									updateItem={this.updateItem}
 									removeItem={this.removeItem}
 								/>
 							);

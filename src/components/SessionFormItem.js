@@ -35,7 +35,14 @@ export class SessionFormItem extends Component
 
 	onDiscountChange = ( e ) =>
 	{
-		this.setState({ discount: e.target.value });
+		const discount = e.target.value
+		this.setState({ discount });
+
+		this.props.updateItem(
+		{
+			playerUuid: this.props.playerUuid, 
+			discount
+		});
 	}
 
 	handleExpand = ( e ) =>
@@ -70,7 +77,7 @@ export class SessionFormItem extends Component
 								<span>Discount (%)</span>
 								<input
 									disabled={!this.state.attending}
-									value={this.props.discount}
+									value={this.state.discount}
 									placeholder='0'
 									type="text"
 									onChange={this.onDiscountChange}
