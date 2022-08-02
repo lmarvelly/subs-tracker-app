@@ -159,8 +159,7 @@ export const sessions =
 		discount: 50
 	}],
 	seasonUuid: seasons[0].seasonUuid,
-	sessionName: sessionNames[0].sessionName,
-	sessionUuid: 'asdf'
+	sessionName: sessionNames[0].sessionName
 }]
 
 export const sessionArray =
