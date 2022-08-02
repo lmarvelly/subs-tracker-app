@@ -32,8 +32,7 @@ test('should Add a new Session', () =>
 			playerUuid: members[3].playerUuid,
 			discount: 50
 		}],
-		sessionName: sessionNames[1].sessionName,
-		sessionUuid: 'asdf'
+		sessionName: sessionNames[1].sessionName
 	}
 
 	const action =
