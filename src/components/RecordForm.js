@@ -166,9 +166,9 @@ export default class RecordForm extends Component
 		let sessionNameExists = false;
 
 		// If sessionNames doesn't exist forEach loop wont run to avoid errors
-		this.props.sessionNames && this.props.sessionNames.forEach((session) =>
+		this.props.sessionNames && this.props.sessionNames.forEach((sessionName) =>
 		{
-			if (session.sessionName === this.state.sessionName) 
+			if (sessionName.sessionName === this.state.sessionName) 
 			{
 				sessionNameExists = true;
 			}
@@ -366,10 +366,10 @@ export default class RecordForm extends Component
 						this.props.sessionNames &&
 						<datalist id='sessionList'>
 						{
-							this.props.sessionNames.map((session) =>
+							this.props.sessionNames.map((sessionName) =>
 							{
 								return (
-									<option key={session.sessionUuid}>{session.sessionName}</option>
+									<option key={sessionName.sessionUuid}>{sessionName.sessionName}</option>
 								);
 							})
 						}
