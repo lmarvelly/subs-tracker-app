@@ -17,9 +17,9 @@ beforeEach((done) =>
 {
 	const sessionsData = {};
 	sessions.forEach(({amount, createdAt, note, playerList, 
-		seasonUuid, sessionName, sessionUuid}) =>
+		seasonUuid, sessionName, id}) =>
 		{
-			sessionsData[sessionUuid] = { amount, createdAt, note, 
+			sessionsData[id] = { amount, createdAt, note, 
 				playerList, seasonUuid, sessionName }
 		});
 
@@ -39,7 +39,7 @@ test('Should create a Add Session action object', () =>
 	});
 });
 
-test('Should Add a New Session to the Database', () =>
+test('Should Add a New Session to the Database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 	const sessionData =
@@ -65,8 +65,7 @@ test('Should Add a New Session to the Database', () =>
 			discount: 50
 		}],
 		seasonUuid: seasons[0].seasonUuid,
-		sessionName: sessionNames[1].sessionName,
-		sessionUuid: 'asdf'
+		sessionName: sessionNames[1].sessionName
 	}
 
 	const promise = store.dispatch(startAddSession(sessionData))
@@ -82,7 +81,16 @@ test('Should Add a New Session to the Database', () =>
 					...sessionData
 				}
 			});
+
+			return database.ref(`subs-tracker/users/${uid}/sessions/${actions[0].session.id}`).once('value');
 		})
+
+		promise.then((snapshot) =>
+		{
+			expect(snapshot.val()).toEqual(sessionData);
+			done();
+		});
 });
+
 
 	
