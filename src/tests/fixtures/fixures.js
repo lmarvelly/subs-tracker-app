@@ -158,6 +158,7 @@ export const sessions =
 		playerUuid: members[3].playerUuid,
 		discount: 50
 	}],
+	seasonUuid: seasons[0].seasonUuid,
 	sessionName: sessionNames[0].sessionName,
 	sessionUuid: 'asdf'
 }]
