@@ -35,7 +35,6 @@ export class SessionFormItem extends Component
 	onDiscountChange = ( e ) =>
 	{
 		const discount = parseFloat(e.target.value, 10);
-		console.log(discount);
 		
 		if( !discount || discount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
