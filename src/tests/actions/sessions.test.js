@@ -23,7 +23,7 @@ beforeEach((done) =>
 				playerList, seasonUuid, sessionName }
 		});
 
-	database.ref(`subs-tracker/users/${uid}/sessions`)
+	database.ref(`subs-tracker/users/${uid}/sessions/`)
 		.set(sessionsData)
 		.then(() => done());
 });
