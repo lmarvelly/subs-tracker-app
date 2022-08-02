@@ -47,19 +47,21 @@ export class SessionFormItem extends Component
 
 	handleExpand = ( e ) =>
 	{
-		if (e.target.className === 'list-item--session__row') 
-		{
-			this.setState({expand: !this.state.expand});
-		}
+		this.setState({expand: !this.state.expand});
+	}
+
+	noExpand = (e) =>
+	{
+		e.stopPropagation();
 	}
 
 	render()
 	{
 		return(
 			<div>
-				<div className='list-item' onClick={this.handleExpand}>
-					<div className='list-item--session__row'>
-						<div style={{width: '50%'}}>
+				<div className='list-item expand' onClick={this.handleExpand}>
+					<div className='list-item--session__row expand'>
+						<div className='expand' style={{width: '50%'}}>
 							<span>{`${this.props.firstName} ${this.props.surname}`}</span>
 						</div>
 						<div>
@@ -67,13 +69,14 @@ export class SessionFormItem extends Component
 								value={this.props.playerUuid} 
 								type="checkbox"
 								onChange={this.onAttend}
+								onClick={this.noExpand}
 							/>
 						</div>
 					</div>
 					{
 						this.state.expand &&
 						(
-							<div className='list-item--session__row'>
+							<div className='list-item--session__row expand'>
 								<span>Discount (%)</span>
 								<input
 									disabled={!this.state.attending}
@@ -81,6 +84,7 @@ export class SessionFormItem extends Component
 									placeholder='0'
 									type="text"
 									onChange={this.onDiscountChange}
+									onClick={this.noExpand}
 								/>
 							</div>
 						)
