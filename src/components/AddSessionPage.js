@@ -5,6 +5,7 @@ import SessionForm from './SessionForm';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import { startAddRecord } from '../actions/records';
+import { startAddSession } from '../actions/session';
 import { startAddSessionName } from '../actions/sessionNames';
 
 export class AddSessionPage extends Component
@@ -44,36 +45,7 @@ export class AddSessionPage extends Component
 
 	onSubmit = ( session ) => 
 	{
-		session.sessionArray.forEach((sessionItem) =>
-		{
-			// TODO: Finish this
-			const record =
-			{
-				recordType: sessionItem.type,
-				playerUuid: sessionItem.playerUuid,
-				seasonUuid: session.seasonUuid,
-				sessionName: session.sessionName,
-				note: session.note,  
-				createdAt: session.createdAt,
-				amountOwed: "",
-				amountPaid: "",
-				amount: ""
-			};
-			if (record.recordType === 'PAYMENT')
-			{
-				record.amount = session.amount;
-			}
-			if(record.recordType === 'DEBT')
-			{
-
-				record.amountOwed = session.amount;
-				record.amountPaid = 0;
-			}
-
-			// TODO: Figure out why these aren't working
-			this.props.startAddRecord(record);
-			this.props.history.push('/'); // return to dashboard
-		});
+		this.props.startAddSession(session);
 	};
 
 	render()
@@ -131,6 +103,7 @@ const mapStateToProps = ( state, props ) =>
 	{
 		addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
 		startAddRecord: (record) => dispatch(startAddRecord(record)),
+		startAddSession: (session) => dispatch( startAddSession(session) ),
 		sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
 		sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
 	});
