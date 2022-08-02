@@ -35,15 +35,25 @@ export class SessionFormItem extends Component
 	onDiscountChange = ( e ) =>
 	{
 		const discount = parseFloat(e.target.value, 10);
-		// console.log(discount);
+		console.log(discount);
 		
-		this.setState({ discount });
-
-		this.props.updatePlayer(
+		if( !discount || discount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
-			playerUuid: this.props.playerUuid, 
-			discount
-		});
+			if (discount === NaN)
+			{
+				this.setState({ discount: '' });
+			}
+			else if(discount <= 100 && discount >= 0)
+			{
+				this.setState({ discount });
+
+				this.props.updatePlayer(
+				{
+					playerUuid: this.props.playerUuid, 
+					discount
+				});
+			}
+		}
 	}
 
 	handleExpand = ( e ) =>
