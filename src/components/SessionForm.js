@@ -14,11 +14,13 @@ export default class SessionForm extends Component
 			// Session properties
 			amount: '',
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
-			calenderFocused: false,
-			sessionName: '',
 			note: '',
+			playerList: [],
 			seasonUuid: '',
-			sessionArray: [],
+			sessionName: '',
+
+			// form properties
+			calenderFocused: false,
 
 			// error messages
 			error: '',
@@ -28,38 +30,38 @@ export default class SessionForm extends Component
 
 	addItem = ( item ) =>
 	{
-		if (this.state.sessionArray.length === 0) 
+		if (this.state.playerList.length === 0) 
 		{
-			this.setState({ sessionArray: [item] });
+			this.setState({ playerList: [item] });
 		}
 		else
 		{
-			const index = this.state.sessionArray.findIndex( (currentItem) =>
+			const index = this.state.playerList.findIndex( (currentItem) =>
 			{
 				return item.playerUuid === currentItem.playerUuid;
 			});
 			if(index >= 0)
 			{
-				const sessionArray = this.state.sessionArray;
-				sessionArray[index] = item;
-				this.setState({ sessionArray })
+				const playerList = this.state.playerList;
+				playerList[index] = item;
+				this.setState({ playerList })
 			}
 			else
 			{
-				this.setState({ sessionArray: [ ...this.state.sessionArray, item ] })
+				this.setState({ playerList: [ ...this.state.playerList, item ] })
 			}
 		}
 	}
 
 	removeItem = ( playerUuid ) =>
 	{
-		const sessionList = this.state.sessionArray;
-		const index = this.state.sessionArray.findIndex( (currentItem) =>
+		const sessionList = this.state.playerList;
+		const index = this.state.playerList.findIndex( (currentItem) =>
 		{
 			return playerUuid === currentItem.playerUuid;
 		});
 		sessionList.splice( index, 1 );
-		this.setState({ sessionArray: [...sessionList] });
+		this.setState({ playerList: [...sessionList] });
 	}
 
 	onSeasonNameChange = ( e ) =>
@@ -126,7 +128,7 @@ export default class SessionForm extends Component
 			!this.state.sessionName || 
 			!this.state.amount || 
 			!this.state.seasonUuid ||
-			!(this.state.sessionArray.length > 0)
+			!(this.state.playerList.length > 0)
 		);
 
 		return isFalsy;
@@ -143,7 +145,7 @@ export default class SessionForm extends Component
 			sessionName: this.state.sessionName,
 			note: this.state.note,
 			seasonUuid: this.state.seasonUuid,
-			sessionArray: this.state.sessionArray
+			playerList: this.state.playerList
 		};
 
 		let sessionNameExists = false;
@@ -188,7 +190,7 @@ export default class SessionForm extends Component
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const sessionNameErrorClassName = this.state.sessionName ? '' : error;
 		const amountErrorClassName = this.state.amount ? '' : error;
-		const sessionArrayErrorClassName = (this.state.sessionArray.length > 0) ? '' : error;
+		const playerListErrorClassName = (this.state.playerList.length > 0) ? '' : error;
 		const isFalsy = this.isFormFalsy();
 
 		if( this.props.members && this.props.seasons )
@@ -232,10 +234,11 @@ export default class SessionForm extends Component
 						{	
 							this.props.sessionNames && <datalist id='sessionNamesList'>
 							{
-								this.props.sessionNames.map((session) =>
+								this.props.sessionNames.map((sessionName) =>
 								{
+									console.log(sessionName);
 									return (
-										<option key={session.sessionUuid}>{session.sessionName}</option>
+										<option key={sessionName.sessionUuid}>{sessionName.sessionName}</option>
 									);
 								})
 							}
@@ -270,7 +273,7 @@ export default class SessionForm extends Component
 						</textarea>
 					</div>
 
-					{ this.state.error && sessionArrayErrorClassName && <p className='form__error'>Please add members</p>}
+					{ this.state.error && playerListErrorClassName && <p className='form__error'>Please add members</p>}
 					<div className='list-header row'>
 						<div className='form__session-col-name'>Name</div>
 						<div className='form__session-col-checkbox-1'>Attended</div>
