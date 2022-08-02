@@ -21,7 +21,7 @@ export class SessionFormItem extends Component
 
 		if(e.target.checked)
 		{
-			this.props.addItem(
+			this.props.addPlayer(
 			{
 				playerUuid: this.props.playerUuid, 
 				discount: this.state.discount
@@ -29,7 +29,7 @@ export class SessionFormItem extends Component
 		}
 		else
 		{
-			this.props.removeItem( this.props.playerUuid );
+			this.props.removePlayer( this.props.playerUuid );
 		}
 	}
 
@@ -38,7 +38,7 @@ export class SessionFormItem extends Component
 		const discount = e.target.value
 		this.setState({ discount });
 
-		this.props.updateItem(
+		this.props.updatePlayer(
 		{
 			playerUuid: this.props.playerUuid, 
 			discount

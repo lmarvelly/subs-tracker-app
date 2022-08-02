@@ -28,7 +28,7 @@ export default class SessionForm extends Component
 		}
 	};
 
-	addItem = ( item ) =>
+	addPlayer = ( item ) =>
 	{
 		if (this.state.playerList.length === 0) 
 		{
@@ -36,9 +36,9 @@ export default class SessionForm extends Component
 		}
 		else
 		{
-			const index = this.state.playerList.findIndex( (currentItem) =>
+			const index = this.state.playerList.findIndex( (currentPlayer) =>
 			{
-				return item.playerUuid === currentItem.playerUuid;
+				return item.playerUuid === currentPlayer.playerUuid;
 			});
 			if(index >= 0)
 			{
@@ -53,7 +53,7 @@ export default class SessionForm extends Component
 		}
 	}
 
-	updateItem = ( item ) =>
+	updatePlayer = ( item ) =>
 	{
 		const playerList = this.state.playerList;
 		const index = this.state.playerList.findIndex( (session) =>
@@ -64,12 +64,12 @@ export default class SessionForm extends Component
 		this.setState({ playerList })
 	}
 
-	removeItem = ( playerUuid ) =>
+	removePlayer = ( playerUuid ) =>
 	{
 		const sessionList = this.state.playerList;
-		const index = this.state.playerList.findIndex( (currentItem) =>
+		const index = this.state.playerList.findIndex( (currentPlayer) =>
 		{
-			return playerUuid === currentItem.playerUuid;
+			return playerUuid === currentPlayer.playerUuid;
 		});
 		sessionList.splice( index, 1 );
 		this.setState({ playerList: [...sessionList] });
@@ -297,9 +297,9 @@ export default class SessionForm extends Component
 									firstName={member.firstName}
 									surname={member.surname}
 									playerUuid={member.playerUuid}
-									addItem={this.addItem}
-									updateItem={this.updateItem}
-									removeItem={this.removeItem}
+									addPlayer={this.addPlayer}
+									updatePlayer={this.updatePlayer}
+									removePlayer={this.removePlayer}
 								/>
 							);
 						})
