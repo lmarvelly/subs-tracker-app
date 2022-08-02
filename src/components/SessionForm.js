@@ -170,7 +170,7 @@ export default class SessionForm extends Component
 			}
 		})
 
-		if (!sessionNameExists) 
+		if (!sessionNameExists && (this.state.sessionName.length > 0)) 
 		{
 			confirm(`Do you want to add '${this.state.sessionName}' to your default session names?`)
 			{
