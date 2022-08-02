@@ -17,12 +17,15 @@ export class SessionFormItem extends Component
 	onAttend = (e) =>
 	{
 		this.setState({ attending: !this.state.attending });
-		this.setState({expand: !this.state.expand});
 		this.setState({ paid: false });
 
 		if(e.target.checked)
 		{
-			this.props.addItem({ type: 'DEBT', playerUuid: this.props.playerUuid });
+			this.props.addItem(
+			{
+				playerUuid: this.props.playerUuid, 
+				discount: this.state.discount
+			});
 		}
 		else
 		{
@@ -35,16 +38,19 @@ export class SessionFormItem extends Component
 		this.setState({ discount: e.target.value });
 	}
 
-	// handleExpand = ( e ) =>
-	// {
-	// 	this.setState({expand: !this.state.expand});
-	// }
+	handleExpand = ( e ) =>
+	{
+		if (e.target.className === 'list-item--session__row') 
+		{
+			this.setState({expand: !this.state.expand});
+		}
+	}
 
 	render()
 	{
 		return(
 			<div>
-				<div className='list-item'>
+				<div className='list-item' onClick={this.handleExpand}>
 					<div className='list-item--session__row'>
 						<div style={{width: '50%'}}>
 							<span>{`${this.props.firstName} ${this.props.surname}`}</span>
