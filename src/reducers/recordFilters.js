@@ -4,7 +4,7 @@ const paymentRecordReducerFilterDefaultState =
 {
 	memberTextFilter: '',
 	playerUuid: '',
-	recordTypeFilter: 'all',
+	recordTypeFilter: 'ALL',
 	seasonFilter: '',
 	sessionNameTextFilter: '',
 	sortBy: 'dateAscending',
