@@ -49,17 +49,12 @@
 {
 	width: 60%;
 }
-.form__session-col-checkbox-1
+.form__session-col-attend
 {
 	width: 25%;
-	text-align: center;
+	text-align: right;
 	align-items: center;
 	margin-bottom: 0;
-}
-.form__session-col-checkbox-2
-{
-	@extend .form__session-col-checkbox-1;
-	width: 15%;
 }
 
 .form__error
