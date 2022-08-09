@@ -3,11 +3,13 @@ import filtersReducer from '../../reducers/recordFilters';
 
 const defaultState =
 {
-	sessionNameTextFilter: '',
 	memberTextFilter: '',
 	playerUuid: '',
+	recordTypeFilter: 'all',
 	seasonFilter: "",
+	sessionNameTextFilter: '',
 	sortBy: 'dateAscending',
+
 	startDate: moment().subtract(1, 'month'),
 	endDate: moment()
 }
@@ -98,6 +100,16 @@ test('should set Season Filter to be a seasonUuid', () =>
 	const state = filtersReducer( undefined, action );
 
 	expect( state.seasonFilter ).toBe( seasonUuid );
+});
+
+test('should Set Record Type', () =>
+{
+	const recordType = 'payments';
+	const type = 'SET_RECORD_TYPE';
+	const action = { type, recordType };
+	const state = filtersReducer( undefined, action );
+
+	expect( state.recordTypeFilter ).toBe( recordType );
 });
 
 test('should reset filters', () =>

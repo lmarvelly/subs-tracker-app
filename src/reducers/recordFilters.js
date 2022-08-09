@@ -2,13 +2,15 @@ import moment from 'moment';
 
 const paymentRecordReducerFilterDefaultState = 
 {
-	sessionNameTextFilter: '',
 	memberTextFilter: '',
 	playerUuid: '',
+	recordTypeFilter: 'all',
+	seasonFilter: '',
+	sessionNameTextFilter: '',
 	sortBy: 'dateAscending',
+
 	startDate: moment().subtract(1, 'month'),
-	endDate: moment(),
-	seasonFilter: ''
+	endDate: moment()
 };
 
 /**
@@ -23,6 +25,11 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 {
 	switch ( action.type )
 	{
+		case 'SET_RECORD_TYPE':
+			return {
+				...state,
+				recordTypeFilter: action.recordType
+			}
 		case 'SET_DESCRIPTION_FILTER_TEXT':
 			return { 
 				...state, 
@@ -58,6 +65,8 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 				...state,
 				seasonFilter: action.seasonUuid
 			}
+		
+
 		case 'RESET_RECORD_FILTERS':
 			return paymentRecordReducerFilterDefaultState;
 		default:
