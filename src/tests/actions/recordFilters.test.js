@@ -1,13 +1,14 @@
 import moment from 'moment';
-import { 
+import {
 	resetRecordFilters,
+	setRecordTypeFilter,
+	setStartDate,
+	setEndDate,
+	setSessionNameTextFilter,
+	setMemberFilterText,
+	setSeasonFilter,
 	sortByDateAscending,
-	sortByDateDescending, 
-	setStartDate, 
-	setEndDate, 
-	setSessionNameTextFilter, 
-	setMemberFilterText, 
-	setSeasonFilter
+	sortByDateDescending
 } from '../../actions/recordFilters';
 
 
@@ -110,5 +111,17 @@ test('Should create a Reset Record Filters action object', () =>
 	expect(action).toEqual(
 	{
 		type: 'RESET_RECORD_FILTERS'
+	});
+});
+
+test('should create a Set Record Type Filter action object', () =>
+{
+	const recordType = 'SESSIONS'
+	const action = setRecordTypeFilter(recordType);
+
+	expect(action).toEqual(
+	{
+		type: 'SET_RECORD_TYPE',
+		recordType
 	});
 });

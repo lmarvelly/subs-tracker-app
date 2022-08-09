@@ -53,3 +53,10 @@ export const setSeasonFilter = ( seasonUuid ) =>
 	type: 'SET_SEASON_FILTER',
 	seasonUuid
 });
+
+// FILTER BY TYPE
+export const setRecordTypeFilter = ( recordType ) =>
+({
+	type: 'SET_RECORD_TYPE',
+	recordType
+});
