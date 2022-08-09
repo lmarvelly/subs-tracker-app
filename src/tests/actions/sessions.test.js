@@ -4,7 +4,8 @@ import thunk from 'redux-thunk';
 import {
 	addSession,
 	setSessions,
-	startAddSession
+	startAddSession,
+	startSetSessions
 } from '../../actions/sessions';
 
 import { members, seasons, sessionNames, sessions,  } from '../fixtures/fixures';
@@ -93,7 +94,7 @@ test('Should Add a New Session to the Database', (done) =>
 		});
 });
 
-test('should create a Set Record Action Object', () => 
+test('should create a Set Session Action Object', () => 
 {
 	const action = setSessions(sessions);
 	expect(action).toEqual(
@@ -102,4 +103,19 @@ test('should create a Set Record Action Object', () =>
 		sessions
 	});
 });
-	
+
+test('should fetch Sessions from database', (done) =>
+{
+	const store = createMockStore(defaultAuthState);
+
+	store.dispatch(startSetSessions()).then(() =>
+	{
+		const actions = store.getActions();
+		expect( actions[0] ).toEqual(
+		{
+			type: 'SET_SESSIONS',
+			sessions
+		});
+		done();
+	})
+});

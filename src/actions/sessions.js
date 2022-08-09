@@ -44,3 +44,28 @@ export const setSessions = ( sessions ) => (
 	type: 'SET_SESSIONS',
 	sessions
 });
+
+export const startSetSessions = () =>
+{
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/sessions`)
+			.once('value')
+			.then((snapshot) =>
+			{
+				const sessions = [];
+
+				snapshot.forEach((childSnapshot) =>
+				{
+					sessions.push(
+					{
+						id: childSnapshot.key,
+						...childSnapshot.val()
+					});
+				});
+
+				dispatch(setSessions( sessions ));
+			});
+	}
+}
