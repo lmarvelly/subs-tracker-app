@@ -4,13 +4,14 @@ import { DateRangePicker } from 'react-dates';
 
 import {
 	resetRecordFilters,
-	setSessionNameTextFilter, 
-	setMemberFilterText, 
+	setRecordTypeFilter,
+	setSessionNameTextFilter,
+	setMemberFilterText,
+	setStartDate,
+	setEndDate,
+	setSeasonFilter,
 	sortByDateAscending,
-	sortByDateDescending, 
-	setStartDate, 
-	setEndDate, 
-	setSeasonFilter
+	sortByDateDescending
 } from '../actions/recordFilters';
 
 /**
@@ -29,9 +30,9 @@ import {
  */
 export class RecordListFilters extends Component {
 	state =
-		{
-			calenderFocused: null
-		}
+	{
+		calenderFocused: null
+	}
 
 	onDatesChange = ({ startDate, endDate }) => {
 		this.props.setStartDate(startDate);
@@ -75,6 +76,11 @@ export class RecordListFilters extends Component {
 		}
 	}
 
+	onRecordTypeChange = ( e ) => {
+		console.log('RECORD TYPE:', e.target.value);
+		this.props.setRecordTypeFilter(e.target.value);
+	}
+
 	onResetClick = () => {
 		this.props.resetRecordFilters();
 	}
@@ -83,6 +89,18 @@ export class RecordListFilters extends Component {
 		return (
 			<div className='content-container'>
 				<div className='input-group'>
+					<div className='input-group__item'>
+						<select
+							className='select'
+							value={this.props.recordFilters.recordTypeFilter}
+							onChange={this.onRecordTypeChange}
+						>
+							<option value="ALL">All</option>
+							<option value="DEBT">Individual Debts</option>
+							<option value="PAYMENT">Payments</option>
+							<option value="SESSIONS" >Sessions</option>
+						</select>
+					</div>
 					<div className='input-group__item'>
 						<input
 							className='text-input'
@@ -198,6 +216,7 @@ const mapDispatchToProps = (dispatch) =>
 	setStartDate: (startDate) => dispatch(setStartDate(startDate)),
 	setEndDate: (endDate) => dispatch(setEndDate(endDate)),
 	setMemberFilterText: (text) => dispatch(setMemberFilterText(text)),
+	setRecordTypeFilter: (recordType) => dispatch(setRecordTypeFilter(recordType)),
 	setSessionNameTextFilter: (text) => dispatch(setSessionNameTextFilter(text)),
 	setSeasonFilter: (seasonUuid) => dispatch(setSeasonFilter(seasonUuid)),
 	sortByDateAscending: () => dispatch(sortByDateAscending()),
