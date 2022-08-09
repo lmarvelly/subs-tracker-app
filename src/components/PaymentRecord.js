@@ -30,7 +30,7 @@ export const PaymentRecord = (props) =>
 				{
 					props.paymentRecord.length === 0 ? (
 						<div className='list-item list-item--message'>
-							<span>No Payments</span>
+							<span>No Records</span>
 						</div> 
 					)
 					:
