@@ -10,7 +10,7 @@ export class SessionFormItem extends Component
 		{
 			attending: false,
 			expand: false,
-			discount: 0
+			discount: ''
 		}
 	}
 
@@ -34,24 +34,24 @@ export class SessionFormItem extends Component
 
 	onDiscountChange = ( e ) =>
 	{
-		const discount = parseFloat(e.target.value, 10);
-		
-		if( !discount || discount.match(/^\d{1,}(\.\d{0,2})?$/) )
+		const value = e.target.value;
+		if( !value || value.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
-			if (discount === NaN)
+			const discount = parseFloat(e.target.value, 10);
+			if (discount === NaN || !discount)
 			{
 				this.setState({ discount: '' });
 			}
-			else if(discount <= 100 && discount >= 0)
+			else if(discount <= 100 && discount > 0)
 			{
 				this.setState({ discount });
-
-				this.props.updatePlayer(
-				{
-					playerUuid: this.props.playerUuid, 
-					discount
-				});
 			}
+			
+			this.props.updatePlayer(
+			{
+				playerUuid: this.props.playerUuid, 
+				discount
+			});
 		}
 	}
 
