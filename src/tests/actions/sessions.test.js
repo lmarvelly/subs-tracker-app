@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import {
 	addSession,
 	startAddSession
-} from '../../actions/session';
+} from '../../actions/sessions';
 
 import { members, seasons, sessionNames, sessions,  } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
