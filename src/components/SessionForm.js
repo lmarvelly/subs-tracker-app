@@ -188,6 +188,19 @@ export default class SessionForm extends Component
 		}
 		else
 		{
+			session.playerList.forEach((player) =>
+			{
+				if (isNaN(player.discount))
+				{
+					const index = session.playerList.findIndex( (currentPlayer) =>
+					{
+						return player.playerUuid === currentPlayer.playerUuid;
+					});
+
+					session.playerList[index] = {discount: 0, playerUuid: player.playerUuid}
+				}
+			});
+
 			this.setState( () => ({ error: '' }) );
 			this.props.onSubmit( session );
 		}
