@@ -10,7 +10,10 @@ export default ( state = sessionReducerDefaultState, action ) =>
 				{
 					...action.session
 				}
-			]
+			];
+
+		case 'SET_SESSIONS':
+			return action.sessions;
 	
 		default:
 			return state;

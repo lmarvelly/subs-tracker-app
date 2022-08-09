@@ -45,3 +45,15 @@ test('should Add a new Session', () =>
 
 	expect( state ).toEqual([ ...sessions, session ]);
 });
+
+test('should Set Sessions', () =>
+{
+	const action =
+	{
+		type: 'SET_SESSIONS',
+		sessions: [sessions[0]]
+	}
+	const state = sessionReducer( sessions, action );
+
+	expect( state ).toEqual( [sessions[0]] );
+});
