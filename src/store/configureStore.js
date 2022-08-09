@@ -9,6 +9,7 @@ import recordFilterReducer from '../reducers/recordFilters';
 import seasonsRecordReducer from '../reducers/seasons';
 import seasonFilterReducer from '../reducers/seasonFilters';
 import sessionNamesReducer from '../reducers/sessionNames';
+import sessionRecordReducer from '../reducers/sessions';
 
 import authReducer from '../reducers/auth';
 
@@ -35,7 +36,8 @@ export default () => {
 			recordFilters:  recordFilterReducer,
 			seasons: seasonsRecordReducer,
 			seasonFilters: seasonFilterReducer,
-			sessionNames: sessionNamesReducer
+			sessionNames: sessionNamesReducer,
+			sessions: sessionRecordReducer
 		}),
 		composeEnhancers(applyMiddleware(thunk))
 	);
