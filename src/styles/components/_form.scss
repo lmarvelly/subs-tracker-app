@@ -11,9 +11,14 @@
 .form__session
 {
 	@extend .form;
-	> * // for all direct decendants and amountInDebt id
+	div
 	{
 		margin-bottom: 0;
+	}
+	button
+	{
+		margin-top: $m-size;
+		margin-bottom: $m-size;
 	}
 }
 
