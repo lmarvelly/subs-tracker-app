@@ -116,7 +116,7 @@ test('Should create a Reset Record Filters action object', () =>
 
 test('should create a Set Record Type Filter action object', () =>
 {
-	const recordType = 'SESSIONS'
+	const recordType = 'sessions'
 	const action = setRecordTypeFilter(recordType);
 
 	expect(action).toEqual(
