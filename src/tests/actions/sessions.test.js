@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import {
 	addSession,
+	setSessions,
 	startAddSession
 } from '../../actions/sessions';
 
@@ -92,5 +93,13 @@ test('Should Add a New Session to the Database', (done) =>
 		});
 });
 
-
+test('should create a Set Record Action Object', () => 
+{
+	const action = setSessions(sessions);
+	expect(action).toEqual(
+	{
+		type: 'SET_SESSIONS',
+		sessions
+	});
+});
 	

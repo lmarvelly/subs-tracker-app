@@ -38,3 +38,9 @@ export const startAddSession = ( sessionData = {} ) =>
 			});
 	}
 };
+
+export const setSessions = ( sessions ) => (
+{
+	type: 'SET_SESSIONS',
+	sessions
+});
