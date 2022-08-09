@@ -46,6 +46,7 @@ export class AddSessionPage extends Component
 	onSubmit = ( session ) => 
 	{
 		this.props.startAddSession(session);
+		this.props.history.push('/');
 	};
 
 	render()
