@@ -16,10 +16,23 @@ import { textSearch } from "../functions/generalFilterFunctions";
  * @param {*} records 
  * @param {*} filters
  */
-export default ( records = {}, members = {}, { sessionNameTextFilter, memberTextFilter, sortBy = 'dateAscending', startDate, endDate, seasonFilter } ) =>
+export default ( 
+	records = {}, 
+	members = {}, 
+	{ 
+		sessionNameTextFilter,
+		memberTextFilter,
+		sortBy = 'dateAscending',
+		startDate,
+		endDate,
+		recordTypeFilter = 'ALL',
+		seasonFilter
+	}) =>
 {
 	return records.filter( (record) =>
 	{
+		const filterByRecordType = recordTypeFilter === 'ALL' ? true : record.recordType === recordTypeFilter
+
 		// Filter by Member
 		const member = members.find( ( member ) => 
 			record.playerUuid === member.playerUuid
@@ -41,7 +54,7 @@ export default ( records = {}, members = {}, { sessionNameTextFilter, memberText
 		
 		const seasonMatch = seasonFilter ? seasonFilter === record.seasonUuid : true;
 		
-		return isMemberMatch && startDateMatch && endDateMatch && isDescMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
+		return filterByRecordType && isMemberMatch && startDateMatch && endDateMatch && isDescMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
 	}).sort( (a, b) => 
 	{
 		if( sortBy === 'dateAscending' ) 
