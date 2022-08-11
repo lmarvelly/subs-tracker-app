@@ -31,7 +31,9 @@ export default (
 {
 	return records.filter( (record) =>
 	{
-		const filterByRecordType = recordTypeFilter === 'ALL' ? true : record.recordType === recordTypeFilter
+		const recordType = record.recordType;
+
+		const filterByRecordType = recordTypeFilter === 'ALL' ? true : recordType === recordTypeFilter;
 
 		// Filter by Member
 		const member = members.find( ( member ) => 
@@ -41,12 +43,14 @@ export default (
 		const middleNames = member.middleNames.split(' ');
 		const nickname = member.nickname.split(' ');
 		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
-		const isMemberMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
+		// Automatically filters out Sessions
+		// TODO: Search inside Sessions playerList for members
+		const isMemberMatch = recordType === 'SESSION' ? false : textSearch( memberTextFilterArray, searchMemberTextArray );
 
 		// Filter by Session Name
-		const descTextFilterArray = sessionNameTextFilter.split(' ');
-		const searchDescTextArray = record.sessionName.split(' ');
-		const isDescMatch = textSearch( descTextFilterArray, searchDescTextArray );
+		const sessionTextFilterArray = sessionNameTextFilter.split(' ');
+		const searchSeshTextArray = record.sessionName.split(' ');
+		const isSeshNameMatch = textSearch( sessionTextFilterArray, searchSeshTextArray );
 
 		const createdAtMoment = moment( record.createdAt );
 		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
@@ -54,7 +58,7 @@ export default (
 		
 		const seasonMatch = seasonFilter ? seasonFilter === record.seasonUuid : true;
 		
-		return filterByRecordType && isMemberMatch && startDateMatch && endDateMatch && isDescMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
+		return filterByRecordType && isMemberMatch && startDateMatch && endDateMatch && isSeshNameMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
 	}).sort( (a, b) => 
 	{
 		if( sortBy === 'dateAscending' ) 
