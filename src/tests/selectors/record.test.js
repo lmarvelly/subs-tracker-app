@@ -5,6 +5,7 @@ import { records, members, seasons, } from '../fixtures/fixures';
 test('Should filter desciptions by text value', () =>
 {
 	const filters = {
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: 'train',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
@@ -20,6 +21,7 @@ test('Should filter desciptions by text value', () =>
 test('Should filter desciptions by advanced text value', () =>
 {
 	const filters = {
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: 'ub rain',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
@@ -36,6 +38,7 @@ test('Should filter by startDate', () =>
 {
 	const filters = 
 	{
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
@@ -53,6 +56,7 @@ test('Should filter by startDate', () =>
 {
 	const filters = 
 	{
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
@@ -68,6 +72,7 @@ test('Should filter by startDate', () =>
 test('Should sort by dateAscending', () =>
 {
 	const filters = {
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateAscending',
@@ -83,6 +88,7 @@ test('Should sort by dateAscending', () =>
 test('Should sort by dateDescending', () =>
 {
 	const filters = {
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: '',
 		sortBy: 'dateDescending',
@@ -99,6 +105,7 @@ test('Should filter by member simple text filter 1', () =>
 {
 	const filters = 
 	{
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: 'Har',
 		sortBy: 'dateDescending',
@@ -114,6 +121,7 @@ test('Should filter by member simple text filter 2', () =>
 {
 	const filters = 
 	{
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: 'Mar',
 		sortBy: 'dateDescending',
@@ -129,6 +137,7 @@ test('Should filter by member advanced text filter 1', () =>
 {
 	const filters = 
 	{
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: 'Luk Mar',
 		sortBy: 'dateDescending',
@@ -144,6 +153,7 @@ test('Should filter by member advanced text filter 2', () =>
 {
 	const filters = 
 	{
+		recordTypeFilter: 'ALL',
 		sessionNameTextFilter: '',
 		memberTextFilter: 'usi son',
 		sortBy: 'dateAscending',
@@ -154,3 +164,4 @@ test('Should filter by member advanced text filter 2', () =>
 
 	expect(result).toEqual([ records[2], records[3] ]);
 });
+
