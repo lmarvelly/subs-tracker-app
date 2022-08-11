@@ -19,6 +19,13 @@ export const PaymentRecord = (props) =>
 		props.startEditRecord( record );
 	};
 
+	const getMemberName = ( playerUuid ) =>
+	{
+		const member = props.members.find( (member) => playerUuid === member.playerUuid );
+
+		return member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
+	}
+
 	return (
 		<div className='content-container'>
 			<div className='list-header'>
@@ -36,19 +43,18 @@ export const PaymentRecord = (props) =>
 					:
 					props.allRecords.map(( record ) =>
 					{
-						console.log(record.recordType);
-						console.log(record);
+						const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid );
+
 						if (record.recordType === 'PAYMENT' || record.recordType === 'DEBT') 
 						{
-							const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
-							const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid )
-							const name = member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
+							const memberName = getMemberName(record.playerUuid);
 
 							return (
 								<RecordListItem 
 									key={record.id} 
-									name={name} 
+									name={memberName} 
 									record={record}
+									recordType={record.recordType}
 									seasonName={season.seasonName}
 									{...record} 
 									onSubmit={onSubmit}
@@ -59,7 +65,14 @@ export const PaymentRecord = (props) =>
 						{
 							console.log('Session',record);
 							return (
-								<div>{`${record.sessionName}`}</div>
+								<RecordListItem 
+									key={record.id}
+									playerList={record.playerList}
+									recordType={record.recordType}
+									seasonName={season.seasonName}
+									{...record} 
+									onSubmit={onSubmit}
+								/>
 							)
 						}
 					})
@@ -87,8 +100,6 @@ const mapStateToProps = (state) =>
 	{
 		allRecords = allRecords.concat(state.sessions);	
 	}
-
-	console.log(allRecords);
 
 	return{
 		members: state.members,
