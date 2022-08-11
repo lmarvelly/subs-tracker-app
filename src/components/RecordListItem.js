@@ -188,13 +188,27 @@ class RecordListItem extends Component
 		const sessionItem = (
 			<div className='list-item' onClick={this.clickListItemHandler}>
 				{header}
-				<span className='list-item__sub-title'>
 				{
-					this.props.playerNameList.map( player =>(
-						<span>{player}</span>
-					))
+					(this.state.expand || this.state.stayExpanded) && (
+						<div className='list-item__row'>
+							<div className='list-item__column'>
+								<span className='list-item__sub-title'>Attended:</span>
+								{
+									this.props.playerNameList.map( player =>(
+										<span className='list-item__data'>{player}</span>
+									))
+								}
+							</div>
+							<div>
+								<div>
+									<h3 className={`list-item__data${classCollapsedName}`}>
+										Session Amount: <span className='bold-font'>{`£${numeral(this.props.amount / 100).format('0,0.00')}` }</span>
+									</h3>
+								</div>
+							</div>
+						</div>
+					)
 				}
-				</span>
 			</div>
 		);
 
