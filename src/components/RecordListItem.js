@@ -96,18 +96,23 @@ class RecordListItem extends Component
 	{
 		// Needs this when it's collapsed
 		const classCollapsedName = this.state.expand ? '' : '-top';
-		
-		const listItem = (
-			<div className='list-item' onClick={this.clickListItemHandler}>
+
+		const header = (
+			<div>
 				<div className='list-item__row'>
-					<h3 className='list-item__title'>{ this.props.sessionName }</h3>
-				</div>
-				{
-					(this.state.expand || this.state.stayExpanded) && <hr />
-				}
+				<h3 className='list-item__title'>{ this.props.sessionName }</h3>
+			</div>
+			{
+				(this.state.expand || this.state.stayExpanded) && <hr />
+			}
+			</div>
+		)
+		
+		const paymentDebtItem = (
+			<div className='list-item' onClick={this.clickListItemHandler}>
+				{header}
 				<div className='list-item__row'>
 					<div>
-						
 						<span className='list-item__sub-title'>{ this.props.name }</span>
 						{
 							(this.state.expand || this.state.stayExpanded) && (
@@ -180,8 +185,21 @@ class RecordListItem extends Component
 			</div>
 		);
 
+		const sessionItem = (
+			<div className='list-item' onClick={this.clickListItemHandler}>
+				{header}
+				<span className='list-item__sub-title'>
+				{
+					this.props.playerNameList.map( player =>(
+						<span>{player}</span>
+					))
+				}
+				</span>
+			</div>
+		);
+
 		return(
-			listItem
+			this.props.recordType === 'SESSION' ? sessionItem : paymentDebtItem
 		);
 	}
 }
