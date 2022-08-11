@@ -28,28 +28,40 @@ export const PaymentRecord = (props) =>
 			</div>
 			<div className='list-body'>
 				{
-					props.paymentRecord.length === 0 ? (
+					props.allRecords.length === 0 ? (
 						<div className='list-item list-item--message'>
 							<span>No Records</span>
 						</div> 
 					)
 					:
-					props.paymentRecord.map(( record ) =>
+					props.allRecords.map(( record ) =>
 					{
-						const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
-						const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid )
-						const name = member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
+						console.log(record.recordType);
+						console.log(record);
+						if (record.recordType === 'PAYMENT' || record.recordType === 'DEBT') 
+						{
+							const member = props.members.find( (member) => record.playerUuid === member.playerUuid )
+							const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid )
+							const name = member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
 
-						return (
-							<RecordListItem 
-								key={record.id} 
-								name={name} 
-								record={record}
-								seasonName={season.seasonName}
-								{...record} 
-								onSubmit={onSubmit}
-							/>
-						)
+							return (
+								<RecordListItem 
+									key={record.id} 
+									name={name} 
+									record={record}
+									seasonName={season.seasonName}
+									{...record} 
+									onSubmit={onSubmit}
+								/>
+							)
+						}
+						else
+						{
+							console.log('Session',record);
+							return (
+								<div>{`${record.sessionName}`}</div>
+							)
+						}
 					})
 				}
 			</div>
@@ -62,15 +74,27 @@ export const PaymentRecord = (props) =>
  * argument and returns a component. 
  * 
  * @param {*} state 
- * @returns The paymentRecord attribute is passed down to the
- * PaymentRecord component
+ * @returns State is passed down to the props
  */
 const mapStateToProps = (state) =>
 {
+	let allRecords = [];
+	if(state.paymentRecord)
+	{
+		allRecords = allRecords.concat(state.paymentRecord);
+	}
+	if (state.sessions) 
+	{
+		allRecords = allRecords.concat(state.sessions);	
+	}
+
+	console.log(allRecords);
+
 	return{
 		members: state.members,
-		paymentRecord: selectRecords(state.paymentRecord, state.members, state.recordFilters),
-		seasons: state.seasons
+		seasons: state.seasons,
+		sessions: state.sessions,
+		allRecords: selectRecords(allRecords, state.members, state.recordFilters)
 	}
 };
 
