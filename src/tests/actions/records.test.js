@@ -28,7 +28,7 @@ beforeEach((done) =>
 			sessionName, note, createdAt, amountOwed, amountPaid, amount }
 	});
 
-	database.ref(`subs-tracker/users/${uid}/main/records/`)
+	database.ref(`subs-tracker/users/${uid}/debts_and_payments/`)
 		.set(recordsData)
 		.then(() => done());
 });
@@ -118,7 +118,7 @@ test('should add Debt Record to the Database using the Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/users/${uid}/main/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${actions[0].record.id}`).once('value');
 	})
 	
 	promise.then((snapshot) => // snapshot contains the values from the last promise
@@ -158,7 +158,7 @@ test('should add a Payment Record to the Database using the Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/users/${uid}/main/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${actions[0].record.id}`).once('value');
 		
 	});
 
@@ -207,7 +207,7 @@ test('should add Record with defaults to Database and Store', (done) =>
 			}
 		});
 
-		return database.ref(`subs-tracker/users/${uid}/main/records/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${actions[0].record.id}`).once('value');
 		
 	});
 	
@@ -266,7 +266,7 @@ test('should remove a record from test database', (done) =>
 			id
 		});
 		// Return the value a single time
-		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`).once('value');
 	})
 	.then((snapshot) =>
 	{
@@ -301,7 +301,7 @@ test('should edit a Debt record on the database', (done) =>
 				}
 			});
 
-			return database.ref(`subs-tracker/users/${uid}/main/records/${id}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`).once('value');
 		}).then((snapshot) =>
 		{
 			expect(snapshot.val().amountOwed).toBe(500);

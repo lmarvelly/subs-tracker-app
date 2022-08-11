@@ -68,7 +68,7 @@ export const startRemoveMember = ( playerUuid ) =>
 		let canDelete = true;
 		const uid = getState().auth.uid;
 
-		return database.ref(`subs-tracker/users/${uid}/main/records`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments`)
 		.once('value')
 		.then((snapshot) =>
 		{

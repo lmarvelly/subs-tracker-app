@@ -79,7 +79,7 @@ export const startAddRecord = ( recordData = {} ) =>
 		}
 
 		// Added return statement here for chaining together promises in records.test.js
-		return database.ref(`subs-tracker/users/${uid}/main/records`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments`)
 			.push(record)
 			.then((ref) =>
 			{
@@ -128,7 +128,7 @@ export const startEditRecord = ( id, type, updates ) =>
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`)
 			.update(updates)
 			.then(() => dispatch(editRecord(id, updates)));
 	}
@@ -151,7 +151,7 @@ export const startRemoveRecord = ({ id } = {}) =>
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/main/records/${id}`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`)
 			.remove()
 			.then((ref) =>
 			{
@@ -174,7 +174,7 @@ export const startSetRecords = () =>
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/main/records`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments`)
 			.once('value')
 			.then((snapshot) =>
 			{
