@@ -7,7 +7,8 @@ import { defaultFilters, altFilters1, altFilters2, altFilters3 } from '../fixtur
 
 let resetRecordFilters, 
 	setSessionNameTextFilter, 
-	setMemberFilterText, 
+	setMemberFilterText,
+	setRecordTypeFilter,
 	sortByDateAscending, 
 	sortByDateDescending, 
 	setStartDate, 
@@ -21,6 +22,7 @@ beforeEach( () =>
 	resetRecordFilters = jest.fn();
 	setSessionNameTextFilter = jest.fn();
 	setMemberFilterText = jest.fn();
+	setRecordTypeFilter = jest.fn();
 	sortByDateAscending = jest.fn();
 	sortByDateDescending = jest.fn();
 	setStartDate = jest.fn();
@@ -31,6 +33,7 @@ beforeEach( () =>
 		<RecordListFilters
 			setSessionNameTextFilter={setSessionNameTextFilter}
 			setMemberFilterText={setMemberFilterText}
+			setRecordTypeFilter={setRecordTypeFilter}
 			sortByDateAscending={sortByDateAscending}
 			sortByDateDescending={sortByDateDescending}
 			setStartDate={setStartDate}
@@ -49,6 +52,7 @@ beforeEach( () =>
 			resetRecordFilters={resetRecordFilters}
 			setSessionNameTextFilter={setSessionNameTextFilter}
 			setMemberFilterText={setMemberFilterText}
+			setRecordTypeFilter={setRecordTypeFilter}
 			sortByDateAscending={sortByDateAscending}
 			sortByDateDescending={sortByDateDescending}
 			setStartDate={setStartDate}
