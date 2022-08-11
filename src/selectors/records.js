@@ -35,17 +35,31 @@ export default (
 
 		const filterByRecordType = recordTypeFilter === 'ALL' ? true : recordType === recordTypeFilter;
 
+		let isMemberMatch;
+		let member;
 		// Filter by Member
-		const member = members.find( ( member ) => 
-			record.playerUuid === member.playerUuid
-		);
+		if(record.recordType === 'DEBT' || record.recordType === 'PAYMENT')
+		{
+			member = members.find( ( member ) => 
+				record.playerUuid === member.playerUuid
+			);
+		}
+		else
+		{
+			record.playerList.forEach((record) =>
+			{
+				member = members.find( ( member ) => 
+					record.playerUuid === member.playerUuid
+				);
+			});
+		}
+
 		const memberTextFilterArray = memberTextFilter.split(' ');
 		const middleNames = member.middleNames.split(' ');
 		const nickname = member.nickname.split(' ');
 		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
-		// Automatically filters out Sessions
-		// TODO: Search inside Sessions playerList for members
-		const isMemberMatch = recordType === 'SESSION' ? false : textSearch( memberTextFilterArray, searchMemberTextArray );
+
+		isMemberMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
 
 		// Filter by Session Name
 		const sessionTextFilterArray = sessionNameTextFilter.split(' ');
