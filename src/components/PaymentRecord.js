@@ -19,11 +19,24 @@ export const PaymentRecord = (props) =>
 		props.startEditRecord( record );
 	};
 
-	const getMemberName = ( playerUuid ) =>
+	const getPlayerName = ( playerUuid ) =>
 	{
 		const member = props.members.find( (member) => playerUuid === member.playerUuid );
 
 		return member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
+	}
+
+	const getPlayerNamesList = ( playerList ) =>
+	{
+		const playerNamesList = [];
+		playerList.forEach((player) =>
+		{
+			const name = getPlayerName(player.playerUuid);
+
+			playerNamesList.push(name);
+		});
+
+		return playerNamesList;
 	}
 
 	return (
@@ -47,12 +60,13 @@ export const PaymentRecord = (props) =>
 
 						if (record.recordType === 'PAYMENT' || record.recordType === 'DEBT') 
 						{
-							const memberName = getMemberName(record.playerUuid);
+							const memberName = getPlayerName(record.playerUuid);
 
 							return (
 								<RecordListItem 
 									key={record.id} 
 									name={memberName} 
+									playerNameList={[]}
 									record={record}
 									recordType={record.recordType}
 									seasonName={season.seasonName}
@@ -63,11 +77,12 @@ export const PaymentRecord = (props) =>
 						}
 						else
 						{
-							console.log('Session',record);
+							const playerNameList = getPlayerNamesList(record.playerList);
+
 							return (
 								<RecordListItem 
 									key={record.id}
-									playerList={record.playerList}
+									playerNameList={playerNameList}
 									recordType={record.recordType}
 									seasonName={season.seasonName}
 									{...record} 
