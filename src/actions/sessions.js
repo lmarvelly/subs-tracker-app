@@ -65,7 +65,23 @@ export const startSetSessions = () =>
 					});
 				});
 
+				// Adding 'SESSION' record type identifier to each Session
+				sessions.forEach((session) =>
+				{
+					const index = sessions.findIndex( (currentSession) =>
+					{
+						return session.id === currentSession.id;
+					});
+
+					sessions[index] = {...session, recordType: 'SESSION'}
+				})
+
 				dispatch(setSessions( sessions ));
 			});
 	}
 }
+
+export const editSession = ( sessionUuid ) => (
+{
+
+});
