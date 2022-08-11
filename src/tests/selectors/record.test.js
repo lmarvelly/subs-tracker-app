@@ -165,3 +165,18 @@ test('Should filter by member advanced text filter 2', () =>
 	expect(result).toEqual([ records[2], records[3] ]);
 });
 
+test('should filter Records by Record Type', () =>
+{
+	const filters = 
+	{
+		recordTypeFilter: 'DEBT',
+		sessionNameTextFilter: '',
+		memberTextFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+	const result = selectRecord(records, members, filters);
+
+	expect(result).toEqual([ records[4], records[0] ]);
+});
