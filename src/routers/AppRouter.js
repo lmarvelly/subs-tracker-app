@@ -10,6 +10,7 @@ import AddSessionPage from '../components/AddSessionPage';
 import EditRecordPage from '../components/EditRecordPage';
 import EditMemberPage from '../components/EditMemberPage';
 import EditSeasonPage from '../components/EditSeasonPage';
+import EditSessionPage from '../components/EditSessionPage';
 import HelpPage from '../components/HelpPage';
 import MemberPage from '../components/MemberPage';
 import MemberSummaryPage from '../components/MemberSummaryPage';
@@ -49,6 +50,7 @@ const AppRouter = () => (
 				<PrivateRoute path='/edit-record/:id' component={EditRecordPage} />
 				<PrivateRoute path='/edit-member/:id' component={EditMemberPage} />
 				<PrivateRoute path='/edit-season/:id' component={EditSeasonPage} />
+				<PrivateRoute path='/edit-session/:id' component={EditSessionPage} />
 				<PrivateRoute path='/members' component={MemberPage} />
 				<PrivateRoute path='/member-summary-page' component={MemberSummaryPage} />
 				<PrivateRoute path='/seasons' component={SeasonPage} />
