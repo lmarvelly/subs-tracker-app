@@ -57,3 +57,24 @@ test('should Set Sessions', () =>
 
 	expect( state ).toEqual( [sessions[0]] );
 });
+
+test('should edit a Session', () =>
+{
+	const amount = 600;
+	const playerList = [{discount:0, playerUuid: '01234'}];
+
+	const action = 
+	{
+		type: 'EDIT_SESSION',
+		id: sessions[0].id,
+		updates:
+		{
+			amount,
+			playerList
+		}
+	};
+	const state = sessionReducer( sessions, action );
+	
+	expect( state[0].amount ).toBe( amount );
+	expect( state[0].playerList ).toBe( playerList );
+});

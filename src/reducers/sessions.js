@@ -12,6 +12,19 @@ export default ( state = sessionReducerDefaultState, action ) =>
 				}
 			];
 
+		case 'EDIT_SESSION':
+			return state.map( (session) =>
+			{
+				if( session.id === action.id )
+				{
+					return {
+						...session,
+						...action.updates
+					};
+				}
+				else { return session }
+			});
+
 		case 'SET_SESSIONS':
 			return action.sessions;
 	
