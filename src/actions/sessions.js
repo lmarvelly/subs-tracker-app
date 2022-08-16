@@ -87,3 +87,14 @@ export const editSession = ( id, updates ) => (
 	id,
 	updates
 });
+
+export const startEditSessions = ( id, updates ) =>
+{
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+		return database.ref(`subs-tracker/users/${uid}/sessions/${id}`)
+			.update(updates)
+			.then(() => dispatch(editSession(id, updates)));
+	};
+};

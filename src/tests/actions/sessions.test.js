@@ -6,6 +6,7 @@ import {
 	editSession,
 	setSessions,
 	startAddSession,
+	startEditSessions,
 	startSetSessions
 } from '../../actions/sessions';
 
@@ -139,4 +140,33 @@ test('should create an Edit Action Generator', () =>
 			playerList: [{discount:0, playerUuid: '01234'}]
 		}
 	});
+});
+
+test('Should Edit a Session in the Database', (done) =>
+{
+	const store = createMockStore(defaultAuthState);
+	const id = sessions[0].id;
+	const playerUuid = sessions[0].playerList[1].playerUuid;
+	const updates = 
+	{
+		playerList: [{discount: 50, playerUuid}]
+	};
+
+	store.dispatch(startEditSessions(id, updates))
+		.then(() =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+			{
+				type: 'EDIT_SESSION',
+				id,
+				updates
+			});
+
+			return database.ref(`subs-tracker/users/${uid}/sessions/${id}`).once('value');
+		}).then((snapshot) =>
+		{
+			expect( snapshot.val().playerList ).toEqual( [{discount: 50, playerUuid}] );
+			done();
+		});
 });
