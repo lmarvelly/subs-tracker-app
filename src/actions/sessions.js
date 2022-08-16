@@ -81,7 +81,9 @@ export const startSetSessions = () =>
 	}
 }
 
-export const editSession = ( sessionUuid ) => (
+export const editSession = ( id, updates ) => (
 {
-
+	type: 'EDIT_SESSION',
+	id,
+	updates
 });

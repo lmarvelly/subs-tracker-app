@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import {
 	addSession,
+	editSession,
 	setSessions,
 	startAddSession,
 	startSetSessions
@@ -118,4 +119,24 @@ test('should fetch Sessions from database', (done) =>
 		});
 		done();
 	})
+});
+
+test('should create an Edit Action Generator', () =>
+{
+	const action = editSession(
+		'abc123',
+		{
+			playerList: [{discount:0, playerUuid: '01234'}]
+		}
+	);
+
+	expect( action ).toEqual(
+	{
+		type: 'EDIT_SESSION',
+		id: 'abc123',
+		updates:
+		{
+			playerList: [{discount:0, playerUuid: '01234'}]
+		}
+	});
 });
