@@ -8,10 +8,12 @@ export class SessionFormItem extends Component
 
 		this.state =
 		{
-			attending: false,
+			attending: props.attending ? true : false,
 			expand: false,
-			discount: ''
+			discount: props.discount ? props.discount : ''
 		}
+
+		console.log(`${this.props.firstName} ${this.props.surname}, ${this.state.attending}`);
 	}
 
 	onAttend = (e) =>
@@ -76,7 +78,8 @@ export class SessionFormItem extends Component
 						</div>
 						<div>
 							<input 
-								value={this.props.playerUuid} 
+								value={this.props.playerUuid}
+								checked={this.state.attending}
 								type="checkbox"
 								onChange={this.onAttend}
 								onClick={this.noExpand}

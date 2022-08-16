@@ -12,12 +12,12 @@ export default class SessionForm extends Component
 		this.state = 
 		{
 			// Session properties
-			amount: '',
+			amount: props.session ? props.session.amount : '',
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
-			note: '',
-			playerList: [],
-			seasonUuid: '',
-			sessionName: '',
+			note: props.session ? props.session.note : '',
+			playerList: props.session ? props.session.playerList : [],
+			seasonUuid: props.session ? props.session.seasonUuid : '',
+			sessionName: props.session ? props.session.sessionName : '',
 
 			// form properties
 			calenderFocused: false,
@@ -27,6 +27,17 @@ export default class SessionForm extends Component
 			amountError: ''
 		}
 	};
+
+	// componentWillReceiveProps()
+	// {
+	// 	if(this.props.session && this.props.session.playerList.length > 0)
+	// 	{
+	// 		this.props.session.playerList.forEach((player) =>
+	// 		{
+	// 			console.log(player);
+	// 		})
+	// 	}
+	// }
 
 	addPlayer = ( item ) =>
 	{
@@ -304,9 +315,23 @@ export default class SessionForm extends Component
 					{
 						this.props.members.map(( member ) =>
 						{
+							let attending = false;
+							let discount = '';
+
+							this.state.playerList.map((player) =>
+							{
+								if( member.playerUuid === player.playerUuid )
+								{
+									attending = true;
+									discount = player.discount;
+								}
+							});
+
 							return (
 								<SessionFormItem 
 									key={member.playerUuid}
+									attending={attending}
+									discount={discount}
 									firstName={member.firstName}
 									surname={member.surname}
 									playerUuid={member.playerUuid}
@@ -317,9 +342,13 @@ export default class SessionForm extends Component
 							);
 						})
 					}
+
+
+							
 					{(this.state.error && isFalsy ) && <p className='form__error'>{this.state.error}</p>}
 					
 					<button className='button'>Add Session</button>
+					
 				</form>
 			);
 		}
