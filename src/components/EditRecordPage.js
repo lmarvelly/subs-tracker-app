@@ -30,7 +30,6 @@ export class EditRecordPage extends Component
 		}
 	}
 
-	// Adding alert() CAUSES ERRORS
 	componentWillReceiveProps()
 	{
 		if(this.state.error)
