@@ -35,7 +35,7 @@ export class EditRecordPage extends Component
 	{
 		if(this.state.error)
 		{
-			// alert('Whoops something went wrong');
+			alert('Whoops something went wrong');
 			this.props.history.push('/'); // return to dashboard
 		}
 	}
