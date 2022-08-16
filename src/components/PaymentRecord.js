@@ -33,7 +33,11 @@ export const PaymentRecord = (props) =>
 		{
 			const name = getPlayerName(player.playerUuid);
 
-			playerNamesList.push(name);
+			playerNamesList.push(
+			{
+				id: player.playerUuid,
+				name
+			});
 		});
 
 		return playerNamesList;

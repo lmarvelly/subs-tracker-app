@@ -193,13 +193,15 @@ class RecordListItem extends Component
 						<div className='list-item__row'>
 							<div className='list-item__column'>
 								<span className='list-item__sub-title'>Attended:</span>
-								<div className='list-item__expanded-data'>
+								<ul className='list-item__expanded-data'>
 								{
-									this.props.playerNameList.map( player =>(
-										<span className='list-item__data'>{player}</span>
-									))
+									this.props.playerNameList.map( (player) =>
+										<li key={player.id}>
+											{player.name}
+										</li>
+									)
 								}
-								</div>
+								</ul>
 							</div>
 							<div>
 								<div>
