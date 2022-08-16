@@ -56,14 +56,15 @@ test( 'Should set up edit Record action object', () =>
 		{ 
 			sessionName: 'Two weeks of Subs',
 			amount: 800
-		});
+		}
+	);
 
-		expect( action ).toEqual(
-		{
-			type: 'EDIT_RECORD',
-			id: 'abc123',
-			updates: { sessionName: 'Two weeks of Subs', amount: 800 }
-		});
+	expect( action ).toEqual(
+	{
+		type: 'EDIT_RECORD',
+		id: 'abc123',
+		updates: { sessionName: 'Two weeks of Subs', amount: 800 }
+	});
 });
 
 test( 'Should set up Add Record action object with provided values', () =>
