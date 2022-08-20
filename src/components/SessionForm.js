@@ -347,7 +347,7 @@ export default class SessionForm extends Component
 							
 					{(this.state.error && isFalsy ) && <p className='form__error'>{this.state.error}</p>}
 					
-					<button className='button'>Add Session</button>
+					<button className='button'>{this.props.session ? 'Edit Session' : 'Add Session'}</button>
 					
 				</form>
 			);
