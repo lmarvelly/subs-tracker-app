@@ -6,7 +6,7 @@ import {
 	editSession,
 	setSessions,
 	startAddSession,
-	startEditSessions,
+	startEditSession,
 	startSetSessions
 } from '../../actions/sessions';
 
@@ -152,7 +152,7 @@ test('Should Edit a Session in the Database', (done) =>
 		playerList: [{discount: 50, playerUuid}]
 	};
 
-	store.dispatch(startEditSessions(id, updates))
+	store.dispatch(startEditSession(id, updates))
 		.then(() =>
 		{
 			const actions = store.getActions();

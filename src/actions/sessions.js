@@ -88,7 +88,7 @@ export const editSession = ( id, updates ) => (
 	updates
 });
 
-export const startEditSessions = ( id, updates ) =>
+export const startEditSession = ( id, updates ) =>
 {
 	return ( dispatch, getState ) =>
 	{

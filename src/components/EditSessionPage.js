@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SessionForm from './SessionForm';
-import { startEditSessions } from '../actions/sessions';
+import { startEditSession } from '../actions/sessions';
 import { startAddSessionName } from '../actions/sessionNames';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
