@@ -97,6 +97,15 @@ class RecordListItem extends Component
 		// Needs this when it's collapsed
 		const classCollapsedName = this.state.expand ? '' : '-top';
 
+		const editSessionButton = (
+			<Link 
+				to={`/edit-session/${this.props.id}`} 
+				className='button'
+			>
+				Edit Session
+			</Link>
+		);
+
 		const header = (
 			<div>
 				<div className='list-item__row'>
@@ -190,26 +199,31 @@ class RecordListItem extends Component
 				{header}
 				{
 					(this.state.expand || this.state.stayExpanded) && (
-						<div className='list-item__row'>
-							<div className='list-item__column'>
-								<span className='list-item__sub-title'>Attended:</span>
-								<ul className='list-item__expanded-data'>
-								{
-									this.props.playerNameList.map( (player) =>
-										<li key={player.id}>
-											{player.name}
-										</li>
-									)
-								}
-								</ul>
-							</div>
-							<div>
+						<div>
+							<div className='list-item__row'>
+								<div className='list-item__column'>
+									<span className='list-item__sub-title'>Attended:</span>
+									<ul className='list-item__expanded-data'>
+									{
+										this.props.playerNameList.map( (player) =>
+											<li key={player.id}>
+												{player.name}
+											</li>
+										)
+									}
+									</ul>
+								</div>
 								<div>
-									<h3 className={`list-item__data${classCollapsedName}`}>
-										Session Amount: <span className='bold-font'>{`£${numeral(this.props.amount / 100).format('0,0.00')}` }</span>
-									</h3>
+									<div>
+										<h3 className={`list-item__data${classCollapsedName}`}>
+											Session Amount: <span className='bold-font'>{`£${numeral(this.props.amount / 100).format('0,0.00')}` }</span>
+										</h3>
+									</div>
 								</div>
 							</div>
+							<div className='list-item__row'>
+								{editSessionButton}
+							</div>	
 						</div>
 					)
 				}
