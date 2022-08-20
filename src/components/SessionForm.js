@@ -28,17 +28,6 @@ export default class SessionForm extends Component
 		}
 	};
 
-	// componentWillReceiveProps()
-	// {
-	// 	if(this.props.session && this.props.session.playerList.length > 0)
-	// 	{
-	// 		this.props.session.playerList.forEach((player) =>
-	// 		{
-	// 			console.log(player);
-	// 		})
-	// 	}
-	// }
-
 	addPlayer = ( item ) =>
 	{
 		if (this.state.playerList.length === 0) 
