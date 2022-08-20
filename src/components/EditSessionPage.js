@@ -40,9 +40,11 @@ export class EditSessionPage extends Component
 		}
 	}
 
-	onSubmit = () =>
+	onSubmit = ( session ) =>
 	{
+		this.props.startEditSession( session );
 
+		this.props.history.push('/');
 	}
 
 	onRemove = () =>
