@@ -9,7 +9,7 @@ export default class RecordForm extends Component
 		super( props );
 
 		this.state = {
-			id: props.record ? this.props.record.id : '',
+			id: props.record ? props.record.id : '',
 			playerUuid: props.record ? props.record.playerUuid : '',
 			seasonUuid: props.record ? props.record.seasonUuid : '',
 			recordType: props.record ? props.record.recordType : 'PAYMENT',
