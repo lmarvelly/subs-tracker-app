@@ -4,9 +4,11 @@ import thunk from 'redux-thunk';
 import {
 	addSession,
 	editSession,
+	removeSession,
 	setSessions,
 	startAddSession,
 	startEditSession,
+	startRemoveSession,
 	startSetSessions
 } from '../../actions/sessions';
 
@@ -169,4 +171,40 @@ test('Should Edit a Session in the Database', (done) =>
 			expect( snapshot.val().playerList ).toEqual( [{discount: 50, playerUuid}] );
 			done();
 		});
+});
+
+test('should create a Remove Session action generator', () => 
+{
+	const id = 'someID';
+	const action = removeSession({id});
+
+	expect(action).toEqual(
+	{
+		type: 'REMOVE_SESSION',
+		id
+	});
+});
+
+test('should Remove a Session Object from the Database', (done) =>
+{
+	const store = createMockStore(defaultAuthState);
+	const id = sessions[0].id;
+
+	store.dispatch(startRemoveSession({ id }))
+	.then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'REMOVE_SESSION',
+			id
+		});
+
+		return database.ref(`subs-tracker/users/${uid}/sessions/${id}`).once('value');
+	})
+	.then((snapshot) =>
+	{
+		expect(snapshot.val()).toBeFalsy();
+		done();
+	});
 });

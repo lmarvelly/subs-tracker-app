@@ -98,3 +98,24 @@ export const startEditSession = ( id, updates ) =>
 			.then(() => dispatch(editSession(id, updates)));
 	};
 };
+
+export const removeSession = ( { id } = {} ) => (
+{
+	type: 'REMOVE_SESSION',
+	id
+});
+
+export const startRemoveSession = ( { id } = {} ) =>
+{
+	return ( dispatch, getState ) =>
+	{
+		const uid = getState().auth.uid;
+
+		return database.ref(`subs-tracker/users/${uid}/sessions/${id}`)
+			.remove()
+			.then((ref) =>
+			{
+				dispatch(removeSession({ id }));
+			});
+	};
+};
