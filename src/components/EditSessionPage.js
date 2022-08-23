@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SessionForm from './SessionForm';
-import { startEditSession } from '../actions/sessions';
+import { startEditSession, startRemoveSession } from '../actions/sessions';
 import { startAddSessionName } from '../actions/sessionNames';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
@@ -49,7 +49,12 @@ export class EditSessionPage extends Component
 
 	onRemove = () =>
 	{
-
+		const removed = confirm('Are you sure want to remove session?') &&
+		this.props.startRemoveSession({ id: this.props.session.id });
+		if(removed)
+		{
+			this.props.history.push('/');
+		}
 	}
 
 	render()
@@ -106,6 +111,7 @@ const mapDispatchToProps = ( dispatch, props ) => (
 {
 	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
 	startEditSession: ( session ) => dispatch( startEditSession( session.id, session ) ),
+	startRemoveSession: ( data ) => dispatch( startRemoveSession(data) ),
 	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
 	sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
 });
