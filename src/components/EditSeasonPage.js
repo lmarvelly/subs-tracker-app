@@ -37,9 +37,13 @@ export class EditSeasonPage extends Component
 			{
 				(e) =>
 				{
-					confirm('Are you sure you want to delete season') &&
+					const removed = confirm('Are you sure you want to delete season') &&
 					this.props.startRemoveSeason( this.props.season.seasonUuid );
-					this.props.history.push('/seasons');
+					
+					if (removed) 
+					{
+						this.props.history.push('/seasons'); // return to Seasons Page
+					}
 				}
 			}
 		>
