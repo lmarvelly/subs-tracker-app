@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { AddSessionPage } from '../../components/AddSessionPage';
-import { members, seasons } from '../fixtures/fixures';
+import { members, seasons, sessions } from '../fixtures/fixures';
 
-let history, emptyWrapper, wrapper;
+let history, emptyWrapper, startAddSession, wrapper;
 
 beforeEach( () =>
 {
 	history = { push: jest.fn() };
+	startAddSession = jest.fn();
 
 	emptyWrapper = shallow(
 		<AddSessionPage
@@ -15,35 +16,30 @@ beforeEach( () =>
 		/>);
 
 	wrapper = shallow(
-		<AddSessionPage 
+		<AddSessionPage
 			members={members} 
 			seasons={seasons} 
 			history={history}
+
+			startAddSession={startAddSession}
 		/>
 	);
 });
 
-test('should render AddSessionPage correctly without members or seasons', () =>
+test('should render AddSessionPage correctly without members and seasons', () =>
 {
 	expect(emptyWrapper).toMatchSnapshot();
 });
 
-test('should render AddSessionPage correctly with members or seasons', () =>
+test('should render AddSessionPage correctly with members and seasons', () =>
 {
 	expect(wrapper).toMatchSnapshot();
 });
 
-// TODO: REMOVE AFTER TESTING
 test('should handle onSubmit', () => 
 {
-	// wrapper2.find('RecordForm').prop('onSubmit')(records[3]);
+	wrapper.find('SessionForm').prop('onSubmit')(sessions[0]);
 
-	// expect(history.push).toHaveBeenLastCalledWith('/');
-	// expect(startAddRecord).toHaveBeenLastCalledWith(records[3]);
-});
-
-test('should handle onSubmit', () => 
-{
-	// TODO: Write submit test/s
-	expect(true).toBe(false);
+	expect(history.push).toHaveBeenCalledWith('/');
+	expect(startAddSession).toHaveBeenLastCalledWith(sessions[0]);
 })
