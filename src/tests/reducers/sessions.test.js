@@ -78,3 +78,18 @@ test('should edit a Session', () =>
 	expect( state[0].amount ).toBe( amount );
 	expect( state[0].playerList ).toBe( playerList );
 });
+
+test('should Remove a Session using it\' ID', () =>
+{
+	const id = sessions[0].id;
+
+	const action =
+	{
+		type: 'REMOVE_SESSION',
+		id
+	}
+
+	const state = sessionReducer( sessions, action );
+
+	expect( state ).toEqual([]);
+});

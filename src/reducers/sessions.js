@@ -25,6 +25,9 @@ export default ( state = sessionReducerDefaultState, action ) =>
 				else { return session }
 			});
 
+		case 'REMOVE_SESSION':
+			return state.filter(( { id } ) => id !== action.id);
+
 		case 'SET_SESSIONS':
 			return action.sessions;
 	
