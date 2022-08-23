@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import SessionForm from './SessionForm';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
-import { startAddRecord } from '../actions/records';
 import { startAddSession } from '../actions/sessions';
 import { startAddSessionName } from '../actions/sessionNames';
 
@@ -103,7 +102,6 @@ const mapStateToProps = ( state, props ) =>
  const mapDispatchToProps = (dispatch) => (
 	{
 		addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
-		startAddRecord: (record) => dispatch(startAddRecord(record)),
 		startAddSession: (session) => dispatch( startAddSession(session) ),
 		sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
 		sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
