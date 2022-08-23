@@ -37,7 +37,7 @@ export class EditMemberPage extends Component
 			{
 				(e) =>
 				{
-					confirm('Are you sure you want to remove record?' ) &&
+					confirm('Are you sure you want to remove member?' ) &&
 					this.props.startRemoveMember( this.props.member.playerUuid ) ;
 					this.props.history.push('/members'); // return to members page
 				}
