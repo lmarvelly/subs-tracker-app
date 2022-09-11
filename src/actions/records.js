@@ -98,13 +98,8 @@ export const editRecord = ( id, updates ) =>
 	updates
 })
 
-export const startEditRecord = ( id, type, updates ) =>
+export const startEditRecord = ( id, updates ) =>
 {
-	// updates =
-	// {
-	// 	...updates
-	// }
-	
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
