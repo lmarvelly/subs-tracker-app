@@ -45,9 +45,6 @@ export const addRecord = (record) => (
  * 			sessionName = '',
  * 			note = '',  
  * 			createdAt = 0,
- * 
- * 			amountOwed = "",
- * 			amountPaid = "",
  * 			amount = ""
  * 		}
  * 	} 
@@ -65,17 +62,13 @@ export const startAddRecord = ( recordData = {} ) =>
 			note = '',  
 			createdAt = 0,
 		
-			amountOwed = "",
-			amountPaid = "",
-			amount = recordType === 'PAYMENT' ? 0 : ''
+			amount = ''
 		} = recordData; // Deconstruct record object
 
 		const record = 
 		{
 			recordType, playerUuid, seasonUuid, sessionName, note,
-			createdAt, amountOwed, 
-			amountPaid: recordType === 'DEBT' ? 0 : "", 
-			amount
+			createdAt, amount
 		}
 
 		// Added return statement here for chaining together promises in records.test.js
@@ -107,23 +100,10 @@ export const editRecord = ( id, updates ) =>
 
 export const startEditRecord = ( id, type, updates ) =>
 {
-	if(type === 'PAYMENT')
-	{
-		updates =
-		{
-			...updates,
-			amountOwed: '',
-			amountPaid: ''
-		}
-	}
-	if(type === 'DEBT')
-	{
-		updates =
-		{
-			...updates,
-			amount: ''
-		}
-	}
+	// updates =
+	// {
+	// 	...updates
+	// }
 	
 	return ( dispatch, getState ) =>
 	{

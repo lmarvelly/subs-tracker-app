@@ -21,11 +21,11 @@ beforeEach((done) =>
 {
 	const recordsData = {};
 	records.forEach(({ id, recordType, playerUuid, seasonUuid, 
-		sessionName, note, createdAt, amountOwed, amountPaid, amount 
+		sessionName, note, createdAt, amount 
 	}) =>
 	{
 		recordsData[id] = { recordType, playerUuid, seasonUuid, 
-			sessionName, note, createdAt, amountOwed, amountPaid, amount }
+			sessionName, note, createdAt, amount }
 	});
 
 	database.ref(`subs-tracker/users/${uid}/debts_and_payments/`)
@@ -52,7 +52,7 @@ test( 'Should set up remove Record action object', () =>
 test( 'Should set up edit Record action object', () =>
 {
 	const action = editRecord( 
-		'abc123', 
+		'abc123',
 		{ 
 			sessionName: 'Two weeks of Subs',
 			amount: 800
@@ -101,8 +101,7 @@ test('should add Debt Record to the Database using the Store', (done) =>
 		sessionName: 'Training subs',
 		note: 'To be paid next week',
 		createdAt: 1000,
-		amountOwed: 400,
-		amountPaid: 0
+		amount: 400
 	}
 
 	const promise = store.dispatch(startAddRecord(recordData)).then(() =>
@@ -114,7 +113,6 @@ test('should add Debt Record to the Database using the Store', (done) =>
 			record:
 			{
 				id: expect.any(String),
-				amount: "",
 				...recordData
 			}
 		});
@@ -153,8 +151,6 @@ test('should add a Payment Record to the Database using the Store', (done) =>
 			{
 				id: expect.any(String),
 				note: '',
-				amountOwed: '',
-				amountPaid: '',
 				...recordData
 			}
 		});
@@ -167,9 +163,7 @@ test('should add a Payment Record to the Database using the Store', (done) =>
 	{
 		expect(snapshot.val()).toEqual(
 		{
-			note: '', 
-			amountOwed: '',
-			amountPaid: '',
+			note: '',
 			...recordData
 		});
 		done();
@@ -187,12 +181,9 @@ test('should add Record with defaults to Database and Store', (done) =>
 		playerUuid: '',
 		seasonUuid: '',
 		sessionName: '',
-		note: '',  
+		note: '',
 		createdAt: 0,
-	
-		amountOwed: '',
-		amountPaid: '',
-		amount: 0
+		amount: ''
 	}
 
 	const promise = store.dispatch(startAddRecord({})).then(() =>
@@ -207,9 +198,8 @@ test('should add Record with defaults to Database and Store', (done) =>
 				...defaultRecord
 			}
 		});
-
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${actions[0].record.id}`).once('value');
 		
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${actions[0].record.id}`).once('value');
 	});
 	
 	promise.then((snapshot) =>
@@ -283,8 +273,7 @@ test('should edit a Debt record on the database', (done) =>
 	const id = records[0].id;
 	const updates = 
 	{
-		amountOwed: 500,
-		amountPaid: 250
+		amount: 500
 	}
 
 	const promise = store.dispatch(startEditRecord(id, records[0].recordType, updates))
@@ -297,16 +286,14 @@ test('should edit a Debt record on the database', (done) =>
 				id,
 				updates:
 				{
-					...updates,
-					amount: ''
+					...updates
 				}
 			});
 
 			return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`).once('value');
 		}).then((snapshot) =>
 		{
-			expect(snapshot.val().amountOwed).toBe(500);
-			expect(snapshot.val().amountPaid).toBe(250);
+			expect(snapshot.val().amount).toBe(500);
 			done();
 		});
 });
