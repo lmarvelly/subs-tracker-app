@@ -48,7 +48,7 @@ test('Should filter by startDate', () =>
 
 	const result = selectRecord( records, members, filters );
 
-	expect(result).toEqual([ records[2], records[4], records[0] ]);
+	expect(result).toEqual([records[5], records[2], records[4], records[0] ]);
 });
 
 
@@ -81,8 +81,8 @@ test('Should sort by dateAscending', () =>
 	};
 
 	const result = selectRecord(records, members, filters);
-
-	expect(result).toEqual([ records[2], records[4], records[0], records[3], records[1] ]);
+	
+	expect(result).toEqual([ records[5], records[2], records[4], records[0], records[3], records[1] ]);
 });
 
 test('Should sort by dateDescending', () =>
@@ -98,7 +98,7 @@ test('Should sort by dateDescending', () =>
 
 	const result = selectRecord(records, members, filters);
 
-	expect(result).toEqual([ records[1], records[3], records[0], records[4], records[2] ]);
+	expect(result).toEqual([ records[1], records[3], records[0], records[4], records[5], records[2] ]);
 });
 
 test('Should filter by member simple text filter 1', () =>
@@ -114,7 +114,7 @@ test('Should filter by member simple text filter 1', () =>
 	};
 	const result = selectRecord(records, members, filters);
 
-	expect(result).toEqual([ records[1], records[4] ]);
+	expect(result).toEqual([ records[1], records[4], records[5] ]);
 });
 
 test('Should filter by member simple text filter 2', () =>
