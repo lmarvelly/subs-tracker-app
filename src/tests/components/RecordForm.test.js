@@ -43,6 +43,7 @@ beforeEach( () =>
 			onTypeChange={onTypeChange}
 			onAmountChange={onAmountChange}
 			onSeasonNameChange={ onSeasonNameChange }
+			onSubmit={onSubmit}
 		/>
 	);
 	paymentWrapper = shallow(<RecordForm record={records[1]} members={ members } seasons={ seasons } />);
@@ -102,7 +103,7 @@ test('should only render error messages for member and sessionName', () =>
 	const input = wrapper.find('#seasonName');
 	input.simulate('change', { target: { value: uuid } });
 	// TODO: AMOUNT NOT WORKING PROPERLY
-	const input2 = wrapper.find('#amountToPay');
+	const input2 = wrapper.find('#amount');
 	input2.simulate('change', { target: {value: '4'} });
 
 	// submit
@@ -144,13 +145,6 @@ test('should render "Please enter an Amount" error message for no amount entered
 	expect(altWrapper).toMatchSnapshot();
 });
 
-test('should render "Amount Paid cannot be more than Amount Owed" and "Amount cannot be less than Amount Owed" error messages', () =>
-{
-	debtWrapper.setState({ amountPaid: 500 });
-
-	expect(debtWrapper).toMatchSnapshot();
-});
-
 test('should test sessionName on input change', () => 
 {
 	const value = 'New sessionName';
@@ -177,7 +171,7 @@ test('should set note on textarea change', () =>
 test('Should set amount if input data is valid', () =>
 {
 	const value = '1';
-	const input = altWrapper.find('#amountToPay');
+	const input = altWrapper.find('#amount');
 	
 	input.simulate('change',
 	{
@@ -192,7 +186,7 @@ test('Should set amount if input data is valid', () =>
 test('shouldnt let user pay more than 1,000,000', () => 
 {
 	const value = '2000000';
-	const input = altWrapper.find('#amountToPay');
+	const input = altWrapper.find('#amount');
 	input.simulate('change',
 	{
 		target: { value }
@@ -242,8 +236,7 @@ test('should call onSubmit prop for valid form submission for a Debt', () =>
 		sessionName: records[0].sessionName,
 		note: records[0].note,
 		createdAt: records[0].createdAt,
-		amountOwed: records[0].amountOwed,
-		amountPaid: records[0].amountPaid
+		amount: records[0].amount
 	});
 });
 

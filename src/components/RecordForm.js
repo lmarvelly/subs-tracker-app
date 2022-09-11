@@ -19,26 +19,17 @@ export default class RecordForm extends Component
 			calenderFocused: false,
 			
 			error: '',
-			amountError: '',
+			// amountError: '', TODO: Remove?
 
-			amount: props.record ? props.record.amount / 100 : '',
-			amountOwed: props.record ? props.record.amountOwed / 100 : '',
-			amountPaid: props.record ? props.record.amountPaid / 100 : ''
+			amount: props.record ? props.record.amount / 100 : ''
 		};
 	}
 
 	// Clears error, if everything is fine, and returns true or false
 	isFormFalsy = () =>
 	{
-		const amountPaid = this.state.amountPaid ? parseFloat(this.state.amountPaid, 10) : 0;
-
-		const amountOwed = this.state.amountOwed ? parseFloat(this.state.amountOwed, 10) : 0;
-		const isDebtAmountsRight = amountPaid <= amountOwed;
-		const isAmountOrAmountOwed = ( this.state.amount > 0 || amountOwed > 0 );
 		const isFalsy = (
-			!isDebtAmountsRight || 
-			!this.state.sessionName || 
-			!isAmountOrAmountOwed || 
+			!this.state.sessionName ||  
 			!this.state.playerUuid || 
 			!this.state.seasonUuid
 		);
@@ -57,14 +48,6 @@ export default class RecordForm extends Component
 	onTypeChange = ( e ) => {
 		const recordType = e.target.value;
 		this.setState( () => ({ recordType }) );
-		if ( recordType === 'PAYMENT') 
-		{
-			this.setState( { amount: this.state.amountOwed} );
-		}
-		if ( recordType === 'DEBT' ) 
-		{
-			this.setState( { amountOwed: this.state.amount} );
-		}
 	};
 	onSessionNameChange = ( e ) => {
 		const sessionName = e.target.value;
@@ -80,56 +63,35 @@ export default class RecordForm extends Component
 			this.setState( () => ({ note }) );
 		}
 	};
-	setAmount = ( amount, id ) => {
-		if( !amount || ((amount != 0 || id === 'amountPaid') && amount <= 1000000))
+	setAmount = ( amount ) => {
+		if( !amount || ( amount != 0 && amount <= 1000000))
 		{
-			this.setState({amountError: ''});
-			switch (id) 
-			{
-				case 'amountToPay':
-					this.setState( { amount } );
-					break;
-				
-				case 'amountInDebt':
-					this.setState( { amountOwed: amount } );
-					break;
-				
-				case 'amountPaid':
-					this.setState( { amountPaid: amount } );
-					break;
-				
-				default:
-					break;
-			}
+			this.setState( { amount } );
 		}
 	}
 	onAmountChange = ( e ) => 
 	{
-		const id = e.target.id;
 		const amount = e.target.value;
 
 		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
 		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
 		{
 			// Don't want message showing for 'Amount paid'
-			if ( amount == 0 && id !== 'amountPaid' ) 
+			if ( amount == 0 ) 
 			{
 				this.setState(() => ({ amountError: 'Amount cannot be zero'}));
 				
-				if (id === 'amountInDebt' ) 
-				{
-					this.setState(() => ({ amountOwed: amount }));
-				}
-				if (id === 'amountToPay') 
-				{
-					this.setState(() => ({amount}));
-				}
+				this.setState(() => ({amount}));
 			}
-			if (amount > 1000000)
+			else if (amount > 1000000)
 			{
 				this.setState(() => ({amountError: 'Amount cannot be more than 1 million'}));
 			}
-			this.setAmount(amount, id);
+			else
+			{
+				this.setState(() => ({amountError: ''}));
+			}
+			this.setAmount(amount);
 		}
 	};
 	onDateChange = ( createdAt ) => {
@@ -142,20 +104,13 @@ export default class RecordForm extends Component
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
 
-	onBlueAmountPaid = (e) => {
-		const value = e.target.value;
-		if( !value )
-		{
-			this.setState( { amountPaid: 0 } );
-		}
-	};
-
 	onSubmit = ( e ) => {
 		e.preventDefault();
 
 		const recordProperties = 
 		{
 			id: this.state.id,
+			recordType: this.state.recordType,
 			playerUuid: this.state.playerUuid,
 			seasonUuid: this.state.seasonUuid,
 			sessionName: this.state.sessionName,
@@ -182,26 +137,10 @@ export default class RecordForm extends Component
 			}
 		}
 
-		const record = () => {
-			if( this.state.recordType === 'DEBT' )
-			{
-				return (
-				{
-					...recordProperties,
-					recordType: 'DEBT',
-					amountOwed: parseFloat(this.state.amountOwed, 10) * 100, // Converting amount into a non decimal number
-					amountPaid: this.state.amountPaid ? (parseFloat(this.state.amountPaid, 10) * 100) : 0
-				});
-			}
-			else if( this.state.recordType === 'PAYMENT' )
-			{
-				return (
-				{
-					...recordProperties,
-					recordType: 'PAYMENT',
-					amount: parseFloat(this.state.amount, 10) * 100, // Converting amount into a non decimal number
-				})
-			}
+		const record = 
+		{ 
+			...recordProperties, 
+			amount: parseFloat(this.state.amount, 10) * 100 // Converting amount into a non decimal number
 		}
 
 		if ( this.isFormFalsy() )
@@ -212,81 +151,40 @@ export default class RecordForm extends Component
 		{
 			this.setState( () => ({ error: '' }) );
 
-			this.props.onSubmit( record() );
+			this.props.onSubmit( record );
 		}
 	};
 
 	render()
-	{
-		const amountPaid = parseFloat(this.state.amountPaid, 10);
-		const amountOwed = parseFloat(this.state.amountOwed, 10);
-		const amountError1 = (amountPaid > amountOwed);
-		const amountError2 = !amountOwed;
-		const errorDebtClass = ( (amountError1 || amountError2) && amountOwed) ? '__error' : '';
+	{	
 		const moneyInput = (amountErrorClassName) =>
 		{
-			if (this.state.recordType === 'PAYMENT') 
-			{
-				return(
-					<div>
-						{ showPaymentErrorMessage && <p className='form__error'>Please enter an Amount</p>}
-						<input
-							id='amountToPay'
-							className={`text-input${amountErrorClassName}`}
-							type="text"
-							placeholder="How much is being Paid?"
-							value={ this.state.amount }
-							onChange={ this.onAmountChange }
-						/>
-					</div>
-				)
-			}
-			else if (this.state.recordType === 'DEBT')
-			{
-				return(
-					<div>
-					{ showDebtErrorMessage && <p className='form__error'>Please enter an Amount</p>}
-						{ amountError1 && <p className='form__error'>Amount cannot be less than Amount Owed</p>}
-						<input
-							id='amountInDebt'
-							className={`text-input${amountErrorClassName} margin-bottom-medium`}
-							type="text"
-							placeholder="Total Debt Amount"
-							value={ this.state.amountOwed }
-							onChange={ this.onAmountChange }
-						/>
-						{ errorDebtClass && <p className='form__error'>Amount Paid cannot be more than Amount Owed</p>}
-						{
-							this.props.record && (
-								<input
-									id='amountPaid'
-									className={`text-input${errorDebtClass}`}
-									type="text"
-									placeholder="Amount of Debt Paid"
-									value={ this.state.amountPaid }
-									onChange={ this.onAmountChange }
-									onBlur={ this.onBlueAmountPaid }
-								/>
-							)
-						}
-					</div>
-				)
-			}
+			return(
+				<div>
+					{ showPaymentErrorMessage && <p className='form__error'>Please enter an Amount</p>}
+					<input
+						id='amount'
+						className={`text-input${amountErrorClassName}`}
+						type="text"
+						placeholder="Please enter an amount"
+						value={ this.state.amount }
+						onChange={ this.onAmountChange }
+					/>
+				</div>
+			)
 		}
 		const error = '__error';
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const memberErrorClassName = this.state.playerUuid ? '' : error;
 		const sessionNameErrorClassName = this.state.sessionName ? '' : error;
-		const amountErrorClassName = this.state.amount || this.state.amountOwed ? '' : error;
+		const amountErrorClassName = this.state.amount ? '' : error;
 		// div around Submit button stops it from being directly styled by the form
 		const isFalsy = this.isFormFalsy();
 
-		const ifDebtRecord = ((!!(this.state.error && amountErrorClassName) || !this.state.amountOwed) || amountError2);
 		const ifPaymentRecord = ((!!(this.state.error && amountErrorClassName) || !this.state.amount));
 		const ifNoRecord = (this.state.error && amountErrorClassName);
 
 		const showPaymentErrorMessage = this.props.record ? ifPaymentRecord : ifNoRecord;
-		const showDebtErrorMessage = this.props.record ? ifDebtRecord : ifNoRecord;
 
 		return(
 			<div>
