@@ -19,7 +19,7 @@ export default class RecordForm extends Component
 			calenderFocused: false,
 			
 			error: '',
-			// amountError: '', TODO: Remove?
+			amountError: '',
 
 			amount: props.record ? props.record.amount / 100 : ''
 		};
