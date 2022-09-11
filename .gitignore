@@ -4,3 +4,4 @@ public/dist/
 .env.test
 __snapshots__
 package-lock.json
+doc/databaseRules.json
