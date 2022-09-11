@@ -12,7 +12,7 @@ export default class SessionForm extends Component
 		this.state = 
 		{
 			// Session properties
-			amount: props.session ? props.session.amount : '',
+			amount: props.session ? (props.session.amount / 100 ) : '',
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			note: props.session ? props.session.note : '',
 			playerList: props.session ? props.session.playerList : [],
