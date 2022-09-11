@@ -111,7 +111,7 @@ export const records =
 {
 	playerUuid: members[1].playerUuid,
 	seasonUuid: seasons[1].seasonUuid,
-	id: 'record5',
+	id: 'record6',
 	recordType: 'PAYMENT',
 	sessionName: 'Glasgow',
 	note: '',
