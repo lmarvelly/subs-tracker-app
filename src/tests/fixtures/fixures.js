@@ -66,9 +66,7 @@ export const records =
 	sessionName: 'Training subs',
 	note: 'To be paid next week',
 	createdAt: 0,
-	amount: "",
-	amountOwed: 400,
-	amountPaid: 0
+	amount: 400
 },
 {
 	playerUuid: members[1].playerUuid,
@@ -78,9 +76,7 @@ export const records =
 	sessionName: 'Training subs',
 	note: '',
 	createdAt: moment(0).subtract(4, 'days').valueOf(),
-	amount: 400,
-	amountOwed: '',
-	amountPaid: ''
+	amount: 400
 },
 {
 	playerUuid: members[2].playerUuid,
@@ -90,9 +86,7 @@ export const records =
 	sessionName: '5s subs',
 	note: '',
 	createdAt: moment(0).add(4, 'days').valueOf(),
-	amount: 500,
-	amountOwed: '',
-	amountPaid: ''
+	amount: 500
 },
 {
 	playerUuid: members[2].playerUuid,
@@ -102,9 +96,7 @@ export const records =
 	sessionName: 'Donation',
 	note: '',
 	createdAt: moment(0).subtract(3, 'days').valueOf(),
-	amount: 5000,
-	amountOwed: '',
-	amountPaid: ''
+	amount: 5000
 },
 {
 	playerUuid: members[1].playerUuid,
@@ -114,9 +106,17 @@ export const records =
 	sessionName: 'Glasgow',
 	note: '',
 	createdAt: moment(0).add(3, 'days').valueOf(),
-	amount: '',
-	amountOwed: 7500,
-	amountPaid: 3500
+	amount: 7500
+},
+{
+	playerUuid: members[1].playerUuid,
+	seasonUuid: seasons[1].seasonUuid,
+	id: 'record5',
+	recordType: 'PAYMENT',
+	sessionName: 'Glasgow',
+	note: '',
+	createdAt: moment(0).add(4, 'days').valueOf(),
+	amount: 3500
 }
 ];
 
