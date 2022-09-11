@@ -21,8 +21,7 @@ export default ( state = paymentRecordReducerDefaultState, action ) =>
 			return [ 
 				...state, 
 				{
-					...action.record, 
-					amountPaid: action.record.recordType === 'DEBT' ? 0 : ""
+					...action.record
 				} 
 			]
 

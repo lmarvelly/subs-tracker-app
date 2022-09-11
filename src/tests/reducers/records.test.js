@@ -18,7 +18,7 @@ test('should remove a record using it\'s ID', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state ).toEqual([ records[0], records[2], records[3], records[4] ]);
+	expect( state ).toEqual([ records[0], records[2], records[3], records[4], records[5] ]);
 });
 
 test('should not remove a record with ID that does not exist', () => 
@@ -43,8 +43,6 @@ test('should add a New Payment Record', () =>
 		seasonUuid: seasons[0],
 		sessionName: 'Training subs', 
 		amount: 400,
-		amountPaid: '',
-		amountOwed: '',
 		note: ''
 	}
 	const action = 
@@ -54,7 +52,7 @@ test('should add a New Payment Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state[5] ).toEqual(record);
+	expect( state[6] ).toEqual(record);
 	expect( state ).toEqual([ ...records, record ]);
 });
 
@@ -66,9 +64,7 @@ test('should add a New Debt Record', () =>
 		playerUuid: members[1].playerUuid,
 		seasonUuid: seasons[1].seasonUuid,
 		sessionName: '5\'s subs', 
-		amount: '',
-		amountPaid: 0,
-		amountOwed: 500,
+		amount: 500,
 		note: ''
 	}
 	const action = 
@@ -78,7 +74,7 @@ test('should add a New Debt Record', () =>
 	}
 	const state = recordReducer( records, action );
 
-	expect( state[5] ).toEqual(newRecord);
+	expect( state[6] ).toEqual(newRecord);
 });
 
 test('should edit a Payment Record', () => 
@@ -102,9 +98,9 @@ test('should edit a Payment Record', () =>
 test('should edit a Debt Record', () => 
 {
 	const sessionName = '5s subs';
-	const amountOwed = 500;
+	const amount = 500;
 	const note = 'Will pay on Monday';
-	const updates = { sessionName, amountOwed, note };
+	const updates = { sessionName, amount, note };
 	const action =
 	{
 		type: 'EDIT_RECORD',
@@ -114,7 +110,7 @@ test('should edit a Debt Record', () =>
 	const state = recordReducer( records, action );
 
 	expect( state[0].sessionName ).toBe(sessionName);
-	expect( state[0].amountOwed ).toBe(amountOwed);
+	expect( state[0].amount ).toBe(amount);
 	expect( state[0].note ).toBe(note);
 });
 
