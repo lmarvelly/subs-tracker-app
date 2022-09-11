@@ -12,7 +12,8 @@ export default class SessionForm extends Component
 		this.state = 
 		{
 			// Session properties
-			amount: props.session ? (props.session.amount / 100 ) : '',
+			id: props.session ? props.session.id : '',
+			amount: props.session ? parseFloat((props.session.amount / 100), 10).toFixed(2) : '',
 			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
 			note: props.session ? props.session.note : '',
 			playerList: props.session ? props.session.playerList : [],
@@ -98,7 +99,7 @@ export default class SessionForm extends Component
 
 		// TODO: Figure out how to delete everything?
 		// The amount is not able to be deleted if we do not include this OR statement. We also have the regular expression to prevent the wrong input being entered
-		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) )
+		if( !amount || amount.match(/^\d{1,}(\.\d{0,2})?$/) || amount.match(/^(\.\d{0,2})?$/))
 		{
 			if ( amount == 0 ) 
 			{
@@ -151,6 +152,7 @@ export default class SessionForm extends Component
 
 		const session =
 		{
+			id: this.state.id,
 			amount: parseFloat(this.state.amount, 10) * 100,
 			createdAt: this.state.createdAt.valueOf(),
 			sessionName: this.state.sessionName,
