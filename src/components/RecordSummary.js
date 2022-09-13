@@ -56,13 +56,24 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 
 const mapStateToProps = ( state ) =>
 {
-	const paymentRecord = selectRecords(state.paymentRecord, state.members, state.recordFilters);
+	let allRecords = [];
+	if(state.paymentRecord)
+	{
+		allRecords = allRecords.concat(state.paymentRecord);
+	}
+	if (state.sessions) 
+	{
+		allRecords = allRecords.concat(state.sessions);	
+	}
+
+	const paymentRecord = selectRecords(allRecords, state.members, state.recordFilters);
 
 	return{
 		recordLength: paymentRecord.length,
 		recordTotals: recordTotals(paymentRecord),
 		seasons: state.seasons,
-		seasonFilter: state.recordFilters.seasonFilter ? state.recordFilters.seasonFilter : ''
+		seasonFilter: state.recordFilters.seasonFilter ? state.recordFilters.seasonFilter : '',
+		sessions: state.sessions
 	}
 }
 
