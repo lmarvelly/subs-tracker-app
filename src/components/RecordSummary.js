@@ -43,7 +43,7 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 					Total income: <span className='bold-font'>£{numeral(recordTotals.totalIncome / 100).format('0,0.00')}</span>
 				</h1>
 				<h1 className='page-header__title'>
-					Total debt: <span className='bold-font'>£{numeral(recordTotals.totalDebt / 100).format('0,0.00')}</span>
+					Total outstanding debt: <span className='bold-font'>£{numeral(recordTotals.totalDebt / 100).format('0,0.00')}</span>
 				</h1>
 				<div className='page-header__actions'>
 					<Link className='button' to='/add-record'>Add Record</Link>
