@@ -9,12 +9,13 @@ export default class SessionForm extends Component
 	constructor( props )
 	{
 		super(props);
+
 		this.state = 
 		{
 			// Session properties
 			id: props.session ? props.session.id : '',
 			amount: props.session ? parseFloat((props.session.amount / 100), 10).toFixed(2) : '',
-			createdAt: this.props.createdAt ? moment( this.props.createdAt ) : moment(),
+			createdAt: props.session ? moment( props.session.createdAt ) : moment(),
 			note: props.session ? props.session.note : '',
 			playerList: props.session ? props.session.playerList : [],
 			seasonUuid: props.session ? props.session.seasonUuid : '',
