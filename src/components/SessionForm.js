@@ -211,8 +211,6 @@ export default class SessionForm extends Component
 
 	render()
 	{
-		const amountError = !this.state.amount;
-
 		const error = '__error';
 		const seasonErrorClassName = this.state.seasonUuid ? '' : error;
 		const sessionNameErrorClassName = this.state.sessionName ? '' : error;
