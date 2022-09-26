@@ -107,13 +107,13 @@ test('should generate Filter By Season action object', () =>
 
 test('should create a Set Member Uuid action object', () => 
 {
-	const uuid = 'player1';
-	const action = setMemberUuidFilter( uuid );
+	const playerUuid = 'player1';
+	const action = setMemberUuidFilter( playerUuid );
 
 	expect(action).toEqual(
 	{
 		type: 'SET_MEMBER_UUID_FILTER',
-		uuid
+		playerUuid
 	});
 });
 

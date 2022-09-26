@@ -48,10 +48,10 @@ export const setMemberFilterText = ( text = '' ) =>
 });
 
 // FILTER MEMBERS RECORDS BY UUID
-export const setMemberUuidFilter = ( uuid = '' ) =>
+export const setMemberUuidFilter = ( playerUuid = '' ) =>
 ({
 	type: 'SET_MEMBER_UUID_FILTER',
-	uuid
+	playerUuid
 });
 
 // FILTER BY SEASON
