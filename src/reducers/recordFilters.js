@@ -3,7 +3,7 @@ import moment from 'moment';
 const paymentRecordReducerFilterDefaultState = 
 {
 	memberTextFilter: '',
-	playerUuid: '',
+	playerUuidFilter: '',
 	recordTypeFilter: 'ALL',
 	seasonFilter: '',
 	sessionNameTextFilter: '',
@@ -58,8 +58,17 @@ export default ( state = paymentRecordReducerFilterDefaultState, action ) =>
 		case 'SET_MEMBER_FILTER_TEXT':
 			return {
 				...state,
-				memberTextFilter: action.text
+				memberTextFilter: action.text,
+				playerUuidFilter: '' // Avoid doubling up member filters 
 			}
+		
+		case 'SET_MEMBER_UUID_FILTER':
+			return {
+				...state,
+				playerUuidFilter: action.playerUuid,
+				memberTextFilter: '' // Avoid doubling up member filters 
+			}
+
 		case 'SET_SEASON_FILTER':
 			return {
 				...state,

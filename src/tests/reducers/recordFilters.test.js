@@ -4,7 +4,33 @@ import filtersReducer from '../../reducers/recordFilters';
 const defaultState =
 {
 	memberTextFilter: '',
-	playerUuid: '',
+	playerUuidFilter: '',
+	recordTypeFilter: 'ALL',
+	seasonFilter: "",
+	sessionNameTextFilter: '',
+	sortBy: 'dateAscending',
+
+	startDate: moment().subtract(1, 'month'),
+	endDate: moment()
+}
+
+const hasPlayerUuidState =
+{
+	memberTextFilter: '',
+	playerUuidFilter: 'player1',
+	recordTypeFilter: 'ALL',
+	seasonFilter: "",
+	sessionNameTextFilter: '',
+	sortBy: 'dateAscending',
+
+	startDate: moment().subtract(1, 'month'),
+	endDate: moment()
+}
+
+const hasPlayerTextFilterState =
+{
+	memberTextFilter: 'Player 1',
+	playerUuidFilter: '',
 	recordTypeFilter: 'ALL',
 	seasonFilter: "",
 	sessionNameTextFilter: '',
@@ -88,9 +114,20 @@ test('should set member text filter to "Player Name"', () =>
 {
 	const text = 'Player Name';
 	const action = { type: 'SET_MEMBER_FILTER_TEXT', text };
-	const state = filtersReducer( undefined, action );
+	const state = filtersReducer( hasPlayerUuidState, action);
 
 	expect( state.memberTextFilter ).toBe( text );
+	expect( state.playerUuidFilter ).toBe( '' );
+});
+
+test('should set member uuid filter to "player1"', () => 
+{
+	const playerUuid = 'player1';
+	const action = { type: 'SET_MEMBER_UUID_FILTER', playerUuid };
+	const state = filtersReducer( hasPlayerTextFilterState, action);
+
+	expect( state.playerUuidFilter ).toBe( playerUuid );
+	expect( state.memberTextFilter ).toBe( '' );
 });
 
 test('should set Season Filter to be a seasonUuid', () => 
