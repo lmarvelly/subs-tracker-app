@@ -7,8 +7,16 @@ import selectRecords from '../selectors/records';
 import recordTotals from '../selectors/record-totals';
 
 // Example for defensive programming: Setting props coming from mapStateToProps to default values
-export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 0, totaldebt: 0 }, seasons = [], seasonFilter = '' }) =>
+export const RecordSummary = (
+{ 
+	recordLength = 0, 
+	recordTotals = { totalIncome: 0, totaldebt: 0 }, 
+	seasons = [], 
+	displayedSeasonAmount = [], 
+	seasonFilter = '' 
+}) =>
 {
+	console.log(displayedSeasonAmount);
 	const recordWord = recordLength === 1 ? 'record' : 'records';
 
 	const seasonWording = () =>
@@ -28,7 +36,7 @@ export const RecordSummary = ({ recordLength = 0, recordTotals = { totalIncome: 
 		}
 		else 
 		{
-			const length = seasons.length;
+			const length = displayedSeasonAmount;
 			return (<span>from <span className='bold-font'>{length} seasons</span></span>);
 		}
 	};
@@ -68,10 +76,20 @@ const mapStateToProps = ( state ) =>
 
 	const paymentRecord = selectRecords(allRecords, state.members, state.recordFilters);
 
+	const displayedSeasonAmount = [];
+
+	paymentRecord.forEach(record => {
+		if(!displayedSeasonAmount.includes(record.seasonUuid))
+		{
+			displayedSeasonAmount.push(record.seasonUuid);
+		}
+	});
+
 	return{
 		recordLength: paymentRecord.length,
 		recordTotals: recordTotals(paymentRecord),
 		seasons: state.seasons,
+		displayedSeasonAmount: displayedSeasonAmount.length,
 		seasonFilter: state.recordFilters.seasonFilter ? state.recordFilters.seasonFilter : '',
 		sessions: state.sessions
 	}
