@@ -22,6 +22,7 @@ export default (
 	{ 
 		sessionNameTextFilter,
 		memberTextFilter,
+		playerUuidFilter,
 		sortBy = 'dateAscending',
 		startDate,
 		endDate,
@@ -59,6 +60,7 @@ export default (
 		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
 
 		const isMemberTextMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
+		const memberUuidMatch = playerUuidFilter ? playerUuidFilter === record.playerUuid : true;
 
 		// Filter by Session Name
 		const sessionTextFilterArray = sessionNameTextFilter.split(' ');
@@ -68,10 +70,10 @@ export default (
 		const createdAtMoment = moment( record.createdAt );
 		const startDateMatch = startDate ? startDate.isSameOrBefore( createdAtMoment, 'day' ) : true; // if the record is created the same day or before the startDate it gets filtered out
 		const endDateMatch  = endDate ? endDate.isSameOrAfter( createdAtMoment, 'day' ) : true ; // if the record is created the same day or after the endDate then it's filtered out
-		
+
 		const seasonMatch = seasonFilter ? seasonFilter === record.seasonUuid : true;
 		
-		return filterByRecordType && isMemberTextMatch && startDateMatch && endDateMatch && isSeshNameMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
+		return filterByRecordType && isMemberTextMatch && memberUuidMatch && startDateMatch && endDateMatch && isSeshNameMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
 	}).sort( (a, b) => 
 	{
 		if( sortBy === 'dateAscending' ) 
