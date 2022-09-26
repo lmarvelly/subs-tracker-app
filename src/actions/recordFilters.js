@@ -40,11 +40,18 @@ export const resetRecordFilters = () =>
 	type: 'RESET_RECORD_FILTERS'
 });
 
-// FILTER BY MEMBER
+// FILTER MEMBERS RECORDS BY TEXT
 export const setMemberFilterText = ( text = '' ) =>
 ({
 	type: 'SET_MEMBER_FILTER_TEXT',
 	text
+});
+
+// FILTER MEMBERS RECORDS BY UUID
+export const setMemberUuidFilter = ( uuid = '' ) =>
+({
+	type: 'SET_MEMBER_UUID_FILTER',
+	uuid
 });
 
 // FILTER BY SEASON
