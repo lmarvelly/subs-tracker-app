@@ -57,11 +57,14 @@ class RecordListItem extends Component
 		const header = (
 			<div>
 				<div className='list-item__row'>
-				<h3 className='list-item__title'>{ this.props.sessionName }</h3>
-			</div>
-			{
-				(this.state.expand || this.state.stayExpanded) && <hr />
-			}
+					<h3 className='list-item__title'>{ this.props.sessionName }</h3>
+					<span className='list-item__sub-title'>
+						{moment( this.props.createdAt).format( "DD-MM-YYYY")}
+					</span>
+				</div>
+				{
+					(this.state.expand || this.state.stayExpanded) && <hr />
+				}
 			</div>
 		)
 		
@@ -75,9 +78,6 @@ class RecordListItem extends Component
 							(this.state.expand || this.state.stayExpanded) && (
 								<div className='list-item__expanded-data'>
 									<span className='list-item__sub-title'>
-										Date: {moment( this.props.createdAt).format( "DD-MM-YYYY")}
-									</span>
-									<span className='list-item__sub-title'>
 										Season: { this.props.seasonName }
 									</span>
 								</div>
@@ -88,7 +88,7 @@ class RecordListItem extends Component
 						{
 							this.props.recordType === 'PAYMENT' && (
 								<h3 className={`list-item__data${classCollapsedName}`}>
-									Payment Amount:
+									Payment:
 									<span className='bold-font'>
 										{` £${numeral(this.props.amount / 100).format('0,0.00')}` }
 									</span>
@@ -99,7 +99,7 @@ class RecordListItem extends Component
 							this.props.recordType === 'DEBT' && (
 								<div>
 									<h3 className={`list-item__data${classCollapsedName}`}>
-										Debt Amount:
+										Debt:
 										<span className='bold-font'> 
 											{` £${numeral(this.props.amount / 100).format('0,0.00')}`}
 										</span>
