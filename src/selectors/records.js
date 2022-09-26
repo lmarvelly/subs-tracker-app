@@ -35,7 +35,6 @@ export default (
 
 		const filterByRecordType = recordTypeFilter === 'ALL' ? true : recordType === recordTypeFilter;
 
-		let isMemberMatch;
 		let member;
 		// Filter by Member
 		if(record.recordType === 'DEBT' || record.recordType === 'PAYMENT')
@@ -59,7 +58,7 @@ export default (
 		const nickname = member.nickname.split(' ');
 		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
 
-		isMemberMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
+		const isMemberTextMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
 
 		// Filter by Session Name
 		const sessionTextFilterArray = sessionNameTextFilter.split(' ');
@@ -72,7 +71,7 @@ export default (
 		
 		const seasonMatch = seasonFilter ? seasonFilter === record.seasonUuid : true;
 		
-		return filterByRecordType && isMemberMatch && startDateMatch && endDateMatch && isSeshNameMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
+		return filterByRecordType && isMemberTextMatch && startDateMatch && endDateMatch && isSeshNameMatch && seasonMatch; // Return true only if all the above are true. Record is removed if false
 	}).sort( (a, b) => 
 	{
 		if( sortBy === 'dateAscending' ) 
