@@ -30,8 +30,6 @@ const MembersSummaryPage = ( props ) =>
 		// Add date filters
 		// Add page to navbar
 		// Total attendents of each Session name
-		// Create New Record List Item for this page
-		// Add Padding at bottom of page
 		// Add Message if there are no records
 		// Test cases for MemberSummaryPage
 		// Test cases for MemberRecordListItem's
@@ -181,7 +179,7 @@ const MembersSummaryPage = ( props ) =>
 					<div className='show-for-desktop'>Record</div>
 					<div className='show-for-desktop'>Amount</div>
 				</div>
-
+				<div className='list-body'>
 				{
 					props.records.map((record) => 
 					{
@@ -193,8 +191,7 @@ const MembersSummaryPage = ( props ) =>
 						/>
 					})
 				}
-
-				
+				</div>
 			</div>
 		</div>
 	);
