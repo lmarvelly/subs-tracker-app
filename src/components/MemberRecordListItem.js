@@ -4,37 +4,24 @@ import numeral from 'numeral';
 
 const MemberRecordListItem = (
 {
-	amount,
-	date,
-	recordType,
-	sessionName
+	amount = 0,
+	date = 0,
+	recordType = '',
+	sessionName = ''
 }) =>
 {
-	console.log(recordType);
-	let wording;
-
-	if((recordType === 'DEBT') || recordType === 'SESSION')
-	{
-		console.log('Debt');
-		wording = 'Debt';
-	}
-	else if (recordType === 'PAYMENT') 
-	{
-		console.log('Payment');
-		wording = 'Amount'
-	}
-	else
-	{
-		wording = '';
-	}
-	
-	console.log(wording);
+	let className = (recordType === 'PAYMENT') ? 'green' : 'red';
+	let wording = (recordType === 'PAYMENT') ? 'Payment' : 'Debt' ;
 
 	return (
 		<div className='list-item'>
 			<div className='list-item__row'>
 				<div className='bold-font'>{sessionName}</div>
-				<span>{wording}: {` £${numeral(amount / 100).format('0,0.00')}` }</span>
+				<span>{wording}: 
+					<span className={`${className}-font`}>
+						{` £${numeral(amount / 100).format('0,0.00')}` }
+					</span>
+				</span>
 			</div>
 			<div className='list-item__row'>
 				{moment(date).format("DD-MM-YYYY")}
