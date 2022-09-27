@@ -181,6 +181,12 @@ const MembersSummaryPage = ( props ) =>
 				</div>
 				<div className='list-body'>
 				{
+					props.records.length === 0 ? (
+						<div className='list-item list-item--message'>
+							<span>No Records</span>
+						</div>
+					)
+					:
 					props.records.map((record) => 
 					{
 						return <MemberRecordListItem
