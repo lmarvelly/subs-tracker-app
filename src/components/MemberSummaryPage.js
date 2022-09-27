@@ -11,6 +11,7 @@ import { resetSeasonFilters } from '../actions/seasonFilters';
 
 import {
 	resetRecordFilters,
+	resetSeasonFilter,
 	setMemberUuidFilter,
 	setSeasonFilter,
 	sortByDateAscending,
@@ -23,8 +24,8 @@ import recordTotals from '../selectors/record-totals';
 const MembersSummaryPage = ( props ) =>
 {
 	// TODO: 
-		// Fix 
-		// Add game to navbar
+		// Add date filters
+		// Add page to navbar
 		// Total attendents of each Session name
 		// Create New Record List Item for this page
 		// List all records for Selected Member
@@ -54,7 +55,7 @@ const MembersSummaryPage = ( props ) =>
 		if( e.target.value === 'ALL' )
 		{
 			console.log('Reseting Season Filters');
-			props.resetSeasonFilters();
+			props.resetSeasonFilter();
 		}
 		else
 		{
@@ -206,7 +207,8 @@ const MembersSummaryPage = ( props ) =>
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	resetMemberFilters: () => dispatch( resetMemberFilters() ),
-	resetSeasonFilters: () => dispatch( resetSeasonFilters() ),
+	resetSeasonFilters: () => dispatch( resetSeasonFilters() ), // Season filter
+	resetSeasonFilter: () => dispatch( resetSeasonFilter() ), // Season record filter
 	resetRecordFilters: () => dispatch( resetRecordFilters() ),
 	setMemberUuidFilter: (playerUuid) => dispatch(setMemberUuidFilter(playerUuid)),
 	setSeasonFilter: (seasonUuid) => dispatch(setSeasonFilter(seasonUuid))
