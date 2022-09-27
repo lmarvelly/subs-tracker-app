@@ -35,6 +35,7 @@ const MembersSummaryPage = ( props ) =>
 		// Add Message if there are no records
 		// Test cases for MemberSummaryPage
 		// Test cases for MemberRecordListItem's
+		// Link to Edit Record
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
@@ -66,8 +67,6 @@ const MembersSummaryPage = ( props ) =>
 			props.setSeasonFilter(e.target.value);
 		}
 	});
-
-	console.log(props.records);
 
 	return (
 		<div>
