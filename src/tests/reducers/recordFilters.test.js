@@ -81,6 +81,14 @@ test('should set endDate to the First of September of current year', () =>
 	expect( state.endDate ).toEqual(date);
 });
 
+test('should remove Start and End date filters', () =>
+{
+	const action = { type: 'REMOVE_DATE_FILTERS' };
+	const state = filtersReducer( defaultState, action );
+
+	expect( state.startDate ).toEqual( '' );
+	expect( state.endDate ).toEqual( '' );
+});
 
 test('should set sortBy to dateAscending', () => 
 {
