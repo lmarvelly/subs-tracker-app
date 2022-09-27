@@ -10,8 +10,8 @@ const MemberRecordListItem = (
 	sessionName = ''
 }) =>
 {
-	let className = (recordType === 'PAYMENT') ? 'green' : 'red';
-	let wording = (recordType === 'PAYMENT') ? 'Payment' : 'Debt' ;
+	const className = (recordType === 'PAYMENT') ? 'green' : 'red';
+	const wording = (recordType === 'PAYMENT') ? 'Payment' : 'Debt' ;
 
 	return (
 		<div className='list-item'>
