@@ -10,6 +10,7 @@ import { resetMemberFilters } from '../actions/memberFilters';
 import { resetSeasonFilters } from '../actions/seasonFilters';
 
 import {
+	removeDateFilters,
 	resetRecordFilters,
 	resetSeasonFilter,
 	setMemberUuidFilter,
@@ -28,7 +29,6 @@ const MembersSummaryPage = ( props ) =>
 		// Add page to navbar
 		// Total attendents of each Session name
 		// Create New Record List Item for this page
-		// List all records for Selected Member (Remove data filters on load)
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
@@ -36,6 +36,7 @@ const MembersSummaryPage = ( props ) =>
 	useEffect(() =>
 	{
 		props.resetRecordFilters();
+		props.removeDateFilters(); // This has to be after reset Record Filters
 		props.resetMemberFilters();
 		props.resetSeasonFilters();
 		props.setMemberUuidFilter(memberUuid);
@@ -204,6 +205,7 @@ const MembersSummaryPage = ( props ) =>
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
+	removeDateFilters: () => dispatch( removeDateFilters() ),
 	resetMemberFilters: () => dispatch( resetMemberFilters() ),
 	resetSeasonFilters: () => dispatch( resetSeasonFilters() ), // Season filter
 	resetSeasonFilter: () => dispatch( resetSeasonFilter() ), // Season record filter
