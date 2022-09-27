@@ -1,5 +1,6 @@
 import moment from 'moment';
 import {
+	removeDateFilters,
 	resetRecordFilters,
 	resetSeasonFilter,
 	setRecordTypeFilter,
@@ -70,6 +71,15 @@ test('Should generate Set End Date action object', () =>
 	{
 		type: 'SET_END_DATE',
 		endDate: moment(0)
+	});
+});
+
+test('Should generate a Remove Date Filter action object', () =>
+{
+	const action = removeDateFilters();
+	expect(action).toEqual(
+	{
+		type: 'REMOVE_DATE_FILTERS'
 	});
 });
 
