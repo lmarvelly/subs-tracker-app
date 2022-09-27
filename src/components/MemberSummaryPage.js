@@ -29,11 +29,12 @@ const MembersSummaryPage = ( props ) =>
 	// TODO: 
 		// Add date filters
 		// Add page to navbar
+		// Total Session Names
 		// Total attendents of each Session name
-		// Add Message if there are no records
 		// Test cases for MemberSummaryPage
 		// Test cases for MemberRecordListItem's
-		// Link to Edit Record
+		// Link Records to Edit Record
+		// Add Seasons to Record List
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
@@ -46,6 +47,45 @@ const MembersSummaryPage = ( props ) =>
 		props.resetSeasonFilters();
 		props.setMemberUuidFilter(memberUuid);
 	}, []);
+
+	const getSeasonAndSessionTotals = () =>
+	{
+		const sessionsAndSeasons = [];
+
+		props.displayedSeasons.forEach(season =>
+		{
+			sessionsAndSeasons.push(
+			{ 
+				seasonUuid: season,
+				sessions: []
+			});
+		});
+
+		props.records.forEach(record => 
+		{
+			const index = props.displayedSeasons.findIndex( currentSeason =>
+			{
+				return currentSeason === record.seasonUuid;
+			});
+
+			let exists = false;
+			sessionsAndSeasons[index].sessions.forEach( session =>
+			{
+				if(session.sessionName === record.sessionName)
+				{
+					exists = true;
+					session.count += 1;
+				}
+			});
+
+			if(!exists)
+			{
+				sessionsAndSeasons[index].sessions.push({sessionName: record.sessionName, count: 1});
+			}
+		});
+
+		console.log(sessionsAndSeasons);
+	}
 
 	const onMemberChange = ((e) =>
 	{
@@ -65,6 +105,8 @@ const MembersSummaryPage = ( props ) =>
 			props.setSeasonFilter(e.target.value);
 		}
 	});
+
+	getSeasonAndSessionTotals();
 
 	return (
 		<div>
@@ -228,7 +270,17 @@ const mapStateToProps = ( state ) =>
 
 	const paymentRecord = selectRecords(allRecords, state.members, state.recordFilters);
 
+	const displayedSeasons = [];
+
+	paymentRecord.forEach(record => {
+		if(!displayedSeasons.includes(record.seasonUuid))
+		{
+			displayedSeasons.push(record.seasonUuid);
+		}
+	});
+
 	return {
+		displayedSeasons: displayedSeasons,
 		members: getVisibleMembers( state.members, state.memberFilters ),
 		records: paymentRecord,
 		recordTotals: recordTotals(paymentRecord),
