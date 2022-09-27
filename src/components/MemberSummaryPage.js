@@ -2,6 +2,8 @@ import React, { useEffect, useState  } from 'react';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
 
+import MemberRecordListItem from './MemberRecordListItem';
+
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import getVisibleRecords from '../selectors/records';
@@ -29,6 +31,10 @@ const MembersSummaryPage = ( props ) =>
 		// Add page to navbar
 		// Total attendents of each Session name
 		// Create New Record List Item for this page
+		// Add Padding at bottom of page
+		// Add Message if there are no records
+		// Test cases for MemberSummaryPage
+		// Test cases for MemberRecordListItem's
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
@@ -60,6 +66,8 @@ const MembersSummaryPage = ( props ) =>
 			props.setSeasonFilter(e.target.value);
 		}
 	});
+
+	console.log(props.records);
 
 	return (
 		<div>
@@ -174,30 +182,20 @@ const MembersSummaryPage = ( props ) =>
 					<div className='show-for-desktop'>Record</div>
 					<div className='show-for-desktop'>Amount</div>
 				</div>
-				<div className='list-item'>
-					<div className='list-item__row'>
-						GFSN Match <span className='bold-font'>Debt: £5.00</span>
-					</div>
-					<div className='list-item__row'>
-						24/6/22 <span className='bold-font'>Paid: £0.00</span>
-					</div>
-				</div>
-				<div className='list-item'>
-					<div className='list-item__row'>
-						Training <span className='bold-font'>Paid: £4.00</span>
-					</div>
-					<div className='list-item__row'>
-						20/6/22
-					</div>
-				</div>
-				<div className='list-item'>
-					<div className='list-item__row'>
-						Kickabout<span className='bold-font'>Paid: £5.00</span>
-					</div>
-					<div className='list-item__row'>
-						17/6/22
-					</div>
-				</div>
+
+				{
+					props.records.map((record) => 
+					{
+						return <MemberRecordListItem
+							amount={record.amount}
+							date={record.createdAt}
+							recordType={record.recordType}
+							sessionName={record.sessionName}
+						/>
+					})
+				}
+
+				
 			</div>
 		</div>
 	);
