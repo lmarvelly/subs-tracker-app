@@ -12,11 +12,11 @@ export const RecordSummary = (
 	recordLength = 0, 
 	recordTotals = { totalIncome: 0, totaldebt: 0 }, 
 	seasons = [], 
-	displayedSeasonAmount = [], 
+	displayedSeasons = [], 
 	seasonFilter = '' 
 }) =>
 {
-	console.log(displayedSeasonAmount);
+	console.log(displayedSeasons);
 	const recordWord = recordLength === 1 ? 'record' : 'records';
 
 	const seasonWording = () =>
@@ -36,7 +36,7 @@ export const RecordSummary = (
 		}
 		else 
 		{
-			const length = displayedSeasonAmount;
+			const length = displayedSeasons;
 			return (<span>from <span className='bold-font'>{length} seasons</span></span>);
 		}
 	};
@@ -76,12 +76,12 @@ const mapStateToProps = ( state ) =>
 
 	const paymentRecord = selectRecords(allRecords, state.members, state.recordFilters);
 
-	const displayedSeasonAmount = [];
+	const displayedSeasons = [];
 
 	paymentRecord.forEach(record => {
-		if(!displayedSeasonAmount.includes(record.seasonUuid))
+		if(!displayedSeasons.includes(record.seasonUuid))
 		{
-			displayedSeasonAmount.push(record.seasonUuid);
+			displayedSeasons.push(record.seasonUuid);
 		}
 	});
 
@@ -89,7 +89,7 @@ const mapStateToProps = ( state ) =>
 		recordLength: paymentRecord.length,
 		recordTotals: recordTotals(paymentRecord),
 		seasons: state.seasons,
-		displayedSeasonAmount: displayedSeasonAmount.length,
+		displayedSeasons: displayedSeasons.length,
 		seasonFilter: state.recordFilters.seasonFilter ? state.recordFilters.seasonFilter : '',
 		sessions: state.sessions
 	}
