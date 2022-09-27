@@ -28,12 +28,11 @@ const MembersSummaryPage = ( props ) =>
 		// Add page to navbar
 		// Total attendents of each Session name
 		// Create New Record List Item for this page
-		// List all records for Selected Member
+		// List all records for Selected Member (Remove data filters on load)
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
 
-	console.log(props.recordTotals);
 	useEffect(() =>
 	{
 		props.resetRecordFilters();
@@ -50,11 +49,9 @@ const MembersSummaryPage = ( props ) =>
 
 	const onSeasonChange = ((e) =>
 	{
-		console.log(e.target.value);
 		setSeasonUuid(e.target.value);
 		if( e.target.value === 'ALL' )
 		{
-			console.log('Reseting Season Filters');
 			props.resetSeasonFilter();
 		}
 		else
@@ -150,12 +147,13 @@ const MembersSummaryPage = ( props ) =>
 				</div>
 
 				<h1 className='page-header__title'>
-					Total paid: <span className='bold-font'>£{numeral(props.recordTotals.totalIncome / 100).format('0,0.00')}</span>
+					Total Paid: <span className='bold-font'>£{numeral(props.recordTotals.totalIncome / 100).format('0,0.00')}</span>
 				</h1>
 				<h1 className='page-header__title'>
-					Total debt: <span className='bold-font'>£{numeral(props.recordTotals.totalDebt / 100).format('0,0.00')}</span>
+					Total Outstanding Debt: <span className='bold-font'>£{numeral(props.recordTotals.totalDebt / 100).format('0,0.00')}</span>
 				</h1>
 
+				<h2>Season 1</h2>
 				<h1 className='page-header__subtitle'>
 					Total attendance:
 				</h1>
