@@ -40,6 +40,19 @@ const hasPlayerTextFilterState =
 	endDate: moment()
 }
 
+const hasSeasonFilterState =
+{
+	memberTextFilter: '',
+	playerUuidFilter: '',
+	recordTypeFilter: 'ALL',
+	seasonFilter: "season1",
+	sessionNameTextFilter: '',
+	sortBy: 'dateAscending',
+
+	startDate: moment().subtract(1, 'month'),
+	endDate: moment()
+}
+
 /**
  * '@@INIT' is the type of action when App is initialised
  */
@@ -137,6 +150,14 @@ test('should set Season Filter to be a seasonUuid', () =>
 	const state = filtersReducer( undefined, action );
 
 	expect( state.seasonFilter ).toBe( seasonUuid );
+});
+
+test('should reset Season Filter', () =>
+{
+	const action = { type: 'RESET_SEASON_FILTER' };
+	const state = filtersReducer( hasSeasonFilterState, action );
+
+	expect( state.seasonFilter ).toBe('');
 });
 
 test('should Set Record Type', () =>
