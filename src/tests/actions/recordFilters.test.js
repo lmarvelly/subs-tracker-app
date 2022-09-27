@@ -1,6 +1,7 @@
 import moment from 'moment';
 import {
 	resetRecordFilters,
+	resetSeasonFilter,
 	setRecordTypeFilter,
 	setStartDate,
 	setEndDate,
@@ -102,6 +103,16 @@ test('should generate Filter By Season action object', () =>
 	{
 		type: 'SET_SEASON_FILTER',
 		seasonUuid
+	});
+});
+
+test('should reset Season Filter', () =>
+{
+	const action = resetSeasonFilter();
+
+	expect(action).toEqual(
+	{
+		type: 'RESET_SEASON_FILTER'
 	});
 });
 

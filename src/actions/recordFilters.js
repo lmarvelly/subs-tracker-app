@@ -61,6 +61,11 @@ export const setSeasonFilter = ( seasonUuid ) =>
 	seasonUuid
 });
 
+export const resetSeasonFilter = () =>
+({
+	type: 'RESET_SEASON_FILTER'
+});
+
 // FILTER BY TYPE
 export const setRecordTypeFilter = ( recordType ) =>
 ({
