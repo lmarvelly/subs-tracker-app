@@ -2,6 +2,26 @@ import moment from "moment";
 
 import { textSearch } from "../functions/generalFilterFunctions";
 
+const filterByMember = ( memberArray, filterArray ) =>
+{
+	let isMatch = false;
+	memberArray.forEach( member => 
+	{
+		const middleNames = member.middleNames.split(' ');
+		const nickname = member.nickname.split(' ');
+		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
+
+		const isMemberTextMatch = textSearch( filterArray, searchMemberTextArray );
+
+		if(isMemberTextMatch)
+		{
+			isMatch = true;
+		}
+	});
+
+	return isMatch;
+}
+
 /**
  * Destruct Filters
  * {
@@ -36,13 +56,15 @@ export default (
 
 		const filterByRecordType = recordTypeFilter === 'ALL' ? true : recordType === recordTypeFilter;
 
-		let member;
+		let member; // TODO remove after new function is implemented
+		const memberArray = [];
 		// Filter by Member
 		if(record.recordType === 'DEBT' || record.recordType === 'PAYMENT')
 		{
 			member = members.find( ( member ) => 
 				record.playerUuid === member.playerUuid
 			);
+			memberArray.push(member);
 		}
 		else
 		{
@@ -51,15 +73,14 @@ export default (
 				member = members.find( ( member ) => 
 					record.playerUuid === member.playerUuid
 				);
+				memberArray.push(member);
 			});
 		}
 
 		const memberTextFilterArray = memberTextFilter.split(' ');
-		const middleNames = member.middleNames.split(' ');
-		const nickname = member.nickname.split(' ');
-		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
 
-		const isMemberTextMatch = textSearch( memberTextFilterArray, searchMemberTextArray );
+		const isMemberTextMatch = filterByMember(memberArray, memberTextFilterArray)
+		
 		const memberUuidMatch = playerUuidFilter ? playerUuidFilter === record.playerUuid : true;
 
 		// Filter by Session Name
