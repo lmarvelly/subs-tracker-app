@@ -2,7 +2,7 @@ import moment from "moment";
 
 import { textSearch } from "../functions/generalFilterFunctions";
 
-const filterByMember = ( memberArray, filterArray ) =>
+const filterByMemberText = ( memberArray, filterArray ) =>
 {
 	let isMatch = false;
 	memberArray.forEach( member => 
@@ -10,7 +10,6 @@ const filterByMember = ( memberArray, filterArray ) =>
 		const middleNames = member.middleNames.split(' ');
 		const nickname = member.nickname.split(' ');
 		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
-
 		const isMemberTextMatch = textSearch( filterArray, searchMemberTextArray );
 
 		if(isMemberTextMatch)
@@ -20,7 +19,21 @@ const filterByMember = ( memberArray, filterArray ) =>
 	});
 
 	return isMatch;
-}
+};
+
+const filterByMemberID = ( id, memberArray) =>
+{
+	let isMatch = false;
+	memberArray.forEach(member =>
+	{
+		if(member.playerUuid === id)
+		{
+			isMatch = true;
+		}
+	});
+
+	return isMatch;
+};
 
 /**
  * Destruct Filters
@@ -52,16 +65,19 @@ export default (
 {
 	return records.filter( (record) =>
 	{
+		/////////////////////////////////
+		///// Filter by Record Type /////
+		/////////////////////////////////
 		const recordType = record.recordType;
-
 		const filterByRecordType = recordTypeFilter === 'ALL' ? true : recordType === recordTypeFilter;
 
-		let member; // TODO remove after new function is implemented
+		/////////////////////////////////
+		///// Filter by Member Text /////
+		/////////////////////////////////
 		const memberArray = [];
-		// Filter by Member
 		if(record.recordType === 'DEBT' || record.recordType === 'PAYMENT')
 		{
-			member = members.find( ( member ) => 
+			const member = members.find( ( member ) => 
 				record.playerUuid === member.playerUuid
 			);
 			memberArray.push(member);
@@ -70,20 +86,23 @@ export default (
 		{
 			record.playerList.forEach((record) =>
 			{
-				member = members.find( ( member ) => 
+				const member = members.find( ( member ) => 
 					record.playerUuid === member.playerUuid
 				);
 				memberArray.push(member);
 			});
 		}
-
 		const memberTextFilterArray = memberTextFilter.split(' ');
-
-		const isMemberTextMatch = filterByMember(memberArray, memberTextFilterArray)
+		const isMemberTextMatch = filterByMemberText(memberArray, memberTextFilterArray)
 		
-		const memberUuidMatch = playerUuidFilter ? playerUuidFilter === record.playerUuid : true;
+		///////////////////////////////
+		///// Filter by Member ID /////
+		///////////////////////////////
+		const memberUuidMatch = playerUuidFilter ? filterByMemberID( playerUuidFilter, memberArray ) : true;
 
-		// Filter by Session Name
+		//////////////////////////////////
+		///// Filter by Session Name /////
+		//////////////////////////////////
 		const sessionTextFilterArray = sessionNameTextFilter.split(' ');
 		const searchSeshTextArray = record.sessionName.split(' ');
 		const isSeshNameMatch = textSearch( sessionTextFilterArray, searchSeshTextArray );
