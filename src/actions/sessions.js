@@ -33,6 +33,7 @@ export const startAddSession = ( sessionData = {} ) =>
 				dispatch(addSession(
 				{
 					id: ref.key,
+					recordType: 'SESSION',
 					...session
 				}));
 			});
