@@ -1,16 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import numeral from 'numeral';
 
 import selectRecords from '../selectors/records';
-import recordTotals from '../functions/recordTotals';
 
 // Example for defensive programming: Setting props coming from mapStateToProps to default values
 export const RecordSummary = (
 { 
-	recordLength = 0, 
-	recordTotals = { totalIncome: 0, totaldebt: 0 }, 
+	recordLength = 0,
 	seasons = [], 
 	displayedSeasons = [], 
 	seasonFilter = '' 
@@ -47,12 +44,6 @@ export const RecordSummary = (
 				<h1 className='page-header__title'>
 					Viewing <span className='bold-font'>{recordLength} {recordWord}</span> {seasonWording()}
 				</h1>
-				<h1 className='page-header__title'>
-					Total income: <span className='bold-font'>£{numeral(recordTotals.totalIncome / 100).format('0,0.00')}</span>
-				</h1>
-				<h1 className='page-header__title'>
-					Total outstanding debt: <span className='bold-font'>£{numeral(recordTotals.totalDebt / 100).format('0,0.00')}</span>
-				</h1>
 				<div className='page-header__actions'>
 					<Link className='button' to='/add-record'>Add Record</Link>
 					<Link className='button' to='/add-session'>Add Session</Link>
@@ -87,7 +78,6 @@ const mapStateToProps = ( state ) =>
 
 	return{
 		recordLength: paymentRecord.length,
-		recordTotals: recordTotals(paymentRecord),
 		seasons: state.seasons,
 		displayedSeasons: displayedSeasons.length,
 		seasonFilter: state.recordFilters.seasonFilter ? state.recordFilters.seasonFilter : '',
