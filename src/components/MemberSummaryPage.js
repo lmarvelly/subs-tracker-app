@@ -40,6 +40,7 @@ const MembersSummaryPage = ( props ) =>
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
 	const [memberTotals, setMemberTotals] = useState(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
+	const [memberDebt, setMemberDebt] = useState(0);
 
 	useEffect(() =>
 	{
@@ -49,7 +50,12 @@ const MembersSummaryPage = ( props ) =>
 		props.resetSeasonFilters();
 		props.setMemberUuidFilter(memberUuid);
 		setMemberTotals(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
-		console.log(memberTotals);
+		
+		if( memberTotals.totalDebt > memberTotals.totalPaid )
+		{
+			setMemberDebt( memberTotals.totalDebt - memberTotals.totalPaid );
+		}
+
 	}, []);
 
 	const getSeasonAndSessionTotals = () =>
@@ -214,7 +220,11 @@ const MembersSummaryPage = ( props ) =>
 					Total Paid: <span className='bold-font'>£{numeral(memberTotals.totalPaid / 100).format('0,0.00')}</span>
 				</h1>
 				<h1 className='page-header__title'>
-					Total Outstanding Debt: <span className='bold-font'>£{numeral((memberTotals.totalPaid - memberTotals.totalDebt) / 100).format('0,0.00')}</span>
+					Total Outstanding Debt: <span className='bold-font'>£
+					{
+						numeral(memberDebt / 100).format('0,0.00')
+					}
+					</span>
 				</h1>
 
 				<h2>Season 1</h2>
