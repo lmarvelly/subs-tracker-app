@@ -1,5 +1,5 @@
 // TDD is simular to what I have been doing except you'd write the tests first
-import recordTotals from '../../selectors/record-totals';
+import recordTotals from '../../functions/recordTotals';
 import { records, members, seasons, } from '../fixtures/fixures'; 
 
 test('Should get zero for both amount paid and debts', () => 

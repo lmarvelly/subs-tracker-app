@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import numeral from 'numeral';
 
 import selectRecords from '../selectors/records';
-import recordTotals from '../selectors/record-totals';
+import recordTotals from '../functions/recordTotals';
 
 // Example for defensive programming: Setting props coming from mapStateToProps to default values
 export const RecordSummary = (

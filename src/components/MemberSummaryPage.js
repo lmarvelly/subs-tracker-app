@@ -23,7 +23,7 @@ import {
 } from '../actions/recordFilters';
 
 import selectRecords from '../selectors/records';
-import recordTotals from '../selectors/record-totals';
+import recordTotals from '../functions/recordTotals';
 
 const MembersSummaryPage = ( props ) =>
 {
