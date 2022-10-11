@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
 
 import {
 	resetRecordFilters,
@@ -32,6 +33,13 @@ export class RecordListFilters extends Component {
 	state =
 	{
 		calenderFocused: null
+	}
+
+	componentDidMount()
+	{
+		this.props.resetRecordFilters();
+		this.props.setStartDate(moment().subtract(1, 'month'));
+		this.props.setEndDate(moment());
 	}
 
 	onDatesChange = ({ startDate, endDate }) => {
