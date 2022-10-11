@@ -1,8 +1,5 @@
 export default ( records ) =>
 {
-	let totalIncome = 0;
-	let totalDebt = 0;
-
 	const playerTotals = [];
 
 	records.map( record => 
@@ -14,59 +11,50 @@ export default ( records ) =>
 		{
 			if (record.recordType === 'PAYMENT')
 			{
-				totalIncome += record.amount;
 				if( index === -1 )
 				{
-					playerTotals.push( { playerId: record.playerUuid, balance: record.amount } );
+					playerTotals.push( { playerId: record.playerUuid, totalPaid: record.amount, totalDebt: 0 } );
 				}
 				else
 				{
-					playerTotals[index].balance += record.amount; 
+					playerTotals[index].totalPaid += record.amount; 
 				}
 			}
 			else if (record.recordType === 'DEBT') 
 			{
 				if( index === -1 )
 				{
-					playerTotals.push( { playerId: record.playerUuid, balance: -record.amount } );
+					playerTotals.push( { playerId: record.playerUuid, totalDebt: record.amount, totalPaid: 0 } );
 				}
 				else
 				{
-					playerTotals[index].balance -= record.amount; 
+					playerTotals[index].totalDebt += record.amount; 
 				}
 			}
 			else if(record.recordType === 'SESSION')
 			{
-				const amount = record.amount;
-
 				record.playerList.forEach( listedPlayer =>
 				{
 					// Converting discount into percentage to be paid
 					const percentageToPay = 100 - listedPlayer.discount;
+					const amountToPay = record.amount / 100 * percentageToPay
 
 					const index = playerTotals.findIndex( player => player.playerId === listedPlayer.playerUuid );
 					
 					if( index === -1 )
 					{
-						playerTotals.push( { playerId: listedPlayer.playerUuid, balance: -(record.amount / 100 * percentageToPay) } );
+						playerTotals.push( { playerId: listedPlayer.playerUuid, totalPaid: 0, totalDebt: amountToPay } );
 					}
 					else
 					{
-						playerTotals[index].balance -= (record.amount / 100 * percentageToPay); 
+						playerTotals[index].totalDebt += amountToPay; 
 					}
 				});
 			}
 		}
 	});
 
-	// Working out the total outstanding debt
-	playerTotals.forEach(listedPlayer =>
-	{
-		if(listedPlayer.balance < 0)
-		{
-			totalDebt -= listedPlayer.balance
-		}
-	});
+	console.log('PLAYER TOTALS:', playerTotals);
 	
-	return { totalIncome, totalDebt };
+	return { playerTotals };
 }
