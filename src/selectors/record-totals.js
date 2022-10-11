@@ -53,8 +53,6 @@ export default ( records ) =>
 			}
 		}
 	});
-
-	console.log('PLAYER TOTALS:', playerTotals);
 	
-	return { playerTotals };
+	return playerTotals;
 }
