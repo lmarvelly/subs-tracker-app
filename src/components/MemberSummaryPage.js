@@ -8,6 +8,7 @@ import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import getVisibleRecords from '../selectors/records';
 
+import { getMemberTotals } from '../actions/members';
 import { resetMemberFilters } from '../actions/memberFilters';
 import { resetSeasonFilters } from '../actions/seasonFilters';
 
@@ -38,6 +39,7 @@ const MembersSummaryPage = ( props ) =>
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
+	const [memberTotals, setMemberTotals] = useState(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 
 	useEffect(() =>
 	{
@@ -46,13 +48,15 @@ const MembersSummaryPage = ( props ) =>
 		props.resetMemberFilters();
 		props.resetSeasonFilters();
 		props.setMemberUuidFilter(memberUuid);
+		setMemberTotals(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
+		console.log(memberTotals);
 	}, []);
 
 	const getSeasonAndSessionTotals = () =>
 	{
 		const sessionsAndSeasons = [];
 
-		props.displayedSeasons.forEach(season =>
+		props.sessionSeasons.forEach(season =>
 		{
 			sessionsAndSeasons.push(
 			{ 
@@ -61,36 +65,48 @@ const MembersSummaryPage = ( props ) =>
 			});
 		});
 
-		props.records.forEach(record => 
+		props.sessions.forEach(record => 
 		{
-			const index = props.displayedSeasons.findIndex( currentSeason =>
+			
+			const index = props.sessionSeasons.findIndex( currentSeason =>
 			{
 				return currentSeason === record.seasonUuid;
 			});
 
-			let exists = false;
-			sessionsAndSeasons[index].sessions.forEach( session =>
-			{
-				if(session.sessionName === record.sessionName)
-				{
-					exists = true;
-					session.count += 1;
-				}
-			});
+			// let exists = false;
+			// sessionsAndSeasons[index].sessions.forEach( session =>
+			// {
+			// 	if(session.sessionName === record.sessionName)
+			// 	{
+			// 		exists = true;
+			// 		session.count += 1;
+			// 	}
+			// });
 
-			if(!exists)
-			{
-				sessionsAndSeasons[index].sessions.push({sessionName: record.sessionName, count: 1});
-			}
+			// if(!exists)
+			// {
+			// 	sessionsAndSeasons[index].sessions.push({sessionName: record.sessionName, count: 1});
+			// }
 		});
 
-		console.log(sessionsAndSeasons);
+		// console.log(sessionsAndSeasons);
 	}
+
+	// const getMemberTotals = ((memberUuid) =>
+	// {
+	// 	console.log('RECORD TOTALS', props.recordTotals);
+	// 	const index = props.recordTotals.findIndex( player => player.playerId === memberUuid );
+
+	// 	return props.recordTotals[index];
+	// });
 
 	const onMemberChange = ((e) =>
 	{
 		setMemberUuid(e.target.value);
 		props.setMemberUuidFilter(e.target.value);
+		// const index = recordTotals.findIndex( player => player.playerId === record.playerUuid );
+
+		setMemberTotals(getMemberTotals( props.recordTotals, e.target.value ));
 	});
 
 	const onSeasonChange = ((e) =>
@@ -195,10 +211,10 @@ const MembersSummaryPage = ( props ) =>
 				</div>
 
 				<h1 className='page-header__title'>
-					Total Paid: <span className='bold-font'>£{numeral(props.recordTotals.totalIncome / 100).format('0,0.00')}</span>
+					Total Paid: <span className='bold-font'>£{numeral(memberTotals.totalPaid / 100).format('0,0.00')}</span>
 				</h1>
 				<h1 className='page-header__title'>
-					Total Outstanding Debt: <span className='bold-font'>£{numeral(props.recordTotals.totalDebt / 100).format('0,0.00')}</span>
+					Total Outstanding Debt: <span className='bold-font'>£{numeral((memberTotals.totalPaid - memberTotals.totalDebt) / 100).format('0,0.00')}</span>
 				</h1>
 
 				<h2>Season 1</h2>
@@ -232,6 +248,7 @@ const MembersSummaryPage = ( props ) =>
 					props.records.map((record) => 
 					{
 						return <MemberRecordListItem
+							key={record.id}
 							amount={record.amount}
 							date={record.createdAt}
 							recordType={record.recordType}
@@ -270,21 +287,32 @@ const mapStateToProps = ( state ) =>
 
 	const paymentRecord = selectRecords(allRecords, state.members, state.recordFilters);
 
-	const displayedSeasons = [];
-
-	paymentRecord.forEach(record => {
-		if(!displayedSeasons.includes(record.seasonUuid))
+	const playerSessions = []
+	paymentRecord.forEach(record =>
+	{
+		if(record.recordType === 'SESSION')
 		{
-			displayedSeasons.push(record.seasonUuid);
+			playerSessions.push(record);
+		}
+	});
+
+
+	const sessionSeasons = [];
+
+	state.sessions.forEach(record => {
+		if(!sessionSeasons.includes(record.seasonUuid))
+		{
+			sessionSeasons.push(record.seasonUuid);
 		}
 	});
 
 	return {
-		displayedSeasons: displayedSeasons,
 		members: getVisibleMembers( state.members, state.memberFilters ),
 		records: paymentRecord,
 		recordTotals: recordTotals(paymentRecord),
-		seasons: getVisibleSeasons( state.seasons, state.seasonFilters )
+		seasons: getVisibleSeasons( state.seasons, state.seasonFilters ),
+		sessions: state.sessions,
+		sessionSeasons: sessionSeasons,
 	}
 }
 
