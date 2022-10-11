@@ -8,7 +8,7 @@ import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 import getVisibleRecords from '../selectors/records';
 
-import { getMemberTotals } from '../actions/members';
+import { getMemberTotals } from '../functions/recordTotals';
 import { resetMemberFilters } from '../actions/memberFilters';
 import { resetSeasonFilters } from '../actions/seasonFilters';
 

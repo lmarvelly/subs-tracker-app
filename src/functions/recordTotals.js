@@ -1,3 +1,10 @@
+export const getMemberTotals = ( totals, memberUuid ) =>
+{
+	const index = totals.findIndex( player => player.playerId === memberUuid );
+
+	return totals[index];
+}
+
 export default ( records ) =>
 {
 	const playerTotals = [];
