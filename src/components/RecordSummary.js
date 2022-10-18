@@ -13,28 +13,34 @@ export const RecordSummary = (
 	seasonFilter = '' 
 }) =>
 {
-	console.log(displayedSeasons);
 	const recordWord = recordLength === 1 ? 'record' : 'records';
 
 	const seasonWording = () =>
 	{
 		let season = seasons.find( ( season ) => season.seasonUuid === seasonFilter );
 
-		if( seasonFilter || seasons.length === 1 )
+		if (recordLength !== 0) 
 		{
-			if(!season)
+			if( seasonFilter || seasons.length === 1 )
 			{
-				season = seasons[0];
+				if(!season)
+				{
+					season = seasons[0];
+				}
+				const seasonName = season.seasonName;
+				return (
+					<span>from <span className='bold-font'>{seasonName}</span></span>
+				);
 			}
-			const seasonName = season.seasonName;
-			return (
-				<span>from <span className='bold-font'>{seasonName}</span></span>
-			);
+			else 
+			{
+				const length = displayedSeasons;
+				return (<span>from <span className='bold-font'>{length} seasons</span></span>);
+			}
 		}
-		else 
+		else
 		{
-			const length = displayedSeasons;
-			return (<span>from <span className='bold-font'>{length} seasons</span></span>);
+			return ''
 		}
 	};
 
