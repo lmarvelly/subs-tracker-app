@@ -44,10 +44,6 @@ const MembersSummaryPage = ( props ) =>
 
 	useEffect(() =>
 	{
-		props.resetRecordFilters();
-		props.removeDateFilters(); // This has to be after reset Record Filters
-		props.resetMemberFilters();
-		props.resetSeasonFilters();
 		props.setMemberUuidFilter(memberUuid);
 		setMemberTotals(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 		
@@ -295,7 +291,20 @@ const mapStateToProps = ( state ) =>
 		allRecords = allRecords.concat(state.sessions);	
 	}
 
-	const paymentRecord = selectRecords(allRecords, state.members, state.recordFilters);
+	const defaultRecordFilters =
+	{
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		recordTypeFilter: 'ALL',
+		seasonFilter: '',
+		sessionNameTextFilter: '',
+		sortBy: 'dateAscending',
+	
+		startDate: null,
+		endDate: null
+	};
+
+	const paymentRecord = selectRecords(allRecords, state.members, defaultRecordFilters);
 
 	const playerSessions = []
 	paymentRecord.forEach(record =>
@@ -316,11 +325,23 @@ const mapStateToProps = ( state ) =>
 		}
 	});
 
+	const defaultMemberFilters = 
+	{
+		text: '',
+		sortBy: 'alphabetAsc'
+	};
+
+	const defaultSeasonFilters = 
+	{
+		text: '',
+		sortBy: 'descending'
+	}
+
 	return {
-		members: getVisibleMembers( state.members, state.memberFilters ),
+		members: getVisibleMembers( state.members, defaultMemberFilters ),
 		records: paymentRecord,
 		recordTotals: recordTotals(paymentRecord),
-		seasons: getVisibleSeasons( state.seasons, state.seasonFilters ),
+		seasons: getVisibleSeasons( state.seasons, defaultSeasonFilters ),
 		sessions: state.sessions,
 		sessionSeasons: sessionSeasons,
 	}
