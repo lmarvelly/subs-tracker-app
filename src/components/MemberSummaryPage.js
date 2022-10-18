@@ -22,12 +22,12 @@ import {
 	sortByDateDescending
 } from '../actions/recordFilters';
 
-import selectRecords from '../selectors/records';
 import recordTotals from '../functions/recordTotals';
 
 const MembersSummaryPage = ( props ) =>
 {
 	// TODO: 
+		// FIX DISCOUNT to show correct amount on records
 		// Add date filters
 		// Add page to navbar
 		// Total Session Names
@@ -38,13 +38,29 @@ const MembersSummaryPage = ( props ) =>
 		// Add Seasons to Record List
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
+
 	const [seasonUuid, setSeasonUuid] = useState('');
 	const [memberTotals, setMemberTotals] = useState(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 	const [memberDebt, setMemberDebt] = useState(0);
+	const [records, setRecords] = useState([]);
+
+	const recordFilters =
+	{
+		memberTextFilter: '',
+		playerUuidFilter: memberUuid,
+		recordTypeFilter: 'ALL',
+		seasonFilter: '',
+		sessionNameTextFilter: '',
+		sortBy: 'dateAscending',
+	
+		startDate: null,
+		endDate: null
+	};
 
 	useEffect(() =>
 	{
 		props.setMemberUuidFilter(memberUuid);
+		setRecords(getVisibleRecords(props.records, props.members, recordFilters));
 		setMemberTotals(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 		
 		if( memberTotals.totalDebt > memberTotals.totalPaid )
@@ -106,10 +122,22 @@ const MembersSummaryPage = ( props ) =>
 	{
 		setMemberUuid(e.target.value);
 		props.setMemberUuidFilter(e.target.value);
-		// const index = recordTotals.findIndex( player => player.playerId === record.playerUuid );
-
-		setMemberTotals(getMemberTotals( props.recordTotals, e.target.value ));
+		
+		setRecords(getVisibleRecords(props.records, props.members, { ...recordFilters, playerUuidFilter: e.target.value}));
+		
+		const localMemberTotals = getMemberTotals( props.recordTotals, e.target.value )
+		setMemberTotals( localMemberTotals );
+	
+		if( localMemberTotals.totalDebt > localMemberTotals.totalPaid )
+		{
+			setMemberDebt( localMemberTotals.totalDebt - localMemberTotals.totalPaid );
+		}
+		else
+		{
+			setMemberDebt(0);
+		}
 	});
+
 
 	const onSeasonChange = ((e) =>
 	{
@@ -245,13 +273,13 @@ const MembersSummaryPage = ( props ) =>
 				</div>
 				<div className='list-body'>
 				{
-					props.records.length === 0 ? (
+					records.length === 0 ? (
 						<div className='list-item list-item--message'>
 							<span>No Records</span>
 						</div>
 					)
 					:
-					props.records.map((record) => 
+					records.map((record) => 
 					{
 						return <MemberRecordListItem
 							key={record.id}
@@ -304,7 +332,7 @@ const mapStateToProps = ( state ) =>
 		endDate: null
 	};
 
-	const paymentRecord = selectRecords(allRecords, state.members, defaultRecordFilters);
+	const paymentRecord = getVisibleRecords(allRecords, state.members, defaultRecordFilters);
 
 	const playerSessions = []
 	paymentRecord.forEach(record =>
