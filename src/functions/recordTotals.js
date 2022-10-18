@@ -1,4 +1,4 @@
-export const getMemberTotals = ( totals, memberUuid ) =>
+export const getMemberTotals = ( totals, memberUuid = '' ) =>
 {
 	const index = totals.findIndex( player => player.playerId === memberUuid );
 
@@ -24,7 +24,7 @@ export default ( records ) =>
 				}
 				else
 				{
-					playerTotals[index].totalPaid += record.amount; 
+					playerTotals[index].totalPaid += record.amount;
 				}
 			}
 			else if (record.recordType === 'DEBT') 
@@ -35,7 +35,7 @@ export default ( records ) =>
 				}
 				else
 				{
-					playerTotals[index].totalDebt += record.amount; 
+					playerTotals[index].totalDebt += record.amount;
 				}
 			}
 			else if(record.recordType === 'SESSION')
@@ -54,7 +54,7 @@ export default ( records ) =>
 					}
 					else
 					{
-						playerTotals[index].totalDebt += amountToPay; 
+						playerTotals[index].totalDebt += amountToPay;
 					}
 				});
 			}
@@ -63,3 +63,4 @@ export default ( records ) =>
 	
 	return playerTotals;
 }
+
