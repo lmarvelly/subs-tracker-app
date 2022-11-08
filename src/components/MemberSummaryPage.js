@@ -37,7 +37,6 @@ const MembersSummaryPage = ( props ) =>
 		// Add Seasons to Record List
 
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
-
 	const [seasonUuid, setSeasonUuid] = useState('');
 	const [memberTotals, setMemberTotals] = useState(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 	const [memberDebt, setMemberDebt] = useState(0);
@@ -71,41 +70,46 @@ const MembersSummaryPage = ( props ) =>
 
 	const getSeasonAndSessionTotals = () =>
 	{
-		const sessionsAndSeasons = [];
+		const seasonsSessionTally = [];
 
 		props.sessionSeasons.forEach(season =>
 		{
-			sessionsAndSeasons.push(
+			seasonsSessionTally.push(
 			{ 
 				seasonUuid: season,
 				sessions: []
 			});
 		});
 
+		console.log(seasonsSessionTally);
+
 		props.sessions.forEach(record => 
 		{
+			// Get index of Season so we know where to add tally to
 			const index = props.sessionSeasons.findIndex( currentSeason =>
 			{
 				return currentSeason === record.seasonUuid;
 			});
+		
 
-			// let exists = false;
-			// sessionsAndSeasons[index].sessions.forEach( session =>
-			// {
-			// 	if(session.sessionName === record.sessionName)
-			// 	{
-			// 		exists = true;
-			// 		session.count += 1;
-			// 	}
-			// });
+			let exists = false;
+			seasonsSessionTally[index].sessions.forEach( session =>
+			{
+				// Check if Session Name exists. If it does in
+				if(session.sessionName === record.sessionName)
+				{
+					exists = true;
+					session.count += 1;
+				}
+			});
 
-			// if(!exists)
-			// {
-			// 	sessionsAndSeasons[index].sessions.push({sessionName: record.sessionName, count: 1});
-			// }
+			if(!exists)
+			{
+				seasonsSessionTally[index].sessions.push({sessionName: record.sessionName, count: 1});
+			}
 		});
 
-		// console.log(sessionsAndSeasons);
+		// console.log(seasonsSessionTally);
 	}
 
 	const onMemberChange = ((e) =>
@@ -338,6 +342,10 @@ const mapStateToProps = ( state ) =>
 	});
 
 
+	/**
+	 * Need each a list if the Session's Seasons to calculate 
+	 * the Session totals.
+	 */
 	const sessionSeasons = [];
 
 	state.sessions.forEach(record => {
@@ -365,7 +373,7 @@ const mapStateToProps = ( state ) =>
 		recordTotals: recordTotals(paymentRecord),
 		seasons: getVisibleSeasons( state.seasons, defaultSeasonFilters ),
 		sessions: state.sessions,
-		sessionSeasons: sessionSeasons,
+		sessionSeasons: sessionSeasons
 	}
 }
 
