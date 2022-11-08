@@ -27,7 +27,6 @@ import recordTotals from '../functions/recordTotals';
 const MembersSummaryPage = ( props ) =>
 {
 	// TODO: 
-		// FIX DISCOUNT to show correct amount on records
 		// Add date filters
 		// Add page to navbar
 		// Total Session Names
@@ -85,7 +84,6 @@ const MembersSummaryPage = ( props ) =>
 
 		props.sessions.forEach(record => 
 		{
-			
 			const index = props.sessionSeasons.findIndex( currentSeason =>
 			{
 				return currentSeason === record.seasonUuid;
@@ -109,14 +107,6 @@ const MembersSummaryPage = ( props ) =>
 
 		// console.log(sessionsAndSeasons);
 	}
-
-	// const getMemberTotals = ((memberUuid) =>
-	// {
-	// 	console.log('RECORD TOTALS', props.recordTotals);
-	// 	const index = props.recordTotals.findIndex( player => player.playerId === memberUuid );
-
-	// 	return props.recordTotals[index];
-	// });
 
 	const onMemberChange = ((e) =>
 	{
@@ -284,7 +274,6 @@ const MembersSummaryPage = ( props ) =>
 						const index = record.playerList ? record.playerList.findIndex(player => player.playerUuid === memberUuid) : undefined
 						const discount = record.playerList ? record.playerList[index].discount : undefined
 						const amount = discount ? (record.amount * discount / 100) : record.amount
-						console.log(record.sessionName, ':',discount)
 
 						return <MemberRecordListItem
 							key={record.id}
