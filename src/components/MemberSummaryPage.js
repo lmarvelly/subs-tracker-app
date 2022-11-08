@@ -2,6 +2,7 @@ import React, { useEffect, useState  } from 'react';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
 
+import MemberSeasonSummaryListItem from './MemberSeasonSummaryListItem';
 import MemberRecordListItem from './MemberRecordListItem';
 
 import getVisibleMembers from '../selectors/members';
@@ -247,19 +248,26 @@ const MembersSummaryPage = ( props ) =>
 					</span>
 				</h1>
 
-				<h2>Season 1</h2>
-				<h1 className='page-header__subtitle'>
-					Total attendance:
-				</h1>
-				<h2 className='page-header__subtitle'>
-					Training: <span className='bold-font'>48</span>
-				</h2>
-				<h2 className='page-header__subtitle'>
-					GFSN games: <span className='bold-font'>8</span>
-				</h2>
-				<h2 className='page-header__subtitle'>
-					kickabout: <span className='bold-font'>5</span>
-				</h2>
+				<h1>Attendance:</h1>
+				{
+					seasonsSessionTally.length === 0
+					?
+					<h2>No records</h2>
+					:
+					seasonsSessionTally.map(seasonTally =>
+					{
+						// console.log('Current Season', seasonTally.seasonUuid);
+						const index = props.seasons.findIndex(currentSeason => currentSeason.seasonUuid === seasonTally.seasonUuid);
+
+						// console.log(index);
+						const seasonName = props.seasons[index].seasonName;
+
+						return <MemberSeasonSummaryListItem 
+							seasonName={seasonName} 
+							seasonSessionTotals={seasonTally.sessions}
+						/>
+					})
+				}
 				
 
 				<div className='list-header'>
