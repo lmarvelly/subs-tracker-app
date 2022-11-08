@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MemberSeasonSummaryListItem = (
+const MemberSeasonAttendenceListItem = (
 {
 	seasonName = '',
 	seasonSessionTotals = []
@@ -12,15 +12,15 @@ const MemberSeasonSummaryListItem = (
 			<h2>{`Season: ${seasonName}`}</h2>
 			{
 				seasonSessionTotals.length === 0 ?
-				<h3>No Records</h3>
+				<div className='bold-font'>No Records</div>
 				:
 				seasonSessionTotals.map(session =>
 				{
-					return <h3>{session.sessionName}: {session.count}</h3>
+					return <div className='bold-font'>{session.sessionName}: {session.count}</div>
 				})
 			}
 		</div>
 	);
 };
 
-export default MemberSeasonSummaryListItem;
+export default MemberSeasonAttendenceListItem;

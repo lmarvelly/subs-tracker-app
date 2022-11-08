@@ -2,7 +2,7 @@ import React, { useEffect, useState  } from 'react';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
 
-import MemberSeasonSummaryListItem from './MemberSeasonSummaryListItem';
+import MemberSeasonAttendenceListItem from './MemberSeasonAttendenceListItem';
 import MemberRecordListItem from './MemberRecordListItem';
 
 import getVisibleMembers from '../selectors/members';
@@ -262,7 +262,7 @@ const MembersSummaryPage = ( props ) =>
 						// console.log(index);
 						const seasonName = props.seasons[index].seasonName;
 
-						return <MemberSeasonSummaryListItem 
+						return <MemberSeasonAttendenceListItem 
 							seasonName={seasonName} 
 							seasonSessionTotals={seasonTally.sessions}
 						/>
