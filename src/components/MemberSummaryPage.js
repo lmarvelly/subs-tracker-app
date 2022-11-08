@@ -39,6 +39,7 @@ const MembersSummaryPage = ( props ) =>
 	const [memberUuid, setMemberUuid] = useState(props.members[0].playerUuid);
 	const [seasonUuid, setSeasonUuid] = useState('');
 	const [memberTotals, setMemberTotals] = useState(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
+	const [seasonsSessionTally, setSeasonsSessionTally] = useState([]);
 	const [memberDebt, setMemberDebt] = useState(0);
 	const [records, setRecords] = useState([]);
 
@@ -66,22 +67,21 @@ const MembersSummaryPage = ( props ) =>
 			setMemberDebt( memberTotals.totalDebt - memberTotals.totalPaid );
 		}
 
+		setSeasonsSessionTally(getSeasonAndSessionTotals());
 	}, []);
 
 	const getSeasonAndSessionTotals = () =>
 	{
-		const seasonsSessionTally = [];
+		const tempSeasonsSessionTally = [];
 
 		props.sessionSeasons.forEach(season =>
 		{
-			seasonsSessionTally.push(
+			tempSeasonsSessionTally.push(
 			{ 
 				seasonUuid: season,
 				sessions: []
 			});
 		});
-
-		console.log(seasonsSessionTally);
 
 		props.sessions.forEach(record => 
 		{
@@ -93,9 +93,9 @@ const MembersSummaryPage = ( props ) =>
 		
 
 			let exists = false;
-			seasonsSessionTally[index].sessions.forEach( session =>
+			tempSeasonsSessionTally[index].sessions.forEach( session =>
 			{
-				// Check if Session Name exists. If it does in
+				// Check if Session Name exists increment the count
 				if(session.sessionName === record.sessionName)
 				{
 					exists = true;
@@ -103,13 +103,17 @@ const MembersSummaryPage = ( props ) =>
 				}
 			});
 
+			/**
+			 * If the session name didn't exist add a new session
+			 * object to the tempSeasonsSessionTally array
+			 */ 
 			if(!exists)
 			{
-				seasonsSessionTally[index].sessions.push({sessionName: record.sessionName, count: 1});
+				tempSeasonsSessionTally[index].sessions.push({sessionName: record.sessionName, count: 1});
 			}
 		});
 
-		// console.log(seasonsSessionTally);
+		return tempSeasonsSessionTally;
 	}
 
 	const onMemberChange = ((e) =>
@@ -145,8 +149,6 @@ const MembersSummaryPage = ( props ) =>
 			props.setSeasonFilter(e.target.value);
 		}
 	});
-
-	getSeasonAndSessionTotals();
 
 	return (
 		<div>
