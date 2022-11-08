@@ -281,9 +281,14 @@ const MembersSummaryPage = ( props ) =>
 					:
 					records.map((record) => 
 					{
+						const index = record.playerList ? record.playerList.findIndex(player => player.playerUuid === memberUuid) : undefined
+						const discount = record.playerList ? record.playerList[index].discount : undefined
+						const amount = discount ? (record.amount * discount / 100) : record.amount
+						console.log(record.sessionName, ':',discount)
+
 						return <MemberRecordListItem
 							key={record.id}
-							amount={record.amount}
+							amount={amount}
 							date={record.createdAt}
 							recordType={record.recordType}
 							sessionName={record.sessionName}
