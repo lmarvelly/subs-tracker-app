@@ -248,7 +248,7 @@ const MembersSummaryPage = ( props ) =>
 					</span>
 				</h1>
 
-				<h1>Attendance:</h1>
+				<div className='list-header'>Attendance:</div>
 				{
 					seasonsSessionTally.length === 0
 					?
