@@ -143,14 +143,10 @@ const MembersSummaryPage =(props) =>
 		if( e.target.value === 'ALL' )
 		{
 			props.resetSeasonFilter();
-			// setRecords(getVisibleRecords(props.records, props.members, { ...recordFilters, seasonFilter: ''}));
 		}
 		else
 		{
 			props.setSeasonFilter(e.target.value);
-
-			// here
-			// setRecords(getVisibleRecords(props.records, props.members, { ...recordFilters, seasonFilter: e.target.value}));
 		}
 
 		setSeasonsSessionTally(getSeasonAndSessionTotals())
