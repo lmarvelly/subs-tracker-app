@@ -30,8 +30,6 @@ const MembersSummaryPage = ( props ) =>
 	// TODO: 
 		// Add date filters
 		// Add page to navbar
-		// Total Session Names
-		// Total attendents of each Session name
 		// Test cases for MemberSummaryPage
 		// Test cases for MemberRecordListItem's
 		// Link Records to Edit Record
