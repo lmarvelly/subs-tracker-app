@@ -53,6 +53,11 @@
 	}
 }
 
+.list-itme__row-padding
+{
+	margin: $xs-size;
+}
+
 .list-item--session__row
 {
 	display: flex;
@@ -87,6 +92,12 @@
 {
 	margin: 0;
 	word-break: break-all;
+}
+
+.list-item__title--bold
+{
+	@extend .list-item__title;
+	font-weight: 800;
 }
 
 .list-item__title--light
