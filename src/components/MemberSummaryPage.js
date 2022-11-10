@@ -25,10 +25,7 @@ import {
 
 import recordTotals from '../functions/recordTotals';
 
-const MembersSummaryPage =
-(
-	props
-)=>
+const MembersSummaryPage =(props) =>
 {
 	// TODO: 
 		// Add date filters
@@ -43,7 +40,7 @@ const MembersSummaryPage =
 	const [memberTotals, setMemberTotals] = useState(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 	const [seasonsSessionTally, setSeasonsSessionTally] = useState([]);
 	const [memberDebt, setMemberDebt] = useState(0);
-	const [records, setRecords] = useState([]);
+	// const [records, setRecords] = useState([]);
 
 	const recordFilters =
 	{
@@ -61,7 +58,7 @@ const MembersSummaryPage =
 	useEffect(() =>
 	{
 		props.setMemberUuidFilter(memberUuid);
-		setRecords(getVisibleRecords(props.records, props.members, recordFilters));
+
 		setMemberTotals(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 		
 		if( memberTotals.totalDebt > memberTotals.totalPaid )
@@ -136,7 +133,8 @@ const MembersSummaryPage =
 		setMemberUuid(e.target.value);
 		props.setMemberUuidFilter(e.target.value);
 		
-		setRecords(getVisibleRecords(props.records, props.members, { ...recordFilters, playerUuidFilter: e.target.value}));
+		// setRecords(getVisibleRecords(props.records, props.members, { ...recordFilters, playerUuidFilter: e.target.value}));
+		// setRecords(state.paymentRecord);
 		
 		const localMemberTotals = getMemberTotals( props.recordTotals, e.target.value )
 		setMemberTotals( localMemberTotals );
@@ -155,14 +153,21 @@ const MembersSummaryPage =
 	const onSeasonChange = ((e) =>
 	{
 		setSeasonUuid(e.target.value);
+
 		if( e.target.value === 'ALL' )
 		{
 			props.resetSeasonFilter();
+			// setRecords(getVisibleRecords(props.records, props.members, { ...recordFilters, seasonFilter: ''}));
 		}
 		else
 		{
 			props.setSeasonFilter(e.target.value);
+
+			// here
+			// setRecords(getVisibleRecords(props.records, props.members, { ...recordFilters, seasonFilter: e.target.value}));
 		}
+
+		setSeasonsSessionTally(getSeasonAndSessionTotals())
 	});
 
 	return (
@@ -292,16 +297,16 @@ const MembersSummaryPage =
 				</div>
 				<div className='list-body'>
 				{
-					records.length === 0 ? (
+					props.records.length === 0 ? (
 						<div className='list-item list-item--message'>
 							<span>No Records</span>
 						</div>
 					)
 					:
-					records.map((record) => 
+					props.records.map((record) => 
 					{
-						const index = record.playerList ? record.playerList.findIndex(player => player.playerUuid === memberUuid) : undefined
-						const discount = record.playerList ? record.playerList[index].discount : undefined
+						const index = record.playerList ? record.playerList.findIndex(player => player.playerUuid === memberUuid) : undefined;
+						const discount = (index !== undefined && index !== -1) ? record.playerList[index].discount : undefined;
 						const amount = discount ? (record.amount * discount / 100) : record.amount
 
 						return <MemberRecordListItem
@@ -319,7 +324,7 @@ const MembersSummaryPage =
 	);
 }
 
-const mapDispatchToProps = ( dispatch, props ) => (
+const mapDispatchToProps = (dispatch) => (
 {
 	removeDateFilters: () => dispatch( removeDateFilters() ),
 	resetMemberFilters: () => dispatch( resetMemberFilters() ),
@@ -355,16 +360,17 @@ const mapStateToProps = ( state ) =>
 		endDate: null
 	};
 
-	const paymentRecord = getVisibleRecords(allRecords, state.members, defaultRecordFilters);
+	// const paymentRecord = getVisibleRecords(allRecords, state.members, defaultRecordFilters);
+	const paymentRecord = getVisibleRecords(allRecords, state.members, state.recordFilters);
 
-	const playerSessions = []
-	paymentRecord.forEach(record =>
-	{
-		if(record.recordType === 'SESSION')
-		{
-			playerSessions.push(record);
-		}
-	});
+	// const playerSessions = []
+	// paymentRecord.forEach(record =>
+	// {
+	// 	if(record.recordType === 'SESSION')
+	// 	{
+	// 		playerSessions.push(record);
+	// 	}
+	// });
 
 
 	/**
