@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { startLogout } from '../actions/auth';
 
 // Export named export for testing
 export class Navbar extends Component
@@ -123,8 +121,10 @@ export class Navbar extends Component
 				{
 					!this.state.memberNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav-dropdown' to='/members' activeClassName='is-active'>Members Page </Link>
 							<Link className='button--nav-dropdown' to='/add-member'>Add Member</Link>
+							<Link className='button--nav-dropdown' to='/member-summary-page' activeClassName='is-active'>Members Summary Page</Link>
+							<Link className='button--nav-dropdown' to='/members' activeClassName='is-active'>View/Edit Members</Link>
+
 						</div>
 					)
 				}
