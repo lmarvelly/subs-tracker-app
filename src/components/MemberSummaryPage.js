@@ -25,7 +25,10 @@ import {
 
 import recordTotals from '../functions/recordTotals';
 
-const MembersSummaryPage = ( props ) =>
+const MembersSummaryPage =
+(
+	props
+)=>
 {
 	// TODO: 
 		// Add date filters
@@ -108,7 +111,20 @@ const MembersSummaryPage = ( props ) =>
 			 */ 
 			if(!exists)
 			{
-				tempSeasonsSessionTally[index].sessions.push({sessionName: record.sessionName, count: 1});
+				let sessionUuid;
+				props.sessions.forEach(session =>
+				{
+					if(record.sessionName === session.sessionName)
+					{
+						sessionUuid = session.id
+					}
+				});
+				tempSeasonsSessionTally[index].sessions.push(
+				{
+					sessionUuid: sessionUuid,
+					sessionName: record.sessionName, 
+					count: 1
+				});
 			}
 		});
 
@@ -259,7 +275,9 @@ const MembersSummaryPage = ( props ) =>
 
 						const seasonName = props.seasons[index].seasonName;
 
-						return <MemberSeasonAttendenceListItem 
+						return <MemberSeasonAttendenceListItem
+							key={seasonTally.seasonUuid}
+							seasonUuid={seasonUuid}
 							seasonName={seasonName} 
 							seasonSessionTotals={seasonTally.sessions}
 						/>

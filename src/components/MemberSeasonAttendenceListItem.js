@@ -6,7 +6,6 @@ const MemberSeasonAttendenceListItem = (
 	seasonSessionTotals = []
 }) =>
 {
-	console.log(seasonSessionTotals);
 	return (
 		<div>
 			<div className='list-item'>
@@ -18,7 +17,7 @@ const MemberSeasonAttendenceListItem = (
 					:
 					seasonSessionTotals.map(session =>
 					{
-						return <div>{session.sessionName}: {session.count}</div>
+						return <div key={session.sessionUuid}>{session.sessionName}: {session.count}</div>
 					})
 				}
 				</div>
