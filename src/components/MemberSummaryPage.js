@@ -40,20 +40,6 @@ const MembersSummaryPage =(props) =>
 	const [memberTotals, setMemberTotals] = useState(getMemberTotals(props.recordTotals, props.members[0].playerUuid));
 	const [seasonsSessionTally, setSeasonsSessionTally] = useState([]);
 	const [memberDebt, setMemberDebt] = useState(0);
-	// const [records, setRecords] = useState([]);
-
-	const recordFilters =
-	{
-		memberTextFilter: '',
-		playerUuidFilter: memberUuid,
-		recordTypeFilter: 'ALL',
-		seasonFilter: '',
-		sessionNameTextFilter: '',
-		sortBy: 'dateAscending',
-	
-		startDate: null,
-		endDate: null
-	};
 
 	useEffect(() =>
 	{
@@ -347,31 +333,7 @@ const mapStateToProps = ( state ) =>
 		allRecords = allRecords.concat(state.sessions);	
 	}
 
-	const defaultRecordFilters =
-	{
-		memberTextFilter: '',
-		playerUuidFilter: '',
-		recordTypeFilter: 'ALL',
-		seasonFilter: '',
-		sessionNameTextFilter: '',
-		sortBy: 'dateAscending',
-	
-		startDate: null,
-		endDate: null
-	};
-
-	// const paymentRecord = getVisibleRecords(allRecords, state.members, defaultRecordFilters);
 	const paymentRecord = getVisibleRecords(allRecords, state.members, state.recordFilters);
-
-	// const playerSessions = []
-	// paymentRecord.forEach(record =>
-	// {
-	// 	if(record.recordType === 'SESSION')
-	// 	{
-	// 		playerSessions.push(record);
-	// 	}
-	// });
-
 
 	/**
 	 * Need each a list if the Session's Seasons to calculate 
