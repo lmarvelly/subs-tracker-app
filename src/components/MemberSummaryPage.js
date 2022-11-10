@@ -256,10 +256,8 @@ const MembersSummaryPage = ( props ) =>
 					:
 					seasonsSessionTally.map(seasonTally =>
 					{
-						// console.log('Current Season', seasonTally.seasonUuid);
 						const index = props.seasons.findIndex(currentSeason => currentSeason.seasonUuid === seasonTally.seasonUuid);
 
-						// console.log(index);
 						const seasonName = props.seasons[index].seasonName;
 
 						return <MemberSeasonAttendenceListItem 
