@@ -9,16 +9,20 @@ const MemberSeasonAttendenceListItem = (
 	console.log(seasonSessionTotals);
 	return (
 		<div>
-			<h2>{`Season: ${seasonName}`}</h2>
-			{
-				seasonSessionTotals.length === 0 ?
-				<div className='bold-font'>No Records</div>
-				:
-				seasonSessionTotals.map(session =>
+			<div className='list-item'>
+				<div className='list-item__title--bold'>Season: {seasonName}</div>
+				<div className='list-itme__row-padding'>
 				{
-					return <div className='bold-font'>{session.sessionName}: {session.count}</div>
-				})
-			}
+					seasonSessionTotals.length === 0 ?
+					<div>No Records</div>
+					:
+					seasonSessionTotals.map(session =>
+					{
+						return <div>{session.sessionName}: {session.count}</div>
+					})
+				}
+				</div>
+			</div>
 		</div>
 	);
 };
