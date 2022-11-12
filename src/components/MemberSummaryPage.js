@@ -262,9 +262,7 @@ const MembersSummaryPage =(props) =>
 									key={seasonTally.seasonUuid}
 									seasonName={seasonTally.seasonName} 
 									seasonSessionTotals={seasonTally.sessions}
-								/>	
-
-								// const index = props.seasons.findIndex(currentSeason => currentSeason.seasonUuid === seasonTally.seasonUuid);
+								/>
 							}
 						}
 						else
