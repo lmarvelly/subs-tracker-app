@@ -13,7 +13,7 @@ const MemberSeasonAttendenceListItem = (
 				<div className='list-itme__row-padding'>
 				{
 					seasonSessionTotals.length === 0 ?
-					<div>No Records</div>
+					<div>No sessions attended</div>
 					:
 					seasonSessionTotals.map(session =>
 					{

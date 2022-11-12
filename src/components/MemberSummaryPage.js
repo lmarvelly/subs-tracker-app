@@ -52,31 +52,27 @@ const MembersSummaryPage =(props) =>
 			setMemberDebt( memberTotals.totalDebt - memberTotals.totalPaid );
 		}
 
-		setSeasonsSessionTally(getSeasonAndSessionTotals());
+		getSeasonAndSessionTotals()
 	}, []);
 
 	const getSeasonAndSessionTotals = () =>
 	{
 		const tempSeasonsSessionTally = [];
 
-		props.sessionSeasons.forEach(season =>
+		props.seasons.forEach( season =>
 		{
-			tempSeasonsSessionTally.push(
-			{ 
-				seasonUuid: season,
-				sessions: []
-			});
+			tempSeasonsSessionTally.push({...season, sessions: []});
 		});
 
 		props.sessions.forEach(record => 
 		{
 			// Get index of Season so we know where to add tally to
-			const index = props.sessionSeasons.findIndex( currentSeason =>
+			const index = tempSeasonsSessionTally.findIndex( currentSeason =>
 			{
-				return currentSeason === record.seasonUuid;
+				return currentSeason.seasonUuid == record.seasonUuid;
 			});
-		
 
+			
 			let exists = false;
 			tempSeasonsSessionTally[index].sessions.forEach( session =>
 			{
@@ -111,7 +107,7 @@ const MembersSummaryPage =(props) =>
 			}
 		});
 
-		return tempSeasonsSessionTally;
+		setSeasonsSessionTally(tempSeasonsSessionTally);
 	}
 
 	const onMemberChange = ((e) =>
@@ -149,7 +145,7 @@ const MembersSummaryPage =(props) =>
 			props.setSeasonFilter(e.target.value);
 		}
 
-		setSeasonsSessionTally(getSeasonAndSessionTotals())
+		getSeasonAndSessionTotals()
 	});
 
 	return (
@@ -254,20 +250,34 @@ const MembersSummaryPage =(props) =>
 				{
 					seasonsSessionTally.length === 0
 					?
-					<h2>No records</h2>
+					<h2>No sessions attended</h2>
 					:
 					seasonsSessionTally.map(seasonTally =>
 					{
-						const index = props.seasons.findIndex(currentSeason => currentSeason.seasonUuid === seasonTally.seasonUuid);
+						if (props.seasonFilter) 
+						{
+							if(props.seasonFilter === seasonTally.seasonUuid)
+							{
+								return <MemberSeasonAttendenceListItem
+									key={seasonTally.seasonUuid}
+									seasonName={seasonTally.seasonName} 
+									seasonSessionTotals={seasonTally.sessions}
+								/>	
 
-						const seasonName = props.seasons[index].seasonName;
-
-						return <MemberSeasonAttendenceListItem
-							key={seasonTally.seasonUuid}
-							seasonUuid={seasonUuid}
-							seasonName={seasonName} 
-							seasonSessionTotals={seasonTally.sessions}
-						/>
+								// const index = props.seasons.findIndex(currentSeason => currentSeason.seasonUuid === seasonTally.seasonUuid);
+							}
+						}
+						else
+						{
+							if (seasonTally.sessions.length > 0) 
+							{
+								return <MemberSeasonAttendenceListItem
+									key={seasonTally.seasonUuid}
+									seasonName={seasonTally.seasonName} 
+									seasonSessionTotals={seasonTally.sessions}
+								/>	
+							}
+						}
 					})
 				}
 				</div>
@@ -337,12 +347,19 @@ const mapStateToProps = ( state ) =>
 	 */
 	const sessionSeasons = [];
 
-	state.sessions.forEach(record => {
-		if(!sessionSeasons.includes(record.seasonUuid))
-		{
-			sessionSeasons.push(record.seasonUuid);
-		}
-	});
+	if (state.recordFilters.seasonFilter) 
+	{
+		sessionSeasons.push(state.recordFilters.seasonFilter)
+	}
+	else
+	{
+		state.sessions.forEach(record => {
+			if(!sessionSeasons.includes(record.seasonUuid))
+			{
+				sessionSeasons.push(record.seasonUuid);
+			}
+		});
+	}
 
 	const defaultMemberFilters = 
 	{
@@ -361,6 +378,7 @@ const mapStateToProps = ( state ) =>
 		records: paymentRecord,
 		recordTotals: recordTotals(paymentRecord),
 		seasons: getVisibleSeasons( state.seasons, defaultSeasonFilters ),
+		seasonFilter: state.recordFilters.seasonFilter,
 		sessions: state.sessions,
 		sessionSeasons: sessionSeasons
 	}
