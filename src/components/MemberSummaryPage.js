@@ -341,26 +341,6 @@ const mapStateToProps = ( state ) =>
 
 	const paymentRecord = getVisibleRecords(allRecords, state.members, state.recordFilters);
 
-	/**
-	 * Need each a list if the Session's Seasons to calculate 
-	 * the Session totals.
-	 */
-	const sessionSeasons = [];
-
-	if (state.recordFilters.seasonFilter) 
-	{
-		sessionSeasons.push(state.recordFilters.seasonFilter)
-	}
-	else
-	{
-		state.sessions.forEach(record => {
-			if(!sessionSeasons.includes(record.seasonUuid))
-			{
-				sessionSeasons.push(record.seasonUuid);
-			}
-		});
-	}
-
 	const defaultMemberFilters = 
 	{
 		text: '',
@@ -379,8 +359,7 @@ const mapStateToProps = ( state ) =>
 		recordTotals: recordTotals(paymentRecord),
 		seasons: getVisibleSeasons( state.seasons, defaultSeasonFilters ),
 		seasonFilter: state.recordFilters.seasonFilter,
-		sessions: state.sessions,
-		sessionSeasons: sessionSeasons
+		sessions: state.sessions
 	}
 }
 
