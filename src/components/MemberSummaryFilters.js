@@ -3,6 +3,9 @@ import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
+import getVisibleMembers from '../selectors/members';
+import getVisibleSeasons from '../selectors/seasons';
+
 import {
 	removeDateFilters,
 	resetRecordFilters,
@@ -132,10 +135,14 @@ export class MemberSummaryFilters extends Component
  * MemberSummaryFilters component
  */
  const mapStateToProps = (state) => {
+	const defaultMemberFilters = { text: '', sortBy: 'alphabetAsc' };
+
+	const defaultSeasonFilters = { text: '', sortBy: 'ascending'}
+
 	return {
 		recordFilters: state.recordFilters,
-		members: state.members,
-		seasons: state.seasons
+		members: getVisibleMembers( state.members, defaultMemberFilters ),
+		seasons: getVisibleSeasons( state.seasons, defaultSeasonFilters )
 	};
 };
 
