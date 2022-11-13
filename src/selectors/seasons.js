@@ -1,6 +1,6 @@
 import { textSearch } from "../functions/generalFilterFunctions";
 
-export default ( seasons, { text = '', sortBy } ) =>
+export default ( seasons, { text = '', sortBy = 'descending' } ) =>
 {
 	return seasons.filter( ( season ) => 
 	{

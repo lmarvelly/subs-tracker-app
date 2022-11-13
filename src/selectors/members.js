@@ -1,6 +1,6 @@
 import { textSearch } from "../functions/generalFilterFunctions";
 
-export default ( members, { text = '', sortBy } ) =>
+export default ( members, { text = '', sortBy = 'alphabetAsc' } ) =>
 {
 	return members.filter( ( member )=>
 	{
