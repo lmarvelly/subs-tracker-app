@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MemberSeasonAttendenceListItem = (
+const MemberAttendence = (
 {
 	seasonName = '',
 	seasonSessionTotals = []
@@ -26,4 +26,4 @@ const MemberSeasonAttendenceListItem = (
 	);
 };
 
-export default MemberSeasonAttendenceListItem;
+export default MemberAttendence;
