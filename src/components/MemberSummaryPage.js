@@ -10,11 +10,6 @@ import getVisibleRecords from '../selectors/records';
 
 import { getAttendenceTotals, getMemberTotals } from '../functions/recordTotals';
 
-import {
-	sortByDateAscending,
-	sortByDateDescending
-} from '../actions/recordFilters';
-
 export class MemberSummaryPage extends Component
 {
 	constructor( props )
@@ -35,6 +30,17 @@ export class MemberSummaryPage extends Component
 				</div>
 
 				<MemberSummaryFilters />
+
+				<h1 className='page-header__title'>
+					Total Paid: <span className='bold-font'>£{numeral(this.props.recordTotals.totalPaid / 100).format('0,0.00')}</span>
+				</h1>
+				<h1 className='page-header__title'>
+					Total Outstanding Debt: <span className='bold-font'>£
+					{
+						numeral(this.props.recordTotals.totalDebt / 100).format('0,0.00')
+					}
+					</span>
+				</h1>
 
 				<div className='content-container'>
 					<div className='list-header'>Attendance</div>
