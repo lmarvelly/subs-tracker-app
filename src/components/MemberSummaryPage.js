@@ -15,18 +15,11 @@ import {
 	sortByDateDescending
 } from '../actions/recordFilters';
 
-import recordTotals from '../functions/recordTotals';
-
 export class MemberSummaryPage extends Component
 {
 	constructor( props )
 	{
 		super( props );
-	}
-
-	state =
-	{
-		
 	}
 
 	render()
@@ -96,9 +89,9 @@ const mapStateToProps = ( state ) =>
 	const paymentRecord = getVisibleRecords(allRecords, state.members, state.recordFilters);
 
 	return {
-		memberFilter: state.recordFilters.memberFilter ,
+		memberFilter: state.recordFilters.playerUuidFilter,
 		records: getVisibleRecords( paymentRecord, state.members, state.recordFilters ),
-		recordTotals: recordTotals(paymentRecord),
+		recordTotals: getMemberTotals(paymentRecord, state.recordFilters.playerUuidFilter),
 		sessions: state.sessions
 	}
 }
