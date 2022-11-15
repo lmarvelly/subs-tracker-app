@@ -21,28 +21,64 @@ export const getMemberTotals = ( records, playerUuid = '' ) =>
 			{
 				record.playerList.forEach( currentPlayer =>
 				{
-					console.log(`${currentPlayer.playerUuid} === ${playerUuid} ${currentPlayer.playerUuid === playerUuid}`);
 					if( currentPlayer.playerUuid === playerUuid )
 					{
 						// Converting discount into percentage to be paid
 						const percentageToPay = 100 - currentPlayer.discount;
-						if (currentPlayer.discount) 
-						{
-							console.log(`DISCOUNT SESSION ${record.sessionName}`);
-							console.log(`Player has ${currentPlayer.discount}% discount`);
-						}
 						
 						const amountToPay = record.amount / 100 * percentageToPay
 
 						playerTotals.totalDebt += amountToPay;
 					}
 				});
-				console.log(record.recordType, record.amount , 'TOTAL:', playerTotals);
 			}
 		}
 	});
 	
 	return playerTotals;
+}
+
+export const getAttendenceTotals = ( records ) =>
+{
+	const sessionTally = [];
+
+	/**
+	 * Iterate through records
+	 * 	For each Record check if it's a Session
+	 * 		if Record is a Session
+	 * 			Check if Session is in sessionTally
+	 * 				if doesn't exist ( index === -1 )
+	 * 					add new Session to Tally
+	 * 				if it does exist
+	 * 					add 1 to Session Tally
+	 */
+	records.forEach(record =>
+	{
+		if ( record.recordType === 'SESSION' ) 
+		{
+			const index = sessionTally.findIndex( session => session.sessionName === record.sessionName )
+
+			if (index === -1) 
+			{
+				sessionTally.push(
+				{
+					sessionName: record.sessionName,
+					count: 1
+				})
+			}
+			else
+			{
+				sessionTally[index] =
+				{ 
+					sessionName: record.sessionName,
+					count: sessionTally[index].count++
+				}
+			}
+		}
+		
+	});
+
+	return sessionTally;
 }
 
 
