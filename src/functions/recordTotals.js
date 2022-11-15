@@ -1,3 +1,5 @@
+import uuid from 'uuid';
+
 // Designed for a single players records
 export const getMemberTotals = ( records, playerUuid = '' ) =>
 {
@@ -63,6 +65,7 @@ export const getAttendenceTotals = ( records ) =>
 				sessionTally.push(
 				{
 					sessionName: record.sessionName,
+					sessionUuid: uuid(), // TODO: Refactor to use Sessions Actual UUID
 					count: 1
 				})
 			}
@@ -71,7 +74,8 @@ export const getAttendenceTotals = ( records ) =>
 				sessionTally[index] =
 				{ 
 					sessionName: record.sessionName,
-					count: sessionTally[index].count++
+					sessionUuid: uuid(),
+					count: ++sessionTally[index].count
 				}
 			}
 		}
