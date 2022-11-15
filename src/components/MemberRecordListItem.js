@@ -11,16 +11,17 @@ const MemberRecordListItem = (
 }) =>
 {
 	const className = (recordType === 'PAYMENT') ? 'green' : 'red';
-	const wording = (recordType === 'PAYMENT') ? 'Payment' : 'Debt' ;
+	
+	let type = recordType.toLowerCase();
+	let firstLetter = type.charAt(0).toUpperCase();
+	type = firstLetter + type.slice(1);
 
 	return (
 		<div className='list-item'>
 			<div className='list-item__row'>
-				<div className='bold-font'>{sessionName}</div>
-				<span>{wording}: 
-					<span className={`${className}-font`}>
-						{` £${numeral(amount / 100).format('0,0.00')}` }
-					</span>
+				<div className='bold-font'>{`${type}: `}<span className='normal-font'>{sessionName}</span></div>
+				<span className={`${className}-font`}>
+					{` £${numeral(amount / 100).format('0,0.00')}` }
 				</span>
 			</div>
 			<div className='list-item__row'>
