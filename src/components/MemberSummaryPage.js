@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import numeral from 'numeral';
 
 import MemberRecordListItem from './MemberRecordListItem';
-import MemberSeasonAttendenceListItem from './MemberSeasonAttendenceListItem';
+import MemberAttendence from './MemberAttendence';
 import MemberSummaryFilters from './MemberSummaryFilters';
 
 import getVisibleRecords from '../selectors/records';
@@ -35,6 +35,16 @@ export class MemberSummaryPage extends Component
 				</div>
 
 				<MemberSummaryFilters />
+
+				<div className='content-container'>
+					<div className='list-header'>Attendance</div>
+					<div className='list-body'>
+						<MemberAttendence
+							seasonName={this.props.seasonFilter}
+							seasonSessionTotals={this.props.attendanceTotals}
+						/>
+					</div>
+				</div>
 
 				<div className='content-container'>
 					<div className='list-header'>
@@ -90,11 +100,23 @@ const mapStateToProps = ( state ) =>
 
 	const attendanceTotals = getAttendenceTotals(records);
 
+
+	let seasonFilter; 
+	
+	state.seasons.forEach(season => 
+	{
+		if(season.seasonUuid === state.recordFilters.seasonFilter)
+		{
+			seasonFilter = season.seasonName;
+		}
+	});
+
 	return {
 		attendanceTotals,
 		memberFilter: state.recordFilters.playerUuidFilter,
 		records,
 		recordTotals: getMemberTotals(records, state.recordFilters.playerUuidFilter),
+		seasonFilter: seasonFilter ? seasonFilter : '',
 		sessions: state.sessions
 	}
 }
