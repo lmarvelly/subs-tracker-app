@@ -8,7 +8,7 @@ import MemberSummaryFilters from './MemberSummaryFilters';
 
 import getVisibleRecords from '../selectors/records';
 
-import { getMemberTotals } from '../functions/recordTotals';
+import { getAttendenceTotals, getMemberTotals } from '../functions/recordTotals';
 
 import {
 	sortByDateAscending,
@@ -86,12 +86,15 @@ const mapStateToProps = ( state ) =>
 	}
 
 	// Filter Records
-	const paymentRecord = getVisibleRecords(allRecords, state.members, state.recordFilters);
+	const records = getVisibleRecords(allRecords, state.members, state.recordFilters);
+
+	const attendanceTotals = getAttendenceTotals(records);
 
 	return {
+		attendanceTotals,
 		memberFilter: state.recordFilters.playerUuidFilter,
-		records: getVisibleRecords( paymentRecord, state.members, state.recordFilters ),
-		recordTotals: getMemberTotals(paymentRecord, state.recordFilters.playerUuidFilter),
+		records,
+		recordTotals: getMemberTotals(records, state.recordFilters.playerUuidFilter),
 		sessions: state.sessions
 	}
 }
