@@ -84,8 +84,10 @@ export class MemberSummaryPage extends Component
 
 							return <MemberRecordListItem
 								key={record.id}
+
 								amount={amount}
 								date={record.createdAt}
+								discount={discount}
 								recordType={record.recordType}
 								sessionName={record.sessionName}
 							/>
