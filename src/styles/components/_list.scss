@@ -3,9 +3,24 @@
 	background: $dark-blue;
 	border: 1px solid $dark-blue;
 	color: white;
-	display: flex;
-	justify-content: space-between;
+
+	@media (min-width: $desktop-breakpoint)
+	{
+		display: flex;
+		justify-content: space-between;
+	}
+
 	padding: $s-size $m-size;
+}
+
+.list-header__title
+{
+	@extend .list-header;
+
+	@media (min-width: $desktop-breakpoint)
+	{
+		display: block;
+	}
 }
 
 .list-body
@@ -51,11 +66,6 @@
 		flex-direction: row;
 		justify-content: space-between;
 	}
-}
-
-.list-itme__row-padding
-{
-	margin: $xs-size;
 }
 
 .list-item--session__row

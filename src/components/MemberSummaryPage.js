@@ -31,16 +31,26 @@ export class MemberSummaryPage extends Component
 
 				<MemberSummaryFilters />
 
-				<h1 className='page-header__title'>
-					Total Paid: <span className='bold-font'>£{numeral(this.props.recordTotals.totalPaid / 100).format('0,0.00')}</span>
-				</h1>
-				<h1 className='page-header__title'>
-					Total Outstanding Debt: <span className='bold-font'>£
-					{
-						numeral(this.props.recordTotals.totalDebt / 100).format('0,0.00')
-					}
-					</span>
-				</h1>
+				<div className='content-container'>
+					<div className='list-header__title'>
+						<h2 className='page-header__subtitle'>Season: <span className='bold-font'>{this.props.seasonFilter}</span></h2>
+					</div>
+					
+					<div className='list-body'>
+						<div className='list-item'>
+							<h3 className='page-header__subtitle-2'>
+								Total Paid: <span className='bold-font'>£{numeral(this.props.recordTotals.totalPaid / 100).format('0,0.00')}</span>
+							</h3>
+							<h3 className='page-header__subtitle-2'>
+								Total Outstanding Debt: <span className='bold-font'>£
+								{
+									numeral(this.props.recordTotals.totalDebt / 100).format('0,0.00')
+								}
+								</span>
+							</h3>
+						</div>
+					</div>
+				</div>
 
 				<div className='content-container'>
 					<div className='list-header'>Attendance</div>
