@@ -38,8 +38,6 @@ export class RecordListFilters extends Component {
 	componentDidMount()
 	{
 		this.props.resetRecordFilters();
-		this.props.setStartDate(moment().subtract(1, 'month'));
-		this.props.setEndDate(moment());
 	}
 
 	onDatesChange = ({ startDate, endDate }) => {
