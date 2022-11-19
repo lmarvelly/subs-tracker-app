@@ -35,12 +35,12 @@ const MemberRecordListItem = (
 						<span className='list-item__sub-title'>
 							{moment(date).format("DD-MM-YYYY")}
 						</span>
-						<hr />
+						<br />
 						<span className={`${className}-font`}>
 							{` £${numeral(amount / 100).format('0,0.00')}` }
 						</span>
 						{
-							(discount > 0) && ` (Discount: ${discount}%)`
+							(discount > 0) && ` (${discount}% discount)`
 						}
 					</div>
 				:
