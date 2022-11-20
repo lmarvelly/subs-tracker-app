@@ -12,8 +12,6 @@ export class SessionFormItem extends Component
 			expand: false,
 			discount: props.discount ? props.discount : ''
 		}
-
-		console.log(`${this.props.firstName} ${this.props.surname}, ${this.state.attending}`);
 	}
 
 	onAttend = (e) =>
