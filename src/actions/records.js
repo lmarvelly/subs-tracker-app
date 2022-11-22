@@ -72,7 +72,7 @@ export const startAddRecord = ( recordData = {} ) =>
 		}
 
 		// Added return statement here for chaining together promises in records.test.js
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}`)
 			.push(record)
 			.then((ref) =>
 			{
@@ -98,12 +98,12 @@ export const editRecord = ( id, updates ) =>
 	updates
 })
 
-export const startEditRecord = ( id, updates ) =>
+export const startEditRecord = ( id, seasonUuid, updates ) =>
 {
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}/${id}`)
 			.update(updates)
 			.then(() => dispatch(editRecord(id, updates)));
 	}
@@ -121,12 +121,12 @@ export const removeRecord = ( { id } = {} ) =>
 	id
 });
 
-export const startRemoveRecord = ({ id } = {}) =>
+export const startRemoveRecord = ({ id, seasonUuid } = {}) =>
 {
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}/${id}`)
 			.remove()
 			.then((ref) =>
 			{
@@ -144,12 +144,12 @@ export const setRecords = ( records ) => (
 	records
 });
 
-export const startSetRecords = () =>
+export const startSetRecords = (seasonUuid) =>
 {
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments`)
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}`)
 			.once('value')
 			.then((snapshot) =>
 			{
