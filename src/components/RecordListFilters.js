@@ -3,6 +3,8 @@ import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
+import { startSetRecords } from '../actions/records';
+
 import {
 	resetRecordFilters,
 	setRecordTypeFilter,
@@ -43,8 +45,11 @@ export class RecordListFilters extends Component
 
 	componentDidMount()
 	{
+		const seasonFilter = this.props.recordFilters.seasonFilter;
 		this.props.resetRecordFilters();
-		this.props.setSeasonFilter(this.props.seasons[0].seasonUuid);
+		!!seasonFilter ? this.props.setSeasonFilter(seasonFilter) : this.props.setSeasonFilter(this.props.seasons[0].seasonUuid);
+		
+		this.props.startSetRecords(this.props.seasons[0].seasonUuid);
 	}
 
 	onDatesChange = ({ startDate, endDate }) => {
@@ -72,6 +77,7 @@ export class RecordListFilters extends Component
 
 	onSeasonChange = (e) => {
 		this.props.setSeasonFilter(e.target.value);
+		this.props.startSetRecords(e.target.value);
 	}
 
 	onSortChange = (e) => {
@@ -145,7 +151,7 @@ export class RecordListFilters extends Component
 					<div className='input-group__item'>
 						<select
 							className='select'
-							value={this.props.recordFilters.seasonUuid}
+							value={this.props.recordFilters.seasonFilter}
 							onChange=
 							{this.onSeasonChange}
 						>
@@ -232,6 +238,7 @@ const mapDispatchToProps = (dispatch) =>
 	setSeasonFilter: (seasonUuid) => dispatch(setSeasonFilter(seasonUuid)),
 	sortByDateAscending: () => dispatch(sortByDateAscending()),
 	sortByDateDescending: () => dispatch(sortByDateDescending()),
+	startSetRecords: ( seasonUuid ) => dispatch(startSetRecords(seasonUuid))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecordListFilters);

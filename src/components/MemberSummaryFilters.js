@@ -6,6 +6,8 @@ import moment from 'moment';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 
+import { startSetRecords } from '../actions/records';
+
 import {
 	removeDateFilters,
 	resetRecordFilters,
@@ -25,15 +27,16 @@ export class MemberSummaryFilters extends Component
 
 	state = 
 	{
-		memberFilter: this.props.members[0].playerUuid,
-		seasonFilter: this.props.seasons[0].seasonUuid
+		memberFilter: this.props.members[0].playerUuid
 	}
 
 	componentDidMount()
 	{
+		const seasonFilter = this.props.recordFilters.seasonFilter;
 		this.props.resetRecordFilters();
 		this.props.setMemberUuidFilter(this.props.members[0].playerUuid);
-		this.props.setSeasonFilter(this.props.seasons[0].seasonUuid);
+		this.props.setSeasonFilter( seasonFilter );
+		this.props.startSetRecords( seasonFilter )
 	}
 
 	onMemberChange = (e) =>
@@ -45,9 +48,7 @@ export class MemberSummaryFilters extends Component
 
 	onSeasonChange = (e) =>
 	{
-		const seasonFilter = e.target.value;
-		this.props.setSeasonFilter( seasonFilter );
-		this.setState(() => ({ seasonFilter }));
+		this.props.setSeasonFilter( e.target.value );
 	}
 
 	render()
@@ -105,7 +106,7 @@ export class MemberSummaryFilters extends Component
 								id='seasonName'
 								className={`select`}
 								onChange={ this.onSeasonChange }
-								value={ this.state.seasonFilter }
+								value={ this.props.recordFilters.seasonFilter }
 							>
 								{
 									this.props.seasons.map( (season) =>
@@ -154,7 +155,8 @@ const mapDispatchToProps = (dispatch) => (
 	resetSeasonFilter: () => dispatch( resetSeasonFilter() ), // Season record filter
 	resetRecordFilters: () => dispatch( resetRecordFilters() ),
 	setMemberUuidFilter: (playerUuid) => dispatch(setMemberUuidFilter(playerUuid)),
-	setSeasonFilter: (seasonUuid) => dispatch(setSeasonFilter(seasonUuid))
+	setSeasonFilter: ( seasonUuid ) => dispatch(setSeasonFilter(seasonUuid)),
+	startSetRecords: ( seasonUuid ) => dispatch(startSetRecords(seasonUuid))
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( MemberSummaryFilters );
