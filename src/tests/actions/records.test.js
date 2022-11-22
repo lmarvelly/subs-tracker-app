@@ -297,7 +297,6 @@ test('should edit a Debt record on the database', (done) =>
 			return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}/${id}`).once('value');
 		}).then((snapshot) =>
 		{
-			console.log('VALUE:', snapshot.val());
 			expect(snapshot.val().amount).toBe(500);
 			done();
 		});
