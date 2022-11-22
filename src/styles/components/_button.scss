@@ -62,6 +62,20 @@
 	}
 }
 
+.button-small--load-more
+{
+	@extend .button-small;
+	background: $red;
+	width: 16rem;
+
+	&:hover, &:focus
+	{
+		background: none;
+		color: $red;
+		border: 1px solid red;
+	}
+}
+
 .button-small--form
 {
 	@extend .button;
