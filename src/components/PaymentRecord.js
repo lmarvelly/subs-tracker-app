@@ -36,6 +36,17 @@ export const PaymentRecord = (props) =>
 		
 	}, [props.allRecords]);
 
+	useEffect(() =>
+	{
+		setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
+		
+	}, [amountToLoad]);
+
+	const handleLoadMore = () =>
+	{
+		setAmountToLoad( amountToLoad + 50 );
+	}
+
 	const getPlayerName = ( playerUuid ) =>
 	{
 		const member = props.members.find( (member) => playerUuid === member.playerUuid );
@@ -110,6 +121,9 @@ export const PaymentRecord = (props) =>
 							)
 						}
 					})
+				}
+				{
+					( props.allRecords > recordsToLoad) && <button onClick={handleLoadMore}>Load 50 more</button>
 				}
 			</div>
 		</div>
