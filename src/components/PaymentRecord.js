@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { startEditRecord } from '../actions/records';
@@ -7,10 +7,34 @@ import RecordListItem from './RecordListItem';
 
 export const PaymentRecord = (props) => 
 {
-	const onSubmit = ( record ) =>
+	const [amountToLoad, setAmountToLoad] = useState(50);
+	const [recordsToLoad, setRecordsToLoad] = useState([]);
+
+	useEffect(() =>
 	{
-		props.startEditRecord( record );
-	};
+		if(props.allRecords.length < 50)
+		{
+			setRecordsToLoad( props.allRecords);
+		}
+		else
+		{
+			setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
+		}
+		
+	}, []);
+
+	useEffect(() =>
+	{
+		if(props.allRecords.length < 50)
+		{
+			setRecordsToLoad( props.allRecords);
+		}
+		else
+		{
+			setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
+		}
+		
+	}, [props.allRecords]);
 
 	const getPlayerName = ( playerUuid ) =>
 	{
@@ -45,13 +69,13 @@ export const PaymentRecord = (props) =>
 			</div>
 			<div className='list-body'>
 				{
-					props.allRecords.length === 0 ? (
+					amountToLoad === 0 ? (
 						<div className='list-item list-item--message'>
 							<span>No Records</span>
 						</div> 
 					)
 					:
-					props.allRecords.map(( record ) =>
+					recordsToLoad.map(( record ) =>
 					{
 						const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid );
 
@@ -67,8 +91,7 @@ export const PaymentRecord = (props) =>
 									record={record}
 									recordType={record.recordType}
 									seasonName={season.seasonName}
-									{...record} 
-									onSubmit={onSubmit}
+									{...record}
 								/>
 							)
 						}
@@ -82,8 +105,7 @@ export const PaymentRecord = (props) =>
 									playerNameList={playerNameList}
 									recordType={record.recordType}
 									seasonName={season.seasonName}
-									{...record} 
-									onSubmit={onSubmit}
+									{...record}
 								/>
 							)
 						}
