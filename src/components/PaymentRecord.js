@@ -12,28 +12,12 @@ export const PaymentRecord = (props) =>
 
 	useEffect(() =>
 	{
-		if(props.allRecords.length < 50)
-		{
-			setRecordsToLoad( props.allRecords);
-		}
-		else
-		{
-			setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
-		}
-		
+		setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
 	}, []);
 
 	useEffect(() =>
 	{
-		if(props.allRecords.length < 50)
-		{
-			setRecordsToLoad( props.allRecords);
-		}
-		else
-		{
-			setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
-		}
-		
+		setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
 	}, [props.allRecords]);
 
 	useEffect(() =>
@@ -123,7 +107,16 @@ export const PaymentRecord = (props) =>
 					})
 				}
 				{
-					( props.allRecords > recordsToLoad) && <button onClick={handleLoadMore}>Load 50 more</button>
+					( props.allRecords > recordsToLoad) 
+					&& 
+					<div className='margin-top-medium'>
+						<button 
+							className='button-small--load-more' 
+							onClick={handleLoadMore}
+						>
+							Load 50 more
+						</button>
+					</div>
 				}
 			</div>
 		</div>
