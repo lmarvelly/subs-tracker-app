@@ -194,18 +194,20 @@ test('should add Record with defaults to Database and Store', (done) =>
 			record: 
 			{
 				id: expect.any(String),
-				...defaultRecord
+				...defaultRecord,
+				seasonUuid: 'undefined'
 			}
 		});
 		
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${actions[0].record.id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/undefined/${actions[0].record.id}`).once('value');
 	});
 	
 	promise.then((snapshot) =>
 	{
 		expect(snapshot.val()).toEqual(
 		{
-			...defaultRecord 
+			...defaultRecord,
+			seasonUuid: 'undefined'
 		});
 		done();
 	});
@@ -221,81 +223,82 @@ test('should setup set record action object with data', () =>
 	});
 });
 
-// /**
-//  * Use done to tell jest that this test is a failier if done() is
-//  * not called
-//  */ 
-// test('should fetch records from firebase', (done) =>
-// { 
-// 	const store = createMockStore(defaultAuthState);
+/**
+ * Use done to tell jest that this test is a failier if done() is
+ * not called
+ */ 
+test('should fetch records from firebase', (done) =>
+{
+	const store = createMockStore(defaultAuthState);
 
-// 	store.dispatch(startSetRecords(seasons[2].seasonUuid)).then(() =>
-// 	{
-// 		const actions = store.getActions();
+	store.dispatch(startSetRecords(seasons[2].seasonUuid)).then(() =>
+	{
+		const actions = store.getActions();
 
-// 		console.log(actions);
-// 		expect(actions[0]).toEqual(
-// 		{
-// 			type: 'SET_RECORDS',
-// 			records
-// 		});
-// 		done();
-// 	});
-// });
+		expect(actions[0]).toEqual(
+		{
+			type: 'SET_RECORDS',
+			records: [records[0], records[2]]
+		});
+		done();
+	});
+});
 
-// test('should remove a record from test database', (done) => 
-// {
-// 	const store = createMockStore(defaultAuthState);
-// 	const id = records[0].id;
-// 	const seasonUuid = records[0].seasonUuid;
+test('should remove a record from test database', (done) => 
+{
+	const store = createMockStore(defaultAuthState);
+	const id = records[0].id;
+	const seasonUuid = records[0].seasonUuid;
 
-// 	store.dispatch(startRemoveRecord({ id, seasonUuid }))
-// 	.then(() =>
-// 	{
-// 		const actions = store.getActions();
-// 		expect(actions[0]).toEqual(
-// 		{
-// 			type: 'REMOVE_RECORD',
-// 			id
-// 		});
-// 		// Return the value a single time
-// 		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${id}`).once('value');
-// 	})
-// 	.then((snapshot) =>
-// 	{
-// 		expect(snapshot.val()).toBeFalsy();
-// 		done();
-// 	});
-// });
+	store.dispatch(startRemoveRecord({ id, seasonUuid }))
+	.then(() =>
+	{
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(
+		{
+			type: 'REMOVE_RECORD',
+			id
+		});
+		// Return the value a single time
+		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}/${id}`).once('value');
+	})
+	.then((snapshot) =>
+	{
+		expect(snapshot.val()).toBeFalsy();
+		done();
+	});
+});
 
-// // Editing fine but not returning promise for snapshot
-// test('should edit a Debt record on the database', (done) => 
-// {
-// 	const store = createMockStore(defaultAuthState);
-// 	const id = records[0].id;
-// 	const updates = 
-// 	{
-// 		amount: 500
-// 	}
+// Editing fine but not returning promise for snapshot
+test('should edit a Debt record on the database', (done) => 
+{
+	const store = createMockStore(defaultAuthState);
+	const id = records[0].id;
+	const seasonUuid = records[0].seasonUuid;
+	const updates = 
+	{
+		amount: 500
+	}
 
-// 	const promise = store.dispatch(startEditRecord(id, records[0].seasonUuid, updates))
-// 		.then(() =>
-// 		{
-// 			const actions = store.getActions();
-// 			expect(actions[0]).toEqual(
-// 			{
-// 				type: 'EDIT_RECORD',
-// 				id,
-// 				updates:
-// 				{
-// 					...updates
-// 				}
-// 			});
+	const promise = store.dispatch(startEditRecord(id, seasonUuid, updates))
+		.then(() =>
+		{
+			const actions = store.getActions();
+			expect(actions[0]).toEqual(
+			{
+				type: 'EDIT_RECORD',
+				id,
+				updates:
+				{
+					...updates
+				}
+			});
 
-// 			return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${records[0].seasonUuid}/${id}`).once('value');
-// 		}).then((snapshot) =>
-// 		{
-// 			expect(snapshot.val().amount).toBe(500);
-// 			done();
-// 		});
-// });
+			return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}/${id}`).once('value');
+		}).then((snapshot) =>
+		{
+			console.log('VALUE:', snapshot.val());
+			expect(snapshot.val().amount).toBe(500);
+			done();
+		});
+});
