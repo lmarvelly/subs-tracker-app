@@ -146,25 +146,64 @@ export const setRecords = ( records ) => (
 
 export const startSetRecords = (seasonUuid) =>
 {
-	return ( dispatch, getState ) =>
+	if (!seasonUuid) 
 	{
-		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}`)
-			.once('value')
-			.then((snapshot) =>
-			{
-				const records = [];
+		return ( dispatch, getState ) =>
+		{
+			const uid = getState().auth.uid;
+			const seasons = [];
 
-				snapshot.forEach((childSnapshot) =>
+			database.ref(`subs-tracker/users/${uid}/seasons`)
+				.once('value')
+				.then((snapshot) =>
 				{
-					records.push(
+					snapshot.forEach((childSnapshot) =>
 					{
-						id: childSnapshot.key,
-						...childSnapshot.val()
-					});
+						seasons.push(childSnapshot.key);
+					})
 				});
 
-				dispatch(setRecords( records ));
-			});
-	};
+			return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasons[0]}`)
+				.once('value')
+				.then((snapshot) =>
+				{
+					const records = [];
+
+					snapshot.forEach((childSnapshot) =>
+					{
+						records.push(
+						{
+							id: childSnapshot.key,
+							...childSnapshot.val()
+						});
+					});
+
+					dispatch(setRecords( records ));
+				});
+		};
+	}
+	else
+	{
+		return ( dispatch, getState ) =>
+		{
+			const uid = getState().auth.uid;
+			return database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}`)
+				.once('value')
+				.then((snapshot) =>
+				{
+					const records = [];
+
+					snapshot.forEach((childSnapshot) =>
+					{
+						records.push(
+						{
+							id: childSnapshot.key,
+							...childSnapshot.val()
+						});
+					});
+
+					dispatch(setRecords( records ));
+				});
+		};
+	}
 };

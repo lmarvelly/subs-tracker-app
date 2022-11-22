@@ -29,15 +29,22 @@ import {
  * 
  * @returns 
  */
-export class RecordListFilters extends Component {
+export class RecordListFilters extends Component 
+{
+	constructor( props )
+	{
+		super( props );
+	}
+
 	state =
 	{
-		calenderFocused: null
+		calenderFocused: null,
 	}
 
 	componentDidMount()
 	{
 		this.props.resetRecordFilters();
+		this.props.setSeasonFilter(this.props.seasons[0].seasonUuid);
 	}
 
 	onDatesChange = ({ startDate, endDate }) => {
@@ -142,8 +149,6 @@ export class RecordListFilters extends Component {
 							onChange=
 							{this.onSeasonChange}
 						>
-							<option hidden>Filter by season</option>
-							<option value=''>Show All</option>
 							{
 								this.props.seasons.map((season) => {
 									return (
