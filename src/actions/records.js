@@ -57,7 +57,7 @@ export const startAddRecord = ( recordData = {} ) =>
 		const {
 			recordType = 'PAYMENT',
 			playerUuid = '',
-			seasonUuid = '',
+			seasonUuid = 'undefined',
 			sessionName = '',
 			note = '',  
 			createdAt = 0,
