@@ -117,7 +117,7 @@ export class RecordListFilters extends Component
 							<option value="ALL">All</option>
 							<option value="DEBT">Individual Debts</option>
 							<option value="PAYMENT">Payments</option>
-							<option value="SESSIONS" >Sessions</option>
+							<option value="SESSION" >Sessions</option>
 						</select>
 					</div>
 					<div className='input-group__item'>
