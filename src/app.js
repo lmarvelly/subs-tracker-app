@@ -13,6 +13,7 @@ import { startSetRecords } from './actions/records';
 import { sortAlphabetAsc } from './actions/memberFilters';
 import { startSetMembers } from './actions/members';
 import { startSetSeasons } from './actions/seasons';
+import { sortAsc } from './actions/seasonFilters';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css'; // Normalizes all styles starting points on all browsers.
 import './styles/styles.scss'; // SASS styles form
@@ -64,11 +65,12 @@ firebase.auth().onAuthStateChanged((user) =>
 		store.dispatch(startSetSessionName());
 		store.dispatch(startSetPaymentTypes());
 		store.dispatch(startSetMembers());
-		store.dispatch(startSetSeasons());
-		store.dispatch(startSetRecords())
+		store.dispatch(startSetSeasons())
+		// store.dispatch(startSetRecords(store.getState().seasons[0])) // Doesn't work
 			.then(() =>
 			{
-				store.dispatch( sortAlphabetAsc() ); // Should sort Member alphabetically
+				store.dispatch( sortAlphabetAsc() ); // Sort Members alphabetically
+				store.dispatch( sortAsc() ); // Sort Seasons alphabetically
 				renderApp();
 				if(history.location.pathname === '/')
 				{

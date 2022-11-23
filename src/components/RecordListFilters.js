@@ -3,6 +3,8 @@ import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
+import getVisibleSeasons from '../selectors/seasons';
+
 import { startSetRecords } from '../actions/records';
 
 import {
@@ -96,7 +98,6 @@ export class RecordListFilters extends Component
 	}
 
 	onRecordTypeChange = ( e ) => {
-		console.log('RECORD TYPE:', e.target.value);
 		this.props.setRecordTypeFilter(e.target.value);
 	}
 
@@ -212,10 +213,12 @@ export class RecordListFilters extends Component
  * RecordListFilters component
  */
 const mapStateToProps = (state) => {
+	const defaultSeasonFilters = { text: '', sortBy: 'ascending'}
+
 	return {
 		recordFilters: state.recordFilters,
 		members: state.members,
-		seasons: state.seasons
+		seasons: getVisibleSeasons( state.seasons, defaultSeasonFilters )
 	};
 };
 
