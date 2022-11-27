@@ -64,7 +64,7 @@ export const PaymentRecord = (props) =>
 			</div>
 			<div className='list-body'>
 				{
-					amountToLoad === 0 ? (
+					recordsToLoad.length === 0 ? (
 						<div className='list-item list-item--message'>
 							<span>No Records</span>
 						</div> 
