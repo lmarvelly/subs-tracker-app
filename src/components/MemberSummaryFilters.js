@@ -7,6 +7,7 @@ import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 
 import { startSetRecords } from '../actions/records';
+import { startSetSessions } from '../actions/sessions';
 
 import {
 	removeDateFilters,
@@ -36,7 +37,8 @@ export class MemberSummaryFilters extends Component
 		this.props.resetRecordFilters();
 		this.props.setMemberUuidFilter(this.props.members[0].playerUuid);
 		this.props.setSeasonFilter( seasonFilter );
-		this.props.startSetRecords( seasonFilter )
+		this.props.startSetRecords( seasonFilter );
+		this.props.startSetSessions( seasonFilter );
 	}
 
 	onMemberChange = (e) =>
@@ -49,6 +51,8 @@ export class MemberSummaryFilters extends Component
 	onSeasonChange = (e) =>
 	{
 		this.props.setSeasonFilter( e.target.value );
+		this.props.startSetRecords( e.target.value );
+		this.props.startSetSessions( e.target.value );
 	}
 
 	render()
@@ -156,7 +160,8 @@ const mapDispatchToProps = (dispatch) => (
 	resetRecordFilters: () => dispatch( resetRecordFilters() ),
 	setMemberUuidFilter: (playerUuid) => dispatch(setMemberUuidFilter(playerUuid)),
 	setSeasonFilter: ( seasonUuid ) => dispatch(setSeasonFilter(seasonUuid)),
-	startSetRecords: ( seasonUuid ) => dispatch(startSetRecords(seasonUuid))
+	startSetRecords: ( seasonUuid ) => dispatch(startSetRecords(seasonUuid)),
+	startSetSessions: ( seasonUuid ) => dispatch(startSetSessions(seasonUuid))
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( MemberSummaryFilters );
