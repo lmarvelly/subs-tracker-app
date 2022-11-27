@@ -6,8 +6,6 @@ import { startAddRecord } from '../actions/records';
 import { startAddSessionName } from '../actions/sessionNames';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
-import { sortAlphabetAsc } from '../actions/memberFilters';
-import { sortDesc } from '../actions/seasonFilters';
 
 /**
  * Use classes to avoid inline functions. This avoids rerendering
@@ -20,9 +18,6 @@ export class AddRecordPage extends Component
 	constructor(props) 
 	{
 		super(props);
-
-		this.props.sortMembersAlphabetAsc();
-		this.props.sortSeasonsAlphabetDesc();
 
 		this.state =
 		{
@@ -86,10 +81,11 @@ const mapStateToProps = (state, props) =>
 {
 	// Use default filters to make sure no Members or Seasons are filtered out
 	const defaultMemberFilterState = { text: '', sortBy: 'alphabetAsc' };
-	const defaultSeasonFilterState = { text: '', sortBy: 'descending' };
+	const defaultSeasonFilterState = { text: '', sortBy: 'ascending' };
 	return {
-		members: getVisibleMembers(state.members, defaultMemberFilterState),
-		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState),
+		recordFilters: state.recordFilters,
+		members: getVisibleMembers( state.members, defaultMemberFilterState ),
+		seasons: getVisibleSeasons( state.seasons, defaultSeasonFilterState ),
 		sessionNames: state.sessionNames
 	}
 }
@@ -108,9 +104,7 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch) => (
 {
 	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
-	startAddRecord: (record) => dispatch(startAddRecord(record)),
-	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
-	sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
+	startAddRecord: (record) => dispatch(startAddRecord(record))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRecordPage);
