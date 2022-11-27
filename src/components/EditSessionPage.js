@@ -50,7 +50,8 @@ export class EditSessionPage extends Component
 	onRemove = () =>
 	{
 		const removed = confirm('Are you sure want to remove session?') &&
-		this.props.startRemoveSession({ id: this.props.session.id });
+		this.props.startRemoveSession( this.props.session );
+
 		if(removed)
 		{
 			this.props.history.push('/');
@@ -110,8 +111,8 @@ const mapStateToProps = ( state, props ) =>
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
-	startEditSession: ( session ) => dispatch( startEditSession( session.id, session ) ),
-	startRemoveSession: ( data ) => dispatch( startRemoveSession(data) ),
+	startEditSession: ( session ) => dispatch( startEditSession( session.id, session.seasonUuid, session ) ),
+	startRemoveSession: ( session ) => dispatch( startRemoveSession( session.id, session.seasonUuid ) ),
 	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
 	sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
 });

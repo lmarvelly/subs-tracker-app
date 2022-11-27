@@ -124,6 +124,22 @@ test('should fetch Sessions from database', (done) =>
 	})
 });
 
+test('should fetch Default Sessions from database', (done) =>
+{
+	const store = createMockStore(defaultAuthState);
+
+	store.dispatch(startSetSessions()).then(() =>
+	{
+		const actions = store.getActions();
+		expect( actions[0] ).toEqual(
+		{
+			type: 'SET_SESSIONS',
+			sessions: [ records[0], records[2] ]
+		});
+		done();
+	})
+});
+
 test('should create an Edit Action Generator', () =>
 {
 	const action = editSession(
@@ -149,12 +165,13 @@ test('Should Edit a Session in the Database', (done) =>
 	const store = createMockStore(defaultAuthState);
 	const id = sessions[0].id;
 	const playerUuid = sessions[0].playerList[1].playerUuid;
+	const seasonUuid = sessions[0].seasonUuid;
 	const updates = 
 	{
 		playerList: [{discount: 50, playerUuid}]
 	};
 
-	store.dispatch(startEditSession(id, updates))
+	store.dispatch(startEditSession(id, seasonUuid, updates))
 		.then(() =>
 		{
 			const actions = store.getActions();
@@ -189,8 +206,9 @@ test('should Remove a Session Object from the Database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 	const id = sessions[0].id;
+	const seasonUuid = sessions[0].seasonUuid;
 
-	store.dispatch(startRemoveSession({ id }))
+	store.dispatch(startRemoveSession(id, seasonUuid))
 	.then(() =>
 	{
 		const actions = store.getActions();
@@ -200,7 +218,7 @@ test('should Remove a Session Object from the Database', (done) =>
 			id
 		});
 
-		return database.ref(`subs-tracker/users/${uid}/sessions/${id}`).once('value');
+		return database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}/${id}`).once('value');
 	})
 	.then((snapshot) =>
 	{

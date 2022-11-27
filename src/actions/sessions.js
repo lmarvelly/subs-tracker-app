@@ -139,12 +139,12 @@ export const editSession = ( id, updates ) => (
 	updates
 });
 
-export const startEditSession = ( id, updates ) =>
+export const startEditSession = ( id, seasonUuid, updates ) =>
 {
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/sessions/${id}`)
+		return database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}/${id}`)
 			.update(updates)
 			.then(() => dispatch(editSession(id, updates)));
 	};
@@ -156,13 +156,13 @@ export const removeSession = ( { id } = {} ) => (
 	id
 });
 
-export const startRemoveSession = ( { id } = {} ) =>
+export const startRemoveSession = ( id, seasonUuid ) =>
 {
 	return ( dispatch, getState ) =>
 	{
 		const uid = getState().auth.uid;
 
-		return database.ref(`subs-tracker/users/${uid}/sessions/${id}`)
+		return database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}/${id}`)
 			.remove()
 			.then((ref) =>
 			{
