@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'; // To connect to the store
 import { DateRangePicker } from 'react-dates';
-import moment from 'moment';
 
 import getVisibleSeasons from '../selectors/seasons';
 
@@ -51,9 +50,6 @@ export class RecordListFilters extends Component
 		const seasonFilter = this.props.recordFilters.seasonFilter;
 		this.props.resetRecordFilters();
 		!!seasonFilter ? this.props.setSeasonFilter(seasonFilter) : this.props.setSeasonFilter(this.props.seasons[0].seasonUuid);
-		
-		this.props.startSetRecords(this.props.seasons[0].seasonUuid);
-		this.props.startSetSessions(this.props.seasons[0].seasonUuid);
 	}
 
 	onDatesChange = ({ startDate, endDate }) => {

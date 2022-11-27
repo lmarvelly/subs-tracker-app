@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { startEditRecord } from '../actions/records';
+import { startEditRecord, startSetRecords } from '../actions/records';
+import { startSetSessions } from '../actions/sessions';
+
 import selectRecords from '../selectors/records';
 import RecordListItem from './RecordListItem';
 
@@ -12,6 +14,10 @@ export const PaymentRecord = (props) =>
 
 	useEffect(() =>
 	{
+		const seasonFilter = props.recordFilters.seasonFilter;
+		props.startSetRecords(seasonFilter);
+		props.startSetSessions(seasonFilter);
+
 		setRecordsToLoad( props.allRecords.slice(0, amountToLoad) );
 	}, []);
 
@@ -146,12 +152,15 @@ const mapStateToProps = (state) =>
 		members: state.members,
 		seasons: state.seasons,
 		sessions: state.sessions,
-		allRecords: selectRecords(allRecords, state.members, state.recordFilters)
+		allRecords: selectRecords(allRecords, state.members, state.recordFilters),
+		recordFilters: state.recordFilters
 	}
 };
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
+	startSetRecords: ( seasonUuid ) => dispatch( startSetRecords( seasonUuid ) ), 
+	startSetSessions: ( seasonUuid ) => dispatch( startSetSessions( seasonUuid ) ),
 	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record.recordType, record ) )
 });
 
