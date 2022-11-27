@@ -80,7 +80,7 @@ const mapStateToProps = ( state, props ) =>
 {
 	// Use default filters to make sure no Members or Seasons are filtered out
 	const defaultMemberFilterState = { text: '', sortBy: 'alphabetAsc' };
-	const defaultSeasonFilterState = { text: '', sortBy: 'descending' };
+	const defaultSeasonFilterState = { text: '', sortBy: 'ascending' };
 	return {
 		members: getVisibleMembers(state.members, defaultMemberFilterState),
 		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilterState),

@@ -162,6 +162,54 @@ export const sessions =
 	recordType: 'SESSION',
 	seasonUuid: seasons[0].seasonUuid,
 	sessionName: sessionNames[0].sessionName
+},
+{
+	amount: 400,
+	createdAt: 500,
+	id: 'sessionID_2',
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[0].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[2].playerUuid,
+		discount: 100
+	},
+	{
+		playerUuid: members[3].playerUuid,
+		discount: 50
+	}],
+	recordType: 'SESSION',
+	seasonUuid: seasons[0].seasonUuid,
+	sessionName: sessionNames[0].sessionName
+},
+{
+	amount: 500,
+	createdAt: 1000,
+	id: 'sessionID_3',
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[0].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[3].playerUuid,
+		discount: 50
+	}],
+	recordType: 'SESSION',
+	seasonUuid: seasons[0].seasonUuid,
+	sessionName: sessionNames[1].sessionName
 }]
 
 export const sessionArray =

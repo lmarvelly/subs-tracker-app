@@ -29,7 +29,7 @@ beforeEach((done) =>
 				playerList, seasonUuid, sessionName }
 		});
 
-	database.ref(`subs-tracker/users/${uid}/sessions/`)
+	database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}`)
 		.set(sessionsData)
 		.then(() => done());
 });
@@ -88,7 +88,7 @@ test('Should Add a New Session to the Database', (done) =>
 				}
 			});
 
-			return database.ref(`subs-tracker/users/${uid}/sessions/${actions[0].session.id}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/sessions/${sessionData.seasonUuid}/${actions[0].session.id}`).once('value');
 		})
 
 		promise.then((snapshot) =>

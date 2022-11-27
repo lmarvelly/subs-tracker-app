@@ -26,7 +26,7 @@ export const startAddSession = ( sessionData = {} ) =>
 			sessionName
 		}
 
-		return database.ref(`subs-tracker/users/${uid}/sessions`)
+		return database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}`)
 			.push( session )
 			.then(( ref ) => 
 			{
