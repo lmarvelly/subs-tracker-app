@@ -112,13 +112,13 @@ test('should fetch Sessions from database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 
-	store.dispatch(startSetSessions()).then(() =>
+	store.dispatch(startSetSessions(seasons[0])).then(() =>
 	{
 		const actions = store.getActions();
 		expect( actions[0] ).toEqual(
 		{
 			type: 'SET_SESSIONS',
-			sessions
+			sessions: [ records[0], records[2] ]
 		});
 		done();
 	})
