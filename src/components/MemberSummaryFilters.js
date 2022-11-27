@@ -138,7 +138,7 @@ export class MemberSummaryFilters extends Component
  const mapStateToProps = (state) => {
 	const defaultMemberFilters = { text: '', sortBy: 'alphabetAsc' };
 
-	const defaultSeasonFilters = { text: '', sortBy: 'ascending'}
+	const defaultSeasonFilters = { text: '', sortBy: 'ascending'};
 
 	return {
 		recordFilters: state.recordFilters,
