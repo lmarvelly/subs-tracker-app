@@ -46,39 +46,89 @@ export const setSessions = ( sessions ) => (
 	sessions
 });
 
-export const startSetSessions = () =>
+export const startSetSessions = ( seasonUuid ) =>
 {
-	return ( dispatch, getState ) =>
+	if ( seasonUuid ) 
 	{
-		const uid = getState().auth.uid;
-		return database.ref(`subs-tracker/users/${uid}/sessions`)
-			.once('value')
-			.then((snapshot) =>
-			{
-				const sessions = [];
-
-				snapshot.forEach((childSnapshot) =>
+		return ( dispatch, getState ) =>
+		{
+			const uid = getState().auth.uid;
+			return database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}`)
+				.once('value')
+				.then((snapshot) =>
 				{
-					sessions.push(
+					const sessions = [];
+
+					snapshot.forEach((childSnapshot) =>
 					{
-						id: childSnapshot.key,
-						...childSnapshot.val()
+						sessions.push(
+						{
+							id: childSnapshot.key,
+							...childSnapshot.val()
+						});
 					});
+
+					// Adding 'SESSION' record type identifier to each Session
+					sessions.forEach((session) =>
+					{
+						const index = sessions.findIndex( (currentSession) =>
+						{
+							return session.id === currentSession.id;
+						});
+
+						sessions[index] = {...session, recordType: 'SESSION'}
+					})
+
+					dispatch(setSessions( sessions ));
+				});
+		}
+	}
+	else
+	{
+		return ( dispatch, getState ) =>
+		{
+			const uid = getState().auth.uid;
+			const seasons = [];
+
+			database.ref(`subs-tracker/users/${uid}/seasons`)
+				.once('value')
+				.then((snapshot) =>
+				{
+					snapshot.forEach((childSnapshot) =>
+					{
+						seasons.push(childSnapshot.key);
+					})
 				});
 
-				// Adding 'SESSION' record type identifier to each Session
-				sessions.forEach((session) =>
-				{
-					const index = sessions.findIndex( (currentSession) =>
+				return database.ref(`subs-tracker/users/${uid}/sessions/${seasons[0]}`)
+					.once('value')
+					.then((snapshot) =>
 					{
-						return session.id === currentSession.id;
+						const sessions = [];
+
+						snapshot.forEach((childSnapshot) =>
+						{
+							sessions.push(
+							{
+								id: childSnapshot.key,
+								...childSnapshot.val()
+							});
+						});
+
+						// Adding 'SESSION' record type identifier to each Session
+						sessions.forEach((session) =>
+						{
+							const index = sessions.findIndex( (currentSession) =>
+							{
+								return session.id === currentSession.id;
+							});
+
+							sessions[index] = {...session, recordType: 'SESSION'}
+						})
+
+						dispatch(setSessions( sessions ));
 					});
-
-					sessions[index] = {...session, recordType: 'SESSION'}
-				})
-
-				dispatch(setSessions( sessions ));
-			});
+		}
 	}
 }
 

@@ -6,6 +6,7 @@ import moment from 'moment';
 import getVisibleSeasons from '../selectors/seasons';
 
 import { startSetRecords } from '../actions/records';
+import { startSetSessions } from '../actions/sessions';
 
 import {
 	resetRecordFilters,
@@ -52,6 +53,7 @@ export class RecordListFilters extends Component
 		!!seasonFilter ? this.props.setSeasonFilter(seasonFilter) : this.props.setSeasonFilter(this.props.seasons[0].seasonUuid);
 		
 		this.props.startSetRecords(this.props.seasons[0].seasonUuid);
+		this.props.startSetSessions(this.props.seasons[0].seasonUuid);
 	}
 
 	onDatesChange = ({ startDate, endDate }) => {
@@ -80,6 +82,7 @@ export class RecordListFilters extends Component
 	onSeasonChange = (e) => {
 		this.props.setSeasonFilter(e.target.value);
 		this.props.startSetRecords(e.target.value);
+		this.props.startSetSessions(e.target.value);
 	}
 
 	onSortChange = (e) => {
@@ -241,7 +244,8 @@ const mapDispatchToProps = (dispatch) =>
 	setSeasonFilter: (seasonUuid) => dispatch(setSeasonFilter(seasonUuid)),
 	sortByDateAscending: () => dispatch(sortByDateAscending()),
 	sortByDateDescending: () => dispatch(sortByDateDescending()),
-	startSetRecords: ( seasonUuid ) => dispatch(startSetRecords(seasonUuid))
+	startSetRecords: ( seasonUuid ) => dispatch(startSetRecords(seasonUuid)),
+	startSetSessions: ( seasonUuid ) => dispatch( startSetSessions( seasonUuid ) )
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecordListFilters);
