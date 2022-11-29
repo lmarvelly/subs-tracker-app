@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import SessionForm from './SessionForm';
@@ -21,23 +21,23 @@ export const AddSessionPage = ( props ) =>
 	const doSeasonsAndMembersExist = ( seasons, members ) =>
 	{
 		const doMembersExist = members.length > 0;
-			const doSeasonsExist = seasons.length > 0;
+		const doSeasonsExist = seasons.length > 0;
 
-			if (!doMembersExist || !doSeasonsExist) {
-				const message = () => {
-					if (!doMembersExist && !doSeasonsExist) {
-						return 'There are no existing Seasons or Members. Please create both before creating any records.';
-					}
-					else if (!doMembersExist) {
-						return 'There are no existing Members. Please create a member before creating any records.';
-					}
-					else if (!doSeasonsExist) {
-						return 'There are no existing Seasons. Please create one before creating any records.';
-					}
+		if (!doMembersExist || !doSeasonsExist) {
+			const message = () => {
+				if (!doMembersExist && !doSeasonsExist) {
+					return 'There are no existing Seasons or Members. Please create both before creating any records.';
 				}
-				alert(message());
-				this.props.history.push('/'); // return to dashboard
+				else if (!doMembersExist) {
+					return 'There are no existing Members. Please create a member before creating any records.';
+				}
+				else if (!doSeasonsExist) {
+					return 'There are no existing Seasons. Please create one before creating any records.';
+				}
 			}
+			alert(message());
+			this.props.history.push('/'); // return to dashboard
+		}
 	}
 
 	const onSubmit = ( session ) =>
