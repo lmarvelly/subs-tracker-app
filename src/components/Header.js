@@ -17,8 +17,7 @@ import Navbar from './Navbar';
 			<div className='header__content'>
 				<Link 
 					className='header__title' 
-					to='/dashboard' 
-					activeClassName='is-active'
+					to='/dashboard'
 				>
 					<h1>Subs Tracker</h1>
 				</Link>

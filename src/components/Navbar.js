@@ -95,7 +95,7 @@ export class Navbar extends Component
 				{
 					!this.state.recordNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav-dropdown' to='/dashboard' activeClassName='is-active'>Record Dashboard</Link>
+							<Link className='button--nav-dropdown' to='/dashboard'>Record Dashboard</Link>
 							<Link className='button--nav-dropdown' to='/add-record'>Add Record</Link>
 							<Link className='button--nav-dropdown' to='/add-session'>Add Session</Link>
 						</div>
@@ -122,8 +122,8 @@ export class Navbar extends Component
 					!this.state.memberNavHidden && (
 						<div className='dropdown-group'>
 							<Link className='button--nav-dropdown' to='/add-member'>Add Member</Link>
-							<Link className='button--nav-dropdown' to='/member-summary-page' activeClassName='is-active'>Members Summary Page</Link>
-							<Link className='button--nav-dropdown' to='/members' activeClassName='is-active'>View/Edit Members</Link>
+							<Link className='button--nav-dropdown' to='/member-summary-page'>Members Summary Page</Link>
+							<Link className='button--nav-dropdown' to='/members'>View/Edit Members</Link>
 
 						</div>
 					)
@@ -149,7 +149,7 @@ export class Navbar extends Component
 				{
 					!this.state.seasonNavHidden && (
 						<div className='dropdown-group'>
-							<Link className='button--nav-dropdown' to='/seasons' activeClassName='is-active'>Seasons Page</Link>
+							<Link className='button--nav-dropdown' to='/seasons'>Seasons Page</Link>
 							<Link className='button--nav-dropdown' to='/add-season'>Add Season</Link>
 						</div>
 					)
@@ -160,7 +160,7 @@ export class Navbar extends Component
 		// TODO: Add dropdown and New Season button
 		const otherSettingsButtons = (
 			<div>
-				<Link className='button--nav otherSettingsButton' activeClassName='is-active' to='/other-settings-page'>
+				<Link className='button--nav otherSettingsButton' to='/other-settings-page'>
 					Other Settings Page
 				</Link>
 			</div>
@@ -171,7 +171,7 @@ export class Navbar extends Component
 		const helpButtons = (
 			<div>
 				<button className='button'>Help</button>
-				<Link className='button--nav-dropdown' to='/help' activeClassName='is-active'>Help Page </Link>
+				<Link className='button--nav-dropdown' to='/help'>Help Page </Link>
 			</div>
 		);
 
