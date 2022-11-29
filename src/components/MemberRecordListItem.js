@@ -26,26 +26,22 @@ const MemberRecordListItem = (
 
 	return (
 		<div className='list-item' onClick={onClickHandler}>
-		{
-			<div>
-				<div className='list-item__row'>
-					<h3 className='list-item__title'>{`${type}: `}<span className='normal-font-weight'>{sessionName}</span></h3>
-					<span className='list-item__sub-title'>
-						{moment(date).format("DD-MM-YYYY")}
-					</span>
-				</div>
-				<div className='list-item__row'>
-					<span className={`${className}-font`}>
-					{
-						` £${numeral(amount / 100).format('0,0.00')}` 
-					}
-					</span>
-					{
-						(discount > 0) && ` (${discount}% discount)`
-					}
-				</div>
+			<div className='list-item__row'>
+				<h3 className='list-item__title'>{`${type}: `}<span className='normal-font-weight'>{sessionName}</span></h3>
+				<span className='list-item__sub-title'>
+					{moment(date).format("DD-MM-YYYY")}
+				</span>
 			</div>
-		}
+			<div className='list-item__row'>
+				<span className={`${className}-font`}>
+				{
+					` £${numeral(amount / 100).format('0,0.00')}` 
+				}
+				</span>
+				{
+					(discount > 0) && ` (${discount}% discount)`
+				}
+			</div>
 		</div>
 	);
 }
