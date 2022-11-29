@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
 
@@ -7,6 +8,7 @@ const MemberRecordListItem = (
 	amount = 0,
 	date = 0,
 	discount = 0,
+	id = '',
 	recordType = '',
 	sessionName = ''
 }) =>
@@ -23,6 +25,8 @@ const MemberRecordListItem = (
 	let type = recordType.toLowerCase();
 	let firstLetter = type.charAt(0).toUpperCase();
 	type = firstLetter + type.slice(1);
+
+	console.log(`EXPAND:${expand} RECORDTYPE:${recordType}`, expand && (recordType === 'PAYMENT' || recordType === 'DEBT' ));
 
 	return (
 		<div className='list-item' onClick={onClickHandler}>
@@ -42,6 +46,23 @@ const MemberRecordListItem = (
 					(discount > 0) && ` (${discount}% discount)`
 				}
 			</div>
+			{
+				expand && (recordType === 'PAYMENT' || recordType === 'DEBT' ) && (
+					<div>
+						<div className='list-item__row'>
+							<div className='list-item__expanded-buttons'>						
+								<Link 
+									to={`/edit-record/${id}`} 
+									className='button'
+								>
+									Edit Record
+								</Link>
+							</div>
+						</div>
+					</div>
+				)
+
+			}
 		</div>
 	);
 }
