@@ -1,40 +1,28 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import RecordForm from './RecordForm';
+import { setSeasonFilter } from '../actions/recordFilters';
 import { startAddRecord } from '../actions/records';
 import { startAddSessionName } from '../actions/sessionNames';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
 
-/**
- * Use classes to avoid inline functions. This avoids rerendering
- * on every render.
- * We put an export in front of the class keyword so we can test
- * the unconnected version.
- */
-export class AddRecordPage extends Component 
+
+export const AddRecordPage = ( props ) =>
 {
-	constructor(props) 
+	useEffect(() =>
 	{
-		super(props);
+		const members = props.members ? props.members : [];
+		const seasons = props.seasons ? props.seasons : [];
 
-		this.state =
-		{
-			members: this.props.members ? this.props.members : [],
-			seasons: this.props.seasons ? this.props.seasons : []
-		}
-	}
+		doSeasonsAndMembersExist( seasons, members )
+	}, []);
 
-	onSubmit = (record) => {
-		// using props.onSubmit this instead of "this.props.dispatch( startAddRecord( record ) )";
-		this.props.startAddRecord(record);
-		this.props.history.push('/'); // return to dashboard
-	}
-
-	componentWillReceiveProps() {
-		const doMembersExist = this.props.members.length > 0;
-		const doSeasonsExist = this.props.seasons.length > 0;
+	const doSeasonsAndMembersExist = ( seasons, members ) =>
+	{
+		const doMembersExist = members.length > 0;
+		const doSeasonsExist = seasons.length > 0;
 
 		if (!doMembersExist || !doSeasonsExist) {
 			const message = () => {
@@ -45,36 +33,41 @@ export class AddRecordPage extends Component
 					return 'There are no existing Members. Please create a member before creating any records.';
 				}
 				else if (!doSeasonsExist) {
-					return 'There are no existing Seasons/categories. Please create one before creating any records.';
+					return 'There are no existing Seasons. Please create one before creating any records.';
 				}
 			}
 			alert(message());
 			this.props.history.push('/'); // return to dashboard
 		}
+	}
+
+	const onSubmit = ( record ) => {
+		// using props.onSubmit this instead of "this.props.dispatch( startAddRecord( record ) )";
+		props.startAddRecord(record);
+		props.setSeasonFilter( record.seasonUuid ); // Added this so Dashboard shows the season of the submitted Record
+
+		props.history.push('/'); // return to dashboard
 	};
 
-	render() 
-	{
-		return (
-			<div>
-				<div className='page-header'>
-					<div className='content-container'>
-						<h1 className='page-header__title'>Add Record Page</h1>
-					</div>
-				</div>
-
+	return (
+		<div>
+			<div className='page-header'>
 				<div className='content-container'>
-					<RecordForm
-						addSessionName={this.props.addSessionName}
-						members={this.props.members}
-						seasons={this.props.seasons}
-						sessionNames={this.props.sessionNames}
-						onSubmit={this.onSubmit}
-					/>
+					<h1 className='page-header__title'>Add Record Page</h1>
 				</div>
 			</div>
-		);
-	}
+
+			<div className='content-container'>
+				<RecordForm
+					addSessionName={props.addSessionName}
+					members={props.members}
+					seasons={props.seasons}
+					sessionNames={props.sessionNames}
+					onSubmit={onSubmit}
+				/>
+			</div>
+		</div>
+	);
 }
 
 const mapStateToProps = (state, props) => 
@@ -103,8 +96,9 @@ const mapStateToProps = (state, props) =>
  */
 const mapDispatchToProps = (dispatch) => (
 {
-	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
-	startAddRecord: (record) => dispatch(startAddRecord(record))
+	addSessionName: ( sessionName ) => dispatch(startAddSessionName( sessionName ) ),
+	setSeasonFilter: ( seasonUuid ) => dispatch(setSeasonFilter( seasonUuid )),
+	startAddRecord: ( record ) => dispatch(startAddRecord( record ))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRecordPage);
