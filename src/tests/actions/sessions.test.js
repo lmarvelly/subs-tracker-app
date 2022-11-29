@@ -12,7 +12,7 @@ import {
 	startSetSessions
 } from '../../actions/sessions';
 
-import { members, seasons, sessionNames, sessions,  } from '../fixtures/fixures';
+import { members, seasons, sessionNames, sessions } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
 const uid = 'testuid';
@@ -21,16 +21,26 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
 {
-	const sessionsData = {};
 	sessions.forEach(({amount, createdAt, note, playerList, 
 		seasonUuid, sessionName, id}) =>
 		{
-			sessionsData[id] = { amount, createdAt, note, 
+			const sessionsData = { id, amount, createdAt, note, 
 				playerList, seasonUuid, sessionName }
-		});
 
-	database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}`)
-		.set(sessionsData)
+			database.ref(`subs-tracker/users/${uid}/sessions/${sessionsData.seasonUuid}/${sessionsData.id}`)
+				.set(sessionsData)
+				.then(() => done());
+		}
+	);
+	
+	const seasonsData = {};
+	seasons.forEach(({ seasonUuid, seasonName }) =>
+	{
+		seasonsData[seasonUuid] = { seasonName };
+	});
+
+	database.ref(`subs-tracker/users/${uid}/seasons`)
+		.set(seasonsData)
 		.then(() => done());
 });
 
@@ -51,7 +61,7 @@ test('Should Add a New Session to the Database', (done) =>
 	const sessionData =
 	{
 		amount: 500,
-		createdAt: 1000,
+		createdAt: 2000,
 		note: '',
 		playerList:
 		[{
@@ -84,12 +94,13 @@ test('Should Add a New Session to the Database', (done) =>
 				session:
 				{
 					id: expect.any(String),
-					...sessionData
+					...sessionData, 
+					recordType: "SESSION"
 				}
 			});
 
 			return database.ref(`subs-tracker/users/${uid}/sessions/${sessionData.seasonUuid}/${actions[0].session.id}`).once('value');
-		})
+		});
 
 		promise.then((snapshot) =>
 		{
@@ -112,18 +123,22 @@ test('should fetch Sessions from database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
 
-	store.dispatch(startSetSessions(seasons[0])).then(() =>
+	const seasonUuid = seasons[1].seasonUuid;
+
+	store.dispatch(startSetSessions(seasonUuid)).then(() =>
 	{
 		const actions = store.getActions();
-		expect( actions[0] ).toEqual(
+
+		expect(actions[0]).toEqual(
 		{
 			type: 'SET_SESSIONS',
-			sessions: [ records[0], records[2] ]
+			sessions: [sessions[0], sessions[2]]
 		});
 		done();
-	})
+	});
 });
 
+// This test is not working correctly
 test('should fetch Default Sessions from database', (done) =>
 {
 	const store = createMockStore(defaultAuthState);
@@ -134,7 +149,7 @@ test('should fetch Default Sessions from database', (done) =>
 		expect( actions[0] ).toEqual(
 		{
 			type: 'SET_SESSIONS',
-			sessions: [ records[0], records[2] ]
+			sessions: [ sessions[1] ]
 		});
 		done();
 	})
@@ -182,7 +197,7 @@ test('Should Edit a Session in the Database', (done) =>
 				updates
 			});
 
-			return database.ref(`subs-tracker/users/${uid}/sessions/${id}`).once('value');
+			return database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}/${id}`).once('value');
 		}).then((snapshot) =>
 		{
 			expect( snapshot.val().playerList ).toEqual( [{discount: 50, playerUuid}] );

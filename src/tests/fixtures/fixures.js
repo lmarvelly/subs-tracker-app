@@ -160,7 +160,7 @@ export const sessions =
 		discount: 50
 	}],
 	recordType: 'SESSION',
-	seasonUuid: seasons[0].seasonUuid,
+	seasonUuid: seasons[1].seasonUuid,
 	sessionName: sessionNames[0].sessionName
 },
 {
@@ -186,7 +186,7 @@ export const sessions =
 		discount: 50
 	}],
 	recordType: 'SESSION',
-	seasonUuid: seasons[1].seasonUuid,
+	seasonUuid: seasons[0].seasonUuid,
 	sessionName: sessionNames[0].sessionName
 },
 {
@@ -208,7 +208,7 @@ export const sessions =
 		discount: 50
 	}],
 	recordType: 'SESSION',
-	seasonUuid: seasons[0].seasonUuid,
+	seasonUuid: seasons[1].seasonUuid,
 	sessionName: sessionNames[1].sessionName
 }]
 
