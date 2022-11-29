@@ -8,8 +8,8 @@ import configureStore from './store/configureStore';
 
 import { startSetPaymentTypes } from './actions/paymentTypes';
 import { startSetSessionName } from './actions/sessionNames';
-import { startSetSessions } from './actions/sessions';
-import { startSetRecords } from './actions/records';
+// import { startSetSessions } from './actions/sessions';
+// import { startSetRecords } from './actions/records';
 import { sortAlphabetAsc } from './actions/memberFilters';
 import { startSetMembers } from './actions/members';
 import { startSetSeasons } from './actions/seasons';
@@ -61,7 +61,7 @@ firebase.auth().onAuthStateChanged((user) =>
 	{
 		store.dispatch(login(user.uid));
 		// App renders after Promises are complete
-		store.dispatch(startSetSessions());
+		// store.dispatch(startSetSessions());
 		store.dispatch(startSetSessionName());
 		store.dispatch(startSetPaymentTypes());
 		store.dispatch(startSetMembers());
