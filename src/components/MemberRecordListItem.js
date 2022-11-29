@@ -26,8 +26,6 @@ const MemberRecordListItem = (
 	let firstLetter = type.charAt(0).toUpperCase();
 	type = firstLetter + type.slice(1);
 
-	console.log(`EXPAND:${expand} RECORDTYPE:${recordType}`, expand && (recordType === 'PAYMENT' || recordType === 'DEBT' ));
-
 	return (
 		<div className='list-item' onClick={onClickHandler}>
 			<div className='list-item__row'>
@@ -61,7 +59,22 @@ const MemberRecordListItem = (
 						</div>
 					</div>
 				)
-
+			}
+			{
+				expand && (recordType === 'SESSION' ) && (
+					<div>
+						<div className='list-item__row'>
+							<div className='list-item__expanded-buttons'>						
+								<Link 
+									to={`/edit-session/${id}`} 
+									className='button'
+								>
+									Edit Session
+								</Link>
+							</div>
+						</div>
+					</div>
+				)
 			}
 		</div>
 	);
