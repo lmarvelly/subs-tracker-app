@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import SessionForm from './SessionForm';
 import getVisibleMembers from '../selectors/members';
 import getVisibleSeasons from '../selectors/seasons';
+import { setSeasonFilter } from '../actions/recordFilters';
 import { startAddSession } from '../actions/sessions';
 import { startAddSessionName } from '../actions/sessionNames';
 
@@ -41,7 +42,9 @@ export const AddSessionPage = ( props ) =>
 
 	const onSubmit = ( session ) =>
 	{
-		props.startAddSession(session);
+		props.startAddSession( session );
+		props.setSeasonFilter( session.seasonUuid );
+
 		props.history.push('/');
 	};
 
@@ -98,7 +101,8 @@ const mapStateToProps = ( state, props ) =>
 		addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
 		startAddSession: (session) => dispatch( startAddSession(session) ),
 		sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
-		sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
+		sortSeasonsAlphabetDesc: () => dispatch( sortDesc() ),
+		setSeasonFilter: ( seasonUuid ) => dispatch(setSeasonFilter(seasonUuid))
 	});
 
 export default connect(mapStateToProps, mapDispatchToProps)( AddSessionPage ) ;
