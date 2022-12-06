@@ -1,6 +1,6 @@
 // TDD is simular to what I have been doing except you'd write the tests first
 import { getMemberTotals, getAttendenceTotals, getSeasonTotals } from '../../functions/recordTotals';
-import { records, sessions, members } from '../fixtures/fixures'; 
+import { members, records, sessions, sessionNames } from '../fixtures/fixures'; 
 
 test('Should get zero for both amount paid and debts', () => 
 {
@@ -57,7 +57,7 @@ test('should calculate the right amount, WITH discount, for a Single Session for
 
 test('should calculate the right amount for several Sessions, WITH discount, for single player', () => 
 {
-	const totals = getMemberTotals( sessions, members[3].playerUuid );
+	const totals = getMemberTotals( [sessions[0], sessions[1], sessions[2]], members[3].playerUuid );
 
 	expect(totals.totalPaid).toBe(0);
  	expect(totals.totalDebt).toBe(650);
@@ -65,7 +65,7 @@ test('should calculate the right amount for several Sessions, WITH discount, for
 
 test('should calculate the right amount for several Sessions, WITH 100% discount, for single player', () => 
 {
-	const totals = getMemberTotals( sessions, members[2].playerUuid );
+	const totals = getMemberTotals( [sessions[0], sessions[1], sessions[2]], members[2].playerUuid );
 
 	expect(totals.totalPaid).toBe(0);
  	expect(totals.totalDebt).toBe(0);
@@ -73,7 +73,7 @@ test('should calculate the right amount for several Sessions, WITH 100% discount
 
 test('should calculate the right amount for several Sessions, WITHOUT discount, for single player', () => 
 {
-	const totals = getMemberTotals( sessions, members[1].playerUuid );
+	const totals = getMemberTotals( [sessions[0], sessions[1], sessions[2]], members[1].playerUuid );
 
 	expect(totals.totalPaid).toBe(0);
  	expect(totals.totalDebt).toBe(1300);
@@ -83,9 +83,51 @@ test('should calculate the right amount for Sessions, Payments and Debts for Sin
 {
 	// Merging all records together
 	const memberRecords = [records[1], records[4], records[5]]
-	const allRecords = memberRecords.concat(sessions);
+	const allRecords = memberRecords.concat([sessions[0], sessions[1], sessions[2]]);
 	const totals = getMemberTotals( allRecords, members[1].playerUuid );
 
 	expect(totals.totalPaid).toBe(3900);
  	expect(totals.totalDebt).toBe(4900);
+});
+
+test('should return empty array for Empty Total Attendence', () =>
+{
+	const attendence = getAttendenceTotals([]);
+	
+	expect(attendence).toEqual([]);
+});
+
+test('should return a single tally for "Training"', () =>
+{
+	const attendence = getAttendenceTotals([sessions[0]]);
+
+	expect(attendence).toEqual(
+	[{	
+		sessionName: sessions[0].sessionName,
+		sessionUuid: expect.any(String), // TODO: Refactor to use Sessions Actual UUID
+		count: 1
+	}]);
+});
+
+test('should return tallys for Sessions', () =>
+{
+	const attendence = getAttendenceTotals(sessions);
+	console.log('session:',sessions);
+
+	expect(attendence).toEqual(
+	[{	
+		sessionName: sessionNames[0].sessionName,
+		sessionUuid: expect.any(String), // TODO: Refactor to use Sessions Actual UUID
+		count: 2
+	},
+	{	
+		sessionName: sessionNames[1].sessionName,
+		sessionUuid: expect.any(String), // TODO: Refactor to use Sessions Actual UUID
+		count: 1
+	},
+	{	
+		sessionName: sessionNames[2].sessionName,
+		sessionUuid: expect.any(String), // TODO: Refactor to use Sessions Actual UUID
+		count: 3
+	}]);
 });
