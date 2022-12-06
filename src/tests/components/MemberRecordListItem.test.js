@@ -1,15 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MemberRecordListItem from '../../components/MemberRecordListItem';
-import { records, members, seasons } from '../fixtures/fixures';
+import { records, sessions } from '../fixtures/fixures';
 
-let wrapperWithoutDiscount;
-
-beforeEach( () =>
-{
-
-	
-});
 
 test('should Render Default Compressed MemberRecordListItem component without any data', () =>
 {
@@ -40,12 +33,28 @@ test('should Render a MemberRecordListItem with Payment Data', () =>
 
 	const recordPaymentWrapper = shallow(
 		<MemberRecordListItem
-		amount={paymentRecord.amount}
-		date={paymentRecord.createdAt}
-		recordType={paymentRecord.recordType}
-		sessionName={paymentRecord.sessionName}
+			amount={paymentRecord.amount}
+			date={paymentRecord.createdAt}
+			recordType={paymentRecord.recordType}
+			sessionName={paymentRecord.sessionName}
 		/>
 	);
 
 	expect( recordPaymentWrapper ).toMatchSnapshot();
+});
+
+test('should Render a MemberRecordListItem with Session Data without discount', () =>
+{
+	const sessionRecord = sessions[1];
+
+	const sessionWrapper = shallow(
+		<MemberRecordListItem
+			amount={sessionRecord.amount}
+			date={sessionRecord.createdAt}
+			recordType={sessionRecord.recordType}
+			sessionName={sessionRecord.sessionName}
+		/>
+	);
+
+	expect( sessionWrapper ).toMatchSnapshot();
 });
