@@ -112,7 +112,6 @@ test('should return a single tally for "Training"', () =>
 test('should return tallys for Sessions', () =>
 {
 	const attendence = getAttendenceTotals(sessions);
-	console.log('session:',sessions);
 
 	expect(attendence).toEqual(
 	[{	
