@@ -58,3 +58,22 @@ test('should Render a MemberRecordListItem with Session Data without discount', 
 
 	expect( sessionWrapper ).toMatchSnapshot();
 });
+
+test('should Render a MemberRecordListItem with Session Data with discount', () =>
+{
+	const sessionRecord = sessions[2];
+	const discount = 25;
+	const amount = sessionRecord.amount * ((100 - discount) / 100);
+
+	const sessionWrapper = shallow(
+		<MemberRecordListItem
+			amount={amount}
+			date={sessionRecord.createdAt}
+			discount={ discount }
+			recordType={sessionRecord.recordType}
+			sessionName={sessionRecord.sessionName}
+		/>
+	);
+
+	expect( sessionWrapper ).toMatchSnapshot();
+});
