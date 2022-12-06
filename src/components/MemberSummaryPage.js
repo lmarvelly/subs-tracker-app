@@ -80,7 +80,7 @@ export class MemberSummaryPage extends Component
 						{
 							const index = record.playerList ? record.playerList.findIndex(player => player.playerUuid === this.props.memberFilter) : undefined;
 							const discount = (index !== undefined && index !== -1) ? record.playerList[index].discount : undefined;
-							const amount = discount ? (record.amount * discount / 100) : record.amount
+							const amount = discount ? (record.amount * (100 - discount) / 100) : record.amount
 
 							return <MemberRecordListItem
 								key={record.id}
