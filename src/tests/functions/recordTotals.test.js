@@ -55,3 +55,27 @@ test('should calculate the right amount, WITH discount, for a Single Session for
  	expect(totals.totalDebt).toBe(200);
 });
 
+test('should calculate the right amount for several Sessions, WITH discount, for single player', () => 
+{
+	const totals = getMemberTotals( sessions, members[3].playerUuid );
+
+	expect(totals.totalPaid).toBe(0);
+ 	expect(totals.totalDebt).toBe(650);
+});
+
+test('should calculate the right amount for several Sessions, WITH 100% discount, for single player', () => 
+{
+	const totals = getMemberTotals( sessions, members[2].playerUuid );
+
+	expect(totals.totalPaid).toBe(0);
+ 	expect(totals.totalDebt).toBe(0);
+});
+
+test('should calculate the right amount for several Sessions, WITHOUT discount, for single player', () => 
+{
+	const totals = getMemberTotals( sessions, members[1].playerUuid );
+
+	expect(totals.totalPaid).toBe(0);
+ 	expect(totals.totalDebt).toBe(1300);
+});
+
