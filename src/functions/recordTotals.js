@@ -3,7 +3,8 @@ import uuid from 'uuid';
 // Designed for a single players records
 export const getMemberTotals = ( records, playerUuid = '' ) =>
 {
-	const playerTotals = { totalPaid: 0, totalDebt: 0 };
+	let totalPaid = 0;
+	let totalDebt = 0;
 
 	records.map( record => 
 	{
@@ -13,11 +14,11 @@ export const getMemberTotals = ( records, playerUuid = '' ) =>
 			// Check the Record Type
 			if (record.recordType === 'PAYMENT')
 			{
-				playerTotals.totalPaid += record.amount;
+				totalPaid += record.amount;
 			}
 			else if (record.recordType === 'DEBT')
 			{
-				playerTotals.totalDebt += record.amount;
+				totalDebt += record.amount;
 			}
 			else if(record.recordType === 'SESSION')
 			{
@@ -30,13 +31,20 @@ export const getMemberTotals = ( records, playerUuid = '' ) =>
 						
 						const amountToPay = record.amount / 100 * percentageToPay
 
-						playerTotals.totalDebt += amountToPay;
+						totalDebt += amountToPay;
 					}
 				});
 			}
 		}
 	});
-	
+
+	const playerTotals = { totalPaid, totalDebt: 0 };
+
+	if ( totalDebt > totalPaid ) 
+	{
+		playerTotals.totalDebt = totalDebt - totalPaid;
+	}
+
 	return playerTotals;
 }
 
