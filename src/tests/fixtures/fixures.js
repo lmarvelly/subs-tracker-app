@@ -75,7 +75,7 @@ export const records =
 	recordType: 'PAYMENT',
 	sessionName: 'Training subs',
 	note: '',
-	createdAt: moment(0).subtract(4, 'days').valueOf(),
+	createdAt: moment(0).subtract(4, 'days').valueOf(), // 28-12-1969
 	amount: 400
 },
 {
@@ -85,7 +85,7 @@ export const records =
 	recordType: 'PAYMENT',
 	sessionName: '5s subs',
 	note: '',
-	createdAt: moment(0).add(4, 'days').valueOf(),
+	createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
 	amount: 500
 },
 {
@@ -95,7 +95,7 @@ export const records =
 	recordType: 'PAYMENT',
 	sessionName: 'Donation',
 	note: '',
-	createdAt: moment(0).subtract(3, 'days').valueOf(),
+	createdAt: moment(0).subtract(3, 'days').valueOf(), // 29-12-1969
 	amount: 5000
 },
 {
@@ -105,7 +105,7 @@ export const records =
 	recordType: 'DEBT',
 	sessionName: 'Glasgow',
 	note: '',
-	createdAt: moment(0).add(3, 'days').valueOf(),
+	createdAt: moment(0).add(3, 'days').valueOf(), // 04-01-1970
 	amount: 7500
 },
 {
@@ -115,7 +115,7 @@ export const records =
 	recordType: 'PAYMENT',
 	sessionName: 'Glasgow',
 	note: '',
-	createdAt: moment(0).add(4, 'days').valueOf(),
+	createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
 	amount: 3500
 }
 ];
@@ -139,7 +139,7 @@ export const sessionNames =
 export const sessions = 
 [{
 	amount: 400,
-	createdAt: 0,
+	createdAt: 0, // 01-01-1970
 	id: 'sessionID_1',
 	note: '',
 	playerList:
@@ -165,7 +165,7 @@ export const sessions =
 },
 {
 	amount: 400,
-	createdAt: 500,
+	createdAt: moment(0).add(1, 'days').valueOf(), // 02-01-1970
 	id: 'sessionID_2',
 	note: '',
 	playerList:
@@ -191,7 +191,7 @@ export const sessions =
 },
 {
 	amount: 500,
-	createdAt: 1000,
+	createdAt: moment(0).add(2, 'days').valueOf(), // 03-01-1970
 	id: 'sessionID_3',
 	note: '',
 	playerList:
