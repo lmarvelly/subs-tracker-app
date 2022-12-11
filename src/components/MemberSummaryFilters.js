@@ -14,9 +14,7 @@ import {
 	resetRecordFilters,
 	resetSeasonFilter,
 	setMemberUuidFilter,
-	setSeasonFilter,
-	sortByDateAscending,
-	sortByDateDescending
+	setSeasonFilter
 } from '../actions/recordFilters';
 
 export class MemberSummaryFilters extends Component 
