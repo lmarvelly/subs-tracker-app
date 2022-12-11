@@ -49,7 +49,8 @@ export class RecordListFilters extends Component
 	{
 		const seasonFilter = this.props.recordFilters.seasonFilter;
 		this.props.resetRecordFilters();
-		!!seasonFilter ? this.props.setSeasonFilter(seasonFilter) : this.props.setSeasonFilter(this.props.seasons[0].seasonUuid);
+		const defaultSeasonFilter = this.props.seasons.length > 0 ? this.props.seasons[0].seasonUuid : ''
+		!!seasonFilter ? this.props.setSeasonFilter(seasonFilter) : this.props.setSeasonFilter(defaultSeasonFilter);
 	}
 
 	onDatesChange = ({ startDate, endDate }) => {
@@ -156,6 +157,8 @@ export class RecordListFilters extends Component
 							{this.onSeasonChange}
 						>
 							{
+								this.props.seasons.length > 0
+								?
 								this.props.seasons.map((season) => {
 									return (
 										<option
@@ -166,6 +169,8 @@ export class RecordListFilters extends Component
 										</option>
 									)
 								})
+								:
+								<option>No Seasons</option>
 							}
 						</select>
 					</div>

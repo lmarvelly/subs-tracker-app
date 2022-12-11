@@ -13,7 +13,9 @@ let resetRecordFilters,
 	sortByDateDescending, 
 	setStartDate, 
 	setEndDate, 
-	setSeasonFilter, 
+	setSeasonFilter,
+	startSetRecords,
+	startSetSessions,
 	emptyWrapper, 
 	wrapper;
 
@@ -28,9 +30,12 @@ beforeEach( () =>
 	setStartDate = jest.fn();
 	setEndDate = jest.fn();
 	setSeasonFilter = jest.fn();
+	startSetRecords = jest.fn();
+	startSetSessions = jest.fn();
 	
 	emptyWrapper = shallow( 
 		<RecordListFilters
+			resetRecordFilters={resetRecordFilters}
 			setSessionNameTextFilter={setSessionNameTextFilter}
 			setMemberFilterText={setMemberFilterText}
 			setRecordTypeFilter={setRecordTypeFilter}
@@ -39,6 +44,8 @@ beforeEach( () =>
 			setStartDate={setStartDate}
 			setEndDate={setEndDate}
 			setSeasonFilter={setSeasonFilter}
+			startSetRecords={startSetRecords}
+			startSetSessions={startSetSessions}
 
 			recordFilters={defaultFilters}
 
@@ -50,15 +57,17 @@ beforeEach( () =>
 	wrapper = shallow( 
 		<RecordListFilters
 			resetRecordFilters={resetRecordFilters}
-			setSessionNameTextFilter={setSessionNameTextFilter}
-			setMemberFilterText={setMemberFilterText}
-			setRecordTypeFilter={setRecordTypeFilter}
-			sortByDateAscending={sortByDateAscending}
-			sortByDateDescending={sortByDateDescending}
 			setStartDate={setStartDate}
 			setEndDate={setEndDate}
+			setMemberFilterText={setMemberFilterText}
+			setRecordTypeFilter={setRecordTypeFilter}
+			setSessionNameTextFilter={setSessionNameTextFilter}
 			setSeasonFilter={setSeasonFilter}
-
+			sortByDateAscending={sortByDateAscending}
+			sortByDateDescending={sortByDateDescending}
+			startSetRecords={startSetRecords}
+			startSetSessions={startSetSessions}
+		
 			recordFilters={defaultFilters}
 
 			members={members}
