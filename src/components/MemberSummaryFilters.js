@@ -28,14 +28,17 @@ export class MemberSummaryFilters extends Component
 
 	state = 
 	{
-		memberFilter: this.props.members[0].playerUuid
+		memberFilter: ( this.props.members.length > 0 ) ? this.props.members[0].playerUuid : ''
 	}
 
 	componentDidMount()
 	{
 		const seasonFilter = this.props.recordFilters.seasonFilter;
 		this.props.resetRecordFilters();
-		this.props.setMemberUuidFilter(this.props.members[0].playerUuid);
+		if ( this.props.members.length > 0 ) 
+		{
+			this.props.setMemberUuidFilter(this.props.members[0].playerUuid);
+		}
 		this.props.setSeasonFilter( seasonFilter );
 		this.props.startSetRecords( seasonFilter );
 		this.props.startSetSessions( seasonFilter );
@@ -68,6 +71,9 @@ export class MemberSummaryFilters extends Component
 								onChange={ this.onMemberChange }
 								value={ this.state.memberFilter }
 							>
+								{
+									this.props.members.length === 0 && <option>No Members</option>
+								}
 								{
 									this.props.members.map((member) =>
 									{
@@ -112,6 +118,9 @@ export class MemberSummaryFilters extends Component
 								onChange={ this.onSeasonChange }
 								value={ this.props.recordFilters.seasonFilter }
 							>
+								{
+									this.props.seasons.length === 0 && <option>No Seasons</option>
+								}
 								{
 									this.props.seasons.map( (season) =>
 									{
