@@ -36,7 +36,7 @@ export const AddSessionPage = ( props ) =>
 				}
 			}
 			alert(message());
-			this.props.history.push('/'); // return to dashboard
+			props.history.push('/dashboard'); // return to dashboard
 		}
 	}
 
