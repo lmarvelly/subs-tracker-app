@@ -41,12 +41,6 @@ beforeEach( () =>
 	);
 });
 
-test('Expected sorting functions to have been called', () => 
-{
-	expect(sortMembersAlphabetAsc).toHaveBeenCalledTimes(2);
-	expect(sortSeasonsAlphabetDesc).toHaveBeenCalledTimes(2);
-});
-
 test('should render Add Record Page correctly without seasons and members', () => 
 {
 	expect(wrapper).toMatchSnapshot();
@@ -61,6 +55,6 @@ test('should handle onSubmit', () =>
 {
 	wrapper2.find('RecordForm').prop('onSubmit')(records[3]);
 
-	expect(history.push).toHaveBeenLastCalledWith('/');
+	expect(history.push).toHaveBeenLastCalledWith('/dashboard');
 	expect(startAddRecord).toHaveBeenLastCalledWith(records[3]);
 });
