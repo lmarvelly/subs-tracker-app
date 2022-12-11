@@ -3,11 +3,17 @@ import { shallow } from 'enzyme';
 import { AddSessionPage } from '../../components/AddSessionPage';
 import { members, seasons, sessions } from '../fixtures/fixures';
 
-let history, emptyWrapper, startAddSession, wrapper;
+let history, 
+	setSeasonFilter,
+	startAddSession, 
+
+	emptyWrapper,
+	wrapper;
 
 beforeEach( () =>
 {
 	history = { push: jest.fn() };
+	setSeasonFilter = jest.fn();
 	startAddSession = jest.fn();
 
 	emptyWrapper = shallow(
@@ -21,6 +27,7 @@ beforeEach( () =>
 			seasons={seasons} 
 			history={history}
 
+			setSeasonFilter={setSeasonFilter}
 			startAddSession={startAddSession}
 		/>
 	);

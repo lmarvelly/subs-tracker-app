@@ -3,18 +3,25 @@ import { shallow } from 'enzyme';
 import { AddRecordPage } from '../../components/AddRecordPage';
 import { records, members, seasons } from '../fixtures/fixures';
 
-let startAddRecord, sortMembersAlphabetAsc, 
-	sortSeasonsAlphabetDesc, history, wrapper, wrapper2;
+let startAddRecord,
+	setSeasonFilter,
+	sortMembersAlphabetAsc, 
+	sortSeasonsAlphabetDesc, 
+	history, 
+	wrapper, 
+	wrapper2;
 
 beforeEach( () => 
 {
+	setSeasonFilter = jest.fn();
 	startAddRecord = jest.fn();
 	sortMembersAlphabetAsc = jest.fn();
 	sortSeasonsAlphabetDesc = jest.fn();
 	history = { push: jest.fn() };
 
 	wrapper = shallow(
-		<AddRecordPage 
+		<AddRecordPage
+			setSeasonFilter={setSeasonFilter}
 			startAddRecord={startAddRecord} 
 			sortMembersAlphabetAsc={sortMembersAlphabetAsc}
 			sortSeasonsAlphabetDesc={sortSeasonsAlphabetDesc}
@@ -25,6 +32,7 @@ beforeEach( () =>
 		<AddRecordPage 
 			seasons={seasons} 
 			members={members} 
+			setSeasonFilter={setSeasonFilter}
 			startAddRecord={startAddRecord}
 			sortMembersAlphabetAsc={sortMembersAlphabetAsc}
 			sortSeasonsAlphabetDesc={sortSeasonsAlphabetDesc}
