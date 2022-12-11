@@ -162,22 +162,25 @@ export default class SessionForm extends Component
 			playerList: this.state.playerList
 		};
 
-		let sessionNameExists = false;
-
-		// If sessionNames doesn't exist forEach loop wont run to avoid errors
-		this.props.sessionNames && this.props.sessionNames.forEach((session) =>
+		if ( this.state.sessionName ) 
 		{
-			if (session.sessionName === this.state.sessionName) 
-			{
-				sessionNameExists = true;
-			}
-		})
+			let sessionNameExists = false;
 
-		if (!sessionNameExists && (this.state.sessionName.length > 0)) 
-		{
-			confirm(`Do you want to add '${this.state.sessionName}' to your default session names?`)
+			// If sessionNames doesn't exist forEach loop wont run to avoid errors
+			this.props.sessionNames && this.props.sessionNames.forEach((session) =>
 			{
-				this.props.addSessionName({sessionName: this.state.sessionName});
+				if (session.sessionName === this.state.sessionName) 
+				{
+					sessionNameExists = true;
+				}
+			})
+
+			if (!sessionNameExists) 
+			{
+				confirm(`Do you want to add '${this.state.sessionName}' to your default session names?`)
+				{
+					this.props.addSessionName({sessionName: this.state.sessionName});
+				}
 			}
 		}
 

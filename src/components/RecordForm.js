@@ -118,22 +118,26 @@ export default class RecordForm extends Component
 			note: this.state.note
 		}
 
-		let sessionNameExists = false;
 
-		// If sessionNames doesn't exist forEach loop wont run to avoid errors
-		this.props.sessionNames && this.props.sessionNames.forEach((sessionName) =>
+		if ( this.state.sessionName ) 
 		{
-			if (sessionName.sessionName === this.state.sessionName) 
-			{
-				sessionNameExists = true;
-			}
-		})
+			let sessionNameExists = false;
 
-		if (!sessionNameExists) 
-		{
-			confirm(`Do you want to add '${this.state.sessionName}' to your default session names?`)
+			// If sessionNames doesn't exist forEach loop wont run to avoid errors
+			this.props.sessionNames && this.props.sessionNames.forEach((sessionName) =>
 			{
-				this.props.addSessionName({sessionName: this.state.sessionName});
+				if (sessionName.sessionName === this.state.sessionName) 
+				{
+					sessionNameExists = true;
+				}
+			})
+
+			if (!sessionNameExists) 
+			{
+				confirm(`Do you want to add '${this.state.sessionName}' to your default session names?`)
+				{
+					this.props.addSessionName({sessionName: this.state.sessionName});
+				}
 			}
 		}
 
