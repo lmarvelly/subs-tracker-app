@@ -2,6 +2,7 @@ node_modules/
 public/dist/
 .env.development
 .env.test
+.env.test2
 __snapshots__
 package-lock.json
 doc/databaseRules.json
