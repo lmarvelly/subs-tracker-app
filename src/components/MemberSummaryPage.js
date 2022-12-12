@@ -16,7 +16,7 @@ export class MemberSummaryPage extends Component
 	{
 		super( props );
 	}
-
+	
 	render()
 	{
 		return (
