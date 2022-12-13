@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { MemberSummaryFilters } from '../../components/MemberSummaryFilters';
 import { members, seasons } from '../fixtures/fixures';
-import { defaultFilters, altFilters1, altFilters2, altFilters3 } from '../fixtures/filters';
+import { defaultFilters, altFilters4 } from '../fixtures/filters';
 
 let defaultWrapper,
 	memberWrapper,
@@ -121,4 +121,36 @@ test('should Render MemberSummaryFilters Component correctly with Member and Sea
 	expect(setSeasonFilter).toHaveBeenCalled();
 	expect(startSetRecords).toHaveBeenCalled();
 	expect(startSetSessions).toHaveBeenCalled();
+});
+
+test('should Render MemberSummaryFilters Component correctly with Member and Season data with Season Filter', () =>
+{
+	memberAndSeasonWrapper.setProps(
+	{
+		recordFilters: altFilters4
+	});
+
+	expect(memberAndSeasonWrapper).toMatchSnapshot();
+});
+
+test('should handle Changes to Member Filter', () =>
+{
+	const value = members[2].playerUuid;
+	memberAndSeasonWrapper.find('select').at(0).simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(setMemberUuidFilter).toHaveBeenLastCalledWith( value );
+});
+
+test('should handle Changes to Season Filter', () =>
+{
+	const value = seasons[2].playerUuid;
+	memberAndSeasonWrapper.find('select').at(1).simulate('change',
+	{
+		target: { value }
+	});
+
+	expect(setSeasonFilter).toHaveBeenLastCalledWith( value );
 });
