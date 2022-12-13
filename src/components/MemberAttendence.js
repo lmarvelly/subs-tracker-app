@@ -1,8 +1,7 @@
 import React from 'react';
 
-const MemberAttendence = (
+export const MemberAttendence = (
 {
-	seasonName = '',
 	seasonSessionTotals = []
 }) =>
 {
