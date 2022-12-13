@@ -60,34 +60,44 @@ export const startRemoveSeason = ( seasonUuid ) =>
 		let canDelete = true;
 		const uid = getState().auth.uid;
 
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments`)
-		.once('value')
-		.then((snapshot) =>
-		{
-			snapshot.forEach((childSnapshot) =>
+		database.ref(`subs-tracker/users/${uid}/debts_and_payments/${seasonUuid}`)
+			.once('value')
+			.then((snapshot) =>
 			{
-				if(childSnapshot.val().seasonUuid === seasonUuid)
+				snapshot.forEach(() =>
 				{
 					canDelete = false;
-					return true; // Stops loop once a match is found
-				}
-			});
+					return true;
+				});
+			}
+		);
 
-			if(canDelete)
+		return database.ref(`subs-tracker/users/${uid}/sessions/${seasonUuid}`)
+			.once('value')
+			.then((snapshot) =>
 			{
-				alert('Deleted');
-				return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
-					.remove()
-					.then((ref) =>
-					{
-						dispatch(removeSeason(seasonUuid));
-					})
+				snapshot.forEach(() =>
+				{
+					canDelete = false;
+					return true;
+				});
+
+				if(canDelete)
+				{
+					alert('Deleted');
+					return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
+						.remove()
+						.then((ref) =>
+						{
+							dispatch(removeSeason(seasonUuid));
+						})
+				}
+				else
+				{
+					alert('Cannot Delete. Season contains records');
+				}
 			}
-			else
-			{
-				alert('Cannot Delete. Season contains records');
-			}
-		})
+		);
 	}
 };
 

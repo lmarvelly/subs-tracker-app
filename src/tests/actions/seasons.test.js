@@ -10,7 +10,7 @@ import {
 	startRemoveSeason, 
 	startSetSeasons 
 } from '../../actions/seasons';
-import { seasons } from '../fixtures/fixures';
+import { records, seasons } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
 const uid = 'testuid';
@@ -19,6 +19,19 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
 {
+	records.forEach(({ id, recordType, playerUuid, seasonUuid, 
+		sessionName, note, createdAt, amount 
+	}) =>
+	{
+		const recordData = {id, recordType, playerUuid, seasonUuid, 
+			sessionName, note, createdAt, amount }
+
+		database.ref(`subs-tracker/users/${uid}/debts_and_payments/${recordData.seasonUuid}/${recordData.id}`)
+			.update(recordData)
+			.then(() => done());
+	}); 
+
+
 	const seasonsData = {};
 	seasons.forEach(({ seasonUuid, seasonName }) =>
 	{
