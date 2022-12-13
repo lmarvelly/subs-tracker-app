@@ -140,7 +140,7 @@ test('should handle text change on Session Name Filter', () =>
 	expect(setSessionNameTextFilter).toHaveBeenLastCalledWith( value );
 });
 
-test('should call when Season Filter select value is changed', () => 
+test('should call setSeasonFilter when Season Filter select value is changed', () => 
 {
 	const value = 'donation';
 	const select = wrapper.find('select').at(0);
