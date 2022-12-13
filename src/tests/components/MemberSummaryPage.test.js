@@ -21,15 +21,15 @@ test('should render empty MemberSummaryPage component', () =>
 
 test('should render MemberSummaryPage component with seasons and records for second member in members array', () =>
 {
-	const member = members[1].playerUuid
-	const allRecords = records.concat(sessions)
+	const member = members[1].playerUuid;
+	const allRecords = records.concat(sessions);
 	const recordTotals = getMemberTotals(allRecords, member);
 
 	const recordsWrapper = shallow(
 		<MemberSummaryPage
 			memberFilter={member}
-			recordTotals = {recordTotals}
-			records = {allRecords}
+			recordTotals={recordTotals}
+			records={allRecords}
 		/>
 	);
 
@@ -39,9 +39,9 @@ test('should render MemberSummaryPage component with seasons and records for sec
 
 test('should render MemberSummaryPage component with seasons and records for third member in members array', () =>
 {
-	const member = members[2].playerUuid
+	const member = members[2].playerUuid;
 	const allRecords = records.concat(sessions)
-	const recordTotals = getMemberTotals(allRecords, member);
+	const recordTotals = { totalPaid: 6500, totalDebt: 3000 };
 
 	const recordsWrapper = shallow(
 		<MemberSummaryPage
@@ -51,7 +51,5 @@ test('should render MemberSummaryPage component with seasons and records for thi
 		/>
 	);
 
-	expect( recordTotals ).toEqual({totalPaid: 9400, totalDebt: 0})
 	expect( recordsWrapper ).toMatchSnapshot();
 });
-
