@@ -10,8 +10,8 @@ const defaultState =
 	sessionNameTextFilter: '',
 	sortBy: 'dateAscending',
 
-	startDate: moment().subtract(1, 'month'),
-	endDate: moment()
+	startDate: null,
+	endDate: null
 }
 
 const hasPlayerUuidState =
