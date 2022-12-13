@@ -159,7 +159,7 @@ test('should call sortByDateAscending when Date Filter select value is changed',
 		recordFilters: altFilters1 // date is now sorted by dateDescending
 	});
 	const value = 'dateAscending';
-	const select = wrapper.find('select').at(1);
+	const select = wrapper.find('select').at(2);
 	select.simulate('change',
 	{
 		target: { value }
@@ -171,7 +171,7 @@ test('should call sortByDateAscending when Date Filter select value is changed',
 test('should call sortByDateDescending when select value is changed', () => 
 {
 	const value = 'dateDescending';
-	const select = wrapper.find('select').at(1);
+	const select = wrapper.find('select').at(2);
 	select.simulate('change',
 	{
 		target: { value }
