@@ -43,4 +43,14 @@ const altFilters3 =
 	seasonFilter: seasons[0].seasonUuid
 }
 
-export { defaultFilters, altFilters1, altFilters2, altFilters3 };
+const altFilters4 =
+{
+	sessionNameTextFilter: '',
+	memberTextFilter: 'Harri',
+	sortBy: 'dateDescending',
+	startDate: moment(),
+	endDate: moment().add( 3, 'days' ),
+	seasonFilter: seasons[1].seasonUuid
+}
+
+export { defaultFilters, altFilters1, altFilters2, altFilters3, altFilters4 };
