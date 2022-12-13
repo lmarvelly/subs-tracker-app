@@ -7,7 +7,9 @@ import { getMemberTotals, getAttendenceTotals, getSeasonTotals } from '../../fun
 
 test('should display the Default Session Attendence Totals', () =>
 {
-	// const defaultWraper = shallow();
+	const defaultWraper = shallow(<MemberAttendence />);
+
+	expect( defaultWraper ).toMatchSnapshot();
 });
 test('should display the correct Session Attendence Totals', () =>
 {
