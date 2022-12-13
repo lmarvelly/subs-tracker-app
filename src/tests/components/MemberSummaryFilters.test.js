@@ -37,5 +37,6 @@ test('should Render MemberSummaryFilters Component correctly without any data', 
 
 	expect(resetRecordFilters).toHaveBeenCalled();
 	expect(setSeasonFilter).toHaveBeenCalled();
-
+	expect(startSetRecords).toHaveBeenCalled();
+	expect(startSetSessions).toHaveBeenCalled();
 });
