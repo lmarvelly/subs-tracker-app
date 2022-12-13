@@ -14,6 +14,7 @@ beforeEach( () =>
 		<RecordListItem
 			key={record1.id}
 			name={`${firstName} ${surname}`}
+			playerNameList={[]}
 			seasonName={ seasons[0].seasonName }
 			{...record1} 
 		/>
@@ -25,10 +26,13 @@ beforeEach( () =>
 		<RecordListItem 
 			key={record2.id}
 			name={`${firstName} ${surname}`}
+			playerNameList={[]}
 			seasonName={ seasons[0].seasonName }
 			{...record2} 
 		/>
 	);
+
+
 });
 
 
