@@ -10,7 +10,7 @@ import {
 	startRemoveMember, 
 	startSetMembers 
 } from "../../actions/members";
-import { members } from '../fixtures/fixures';
+import { members, seasons } from '../fixtures/fixures';
 import database from '../../firebase/firebase';
 
 const uid = 'testuid';
@@ -191,7 +191,7 @@ test('should remove member, with no records from database', (done) =>
 	const store = createMockStore(defaultAuthState);
 	const playerUuid = members[3].playerUuid;
 
-	store.dispatch(startRemoveMember(playerUuid))
+	store.dispatch(startRemoveMember(playerUuid, seasons))
 	.then(() =>
 	{
 		const actions = store.getActions();
@@ -215,7 +215,7 @@ test('Fail to remove a member with Records', (done) =>
 	const store = createMockStore(defaultAuthState);
 	const playerUuid = members[1].playerUuid;
 
-	store.dispatch(startRemoveMember(playerUuid))
+	store.dispatch(startRemoveMember(playerUuid, seasons))
 	.then(() =>
 	{
 		const actions = store.getActions();

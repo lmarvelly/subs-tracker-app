@@ -38,7 +38,7 @@ export class EditMemberPage extends Component
 				(e) =>
 				{
 					const removed = confirm('Are you sure you want to remove member?' ) &&
-					this.props.startRemoveMember( this.props.member.playerUuid ) ;
+					this.props.startRemoveMember( this.props.member.playerUuid, this.props.seasons ) ;
 					
 					if (removed)
 					{
@@ -78,15 +78,15 @@ export class EditMemberPage extends Component
 const mapStateToProps = ( state, props ) =>
 {	
 	return {
-			member: state.members.find( ( member ) => member.playerUuid === props.match.params.id 
-		)
+			member: state.members.find( ( member ) => member.playerUuid === props.match.params.id),
+			seasons: state.seasons
 	}
 };
 
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	startEditMember: ( member ) => dispatch( startEditMember(member.playerUuid, member) ),
-	startRemoveMember: ( data ) => dispatch( startRemoveMember( data ) )
+	startRemoveMember: ( playerUuid, seasonList ) => dispatch( startRemoveMember( playerUuid, seasonList ) )
 });
 
 export default connect( mapStateToProps, mapDispatchToProps )( EditMemberPage );

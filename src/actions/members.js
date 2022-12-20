@@ -61,41 +61,45 @@ export const removeMember = ( playerUuid ) => (
 	playerUuid
 });
 
-export const startRemoveMember = ( playerUuid ) => 
+export const startRemoveMember = ( playerUuid, seasonList ) => 
 {
 	return (dispatch, getState) =>
 	{
 		let canDelete = true;
 		const uid = getState().auth.uid;
 
-		return database.ref(`subs-tracker/users/${uid}/debts_and_payments`)
-		.once('value')
-		.then((snapshot) =>
+		seasonList.forEach( (season) =>
 		{
-			snapshot.forEach((childSnapshot) =>
-			{
-				if(childSnapshot.val().playerUuid === playerUuid)
+			database.ref(`subs-tracker/users/${uid}/debts_and_payments/${season.seasonUuid}`)
+				.once('value')
+				.then((records) =>
 				{
-					canDelete = false;
-					return true;
-				}
-			});
-
-			if(canDelete)
-			{
-				alert('Deleted');
-				return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
-					.remove()
-					.then((ref) =>
+					records.forEach((childRecord) =>
 					{
-						dispatch(removeMember(playerUuid));
-					})
-			}
-			else
-			{
-				alert('Cannot Delete. Member has records');
-			}
+						if(childRecord.val().playerUuid === playerUuid)
+						{
+							canDelete = false;
+							return true; // breaks loop if record is found
+						};
+					});
+				});
 		});
+
+		if(canDelete)
+		{
+			alert('Deleted');
+			return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
+				.remove()
+				.then((ref) =>
+				{
+					dispatch(removeMember(playerUuid));
+				})
+		}
+		else
+		{
+			alert('Cannot Delete. Member has records');
+			return false;
+		}
 	};
 };
 
