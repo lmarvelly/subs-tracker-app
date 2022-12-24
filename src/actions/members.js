@@ -65,41 +65,59 @@ export const startRemoveMember = ( playerUuid, seasonList ) =>
 {
 	return (dispatch, getState) =>
 	{
-		let canDelete = true;
 		const uid = getState().auth.uid;
 
-		seasonList.forEach( (season) =>
-		{
+		const recordPromises = seasonList.map( (season) =>
 			database.ref(`subs-tracker/users/${uid}/debts_and_payments/${season.seasonUuid}`)
 				.once('value')
 				.then((records) =>
-				{
-					records.forEach((childRecord) =>
-					{
-						if(childRecord.val().playerUuid === playerUuid)
-						{
-							canDelete = false;
-							return true; // breaks loop if record is found
-						};
-					});
-				});
-		});
+					records.forEach((childRecord) => // breaks on true
+						childRecord.val().playerUuid === playerUuid
+					)
+				)
+      );
 
-		if(canDelete)
-		{
-			alert('Deleted');
-			return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
-				.remove()
-				.then((ref) =>
+		const sessionPromises = seasonList.map( (season) =>
+			database.ref(`subs-tracker/users/${uid}/sessions/${season.seasonUuid}`)
+				.once('value')
+				.then((sessions) => 
+					sessions.forEach((childSession) =>
+						childSession.val().playerList.forEach( (player) => // should break on true
+							player.playerUuid === playerUuid
+						)
+					)
+				)
+      );
+		
+		const promises = recordPromises.concat(sessionPromises);
+
+		console.log(promises);
+
+      return Promise.all(promises).then(findings =>
+            findings.includes(true)
+        	)
+			.then(cannotDelete => 
+			{
+            if (cannotDelete) 
 				{
-					dispatch(removeMember(playerUuid));
-				})
-		}
-		else
-		{
-			alert('Cannot Delete. Member has records');
-			return false;
-		}
+					console.log('CANNOT DELETE');
+					alert('Cannot Delete. Member has records');
+					return false;
+            } 
+				else 
+				{
+					console.log('DELETING');
+					alert('Deleted');
+					return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
+						.remove()
+						.then((ref) => 
+						{
+							dispatch(removeMember(playerUuid)); // Calls removeMember() function to remove the Member from the State of the App
+							return true; // To distinguish from false
+						}
+					);
+            }
+        });
 	};
 };
 
