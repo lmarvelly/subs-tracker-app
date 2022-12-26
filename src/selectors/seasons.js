@@ -5,15 +5,15 @@ export default ( seasons, { text = '', sortBy = 'descending' } ) =>
 	return seasons.filter( ( season ) => 
 	{
 		const searchFilterTextArray = text.split(' ');
-		const seasonNameArray = season.seasonName.split(' ');
+		const seasonNameArray = season.seasonName ? season.seasonName.split(' ') : [''];
 
 		return textSearch( searchFilterTextArray, seasonNameArray );
-	}).sort( (a, b) =>
+	}).sort( (playerA, playerB) =>
 	{
 		if( sortBy === 'ascending' )
 		{
-			const nameA = a.seasonName.toLowerCase();
-			const nameB = b.seasonName.toLowerCase();
+			const nameA = playerA.seasonName.toLowerCase();
+			const nameB = playerB.seasonName.toLowerCase();
 
 			if ( nameA < nameB ) return -1;
 			if ( nameA > nameB ) return 1;
@@ -21,8 +21,8 @@ export default ( seasons, { text = '', sortBy = 'descending' } ) =>
 		};
 		if( sortBy === 'descending' )
 		{
-			const nameA = a.seasonName.toLowerCase();
-			const nameB = b.seasonName.toLowerCase();
+			const nameA = playerA.seasonName.toLowerCase();
+			const nameB = playerB.seasonName.toLowerCase();
 
 			if ( nameA > nameB ) return -1;
 			if ( nameA < nameB ) return 1;
