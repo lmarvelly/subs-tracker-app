@@ -82,7 +82,7 @@ export const startRemoveMember = ( playerUuid, seasonList ) =>
 				.once('value')
 				.then((sessions) => 
 					sessions.forEach((childSession) =>
-						childSession.val().playerList.forEach( (player) => // should break on true
+						childSession.val().playerList.some( (player) => // should break on true
 							player.playerUuid === playerUuid
 						)
 					)
@@ -91,33 +91,29 @@ export const startRemoveMember = ( playerUuid, seasonList ) =>
 		
 		const promises = recordPromises.concat(sessionPromises);
 
-		console.log(promises);
-
       return Promise.all(promises).then(findings =>
-            findings.includes(true)
-        	)
-			.then(cannotDelete => 
+			findings.includes(true)
+		)
+		.then(cannotDelete => 
+		{
+			if (cannotDelete) 
 			{
-            if (cannotDelete) 
-				{
-					console.log('CANNOT DELETE');
-					alert('Cannot Delete. Member has records');
-					return false;
-            } 
-				else 
-				{
-					console.log('DELETING');
-					alert('Deleted');
-					return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
-						.remove()
-						.then((ref) => 
-						{
-							dispatch(removeMember(playerUuid)); // Calls removeMember() function to remove the Member from the State of the App
-							return true; // To distinguish from false
-						}
-					);
-            }
-        });
+				alert('Cannot Delete. Member has records');
+				return false;
+			} 
+			else 
+			{
+				alert('Deleted');
+				return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
+					.remove()
+					.then((ref) => 
+					{
+						dispatch(removeMember(playerUuid)); // Calls removeMember() function to remove the Member from the State of the App
+						return true; // To distinguish from false
+					}
+				);
+			}
+		});
 	};
 };
 
