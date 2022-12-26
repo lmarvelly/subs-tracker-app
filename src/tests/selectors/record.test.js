@@ -1,6 +1,6 @@
 import moment from 'moment';
 import selectRecord from '../../selectors/records';
-import { records, members, seasons, } from '../fixtures/fixures';
+import { records, faultyRecords, members, seasons, } from '../fixtures/fixures';
 
 test('Should filter desciptions by text value', () =>
 {
@@ -224,4 +224,19 @@ test('should filter Records by Record Type', () =>
 	const result = selectRecord(records, members, filters);
 
 	expect(result).toEqual([ records[4], records[0] ]);
+});
+
+test("shouldn't throw any errors if there's missing data", () => 
+{
+	const filters = 
+	{
+		recordTypeFilter: 'ALL',
+		sessionNameTextFilter: '',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: moment(0),
+		endDate: moment(0).add(4, 'days')
+	}
+	const result = selectRecord(faultyRecords, members, filters);
 });
