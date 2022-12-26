@@ -53,7 +53,14 @@ export const members =
 		middleNames: '', 
 		surname: 'Doe',
 		nickname: ''
-	}
+	},
+	{
+		playerUuid: 'player5',
+		firstName: 'No', 
+		middleNames: 'Records', 
+		surname: 'Joe',
+		nickname: 'Joey Joe Joe'
+	},
 ];
 
 // Fixtures: In the test world, your fixture is the baseline test data

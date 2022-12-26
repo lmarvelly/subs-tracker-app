@@ -189,7 +189,7 @@ test('should fetch members from firebase', (done) =>
 test('should remove member, with no records from database', (done) => 
 {
 	const store = createMockStore(defaultAuthState);
-	const playerUuid = members[3].playerUuid;
+	const playerUuid = members[4].playerUuid;
 
 	store.dispatch(startRemoveMember(playerUuid, seasons))
 	.then(() =>
