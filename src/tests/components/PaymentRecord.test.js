@@ -10,7 +10,13 @@ const allRecords = records.concat(sessions);
 test('should render PaymentRecord with Payments/Debts', () => 
 {
 	const wrapper = shallow( 
-		<PaymentRecord paymentRecord={records} members={members} seasons={seasons} sessions={sessions} allRecords={allRecords} />
+		<PaymentRecord
+			paymentRecord={records} 
+			members={members} 
+			seasons={seasons} 
+			sessions={sessions} 
+			allRecords={allRecords} 
+		/>
 	);
 
 	expect(wrapper).toMatchSnapshot();
