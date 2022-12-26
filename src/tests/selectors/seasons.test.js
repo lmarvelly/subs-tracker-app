@@ -1,5 +1,5 @@
 import selectSeasons from '../../selectors/seasons';
-import { seasons } from '../fixtures/fixures';
+import { seasons, faultySeasons } from '../fixtures/fixures';
 
 test('seasons should be ascending in alphabetical order', () => 
 {
@@ -46,3 +46,24 @@ test('should filter by advanced text value and be in descending order', () =>
 
 	expect( result ).toEqual([ seasons[1], seasons[2] ]);
 });
+
+test('should handle faulty data 1', () =>
+{
+	const filters =
+	{
+		sortBy: 'ascending',
+		text: '20 21'
+	}
+	selectSeasons( faultySeasons, filters );
+});
+
+test('should handle faulty data 2', () =>
+{
+	const filters =
+	{
+		sortBy: 'descending',
+		text: '21'
+	}
+	selectSeasons( faultySeasons, filters );
+});
+

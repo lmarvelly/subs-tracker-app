@@ -22,6 +22,22 @@ export const seasons =
 		seasonName: '1999/2000', 
 		seasonUuid: 'season4'
 	}
+];
+
+export const faultySeasons = 
+[
+	{
+		seasonName: undefined, 
+		seasonUuid: 'donation'
+	},
+	{
+		seasonName: '2020/2021', 
+		seasonUuid: undefined
+	},
+	{
+		seasonName: undefined, 
+		seasonUuid: undefined
+	}
 ]
 
 export const members = 
