@@ -1,5 +1,5 @@
 import selectMembers from '../../selectors/members';
-import { members } from '../fixtures/fixures';
+import { members, faultyMembers } from '../fixtures/fixures';
 
 test('members should be ascending in alphabetical order', () => 
 {
@@ -49,4 +49,25 @@ test('should filter by more advanced text value and be in alphabetical order', (
 	const result = selectMembers( members, filters );
 
 	expect( result ).toEqual([members[2], members[3], members[4],]);
+});
+
+test('should handle faulty data 1', () => 
+{
+	const filters = 
+	{
+		sortBy: 'alphabetAsc',
+		text: 'j d'
+	}
+
+	selectMembers( faultyMembers, filters );
+});
+
+test('should handle faulty data 2', () => 
+{
+	const filters = 
+	{
+		sortBy: 'alphabetDesc'
+	}
+
+	selectMembers( faultyMembers, filters );
 });

@@ -63,6 +63,45 @@ export const members =
 	},
 ];
 
+export const faultyMembers = 
+[
+	{
+		playerUuid: undefined,
+		firstName: 'Luke', 
+		middleNames: 'Owen Lloyd', 
+		surname: 'Marvelly', 
+		nickname: 'Lukio'
+	},
+	{
+		playerUuid: 'player2',
+		firstName: undefined, 
+		middleNames: '', 
+		surname: 'Messenger',
+		nickname: ''
+	},
+	{
+		playerUuid: 'player3',
+		firstName: 'Jason', 
+		middleNames: undefined, 
+		surname: 'Cousins',
+		nickname: 'Oldest Dragon'
+	},
+	{
+		playerUuid: 'player4',
+		firstName: 'Jon', 
+		middleNames: '', 
+		surname: undefined,
+		nickname: ''
+	},
+	{
+		playerUuid: 'player5',
+		firstName: 'No', 
+		middleNames: 'Records', 
+		surname: 'Joe',
+		nickname: undefined
+	},
+];
+
 // Fixtures: In the test world, your fixture is the baseline test data
 export const records = 
 [{
