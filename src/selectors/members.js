@@ -6,17 +6,17 @@ export default ( members = [], { text = '', sortBy = 'alphabetAsc' } ) =>
 	{
 		const searchFilterTextArray = text.split(' ');
 
-		const { firstName, middleNames, surname, nickname } = member;
+		const { firstName = '', middleNames = '', surname = '', nickname = '' } = member;
 		let memberNameArray = [ firstName, surname ];
 		memberNameArray = memberNameArray.concat(middleNames.split(' '), nickname.split(' '));
 		
 		return textSearch(searchFilterTextArray, memberNameArray)
-	}).sort( (a, b) =>
+	}).sort( (playerA, playerB) =>
 	{
 		if( sortBy === 'alphabetAsc' )
 		{
-			const nameA = a.firstName.toLowerCase();
-			const nameB = b.firstName.toLowerCase();
+			const nameA = playerA.firstName ? playerA.firstName.toLowerCase() : '';
+			const nameB = playerB.firstName ? playerB.firstName.toLowerCase() : '';
 
 			if ( nameA < nameB ) return -1;
 			if ( nameA > nameB ) return 1;
@@ -24,8 +24,8 @@ export default ( members = [], { text = '', sortBy = 'alphabetAsc' } ) =>
 		}
 		if( sortBy === 'alphabetDesc' )
 		{
-			const nameA = a.firstName.toLowerCase();
-			const nameB = b.firstName.toLowerCase();
+			const nameA = playerA.firstName ? playerA.firstName.toLowerCase() : '';
+			const nameB = playerB.firstName ? playerB.firstName.toLowerCase() : '';
 
 			if ( nameA > nameB ) return -1;
 			if ( nameA < nameB ) return 1;
