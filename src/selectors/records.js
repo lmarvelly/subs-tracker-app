@@ -77,10 +77,8 @@ export default (
 			note: '',
 			playerList: [],
 			createdAt: 0, // 01-01-1970
-			amount: 400
+			amount: 0
 		}
-
-		console.log(currentRecord);
 
 		/////////////////////////////////
 		///// Filter by Record Type /////
