@@ -7,9 +7,10 @@ const filterByMemberText = ( memberArray, filterArray ) =>
 	let isMatch = false;
 	memberArray.forEach( member => 
 	{
-		const middleNames = member.middleNames.split(' ');
-		const nickname = member.nickname.split(' ');
-		const searchMemberTextArray = [ member.firstName, member.surname ].concat(middleNames, nickname);
+		const currentMember = member ? member : { firstName: '', middleNames: '', nickname: '', surname: '' }
+		const middleNames = currentMember.middleNames.split(' ');
+		const nickname = currentMember.nickname.split(' ');
+		const searchMemberTextArray = [ currentMember.firstName, currentMember.surname ].concat(middleNames, nickname);
 		const isMemberTextMatch = textSearch( filterArray, searchMemberTextArray );
 
 		if(isMemberTextMatch)
@@ -26,7 +27,8 @@ const filterByMemberID = ( id, memberArray) =>
 	let isMatch = false;
 	memberArray.forEach(member =>
 	{
-		if(member.playerUuid === id)
+		const currentMember = member ? member : { playerUuid: '' }
+		if(currentMember.playerUuid === id)
 		{
 			isMatch = true;
 		}
@@ -65,26 +67,41 @@ export default (
 {
 	return records.filter( (record) =>
 	{
+		const currentRecord = record ? record : 
+		{
+			playerUuid: '',
+			seasonUuid: '',
+			id: '',
+			recordType: '',
+			sessionName: '',
+			note: '',
+			playerList: [],
+			createdAt: 0, // 01-01-1970
+			amount: 400
+		}
+
+		console.log(currentRecord);
+
 		/////////////////////////////////
 		///// Filter by Record Type /////
 		/////////////////////////////////
-		const recordType = record.recordType;
+		const recordType = currentRecord.recordType;
 		const filterByRecordType = recordTypeFilter === 'ALL' ? true : recordType === recordTypeFilter;
 
 		/////////////////////////////////
 		///// Filter by Member Text /////
 		/////////////////////////////////
 		const memberArray = [];
-		if(record.recordType === 'DEBT' || record.recordType === 'PAYMENT')
+		if(currentRecord.recordType === 'DEBT' || currentRecord.recordType === 'PAYMENT')
 		{
 			const member = members.find( ( member ) => 
 				record.playerUuid === member.playerUuid
 			);
 			memberArray.push(member);
 		}
-		else
+		else if (currentRecord.recordType === 'SESSION')
 		{
-			record.playerList.forEach((record) =>
+			currentRecord.playerList.forEach((record) =>
 			{
 				const member = members.find( ( member ) => 
 					record.playerUuid === member.playerUuid
@@ -104,7 +121,7 @@ export default (
 		///// Filter by Session Name /////
 		//////////////////////////////////
 		const sessionTextFilterArray = sessionNameTextFilter.split(' ');
-		const searchSeshTextArray = record.sessionName.split(' ');
+		const searchSeshTextArray = record.sessionName ? record.sessionName.split(' ') : [];
 		const isSeshNameMatch = textSearch( sessionTextFilterArray, searchSeshTextArray );
 
 		const createdAtMoment = moment( record.createdAt );

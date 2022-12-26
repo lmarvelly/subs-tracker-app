@@ -120,6 +120,90 @@ export const records =
 }
 ];
 
+export const faultyRecords =
+[
+	{
+		playerUuid: undefined,
+		seasonUuid: seasons[1].seasonUuid,
+		id: 'record6',
+		recordType: 'PAYMENT',
+		sessionName: 'Glasgow',
+		note: '',
+		createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
+		amount: 3500
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		seasonUuid: undefined,
+		id: 'record6',
+		recordType: 'PAYMENT',
+		sessionName: 'Glasgow',
+		note: '',
+		createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
+		amount: 3500
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[1].seasonUuid,
+		id: undefined,
+		recordType: 'PAYMENT',
+		sessionName: 'Glasgow',
+		note: '',
+		createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
+		amount: 3500
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[1].seasonUuid,
+		id: 'record6',
+		recordType: undefined,
+		sessionName: 'Glasgow',
+		note: '',
+		createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
+		amount: 3500
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[1].seasonUuid,
+		id: 'record6',
+		recordType: 'PAYMENT',
+		sessionName: undefined,
+		note: '',
+		createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
+		amount: 3500
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[1].seasonUuid,
+		id: 'record6',
+		recordType: 'PAYMENT',
+		sessionName: 'Glasgow',
+		note: undefined,
+		createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
+		amount: 3500
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[1].seasonUuid,
+		id: 'record6',
+		recordType: 'PAYMENT',
+		sessionName: 'Glasgow',
+		note: '',
+		createdAt: undefined,
+		amount: 3500
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		seasonUuid: seasons[1].seasonUuid,
+		id: 'record6',
+		recordType: 'PAYMENT',
+		sessionName: 'Glasgow',
+		note: '',
+		createdAt: moment(0).add(4, 'days').valueOf(), // 05-01-1970
+		amount: undefined
+	}
+]
+
 export const sessionNames = 
 [ 
 	{
