@@ -226,7 +226,7 @@ test('should filter Records by Record Type', () =>
 	expect(result).toEqual([ records[4], records[0] ]);
 });
 
-test("shouldn't throw any errors if there's missing data", () => 
+test("shouldn't throw any errors if there's faulty data", () => 
 {
 	const filters = 
 	{
