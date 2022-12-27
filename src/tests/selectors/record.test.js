@@ -1,6 +1,6 @@
 import moment from 'moment';
 import selectRecord from '../../selectors/records';
-import { records, faultyRecords, sessions, members, seasons, } from '../fixtures/fixures';
+import { records, faultyRecords, sessions, members, seasons, faultySessions } from '../fixtures/fixures';
 
 const allRecords = records.concat(sessions);
 
@@ -157,9 +157,9 @@ test('Should filter by startDate', () =>
 		endDate: moment(0)
 	}
 
-	const result = selectRecord( records, members, filters );
+	const result = selectRecord( allRecords, members, filters );
 
-	expect(result).toEqual([ records[0], records[3], records[1] ]);
+	expect(result).toEqual([ records[0], sessions[0], records[3], records[1] ]);
 });
 
 test('Should sort by dateAscending', () =>
@@ -174,9 +174,9 @@ test('Should sort by dateAscending', () =>
 		endDate: undefined
 	};
 
-	const result = selectRecord(records, members, filters);
-	
-	expect(result).toEqual([ records[5], records[2], records[4], records[0], records[3], records[1] ]);
+	const result = selectRecord(allRecords, members, filters);
+
+	expect(result).toEqual([ sessions[5], sessions[4], sessions[3], records[5], records[2], records[4], sessions[2], sessions[1], records[0], sessions[0], records[3], records[1] ]);
 });
 
 test('Should sort by dateDescending', () =>
@@ -208,9 +208,9 @@ test('Should filter by member simple text filter 1', () =>
 		startDate: undefined,
 		endDate: undefined
 	};
-	const result = selectRecord(records, members, filters);
+	const result = selectRecord(allRecords, members, filters);
 
-	expect(result).toEqual([ records[1], records[4], records[5] ]);
+	expect(result).toEqual([ records[1], sessions[0], sessions[1], sessions[2], records[4], records[5], sessions[4] ]);
 });
 
 test('Should filter by member simple text filter 2', () =>
@@ -225,9 +225,9 @@ test('Should filter by member simple text filter 2', () =>
 		startDate: undefined,
 		endDate: undefined
 	};
-	const result = selectRecord(records, members, filters);
+	const result = selectRecord(allRecords, members, filters);
 
-	expect(result).toEqual([ records[0] ]);
+	expect(result).toEqual([ sessions[0], records[0], sessions[1], sessions[2], sessions[3] ]);
 });
 
 test('Should filter by member advanced text filter 1', () =>
@@ -242,9 +242,9 @@ test('Should filter by member advanced text filter 1', () =>
 		startDate: undefined,
 		endDate: undefined
 	};
-	const result = selectRecord(records, members, filters);
+	const result = selectRecord(allRecords, members, filters);
 
-	expect(result).toEqual([ records[0] ]);
+	expect(result).toEqual([ sessions[0], records[0], sessions[1], sessions[2], sessions[3] ]);
 });
 
 test('Should filter by member advanced text filter 2', () =>
@@ -259,9 +259,9 @@ test('Should filter by member advanced text filter 2', () =>
 		startDate: undefined,
 		endDate: undefined
 	};
-	const result = selectRecord(records, members, filters);
+	const result = selectRecord(allRecords, members, filters);
 
-	expect(result).toEqual([ records[2], records[3] ]);
+	expect(result).toEqual([ sessions[5], sessions[4], records[2], sessions[1], sessions[0], records[3] ]);
 });
 
 test('Should filter by member uuid: test 1', () =>
@@ -276,9 +276,9 @@ test('Should filter by member uuid: test 1', () =>
 		startDate: undefined,
 		endDate: undefined
 	};
-	const result = selectRecord(records, members, filters);
+	const result = selectRecord(allRecords, members, filters);
 
-	expect(result).toEqual([ records[0] ]);
+	expect(result).toEqual([ sessions[3], sessions[2], sessions[1], records[0], sessions[0] ]);
 });
 
 test('Should filter by member uuid: test 2', () =>
@@ -293,9 +293,9 @@ test('Should filter by member uuid: test 2', () =>
 		startDate: undefined,
 		endDate: undefined
 	};
-	const result = selectRecord(records, members, filters);
+	const result = selectRecord(allRecords, members, filters);
 
-	expect(result).toEqual([ records[2], records[3] ]);
+	expect(result).toEqual([ sessions[5], sessions[4], records[2], sessions[1], sessions[0], records[3] ]);
 });
 
 test('should filter Records by Record Type', () =>
@@ -310,9 +310,26 @@ test('should filter Records by Record Type', () =>
 		startDate: undefined,
 		endDate: undefined
 	};
-	const result = selectRecord(records, members, filters);
+	const result = selectRecord(allRecords, members, filters);
 
 	expect(result).toEqual([ records[4], records[0] ]);
+});
+
+test('should filter Records by Record Type', () =>
+{
+	const filters = 
+	{
+		recordTypeFilter: 'PAYMENT',
+		sessionNameTextFilter: '',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+	const result = selectRecord(allRecords, members, filters);
+
+	expect(result).toEqual([ records[5], records[2], records[3], records[1] ]);
 });
 
 test("shouldn't throw any errors if there's faulty data", () => 
@@ -327,10 +344,20 @@ test("shouldn't throw any errors if there's faulty data", () =>
 		startDate: moment(0),
 		endDate: moment(0).add(4, 'days')
 	}
-	const result = selectRecord(faultyRecords, members, filters);
+	selectRecord(faultyRecords, members, filters); // this should throw no errors
 });
 
 test("shouldn't throw any errors if there's faulty Session data", () =>
 {
-	expect(true).toBe(false)
+	const filters = 
+	{
+		recordTypeFilter: 'ALL',
+		sessionNameTextFilter: '',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: moment(0),
+		endDate: moment(0).add(4, 'days')
+	}
+	selectRecord( faultySessions, members, filters ); // this should throw no errors
 });
