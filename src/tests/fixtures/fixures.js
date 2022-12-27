@@ -127,7 +127,7 @@ export const records =
 	recordType: 'DEBT',
 	sessionName: 'Training subs',
 	note: 'To be paid next week',
-	createdAt: 0, // 01-01-1970
+	createdAt: 1, // 01-01-1970
 	amount: 400
 },
 {
