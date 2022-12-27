@@ -2,6 +2,8 @@ import moment from 'moment';
 import selectRecord from '../../selectors/records';
 import { records, faultyRecords, sessions, members, seasons, } from '../fixtures/fixures';
 
+const allRecords = records.concat(sessions);
+
 test('Should filter Record desciptions by text value', () =>
 {
 	const filters = {
@@ -35,6 +37,25 @@ test('Should filter Session desciptions by text value', () =>
 
 	expect(result).toEqual([ sessions[1], sessions[0] ]);
 });
+
+test('Should filter All Records by desciptions by text value', () =>
+{
+	const filters = {
+		recordTypeFilter: 'ALL',
+		sessionNameTextFilter: 'train',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+
+	const result = selectRecord(allRecords, members, filters);
+
+	expect(result).toEqual([ sessions[1], records[0], sessions[0], records[1] ]);
+});
+
+
 
 test('Should filter Record desciptions by advanced text value', () =>
 {
@@ -70,6 +91,40 @@ test('Should filter Session desciptions by advanced text value', () =>
 	expect(result).toEqual([ sessions[2] ]);
 });
 
+test('Should filter All Records desciptions by advanced text value 1', () =>
+{
+	const filters = {
+		recordTypeFilter: 'ALL',
+		sessionNameTextFilter: 'FS ame',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+
+	const result = selectRecord(allRecords, members, filters);
+
+	expect(result).toEqual([ sessions[2] ]);
+});
+
+test('Should filter All Records desciptions by advanced text value 1', () =>
+{
+	const filters = {
+		recordTypeFilter: 'ALL',
+		sessionNameTextFilter: 'ub rain',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+
+	const result = selectRecord(allRecords, members, filters);
+
+	expect(result).toEqual([ records[0], records[1] ]);
+});
+
 test('Should filter by startDate', () =>
 {
 	const filters = 
@@ -83,9 +138,9 @@ test('Should filter by startDate', () =>
 		endDate: undefined
 	}
 
-	const result = selectRecord( records, members, filters );
+	const result = selectRecord( allRecords, members, filters );
 
-	expect(result).toEqual([records[5], records[2], records[4], records[0] ]);
+	expect(result).toEqual([sessions[5], sessions[4], sessions[3], records[5], records[2], records[4], sessions[2], sessions[1], records[0], sessions[0] ]);
 });
 
 
