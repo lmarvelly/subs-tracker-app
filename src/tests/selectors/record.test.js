@@ -1,8 +1,8 @@
 import moment from 'moment';
 import selectRecord from '../../selectors/records';
-import { records, faultyRecords, members, seasons, } from '../fixtures/fixures';
+import { records, faultyRecords, sessions, members, seasons, } from '../fixtures/fixures';
 
-test('Should filter desciptions by text value', () =>
+test('Should filter Record desciptions by text value', () =>
 {
 	const filters = {
 		recordTypeFilter: 'ALL',
@@ -19,7 +19,24 @@ test('Should filter desciptions by text value', () =>
 	expect(result).toEqual([ records[0], records[1] ]);
 });
 
-test('Should filter desciptions by advanced text value', () =>
+test('Should filter Session desciptions by text value', () =>
+{
+	const filters = {
+		recordTypeFilter: 'ALL',
+		sessionNameTextFilter: 'train',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+
+	const result = selectRecord(sessions, members, filters);
+
+	expect(result).toEqual([ sessions[1], sessions[0] ]);
+});
+
+test('Should filter Record desciptions by advanced text value', () =>
 {
 	const filters = {
 		recordTypeFilter: 'ALL',
@@ -34,6 +51,23 @@ test('Should filter desciptions by advanced text value', () =>
 	const result = selectRecord(records, members, filters);
 
 	expect(result).toEqual([ records[0], records[1] ]);
+});
+
+test('Should filter Session desciptions by advanced text value', () =>
+{
+	const filters = {
+		recordTypeFilter: 'ALL',
+		sessionNameTextFilter: 'FS ame',
+		memberTextFilter: '',
+		playerUuidFilter: '',
+		sortBy: 'dateAscending',
+		startDate: undefined,
+		endDate: undefined
+	};
+
+	const result = selectRecord(sessions, members, filters);
+
+	expect(result).toEqual([ sessions[2] ]);
 });
 
 test('Should filter by startDate', () =>
@@ -239,4 +273,9 @@ test("shouldn't throw any errors if there's faulty data", () =>
 		endDate: moment(0).add(4, 'days')
 	}
 	const result = selectRecord(faultyRecords, members, filters);
+});
+
+test("shouldn't throw any errors if there's faulty Session data", () =>
+{
+	expect(true).toBe(false)
 });
