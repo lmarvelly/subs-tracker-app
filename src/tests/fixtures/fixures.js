@@ -408,6 +408,152 @@ export const sessions =
 	sessionName: sessionNames[2].sessionName
 }]
 
+export const faultySessions = 
+[{
+	amount: undefined,
+	createdAt: 0, // 01-01-1970
+	id: 'sessionID_1',
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[0].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[2].playerUuid,
+		discount: 100
+	},
+	{
+		playerUuid: members[3].playerUuid,
+		discount: 50
+	}],
+	recordType: 'SESSION',
+	seasonUuid: seasons[1].seasonUuid,
+	sessionName: sessionNames[0].sessionName
+},
+{
+	amount: 400,
+	createdAt: undefined,
+	id: 'sessionID_2',
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[0].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[2].playerUuid,
+		discount: 100
+	},
+	{
+		playerUuid: members[3].playerUuid,
+		discount: 50
+	}],
+	recordType: 'SESSION',
+	seasonUuid: seasons[0].seasonUuid,
+	sessionName: sessionNames[0].sessionName
+},
+{
+	amount: 500,
+	createdAt: moment(0).add(2, 'days').valueOf(), // 03-01-1970
+	id: undefined,
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[0].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[1].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[3].playerUuid,
+		discount: 50
+	}],
+	recordType: 'SESSION',
+	seasonUuid: seasons[1].seasonUuid,
+	sessionName: sessionNames[1].sessionName
+},
+{
+	amount: 500,
+	createdAt: moment(0).add(9, 'days').valueOf(), // 03-01-1970
+	id: 'sessionID_4',
+	note: undefined,
+	playerList:
+	[{
+		playerUuid: members[0].playerUuid,
+		discount: 0
+	},
+	{
+		playerUuid: members[3].playerUuid,
+		discount: 50
+	}],
+	recordType: 'SESSION',
+	seasonUuid: seasons[1].seasonUuid,
+	sessionName: sessionNames[2].sessionName
+},
+{
+	amount: 500,
+	createdAt: moment(0).add(16, 'days').valueOf(), // 03-01-1970
+	id: 'sessionID_5',
+	note: '',
+	playerList: undefined,
+	recordType: 'SESSION',
+	seasonUuid: seasons[1].seasonUuid,
+	sessionName: sessionNames[2].sessionName
+},
+{
+	amount: 500,
+	createdAt: moment(0).add(16, 'days').valueOf(), // 03-01-1970
+	id: 'sessionID_6',
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[2].playerUuid,
+		discount: 50
+	}],
+	recordType: undefined,
+	seasonUuid: seasons[1].seasonUuid,
+	sessionName: sessionNames[2].sessionName
+},
+{
+	amount: 500,
+	createdAt: moment(0).add(16, 'days').valueOf(), // 03-01-1970
+	id: 'sessionID_7',
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[2].playerUuid,
+		discount: 50
+	}],
+	recordType: 'DEBT',
+	seasonUuid: undefined,
+	sessionName: sessionNames[2].sessionName
+},
+{
+	amount: 500,
+	createdAt: moment(0).add(16, 'days').valueOf(), // 03-01-1970
+	id: 'sessionID_7',
+	note: '',
+	playerList:
+	[{
+		playerUuid: members[2].playerUuid,
+		discount: 50
+	}],
+	recordType: 'DEBT',
+	seasonUuid: seasons[0].seasonUuid,
+	sessionName: undefined
+}]
+
 export const sessionArray =
 [
 	{ playerUuid: members[0], type: "PAYMENT" },
