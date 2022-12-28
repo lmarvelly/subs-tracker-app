@@ -67,39 +67,37 @@ export default (
 {
 	return records.filter( (record) =>
 	{
-		const currentRecord = record ? record : 
-		{
-			playerUuid: '',
-			seasonUuid: '',
-			id: '',
-			recordType: '',
-			sessionName: '',
-			note: '',
-			playerList: [],
-			createdAt: 0, // 01-01-1970
-			amount: 0
-		}
+		const {  
+			playerUuid = '',
+			seasonUuid = '',
+			id = '',
+			recordType = '',
+			sessionName = '',
+			note = '',
+			playerList = [],
+			createdAt = 0, // 01-01-1970
+			amount = 0
+		} = record;
 
 		/////////////////////////////////
 		///// Filter by Record Type /////
 		/////////////////////////////////
-		const recordType = currentRecord.recordType;
 		const filterByRecordType = recordTypeFilter === 'ALL' ? true : recordType === recordTypeFilter;
 
 		/////////////////////////////////
 		///// Filter by Member Text /////
 		/////////////////////////////////
 		const memberArray = [];
-		if(currentRecord.recordType === 'DEBT' || currentRecord.recordType === 'PAYMENT')
+		if(recordType === 'DEBT' || recordType === 'PAYMENT')
 		{
 			const member = members.find( ( member ) => 
-				record.playerUuid === member.playerUuid
+				playerUuid === member.playerUuid
 			);
 			memberArray.push(member);
 		}
-		else if (currentRecord.recordType === 'SESSION')
+		else if (recordType === 'SESSION')
 		{
-			currentRecord.playerList.forEach((record) =>
+			playerList.forEach((record) =>
 			{
 				const member = members.find( ( member ) => 
 					record.playerUuid === member.playerUuid
