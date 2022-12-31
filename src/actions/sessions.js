@@ -46,6 +46,22 @@ export const setSessions = ( sessions ) => (
 	sessions
 });
 
+const getDefaultSeason = (uid) => 
+{
+	return database.ref(`subs-tracker/users/${uid}/seasons/`)
+	.orderByChild('seasonName').limitToFirst(1).once('value')
+	.then((snapshot) =>
+	{
+		let season;
+		snapshot.forEach((childSnapshot) =>
+		{
+			season = childSnapshot.key;
+		})
+
+		return season;
+	});
+};
+
 export const startSetSessions = ( seasonUuid ) =>
 {
 	if ( seasonUuid ) 
@@ -88,46 +104,36 @@ export const startSetSessions = ( seasonUuid ) =>
 		return ( dispatch, getState ) =>
 		{
 			const uid = getState().auth.uid;
-			const seasons = [];
 
-			database.ref(`subs-tracker/users/${uid}/seasons`)
-				.once('value')
-				.then((snapshot) =>
+			const sessions = [];
+
+			return getDefaultSeason(uid)
+			.then((defaultSeason) => database.ref(`subs-tracker/users/${uid}/sessions/${defaultSeason}`)
+			.once('value')
+			.then((snapshot) =>
+			{
+				snapshot.forEach((childSnapshot) =>
 				{
-					snapshot.forEach((childSnapshot) =>
+					sessions.push(
 					{
-						seasons.push(childSnapshot.key);
-					})
+						id: childSnapshot.key,
+						...childSnapshot.val()
+					});
 				});
 
-				return database.ref(`subs-tracker/users/${uid}/sessions/${seasons[0]}`)
-					.once('value')
-					.then((snapshot) =>
+				// Adding 'SESSION' record type identifier to each Session
+				sessions.forEach((session) =>
+				{
+					const index = sessions.findIndex( (currentSession) =>
 					{
-						const sessions = [];
-
-						snapshot.forEach((childSnapshot) =>
-						{
-							sessions.push(
-							{
-								id: childSnapshot.key,
-								...childSnapshot.val()
-							});
-						});
-
-						// Adding 'SESSION' record type identifier to each Session
-						sessions.forEach((session) =>
-						{
-							const index = sessions.findIndex( (currentSession) =>
-							{
-								return session.id === currentSession.id;
-							});
-
-							sessions[index] = {...session, recordType: 'SESSION'}
-						})
-
-						dispatch(setSessions( sessions ));
+						return session.id === currentSession.id;
 					});
+
+					sessions[index] = {...session, recordType: 'SESSION'}
+				})
+
+				dispatch(setSessions( sessions ));
+			}));
 		}
 	}
 }

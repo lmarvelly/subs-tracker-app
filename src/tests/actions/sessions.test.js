@@ -21,6 +21,9 @@ const createMockStore = configureMockStore([thunk]);
 
 beforeEach((done) =>
 {
+	database.ref(`subs-tracker/users/${uid}/sessions`)
+		.set([]);
+
 	sessions.forEach(({amount, createdAt, note, playerList, 
 		seasonUuid, sessionName, id}) =>
 		{
@@ -84,6 +87,9 @@ test('Should Add a New Session to the Database', (done) =>
 		sessionName: sessionNames[1].sessionName
 	}
 
+	// Clear Session Data for seasons[0].seasonUuid 
+	database.ref(`subs-tracker/users/${uid}/sessions/${seasons[0].seasonUuid}/`).set([]);
+
 	const promise = store.dispatch(startAddSession(sessionData))
 		.then(() =>
 		{
@@ -98,7 +104,6 @@ test('Should Add a New Session to the Database', (done) =>
 					recordType: "SESSION"
 				}
 			});
-
 			return database.ref(`subs-tracker/users/${uid}/sessions/${sessionData.seasonUuid}/${actions[0].session.id}`).once('value');
 		});
 
@@ -115,7 +120,7 @@ test('should create a Set Session Action Object', () =>
 	expect(action).toEqual(
 	{
 		type: 'SET_SESSIONS',
-		sessions
+		sessions: sessions
 	});
 });
 
@@ -132,7 +137,7 @@ test('should fetch Sessions from database', (done) =>
 		expect(actions[0]).toEqual(
 		{
 			type: 'SET_SESSIONS',
-			sessions: [sessions[0], sessions[2]]
+			sessions: [sessions[0], sessions[2], sessions[3], sessions[4], sessions[5]]
 		});
 		done();
 	});
