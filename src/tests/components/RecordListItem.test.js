@@ -1,16 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import RecordListItem from '../../components/RecordListItem';
-import { records, members, seasons } from '../fixtures/fixures';
+import { records, sessions, members, seasons } from '../fixtures/fixures';
 
-let wrapper1, wrapper2;
-
+let recordWrapper1, recordWrapper2, sessionWrapper1;
 beforeEach( () => 
 {
 	const record1 = records[1];
 	const { firstName, surname } = members[1];
 	
-	wrapper1 = shallow(
+	recordWrapper1 = shallow(
 		<RecordListItem
 			key={record1.id}
 			name={`${firstName} ${surname}`}
@@ -22,7 +21,7 @@ beforeEach( () =>
 
 	const record2 = records[0];
 
-	wrapper2 = shallow(
+	recordWrapper2 = shallow(
 		<RecordListItem 
 			key={record2.id}
 			name={`${firstName} ${surname}`}
@@ -32,30 +31,51 @@ beforeEach( () =>
 		/>
 	);
 
+	const session = sessions[0];
 
+	sessionWrapper1 = shallow(
+		<RecordListItem 
+			key={session.id}
+			playerNameList={session.playerList}
+			recordType={session.recordType}
+			seasonName={ seasons[0].seasonName }
+			{...session} 
+		/>
+	);
 });
 
 
 test('should render one compressed RecordListItem payment', () => 
 {
-	expect( wrapper1 ).toMatchSnapshot();
+	expect( recordWrapper1 ).toMatchSnapshot();
 });
 
 test('should render one expanded RecordListItem payment', () => 
 {
-	wrapper1.find('.list-item').simulate('click');
+	recordWrapper1.find('.list-item').simulate('click');
 
-	expect( wrapper1 ).toMatchSnapshot();
+	expect( recordWrapper1 ).toMatchSnapshot();
 });
 
-test('should render one compressed RecordListItem Debt', () => 
+test('should render one compressed Debt RecordListItem', () => 
 {
-	expect( wrapper2 ).toMatchSnapshot();
+	expect( recordWrapper2 ).toMatchSnapshot();
+});
+
+test('should render one compressed Session RecordListItem', () =>
+{
+	expect( sessionWrapper1 ).toMatchSnapshot();
 });
 
 test('should render one expanded RecordListItem Debt', () => 
 {
-	wrapper2.find('.list-item').simulate('click');
+	recordWrapper2.find('.list-item').simulate('click');
 
-	expect( wrapper2 ).toMatchSnapshot();
+	expect( recordWrapper2 ).toMatchSnapshot();
+});
+
+test('should render one expanded RecordListItem Session', () =>
+{
+	sessionWrapper1.find('.list-item').simulate('click');
+	expect( sessionWrapper1 ).toMatchSnapshot();
 });
