@@ -19,7 +19,6 @@ beforeEach( () =>
 
 	emptyWrapper = shallow(
 		<SessionForm
-			// addSessionName={addSessionName}
 			members={[]} 
 			seasons={[]}
 		/>
@@ -126,12 +125,23 @@ test('should render "Please enter an Amount" error message for no amount entered
 
 test('should not render "Please add members" error message', () => 
 {
-	// Season input
+	sessionArrayWrapper.setState({playerList: [{discount: NaN, playerUuid: 'abc'}]}) // Add Selected players
+
+	sessionArrayWrapper.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(sessionArrayWrapper).toMatchSnapshot();
+});
+
+test('should set all Form Fields and call onSubmit', () => 
+{ 
 	const seasonUuid = seasons[0].seasonUuid;
-	const input = sessionArrayWrapper.find('#seasonName');
+	const input = sessionArrayWrapper.find('#seasonName'); // Select a Season input
 	input.simulate('change', { target: { value: seasonUuid } });
-	// sessionName input
-	sessionArrayWrapper.find('#sessionName').simulate('change',
+	sessionArrayWrapper.find('#sessionName').simulate('change', // sessionName input
+	
 	{
 		target: { value: 'New sessionName' }
 	});
@@ -139,21 +149,17 @@ test('should not render "Please add members" error message', () =>
 	const input2 = sessionArrayWrapper.find('#amountToPay');
 	input2.simulate('change', { target: {value: '4'} });
 
-	sessionArrayWrapper.setState({sessionArray})
+	sessionArrayWrapper.setState({sessionArray});
 
-	// submit
+	sessionArrayWrapper.setState({playerList: [{discount: NaN, playerUuid: 'abc'}]}) // Add Selected players
+
 	sessionArrayWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
 
-	// console.log(sessionArrayWrapper.state('sessionArray'));
-
 	expect(onSubmit).toHaveBeenCalled();
-	expect(sessionArrayWrapper).toMatchSnapshot();
 });
-
-
 
 test('should set sessionName on input change', () => 
 {
@@ -216,5 +222,3 @@ test('Should not set amount because input has too many decimal places', () =>
 	expect(input.value).toEqual(undefined);
 	expect(wrapper.state('amount')).toBe('');
 });
-
-// TODO: Write test to add Session Name if Session Name doesn't exist
