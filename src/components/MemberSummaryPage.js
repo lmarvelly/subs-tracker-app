@@ -64,9 +64,7 @@ export class MemberSummaryPage extends Component
 
 				<div className='content-container'>
 					<div className='list-header'>
-						<div className='show-for-mobile'>Records</div>
-						<div className='show-for-desktop'>Record</div>
-						<div className='show-for-desktop'>Amount</div>
+						<div>Records</div>
 					</div>
 					<div className='list-body'>
 					{
