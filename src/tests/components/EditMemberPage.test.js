@@ -23,7 +23,8 @@ beforeEach( () =>
 	);
 	wrapper2 = shallow(
 		<EditMemberPage  
-			member={members[1]} 
+			member={members[1]}
+			seasons={seasons}
 			startEditMember={startEditMember}
 			startRemoveMember={startRemoveMember}
 			startSetMembers={startSetMembers}
@@ -59,7 +60,7 @@ test('should handle startRemoveMember', () =>
 
 	expect(history.push).toHaveBeenLastCalledWith('/members');
 	expect(startRemoveMember).toHaveBeenCalled();
-	expect(startRemoveMember).toHaveBeenLastCalledWith(member.playerUuid);
+	expect(startRemoveMember).toHaveBeenLastCalledWith(member.playerUuid, seasons);
 });
 
 test('should not call startRemoveMember', () => 
