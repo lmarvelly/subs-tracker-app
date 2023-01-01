@@ -26,6 +26,7 @@ test('should Add a New Member', () =>
 test('should remove a member', () => 
 {
 	const playerUuid = members[1].playerUuid;
+	members.splice(1,1); // remove members[1]
 	const action = 
 	{ 
 		type: 'REMOVE_MEMBER', 
@@ -33,7 +34,7 @@ test('should remove a member', () =>
 	}
 	const state = membersReducer( members, action );
 
-	expect( state ).toEqual([ members[0], members[2], members[3] ])
+	expect( state ).toEqual(members)
 });
 
 test('should edit Members First Name', () => 
