@@ -6,10 +6,11 @@ const defaultFilters =
 {
 	sessionNameTextFilter: '',
 	memberTextFilter: '',
-	playerUuid: '',
+	playerUuidFilter: '',
+	recordTypeFilter: "ALL",
 	sortBy: 'dateAscending',
-	startDate: moment().startOf('month'),
-	endDate: moment().endOf('month'),
+	startDate: null,
+	endDate: null,
 	seasonFilter: ''
 }
 
