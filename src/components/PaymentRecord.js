@@ -76,7 +76,7 @@ export const PaymentRecord = (props) =>
 					:
 					recordsToLoad.map(( record ) =>
 					{
-						const season = aseasons.find( (season) => record.seasonUuid === season.seasonUuid );
+						const season = props.seasons.find( (season) => record.seasonUuid === season.seasonUuid );
 
 						if (record.recordType === 'PAYMENT' || record.recordType === 'DEBT') 
 						{
