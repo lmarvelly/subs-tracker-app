@@ -248,7 +248,7 @@ export const faultyRecords =
 		playerUuid: members[1].playerUuid,
 		seasonUuid: seasons[1].seasonUuid,
 		id: 'record6',
-		recordType: 'PAYMENT',
+		recordType: 'DEBT',
 		sessionName: 'Glasgow',
 		note: '',
 		createdAt: undefined,
