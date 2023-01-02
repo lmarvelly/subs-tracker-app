@@ -17,7 +17,6 @@ export default ( state = paymentTypeDefaultState, action ) =>
 			{
 				if ( paymentType.paymentTypeUuid === action.paymentTypeUuid ) 
 				{
-					console.log('Editing ', paymentType.paymentTypeName, 'to be', action.updates.paymentTypeName);
 					return {
 						...paymentType,
 						...action.updates
