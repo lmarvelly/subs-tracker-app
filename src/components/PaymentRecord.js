@@ -41,7 +41,15 @@ export const PaymentRecord = (props) =>
 	{
 		const member = props.members.find( (member) => playerUuid === member.playerUuid );
 
-		return member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`
+		if (member) 
+		{
+			return member.nickname ? `${member.firstName} '${member.nickname}' ${member.surname}` : `${member.firstName} ${member.surname}`;
+		}
+		else
+		{
+			return ''
+		}
+		
 	}
 
 	const getPlayerNamesList = ( playerList ) =>
