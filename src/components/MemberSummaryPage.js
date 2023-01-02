@@ -7,6 +7,7 @@ import MemberAttendence from './MemberAttendence';
 import MemberSummaryFilters from './MemberSummaryFilters';
 
 import getVisibleRecords from '../selectors/records';
+import getVisibleSeasons from '../selectors/seasons';
 
 import { getAttendenceTotals, getMemberTotals } from '../functions/recordTotals';
 
@@ -33,7 +34,12 @@ export class MemberSummaryPage extends Component
 
 				<div className='content-container'>
 					<div className='list-header__title'>
-						<h2 className='page-header__subtitle'>Season: <span className='bold-font'>{this.props.seasonFilter}</span></h2>
+						<h2 className='page-header__subtitle'>
+							Season
+							<span className='bold-font'>
+								{this.props.seasonFilter ? `: ${this.props.seasonFilter}` : (this.props.seasons.length > 0 ? `: ${this.props.seasons[0].seasonName}` : '')}
+							</span>
+						</h2>
 					</div>
 					
 					<div className='list-body'>
@@ -128,13 +134,16 @@ const mapStateToProps = ( state ) =>
 		}
 	});
 
+	const defaultSeasonFilters = { text: '', sortBy: 'ascending'};
+
 	return {
 		attendanceTotals,
 		memberFilter: state.recordFilters.playerUuidFilter,
 		records,
 		recordTotals: getMemberTotals(records, state.recordFilters.playerUuidFilter),
 		seasonFilter: seasonFilter ? seasonFilter : '',
-		sessions: state.sessions
+		sessions: state.sessions,
+		seasons: getVisibleSeasons(state.seasons, defaultSeasonFilters)
 	}
 }
 

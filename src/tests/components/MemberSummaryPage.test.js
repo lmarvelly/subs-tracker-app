@@ -13,6 +13,7 @@ test('should render empty MemberSummaryPage component', () =>
 		<MemberSummaryPage
 			recordTotals = {recordTotals}
 			records = {[]}
+			seasons = {[]}
 		/>
 	);
 
@@ -30,6 +31,7 @@ test('should render MemberSummaryPage component with seasons and records for sec
 			memberFilter={member}
 			recordTotals={recordTotals}
 			records={allRecords}
+			seasons={seasons}
 		/>
 	);
 
@@ -48,6 +50,7 @@ test('should render MemberSummaryPage component with seasons and records for thi
 			memberFilter={member}
 			recordTotals = {recordTotals}
 			records = {allRecords}
+			seasons={seasons}
 		/>
 	);
 
