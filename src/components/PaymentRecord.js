@@ -111,7 +111,7 @@ export const PaymentRecord = (props) =>
 									key={record.id}
 									playerNameList={playerNameList}
 									recordType={record.recordType}
-									seasonName={season.seasonName}
+									seasonName={season.seasonName ? season.seasonName : ''}
 									{...record}
 								/>
 							)
