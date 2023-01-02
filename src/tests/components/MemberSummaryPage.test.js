@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { MemberSummaryPage } from '../../components/MemberSummaryPage';
-import { faultyRecords, faultySeasons, faultyMembers, members, records, seasons, sessions, faultySessions } from '../fixtures/fixures';
+import { faultyRecords, faultySeasons, members, records, seasons, sessions, faultySessions } from '../fixtures/fixures';
 import { getMemberTotals, getAttendenceTotals, getSeasonTotals } from '../../functions/recordTotals';
 
 test('should render empty MemberSummaryPage component', () =>
@@ -86,6 +86,24 @@ test('should render MemberSummaryPage component with seasons and records for thi
 			recordTotals = {recordTotals}
 			records = {allRecords}
 			seasons={seasons}
+		/>
+	);
+
+	expect( recordsWrapper ).toMatchSnapshot();
+});
+
+test('should render MemberSummaryPage component with faulty seasons', () =>
+{
+	const member = members[2].playerUuid;
+	const allRecords = records.concat(sessions)
+	const recordTotals = { totalPaid: 6500, totalDebt: 3000 };
+
+	const recordsWrapper = shallow(
+		<MemberSummaryPage
+			memberFilter={member}
+			recordTotals = {recordTotals}
+			records = {allRecords}
+			seasons={faultySeasons}
 		/>
 	);
 
