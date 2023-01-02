@@ -282,15 +282,18 @@ export default class SessionForm extends Component
 							value={ this.state.amount }
 							onChange={ this.onAmountChange }
 						/>
-						<SingleDatePicker
-							date={ this.state.createdAt }
-							onDateChange={ this.onDateChange }
-							focused={ this.state.calenderFocused }
-							onFocusChange={ this.onFocusChange }
-							numberOfMonths={ 1 }
-							isOutsideRange={ () => false }
-							displayFormat="DD/MM/YYYY"
-						/>
+						<div className='margin-bottom-medium'>
+							<SingleDatePicker
+								date={ this.state.createdAt }
+								onDateChange={ this.onDateChange }
+								focused={ this.state.calenderFocused }
+								onFocusChange={ this.onFocusChange }
+								numberOfMonths={ 1 }
+								isOutsideRange={ () => false }
+								displayFormat="DD/MM/YYYY"
+							/>
+						</div>
+						
 						<textarea
 							className='textarea'
 							placeholder="Add a note (optional)"
