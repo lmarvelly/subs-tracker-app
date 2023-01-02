@@ -68,33 +68,6 @@ export const OtherSettingsPage = ( props ) =>
 					)
 				}
 				</div>
-
-				<PaymentTypeForm onSubmit={onPaymentTypeSubmit} />
-
-				<div className='list-header'>Payment Types</div>
-				<div className='list-body'>
-				{
-					( props.paymentTypes.length === 0 )
-					?
-					(
-						<div className='list-item list-item--message'>
-							<span>No Payment Types Types </span>
-						</div>
-					)
-					:
-					(
-						props.paymentTypes.map( ( paymentType ) =>
-						{
-							return <OtherSettingsListItem
-										key={paymentType.paymentTypeUuid} 
-										itemName={paymentType.paymentTypeName}
-										itemUuid={paymentType.paymentTypeUuid}
-										handleEdit={props.editPaymentType}
-										handleRemove={props.removePaymentType}/>
-						})
-					)
-				}
-				</div>
 			</div>
 		</div>
 	);
