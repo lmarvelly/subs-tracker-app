@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { MemberSummaryPage } from '../../components/MemberSummaryPage';
-import { members, records, seasons, sessions } from '../fixtures/fixures';
+import { faultyRecords, faultySeasons, faultyMembers, members, records, seasons, sessions, faultySessions } from '../fixtures/fixures';
 import { getMemberTotals, getAttendenceTotals, getSeasonTotals } from '../../functions/recordTotals';
 
 test('should render empty MemberSummaryPage component', () =>
@@ -36,6 +36,41 @@ test('should render MemberSummaryPage component with seasons and records for sec
 	);
 
 	expect( recordTotals ).toEqual({totalPaid: 9400, totalDebt: 300})
+	expect( recordsWrapper ).toMatchSnapshot();
+});
+
+
+test('should render MemberSummaryPage component with faulty records data', () => 
+{
+	const member = members[1].playerUuid;
+	const recordTotals = getMemberTotals(faultyRecords, member);
+
+	const recordsWrapper = shallow(
+		<MemberSummaryPage
+			memberFilter={member}
+			recordTotals={recordTotals}
+			records={faultyRecords}
+			seasons={seasons}
+		/>
+	);
+
+	expect( recordsWrapper ).toMatchSnapshot();
+});
+
+test('should render MemberSummaryPage component with faulty sessions data', () => 
+{
+	const member = members[1].playerUuid;
+	const recordTotals = getMemberTotals(faultySessions, member);
+
+	const recordsWrapper = shallow(
+		<MemberSummaryPage
+			memberFilter={member}
+			recordTotals={recordTotals}
+			records={faultySessions}
+			seasons={seasons}
+		/>
+	);
+
 	expect( recordsWrapper ).toMatchSnapshot();
 });
 

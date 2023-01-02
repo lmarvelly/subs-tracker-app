@@ -22,7 +22,8 @@ export const getMemberTotals = ( records, playerUuid = '' ) =>
 			}
 			else if(record.recordType === 'SESSION')
 			{
-				record.playerList.forEach( currentPlayer =>
+				// Check if playerList exists
+				record.playerList && record.playerList.forEach( currentPlayer =>
 				{
 					if( currentPlayer.playerUuid === playerUuid )
 					{
