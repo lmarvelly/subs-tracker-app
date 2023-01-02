@@ -161,7 +161,7 @@ export class Navbar extends Component
 		const otherSettingsButtons = (
 			<div>
 				<Link className='button--nav otherSettingsButton' to='/other-settings-page'>
-					Other Settings Page
+					Other Settings
 				</Link>
 			</div>
 		);

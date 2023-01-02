@@ -32,7 +32,7 @@ export const OtherSettingsPage = ( props ) =>
 			<div className='page-header'>
 				<div className='content-container'>
 					<div className='page-header__content'>
-						<h1 className='page-header__title'>Other Settings</h1>
+						<h1 className='page-header__title'>Other Settings Page</h1>
 					</div>
 				</div>
 			</div>
