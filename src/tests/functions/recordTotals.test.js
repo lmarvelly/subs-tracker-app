@@ -1,6 +1,6 @@
 // TDD is simular to what I have been doing except you'd write the tests first
 import { getMemberTotals, getAttendenceTotals, getSeasonTotals } from '../../functions/recordTotals';
-import { members, records, sessions, sessionNames } from '../fixtures/fixures'; 
+import { faultyMembers, faultyRecords, faultySessions, members, records, sessions, sessionNames } from '../fixtures/fixures'; 
 
 test('Should get zero for both amount paid and debts', () => 
 {
@@ -129,4 +129,12 @@ test('should return tallys for Sessions', () =>
 		sessionUuid: expect.any(String), // TODO: Refactor to use Sessions Actual UUID
 		count: 3
 	}]);
+});
+
+test('should handle faulty data without errors', () =>
+{
+	getAttendenceTotals(faultyRecords);
+	getAttendenceTotals(faultySessions);
+	getMemberTotals(faultyRecords, members[1]);
+	getMemberTotals(faultySessions, members[1]);
 });
