@@ -2,13 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import moment from 'moment';
 import SessionForm from '../../components/SessionForm';
-import { members, seasons, sessionArray } from '../fixtures/fixures';
+import { members, simularMembers, seasons, sessionArray } from '../fixtures/fixures';
 
 let addSessionName,
 	emptyWrapper,
 	onAmountChange,
 	onSubmit,
 	sessionArrayWrapper,
+	sessionArrayWrapper2,
 	wrapper;
 
 beforeEach( () =>
@@ -36,6 +37,17 @@ beforeEach( () =>
 	sessionArrayWrapper = shallow(
 		<SessionForm
 			members={members}
+			seasons={seasons}
+			sessionArray={sessionArray}
+			addSessionName={addSessionName}
+			onAmountChange={onAmountChange}
+			onSubmit={onSubmit}
+		/>
+	);
+
+	sessionArrayWrapper2 = shallow(
+		<SessionForm
+			members={simularMembers}
 			seasons={seasons}
 			sessionArray={sessionArray}
 			addSessionName={addSessionName}
@@ -159,6 +171,112 @@ test('should set all Form Fields and call onSubmit', () =>
 	});
 
 	expect(onSubmit).toHaveBeenCalled();
+});
+
+// test('should set all Form Fields, organize playerList alpbabetically and and call onSubmit', () => 
+// { 
+// 	sessionArrayWrapper.setState(
+// 	{
+// 		id: 'qwerty',
+// 		amount: 100,
+// 		createdAt: 200,
+// 		sessionName: 'Kickabout',
+// 		note: '',
+// 		seasonUuid: seasons[0].seasonUuid,
+// 		playerList: [
+// 			{
+// 				discount: 0,
+// 				playerUuid: members[0].playerUuid
+// 			},
+// 			{
+// 				discount: 0,
+// 				playerUuid: members[1].playerUuid
+// 			},
+// 			{
+// 				discount: 0,
+// 				playerUuid: members[2].playerUuid
+// 			}
+// 		]
+// 	});
+
+// 	sessionArrayWrapper.find('form').simulate('submit', 
+// 	{
+// 		preventDefault: () => {}
+// 	});
+
+// 	expect(sessionArrayWrapper.state('playerList')).toEqual(
+// 		[
+// 			{
+// 				discount: 0,
+// 				playerUuid: members[1].playerUuid
+// 			},
+// 			{
+// 				discount: 0,
+// 				playerUuid: members[2].playerUuid
+// 			},
+// 			{
+// 				discount: 0,
+// 				playerUuid: members[0].playerUuid
+// 			}
+// 		]
+// 	);
+// });
+
+test('should set all Form Fields, organize playerList alpbabetically and and call onSubmit 2', () => 
+{
+	sessionArrayWrapper2.setState(
+	{
+		id: 'qwerty',
+		amount: 100,
+		createdAt: 200,
+		sessionName: 'Kickabout',
+		note: '',
+		seasonUuid: seasons[0].seasonUuid,
+		playerList: [
+			{
+				discount: 0,
+				playerUuid: simularMembers[0].playerUuid
+			},
+			{
+				discount: 0,
+				playerUuid: simularMembers[1].playerUuid
+			},
+			{
+				discount: 0,
+				playerUuid: simularMembers[2].playerUuid
+			},
+			{
+				discount: 0,
+				playerUuid: simularMembers[3].playerUuid
+			}
+		]
+	});
+
+	sessionArrayWrapper2.find('form').simulate('submit', 
+	{
+		preventDefault: () => {}
+	});
+
+	expect(sessionArrayWrapper2.state('playerList')).toEqual(
+		[
+			{
+				discount: 0,
+				playerUuid: simularMembers[2].playerUuid
+			},
+			{
+				discount: 0,
+				playerUuid: simularMembers[3].playerUuid
+			},
+			{
+				discount: 0,
+				playerUuid: simularMembers[0].playerUuid
+			},
+			{
+				discount: 0,
+				playerUuid: simularMembers[1].playerUuid
+			}
+		]
+	);
 });
 
 test('should set sessionName on input change', () => 

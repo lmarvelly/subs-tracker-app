@@ -79,6 +79,38 @@ export const members =
 	},
 ];
 
+export const simularMembers =
+[
+	{
+		playerUuid: 'player1',
+		firstName: 'Luke', 
+		middleNames: 'Owen Lloyd', 
+		surname: 'Marvelly', 
+		nickname: 'Fluke'
+	},
+	{
+		playerUuid: 'player2',
+		firstName: 'Luke', 
+		middleNames: 'Owen Lloyd', 
+		surname: 'Marvelly', 
+		nickname: 'Lukio'
+	},
+	{
+		playerUuid: 'player3',
+		firstName: 'Luke', 
+		middleNames: 'Owen Lloyd', 
+		surname: 'Evans', 
+		nickname: 'Fluke'
+	},
+	{
+		playerUuid: 'player4',
+		firstName: 'Luke', 
+		middleNames: 'Owen Lloyd', 
+		surname: 'Evans', 
+		nickname: 'Lukio'
+	}
+];
+
 export const faultyMembers = 
 [
 	{

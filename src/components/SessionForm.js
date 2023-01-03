@@ -147,6 +147,48 @@ export default class SessionForm extends Component
 		return isFalsy;
 	}
 
+	orderPlayerList = () =>
+	{
+		const playerList = this.state.playerList;
+		const members = this.props.members;
+
+		playerList.sort(( a, b ) =>
+		{
+			const playerA = members.find((player) => a.playerUuid === player.playerUuid);
+
+			const playerB = members.find((player) => b.playerUuid === player.playerUuid);
+
+			if(playerA.firstName < playerB.firstName) 
+			{
+				return -1
+			};
+			if(playerA.firstName > playerB.firstName)
+			{
+				return 1;
+			}
+			if(playerA.surname < playerB.surname) 
+			{
+				return -1
+			};
+			if(playerA.surname > playerB.surname)
+			{
+				return 1;
+			};
+			if(playerA.nickname < playerB.nickname) 
+			{
+				return -1
+			};
+			if(playerA.nickname > playerB.nickname)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			};
+		});
+	}
+
 	onSubmit = (e) =>
 	{
 		e.preventDefault();
@@ -206,6 +248,8 @@ export default class SessionForm extends Component
 					session.playerList[index] = {discount: 0, playerUuid: player.playerUuid}
 				}
 			});
+
+			this.orderPlayerList();
 
 			this.setState( () => ({ error: '' }) );
 			this.props.onSubmit( session );
