@@ -10,7 +10,8 @@ export class SessionFormItem extends Component
 		{
 			attending: props.attending ? true : false,
 			expand: false,
-			discount: props.discount ? props.discount : ''
+			discount: props.discount ? props.discount : '',
+			activeClassname: ''
 		}
 	}
 
@@ -20,6 +21,7 @@ export class SessionFormItem extends Component
 
 		if(e.target.checked)
 		{
+			this.setState({activeClassname: '--active'});
 			this.props.addPlayer(
 			{
 				playerUuid: this.props.playerUuid, 
@@ -28,6 +30,7 @@ export class SessionFormItem extends Component
 		}
 		else
 		{
+			this.setState({activeClassname: ''});
 			this.props.removePlayer( this.props.playerUuid );
 		}
 	}
@@ -69,7 +72,7 @@ export class SessionFormItem extends Component
 	{
 		return(
 			<div>
-				<div className='list-item expand' onClick={this.handleExpand}>
+				<div className={`list-item${this.state.activeClassname} expand`} onClick={this.handleExpand}>
 					<div className='list-item--session__row expand'>
 						<div className='expand' style={{width: '50%'}}>
 							<span>{`${this.props.firstName} ${this.props.surname}`}</span>

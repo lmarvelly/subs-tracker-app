@@ -50,6 +50,12 @@
 	}
 }
 
+.list-item--active
+{
+	@extend .list-item;
+	background: darken($pale-yellow, 25%);
+}
+
 .list-item__row
 {
 	display: flex;
