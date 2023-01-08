@@ -189,6 +189,27 @@ export default class SessionForm extends Component
 		});
 	}
 
+	resetForm = () =>
+	{
+		this.setState(
+		{
+			// Session properties
+			id: '',
+			amount: '',
+			createdAt: moment(),
+			note: '',
+			playerList: [],
+			sessionName: '',
+
+			// form properties
+			calenderFocused: false,
+
+			// error messages
+			error: '',
+			amountError: ''
+		});
+	}
+
 	onSubmit = (e) =>
 	{
 		e.preventDefault();
@@ -253,6 +274,8 @@ export default class SessionForm extends Component
 
 			this.setState( () => ({ error: '' }) );
 			this.props.onSubmit( session );
+
+			this.resetForm();
 		}
 	}
 

@@ -8,20 +8,19 @@ export class SessionFormItem extends Component
 
 		this.state =
 		{
-			attending: props.attending ? true : false,
 			expand: false,
 			discount: props.discount ? props.discount : '',
-			activeClassname: ''
+			active: false
 		}
 	}
 
 	onAttend = (e) =>
 	{
-		this.setState({ attending: !this.state.attending });
+		this.setState({ attending: !this.props.attending });
 
 		if(e.target.checked)
 		{
-			this.setState({activeClassname: '--active'});
+			this.setState({active: true});
 			this.props.addPlayer(
 			{
 				playerUuid: this.props.playerUuid, 
@@ -30,7 +29,7 @@ export class SessionFormItem extends Component
 		}
 		else
 		{
-			this.setState({activeClassname: ''});
+			this.setState({active: false});
 			this.props.removePlayer( this.props.playerUuid );
 		}
 	}
@@ -70,9 +69,11 @@ export class SessionFormItem extends Component
 
 	render()
 	{
+		const activeClassName = (this.props.attending && this.state.active) ? '--active' : ''
+
 		return(
 			<div>
-				<div className={`list-item${this.state.activeClassname} expand`} onClick={this.handleExpand}>
+				<div className={`list-item${activeClassName} expand`} onClick={this.handleExpand}>
 					<div className='list-item--session__row expand'>
 						<div className='expand width-50'>
 							<span>{`${this.props.firstName} ${this.props.surname}`}</span>
@@ -81,7 +82,7 @@ export class SessionFormItem extends Component
 							<input
 								className='list-item--session__checkbox'
 								value={this.props.playerUuid}
-								checked={this.state.attending}
+								checked={this.props.attending}
 								type="checkbox"
 								onChange={this.onAttend}
 								onClick={this.noExpand}
@@ -95,7 +96,7 @@ export class SessionFormItem extends Component
 								<span>Discount (%)</span>
 								<input
 									className='list-item--session__discount'
-									disabled={!this.state.attending}
+									disabled={!this.props.attending}
 									value={this.state.discount}
 									placeholder='0'
 									type="text"
