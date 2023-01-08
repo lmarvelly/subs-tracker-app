@@ -74,11 +74,12 @@ export class SessionFormItem extends Component
 			<div>
 				<div className={`list-item${this.state.activeClassname} expand`} onClick={this.handleExpand}>
 					<div className='list-item--session__row expand'>
-						<div className='expand' style={{width: '50%'}}>
+						<div className='expand width-50'>
 							<span>{`${this.props.firstName} ${this.props.surname}`}</span>
 						</div>
 						<div>
-							<input 
+							<input
+								className='list-item--session__checkbox'
 								value={this.props.playerUuid}
 								checked={this.state.attending}
 								type="checkbox"
@@ -90,9 +91,10 @@ export class SessionFormItem extends Component
 					{
 						this.state.expand &&
 						(
-							<div className='list-item--session__row expand'>
+							<div className='list-item--session__row expand margin-top-medium'>
 								<span>Discount (%)</span>
 								<input
+									className='list-item--session__discount'
 									disabled={!this.state.attending}
 									value={this.state.discount}
 									placeholder='0'
