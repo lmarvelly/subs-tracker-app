@@ -111,7 +111,7 @@ const mapStateToProps = ( state, props ) =>
 const mapDispatchToProps = ( dispatch, props ) => (
 {
 	addSessionName: ( sessionName ) => dispatch(startAddSessionName(sessionName) ),
-	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record ) ),
+	startEditRecord: ( record ) => dispatch( startEditRecord( record.id, record.seasonUuid, record ) ),
 	startRemoveRecord: ( data ) => dispatch( startRemoveRecord( data ) ),
 	sortMembersAlphabetAsc: () => dispatch( sortAlphabetAsc() ),
 	sortSeasonsAlphabetDesc: () => dispatch( sortDesc() )
