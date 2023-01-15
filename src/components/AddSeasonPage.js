@@ -13,7 +13,10 @@ export class AddSeasonPage extends Component
 	onSubmit = ( season ) =>
 	{
 		this.props.startAddSeason({ ...season });
-		this.props.history.push('/seasons');
+		if (!confirm('New Season added! Would you like to create another?')) 
+		{
+			this.props.history.push('/seasons'); // Return to seasons page
+		}
 	}
 
 	render()

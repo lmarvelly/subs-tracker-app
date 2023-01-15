@@ -40,6 +40,16 @@ export default class SeasonForm extends Component
 		return isFalsy;
 	}
 
+	resetForm = () =>
+	{
+		this.setState(
+		{
+			seasonUuid: '',
+			seasonName: '',
+			error: ''
+		});
+	}
+
 	onSubmit = ( e ) =>
 	{
 		e.preventDefault();
@@ -53,8 +63,8 @@ export default class SeasonForm extends Component
 		}
 		else
 		{
-			this.setState(() => ({ error: '' }));
 			this.props.onSubmit( season() );
+			this.resetForm();
 		}
 	}
 
