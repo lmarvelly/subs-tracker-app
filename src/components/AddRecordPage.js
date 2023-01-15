@@ -47,7 +47,10 @@ export const AddRecordPage = ( props ) =>
 		props.startAddRecord(record);
 		props.setSeasonFilter( record.seasonUuid ); // Added this so Dashboard shows the season of the submitted Record
 
-		props.history.push('/dashboard'); // return to dashboard
+		if (!confirm('Record added! Would you like to create another?')) 
+		{
+			props.history.push('/dashboard'); // return to dashboard
+		}
 	};
 
 	return (

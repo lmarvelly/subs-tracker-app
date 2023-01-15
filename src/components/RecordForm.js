@@ -104,6 +104,24 @@ export default class RecordForm extends Component
 		this.setState( () => ({ calenderFocused: focused }) );
 	};
 
+	resetForm = () => {
+		this.setState(
+		{
+			id: '',
+			playerUuid: '',
+			recordType: 'PAYMENT',
+			sessionName: '',
+			note: '',
+			createdAt: moment(),
+			calenderFocused: false,
+			
+			error: '',
+			amountError: '',
+
+			amount: ''
+		});
+	};
+
 	onSubmit = ( e ) => {
 		e.preventDefault();
 
@@ -156,6 +174,8 @@ export default class RecordForm extends Component
 			this.setState( () => ({ error: '' }) );
 
 			this.props.onSubmit( record );
+
+			this.resetForm();
 		}
 	};
 
