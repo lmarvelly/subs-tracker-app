@@ -272,7 +272,6 @@ export default class SessionForm extends Component
 
 			this.orderPlayerList();
 
-			this.setState( () => ({ error: '' }) );
 			this.props.onSubmit( session );
 
 			this.resetForm();

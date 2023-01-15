@@ -171,8 +171,6 @@ export default class RecordForm extends Component
 		}
 		else
 		{
-			this.setState( () => ({ error: '' }) );
-
 			this.props.onSubmit( record );
 
 			this.resetForm();

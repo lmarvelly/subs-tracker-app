@@ -97,7 +97,6 @@ export default class MemberForm extends Component
 		}
 		else
 		{
-			this.setState(() => ({ error: '' }));
 			this.props.onSubmit( member() );
 			this.resetForm();
 		}
