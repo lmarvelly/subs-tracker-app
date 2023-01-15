@@ -13,7 +13,8 @@ let wrapper,
 	onAmountChange,
 	onSeasonNameChange,
 	onSubmit,
-	onTypeChange;
+	onTypeChange,
+	resetForm;
 
 beforeEach( () =>
 {
@@ -23,6 +24,7 @@ beforeEach( () =>
 	onSeasonNameChange = jest.fn();
 	onTypeChange = jest.fn();
 	onAmountChange = jest.fn();
+	resetForm = jest.fn();
 
 	// Wrappers
 	wrapper = shallow(
@@ -39,11 +41,12 @@ beforeEach( () =>
 			seasons={ seasons }
 			sessionNames={ sessionNames }
 
-			addSessionName={addSessionName}
-			onTypeChange={onTypeChange}
-			onAmountChange={onAmountChange}
+			addSessionName={ addSessionName }
+			onTypeChange={ onTypeChange }
+			onAmountChange={ onAmountChange }
 			onSeasonNameChange={ onSeasonNameChange }
-			onSubmit={onSubmit}
+			onSubmit={ onSubmit }
+			resetForm={ resetForm }
 		/>
 	);
 	paymentWrapper = shallow(<RecordForm record={records[1]} members={ members } seasons={ seasons } />);
@@ -210,7 +213,7 @@ test('Should not set amount because input has too many decimal places', () =>
 	expect(wrapper.state('amount')).toBe('');
 });
 
-test('should call onSubmit prop for valid form submission for a Debt', () => 
+test('should call onSubmit prop for valid form submission for a Debt and reset form', () => 
 {
 	const wrapper = shallow(
 		<RecordForm
@@ -226,18 +229,32 @@ test('should call onSubmit prop for valid form submission for a Debt', () =>
 		preventDefault: () => {}
 	});
 
-	expect(wrapper.state('error')).toBe('');
+	const seasonUuid = records[0].seasonUuid;
+
 	expect(onSubmit).toHaveBeenLastCalledWith(
 	{
 		id: records[0].id,
 		playerUuid: records[0].playerUuid,
-		seasonUuid: records[0].seasonUuid,
+		seasonUuid: seasonUuid,
 		recordType: records[0].recordType,
 		sessionName: records[0].sessionName,
 		note: records[0].note,
 		createdAt: records[0].createdAt,
 		amount: records[0].amount
 	});
+
+	// Testing to see if state has been reset
+	expect(wrapper.state('id')).toBe('');
+	expect(wrapper.state('playerUuid')).toBe('');
+	expect(wrapper.state('error')).toBe('');
+	expect(wrapper.state('amountError')).toBe('');
+	expect(wrapper.state('seasonUuid')).toBe(seasonUuid);
+	expect(wrapper.state('recordType')).toBe('PAYMENT');
+	expect(wrapper.state('sessionName')).toBe('');
+	expect(wrapper.state('note')).toBe('');
+	expect(wrapper.state('createdAt')).toEqual(moment());
+	expect(wrapper.state('amount')).toBe('');
+	expect(wrapper.state('calenderFocused')).toBe(false);
 });
 
 test('should call onSubmit prop for valid form submission for a Payment', () => 
@@ -326,4 +343,4 @@ test('should change Payment inputs to Debt inputs when type is changed', () =>
 	expect(altWrapper.state().recordType).toEqual(value);
 });
 
-// Submit and add new Session Name
+// Add test to Submit and add new Session Name
