@@ -26,13 +26,17 @@ test('should render Member form with Member Data', () =>
 	expect(completedWrapper).toMatchSnapshot();
 });
 
-test('shouldn\'t show error on submition of completed Member form ', () => 
+test('Should submit completed form without any errors and reset the form', () => 
 {
 	completedWrapper.find('form').simulate('submit', 
 	{
 		preventDefault: () => {}
 	});
 
+	expect(completedWrapper.state('firstName')).toEqual('');
+	expect(completedWrapper.state('middleNames')).toEqual('');
+	expect(completedWrapper.state('surname')).toEqual('');
+	expect(completedWrapper.state('nickname')).toEqual('');
 	expect(completedWrapper.state('error')).toEqual('');
 });
 
