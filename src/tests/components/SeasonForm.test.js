@@ -31,13 +31,15 @@ test('should render completed Season form', () =>
 	expect(completedWrapper).toMatchSnapshot();
 });
 
-test('shouldn\'t show error on submition of completed Member form ', () => 
+test('should submit and reset form without errors', () => 
 {
 	completedWrapper.find('.form').simulate('submit',
 	{
 		preventDefault: () => {}
 	});
 
+	expect(completedWrapper.state('seasonName')).toEqual('');
+	expect(completedWrapper.state('seasonUuid')).toEqual('');
 	expect(completedWrapper.state('error')).toEqual('');
 });
 
