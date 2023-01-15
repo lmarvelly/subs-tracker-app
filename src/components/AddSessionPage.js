@@ -45,9 +45,9 @@ export const AddSessionPage = ( props ) =>
 		props.startAddSession( session );
 		props.setSeasonFilter( session.seasonUuid );
 
-		if(!confirm('Would you like to create another Session?'))
+		if(!confirm('Session added! Would you like to create another?'))
 		{
-			props.history.push('/');
+			props.history.push('/dashboard');
 		}
 	};
 
