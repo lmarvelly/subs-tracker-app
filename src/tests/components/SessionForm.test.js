@@ -8,6 +8,7 @@ let addSessionName,
 	emptyWrapper,
 	onAmountChange,
 	onSubmit,
+	resetForm,
 	sessionArrayWrapper,
 	sessionArrayWrapper2,
 	wrapper;
@@ -16,7 +17,8 @@ beforeEach( () =>
 {
 	addSessionName = jest.fn();
 	onAmountChange = jest.fn();
-	onSubmit =jest.fn();
+	onSubmit = jest.fn();
+	resetForm = jest.fn();
 
 	emptyWrapper = shallow(
 		<SessionForm
@@ -42,6 +44,7 @@ beforeEach( () =>
 			addSessionName={addSessionName}
 			onAmountChange={onAmountChange}
 			onSubmit={onSubmit}
+			resetForm={resetForm}
 		/>
 	);
 
@@ -53,6 +56,7 @@ beforeEach( () =>
 			addSessionName={addSessionName}
 			onAmountChange={onAmountChange}
 			onSubmit={onSubmit}
+			resetForm={resetForm}
 		/>
 	);
 });
@@ -147,7 +151,7 @@ test('should not render "Please add members" error message', () =>
 	expect(sessionArrayWrapper).toMatchSnapshot();
 });
 
-test('should set all Form Fields and call onSubmit', () => 
+test('should set all Form Fields, call onSubmit and reset form', () => 
 { 
 	const seasonUuid = seasons[0].seasonUuid;
 	const input = sessionArrayWrapper.find('#seasonName'); // Select a Season input
@@ -171,6 +175,18 @@ test('should set all Form Fields and call onSubmit', () =>
 	});
 
 	expect(onSubmit).toHaveBeenCalled();
+
+	// Expect season State to have been reset
+	expect(sessionArrayWrapper.state('id')).toEqual('');
+	expect(sessionArrayWrapper.state('amount')).toEqual('');
+	expect(sessionArrayWrapper.state('createdAt')).toEqual(moment());
+	expect(sessionArrayWrapper.state('note')).toEqual('');
+	expect(sessionArrayWrapper.state('playerList')).toEqual([]);
+	expect(sessionArrayWrapper.state('sessionName')).toEqual('');
+	expect(sessionArrayWrapper.state('seasonUuid')).toEqual(seasonUuid);
+	expect(sessionArrayWrapper.state('calenderFocused')).toEqual(false);
+	expect(sessionArrayWrapper.state('error')).toEqual('');
+	expect(sessionArrayWrapper.state('amountError')).toEqual('');
 });
 
 // test('should set all Form Fields, organize playerList alpbabetically and and call onSubmit', () => 
