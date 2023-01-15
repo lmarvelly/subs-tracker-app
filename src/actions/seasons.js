@@ -84,7 +84,7 @@ export const startRemoveSeason = ( seasonUuid ) =>
 
 				if(canDelete)
 				{
-					alert('Deleted');
+					alert('Season deleted');
 					return database.ref(`subs-tracker/users/${uid}/seasons/${seasonUuid}`)
 						.remove()
 						.then((ref) =>

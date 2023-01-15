@@ -103,7 +103,7 @@ export const startRemoveMember = ( playerUuid, seasonList ) =>
 			} 
 			else 
 			{
-				alert('Deleted');
+				alert('Member deleted');
 				return database.ref(`subs-tracker/users/${uid}/members/${playerUuid}`)
 					.remove()
 					.then((ref) => 
