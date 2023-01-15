@@ -70,6 +70,17 @@ export default class MemberForm extends Component
 		return isFalsy;
 	}
 
+	resetForm = () => {
+		this.setState(
+		{
+			firstName: "",
+			middleNames: "",
+			surname: "",
+			nickname: "",
+			error: ""
+		});
+	}
+
 	onSubmit = ( e ) => {
 		e.preventDefault();
 		const playerUuid = this.state.playerUuid;
@@ -88,6 +99,7 @@ export default class MemberForm extends Component
 		{
 			this.setState(() => ({ error: '' }));
 			this.props.onSubmit( member() );
+			this.resetForm();
 		}
 	};
 

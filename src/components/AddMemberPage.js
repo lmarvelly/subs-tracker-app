@@ -13,7 +13,10 @@ export class AddMemberPage extends Component
 	onSubmit =  ( member ) => 
 	{
 		this.props.startAddMember( { ...member } );
-		this.props.history.push('/members'); // Return to members page
+		if (!confirm('New Member added! Would you like to create another?')) 
+		{
+			this.props.history.push('/members'); // Return to members page
+		}
 	}
 
 	render()
